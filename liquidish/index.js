@@ -39,9 +39,9 @@ function addTransform(regex, replacement) {
 // Add the transformations
 addTransform(/{{\s*(\w+)\s*}}/g, '{tmpl_var name="$1"}');
 addTransform(/{%\s*if\s*(\w+)\s*%}/g, '{tmpl_if name="$1"}');
-addTransform(/{%\s*if\s*(\w+)\s*(\S+)\s*'([^']+)'\s*%}/g, '{tmpl_if name="$1" op="$2" value="$3"}');
+addTransform(/{%\s*if\s*(\w+)\s*(\S+)\s*'([^']*)'\s*%}/g, '{tmpl_if name="$1" op="$2" value="$3"}');
 addTransform(/{%\s*elsif\s*(\w+)\s*%}/g, '{tmpl_elseif name="$1"}');
-addTransform(/{%\s*elsif\s*(\w+)\s*(\S+)\s*'([^']+)'\s*%}/g, '{tmpl_elseif name="$1" op="$2" value="$3"}');
+addTransform(/{%\s*elsif\s*(\w+)\s*(\S+)\s*'([^']*)'\s*%}/g, '{tmpl_elseif name="$1" op="$2" value="$3"}');
 addTransform(/{%\s*else\s*%}/g, '{tmpl_else}');
 addTransform(/{%\s*endif\s*%}/g, '{/tmpl_if}');
 addTransform(/{%\s*unless\s*(\w+)\s*%}/g, '{tmpl_unless name="$1"}');
