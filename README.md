@@ -1,6 +1,6 @@
-# ISPConfig Tailwind Theme
+# 🎨 ISPConfig Tailwind Theme
 
-The default theme, but with Tailwind CSS.
+The default theme, but with Tailwind CSS. This is meant to be a starting point for creating a custom theme for ISPConfig, using Tailwind CSS.
 
 > [!WARNING]
 > This is a start, and not a finished product. It's a work in progress.
@@ -38,6 +38,8 @@ Login to ISPConfig and go to `Tools` > `User Settings` > `Design`. Select the `t
 
 ## 🔎 About ISPConfig themes
 
-All template files inside ISPConfig should be copied to the `templates/` directory in this theme. From there we can modify the files to our liking. ISPConfig will override the default templates with the ones in our theme.
+ISPConfig will override the default templates with the ones in our theme. We gathered all the `.htm` files from ISPConfig in the `src/templates/` directory. From there we can modify the files to our liking.
 
-Because the `.tpl` template isn't very friendly for our IDEs, we use a Liquid-like templating language we call `Liquidish`. [Read more about Liquidish here](./docs/liquidish.md).
+Furthermore, because the `.tpl` template isn't very friendly for our IDEs, we use a Liquid-like templating language we call `Liquidish`.
+
+**[📚 Read more about Liquidish in our docs](./docs/liquidish.md)**
