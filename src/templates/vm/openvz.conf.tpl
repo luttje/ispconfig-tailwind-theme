@@ -3,118 +3,118 @@
 VERSION="2"
 
 # Parameters
-ONBOOT="{tmpl_var name='onboot'}"
-BOOTORDER="{tmpl_var name='bootorder'}"
+ONBOOT="{{ onboot }}"
+BOOTORDER="{{ bootorder }}"
 
 # VSwap requires RAM and SWAP, all other memory parameters are optional.
 <tmpl_if name='physpages'>
 # RAM
-PHYSPAGES="{tmpl_var name='physpages'}"
+PHYSPAGES="{{ physpages }}"
 </tmpl_if>
 <tmpl_if name='swappages'>
 # SWAP
-SWAPPAGES="{tmpl_var name='swappages'}"
+SWAPPAGES="{{ swappages }}"
 </tmpl_if>
 
 <tmpl_if name='kmemsize'>
-KMEMSIZE="{tmpl_var name='kmemsize'}"
+KMEMSIZE="{{ kmemsize }}"
 </tmpl_if>
 <tmpl_if name='lockedpages'>
-LOCKEDPAGES="{tmpl_var name='lockedpages'}"
+LOCKEDPAGES="{{ lockedpages }}"
 </tmpl_if>
 <tmpl_if name='privvmpages'>
-PRIVVMPAGES="{tmpl_var name='privvmpages'}"
+PRIVVMPAGES="{{ privvmpages }}"
 </tmpl_if>
 <tmpl_if name='shmpages'>
-SHMPAGES="{tmpl_var name='shmpages'}"
+SHMPAGES="{{ shmpages }}"
 </tmpl_if>
 <tmpl_if name='vmguarpages'>
-VMGUARPAGES="{tmpl_var name='vmguarpages'}"
+VMGUARPAGES="{{ vmguarpages }}"
 </tmpl_if>
 <tmpl_if name='oomguarpages'>
-OOMGUARPAGES="{tmpl_var name='oomguarpages'}"
+OOMGUARPAGES="{{ oomguarpages }}"
 </tmpl_if>
 # alternative meminfo: "pages:256000"
 MEMINFO="privvmpages:1"
 
 <tmpl_if name='vmguarpages'>
-NUMPROC="{tmpl_var name='numproc'}"
+NUMPROC="{{ numproc }}"
 </tmpl_if>
 <tmpl_if name='numtcpsock'>
-NUMTCPSOCK="{tmpl_var name='numtcpsock'}"
+NUMTCPSOCK="{{ numtcpsock }}"
 </tmpl_if>
 <tmpl_if name='numflock'>
-NUMFLOCK="{tmpl_var name='numflock'}"
+NUMFLOCK="{{ numflock }}"
 </tmpl_if>
 <tmpl_if name='numpty'>
-NUMPTY="{tmpl_var name='numpty'}"
+NUMPTY="{{ numpty }}"
 </tmpl_if>
 <tmpl_if name='numsiginfo'>
-NUMSIGINFO="{tmpl_var name='numsiginfo'}"
+NUMSIGINFO="{{ numsiginfo }}"
 </tmpl_if>
 <tmpl_if name='tcpsndbuf'>
-TCPSNDBUF="{tmpl_var name='tcpsndbuf'}"
+TCPSNDBUF="{{ tcpsndbuf }}"
 </tmpl_if>
 <tmpl_if name='tcprcvbuf'>
-TCPRCVBUF="{tmpl_var name='tcprcvbuf'}"
+TCPRCVBUF="{{ tcprcvbuf }}"
 </tmpl_if>
 <tmpl_if name='othersockbuf'>
-OTHERSOCKBUF="{tmpl_var name='othersockbuf'}"
+OTHERSOCKBUF="{{ othersockbuf }}"
 </tmpl_if>
 <tmpl_if name='dgramrcvbuf'>
-DGRAMRCVBUF="{tmpl_var name='dgramrcvbuf'}"
+DGRAMRCVBUF="{{ dgramrcvbuf }}"
 </tmpl_if>
 <tmpl_if name='numothersock'>
-NUMOTHERSOCK="{tmpl_var name='numothersock'}"
+NUMOTHERSOCK="{{ numothersock }}"
 </tmpl_if>
 <tmpl_if name='dcachesize'>
-DCACHESIZE="{tmpl_var name='dcachesize'}"
+DCACHESIZE="{{ dcachesize }}"
 </tmpl_if>
 <tmpl_if name='numfile'>
-NUMFILE="{tmpl_var name='numfile'}"
+NUMFILE="{{ numfile }}"
 </tmpl_if>
 <tmpl_if name='avnumproc'>
-AVNUMPROC="{tmpl_var name='avnumproc'}"
+AVNUMPROC="{{ avnumproc }}"
 </tmpl_if>
 <tmpl_if name='numiptent'>
-NUMIPTENT="{tmpl_var name='numiptent'}"
+NUMIPTENT="{{ numiptent }}"
 </tmpl_if>
 
-DISKSPACE="{tmpl_var name='diskspace'}"
-DISKINODES="{tmpl_var name='diskinodes'}"
+DISKSPACE="{{ diskspace }}"
+DISKINODES="{{ diskinodes }}"
 QUOTAUGIDLIMIT="10000"
 QUOTATIME="0"
 <tmpl_if name='io_priority'>
-IOPRIO="{tmpl_var name='io_priority'}"
+IOPRIO="{{ io_priority }}"
 </tmpl_if>
 
 <tmpl_if name='cpu_num'>
-CPUS="{tmpl_var name='cpu_num'}"
+CPUS="{{ cpu_num }}"
 </tmpl_if>
 <tmpl_if name='cpu_units'>
-CPUUNITS="{tmpl_var name='cpu_units'}"
+CPUUNITS="{{ cpu_units }}"
 </tmpl_if>
 <tmpl_if name='cpu_limit'>
-CPULIMIT="{tmpl_var name='cpu_limit'}"
+CPULIMIT="{{ cpu_limit }}"
 </tmpl_if>
 
 VE_ROOT="/vz/root/$VEID"
 VE_PRIVATE="/vz/private/$VEID"
-OSTEMPLATE="{tmpl_var name='ostemplate'}"
+OSTEMPLATE="{{ ostemplate }}"
 ORIGIN_SAMPLE="vps.basic"
-HOSTNAME="{tmpl_var name='hostname'}"
-IP_ADDRESS="{tmpl_var name='ip_address'}"
-NAMESERVER="{tmpl_var name='nameserver'}"
+HOSTNAME="{{ hostname }}"
+IP_ADDRESS="{{ ip_address }}"
+NAMESERVER="{{ nameserver }}"
 
 <tmpl_if name='capability'>
-CAPABILITY="{tmpl_var name='capability'}"
+CAPABILITY="{{ capability }}"
 </tmpl_if>
 <tmpl_if name='features'>
-FEATURES="{tmpl_var name='features'}"
+FEATURES="{{ features }}"
 </tmpl_if>
 <tmpl_if name='iptables'>
-IPTABLES="{tmpl_var name='iptables'}"
+IPTABLES="{{ iptables }}"
 </tmpl_if>
 <tmpl_if name='custom'>
-{tmpl_var name='custom'}
+{{ custom }}
 </tmpl_if>

@@ -1,10 +1,10 @@
 <tmpl_if name="config_error_msg">
 <div class="alert alert-danger">
     <p>
-      <tmpl_var name="configuration_error_txt">
+      {{ configuration_error_txt }}
         <div>
-          <div style="float:left;width:150px;">{tmpl_var name='config_error_tstamp'} :&nbsp;</div>
-          <div style="padding-left:150px;">{tmpl_var name='config_error_msg'}</div>
+          <div style="float:left;width:150px;">{{ config_error_tstamp }} :&nbsp;</div>
+          <div style="padding-left:150px;">{{ config_error_msg }}</div>
         </div>
     </p>
   </div>
@@ -16,41 +16,41 @@
             <tmpl_if name="is_admin">
                 <div class="form-group">
                     <tmpl_if name="edit_disabled">
-                        <label for="server_id_disabled" class="col-sm-3 control-label">{tmpl_var name='server_id_txt'}</label>
+                        <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                         <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
-                            {tmpl_var name='server_id'}
+                            {{ server_id }}
                         </select></div>
-                        <input type="hidden" name="server_id" value="{tmpl_var name='server_id_value'}" />
+                        <input type="hidden" name="server_id" value="{{ server_id_value }}" />
                         <tmpl_else>
-                            <label for="server_id" class="col-sm-3 control-label">{tmpl_var name='server_id_txt'}</label>
+                            <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
-                                {tmpl_var name='server_id'}
+                                {{ server_id }}
                             </select></div>
                     </tmpl_if>
                 </div>
                 <tmpl_unless name="domain_option">
                     <div class="form-group">
-                        <label for="client_group_id" class="col-sm-3 control-label">{tmpl_var name='client_group_id_txt'}</label>
+                        <label for="client_group_id" class="col-sm-3 control-label">{{ client_group_id_txt }}</label>
                         <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
-                            {tmpl_var name='client_group_id'}
+                            {{ client_group_id }}
                         </select></div>
                     </div>
                 </tmpl_unless>
             <tmpl_else>
                 <tmpl_if name="only_one_server">
-                    <input type="hidden" id="server_id" name="server_id" value="{tmpl_var name='server_id_value'}" />
+                    <input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
                 <tmpl_else>
                     <div class="form-group">
                         <tmpl_if name="edit_disabled">
-                            <label for="server_id_disabled" class="col-sm-3 control-label">{tmpl_var name='server_id_txt'}</label>
+                            <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
-                                {tmpl_var name='server_id'}
+                                {{ server_id }}
                             </select></div>
-                            <input type="hidden" name="server_id" value="{tmpl_var name='server_id_value'}" />
+                            <input type="hidden" name="server_id" value="{{ server_id_value }}" />
                         <tmpl_else>
-                            <label for="server_id" class="col-sm-3 control-label">{tmpl_var name='server_id_txt'}</label>
+                            <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
-                                {tmpl_var name='server_id'}
+                                {{ server_id }}
                             </select></div>
                         </tmpl_if>
                     </div>
@@ -59,228 +59,228 @@
             <tmpl_if name="is_reseller">
                 <tmpl_unless name="domain_option">
                     <div class="form-group">
-                        <label for="client_group_id" class="col-sm-3 control-label">{tmpl_var name='client_group_id_txt'}</label>
+                        <label for="client_group_id" class="col-sm-3 control-label">{{ client_group_id_txt }}</label>
                         <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
-                            {tmpl_var name='client_group_id'}
+                            {{ client_group_id }}
                         </select></div>
                     </div>
                 </tmpl_unless>
             </tmpl_if>
             <tmpl_if name="domain_option">
-                <input type="hidden" id="client_group_id" name="client_group_id" value="{tmpl_var name='client_group_id_value'}" />
+                <input type="hidden" id="client_group_id" name="client_group_id" value="{{ client_group_id_value }}" />
             </tmpl_if>
             <div class="form-group">
-                <label for="ip_address" class="col-sm-3 control-label">{tmpl_var name='ip_address_txt'}</label>
+                <label for="ip_address" class="col-sm-3 control-label">{{ ip_address_txt }}</label>
                 <div class="col-sm-9"><select name="ip_address" id="ip_address" class="form-control">
-                    {tmpl_var name='ip_address'}
+                    {{ ip_address }}
                 </select></div>
             </div>
             <div class="form-group">
-                <label for="ipv6_address" class="col-sm-3 control-label">{tmpl_var name='ipv6_address_txt'}</label>
+                <label for="ipv6_address" class="col-sm-3 control-label">{{ ipv6_address_txt }}</label>
                 <div class="col-sm-9"><select name="ipv6_address" id="ipv6_address" class="form-control">
-                    {tmpl_var name='ipv6_address'}
+                    {{ ipv6_address }}
                 </select></div>
             </div>
             <div class="form-group">
-                <label for="domain" class="col-sm-3 control-label">{tmpl_var name='domain_txt'}</label>
+                <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
                 <tmpl_if name="domain_option">
                     <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
-                        {tmpl_var name='domain_option'}
+                        {{ domain_option }}
                     </select></div>
                     <tmpl_else>
-                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{tmpl_var name='domain'}" class="form-control" /></div></tmpl_if>
+                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></tmpl_if>
             </div>
             <tmpl_if name="web_aliasdomains_info">
             <div class="form-group">
-                   <label for="web_aliasdomains" class="col-sm-3 control-label">{tmpl_var name='dependent_domains_txt'}</label>
+                   <label for="web_aliasdomains" class="col-sm-3 control-label">{{ dependent_domains_txt }}</label>
                    <div class="col-sm-9">
-                           <textarea name="web_aliasdomains" id="web_aliasdomains" class="form-control" disabled="disabled"><tmpl_loop name="web_aliasdomains_info">{tmpl_var name='domain'}
+                           <textarea name="web_aliasdomains" id="web_aliasdomains" class="form-control" disabled="disabled"><tmpl_loop name="web_aliasdomains_info">{{ domain }}
 </tmpl_loop></textarea>
                    </div>
             </div>
             </tmpl_if>
 			<tmpl_if name="edit_disabled">
 				<div class="form-group">
-					<label for="document_root" class="col-sm-3 control-label" readonly >{tmpl_var name='document_root_txt'}</label>
+					<label for="document_root" class="col-sm-3 control-label" readonly >{{ document_root_txt }}</label>
 					<div class="col-sm-9">
-                        <div class="checkbox">{tmpl_var name='document_root'}</div>
+                        <div class="checkbox">{{ document_root }}</div>
                     </div>
 				</div>
 			</tmpl_if>
             <div class="form-group">
-                <label for="hd_quota" class="col-sm-3 control-label">{tmpl_var name='hd_quota_txt'}</label>
-                <div class="col-sm-9"><div class="input-group"><input type="text" name="hd_quota" id="hd_quota" value="{tmpl_var name='hd_quota'}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>
+                <label for="hd_quota" class="col-sm-3 control-label">{{ hd_quota_txt }}</label>
+                <div class="col-sm-9"><div class="input-group"><input type="text" name="hd_quota" id="hd_quota" value="{{ hd_quota }}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>
 			</div>
 		</tmpl_if>
 		<tmpl_if name="vhostdomain_type" value="subdomain">
-            <input type="hidden" name="server_id" id="server_id" value="{tmpl_var name='server_id_value'}" />
+            <input type="hidden" name="server_id" id="server_id" value="{{ server_id_value }}" />
             <tmpl_if name="domain_option">
             <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{tmpl_var name='parent_domain_id_txt'}</label>
-                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{tmpl_var name='parent_domain_id'}</select></div>
+                <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
+                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
             </div>
             </tmpl_if>
             <div class="form-group">
-                <label for="domain" class="col-sm-3 control-label">{tmpl_var name='host_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{tmpl_var name='domain'}" class="form-control" /></div></div>
+                <label for="domain" class="col-sm-3 control-label">{{ host_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></div>
             <tmpl_if name="domain_option">
             <div class="form-group">
-                <label for="sel_domain" class="col-sm-3 control-label">{tmpl_var name='domain_txt'}</label>
+                <label for="sel_domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
                     <div class="col-sm-9"><select name="sel_domain" id="sel_domain" class="form-control">
-                        {tmpl_var name='domain_option'}
+                        {{ domain_option }}
                     </select></div>
             </div>
             <tmpl_else>
             <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{tmpl_var name='domain_txt'}</label>
-                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{tmpl_var name='parent_domain_id'}</select></div>
+                <label for="parent_domain_id" class="col-sm-3 control-label">{{ domain_txt }}</label>
+                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
             </div>
             </tmpl_if>
             <div class="form-group">
-                <label for="web_folder" class="col-sm-3 control-label">{tmpl_var name='web_folder_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{tmpl_var name='web_folder'}" class="form-control"<tmpl_if name='fixed_folder' op='==' value='y'>readonly="readonly"</tmpl_if> /></div>
+                <label for="web_folder" class="col-sm-3 control-label">{{ web_folder_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"<tmpl_if name='fixed_folder' op='==' value='y'>readonly="readonly"</tmpl_if> /></div>
             </div>
 		</tmpl_if>
 		<tmpl_if name="vhostdomain_type" value="aliasdomain">
-            <input type="hidden" name="server_id" id="server_id" value="{tmpl_var name='server_id_value'}" />
+            <input type="hidden" name="server_id" id="server_id" value="{{ server_id_value }}" />
             <div class="form-group">
-                <label for="domain" class="col-sm-3 control-label">{tmpl_var name='domain_txt'}</label>
+                <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
                 <tmpl_if name="domain_option">
                     <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
-                        {tmpl_var name='domain_option'}
+                        {{ domain_option }}
                     </select></div>
                     <tmpl_else>
-                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{tmpl_var name='domain'}" class="form-control" /></div></tmpl_if>
+                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></tmpl_if>
             </div>
             <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{tmpl_var name='parent_domain_id_txt'}</label>
+                <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
                 <div class="col-sm-9"><select name="parent_domain_id" id="parent_domain_id" class="form-control">
-                    {tmpl_var name='parent_domain_id'}
+                    {{ parent_domain_id }}
                 </select></div>
             </div>
             <div class="form-group">
-                <label for="web_folder" class="col-sm-3 control-label">{tmpl_var name='web_folder_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{tmpl_var name='web_folder'}" class="form-control"<tmpl_if name='fixed_folder' op='==' value='y'> readonly="readonly"</tmpl_if> /></div>
+                <label for="web_folder" class="col-sm-3 control-label">{{ web_folder_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"<tmpl_if name='fixed_folder' op='==' value='y'> readonly="readonly"</tmpl_if> /></div>
             </div>
 		</tmpl_if>
             <div class="form-group">
-                <label for="traffic_quota" class="col-sm-3 control-label">{tmpl_var name='traffic_quota_txt'}</label>
-                <div class="col-sm-9"><div class="input-group"><input type="text" name="traffic_quota" id="traffic_quota" value="{tmpl_var name='traffic_quota'}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div><tmpl_var name='traffic_quota_exceeded_txt'>
+                <label for="traffic_quota" class="col-sm-3 control-label">{{ traffic_quota_txt }}</label>
+                <div class="col-sm-9"><div class="input-group"><input type="text" name="traffic_quota" id="traffic_quota" value="{{ traffic_quota }}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>{{ traffic_quota_exceeded_txt }}
             </div>
             <tmpl_if name="limit_cgi" op="==" value="y"><div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='cgi_txt'}</label>
+                <label class="col-sm-3 control-label">{{ cgi_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='cgi'}
+                    {{ cgi }}
                 </div>
             </div></tmpl_if>
             <tmpl_if name="limit_ssi" op="==" value="y"><div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='ssi_txt'}</label>
+                <label class="col-sm-3 control-label">{{ ssi_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='ssi'}
+                    {{ ssi }}
                 </div>
             </div></tmpl_if>
             <tmpl_if name="limit_perl" op="==" value="y"><div class="form-group apache">
-                <label class="col-sm-3 control-label">{tmpl_var name='perl_txt'}</label>
+                <label class="col-sm-3 control-label">{{ perl_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='perl'}
+                    {{ perl }}
                 </div>
             </div></tmpl_if>
             <tmpl_if name="limit_ruby" op="==" value="y"><div class="form-group apache">
-                <label class="col-sm-3 control-label">{tmpl_var name='ruby_txt'}</label>
+                <label class="col-sm-3 control-label">{{ ruby_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='ruby'}
+                    {{ ruby }}
                 </div>
             </div></tmpl_if>
             <tmpl_if name="limit_python" op="==" value="y"><div class="form-group apache">
-                <label class="col-sm-3 control-label">{tmpl_var name='python_txt'}</label>
+                <label class="col-sm-3 control-label">{{ python_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='python'}
+                    {{ python }}
                 </div>
             </div></tmpl_if>
             <tmpl_if name="force_suexec" op="==" value="n"><div class="form-group apache">
-                <label class="col-sm-3 control-label">{tmpl_var name='suexec_txt'}</label>
+                <label class="col-sm-3 control-label">{{ suexec_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='suexec'}
+                    {{ suexec }}
                 </div>
             </div></tmpl_if>
             <tmpl_if name="limit_hterror" op="==" value="y"><div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='errordocs_txt'}</label>
+                <label class="col-sm-3 control-label">{{ errordocs_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='errordocs'}
+                    {{ errordocs }}
                 </div>
             </div></tmpl_if>
 
             <div class="form-group">
-                <label for="subdomain" class="col-sm-3 control-label">{tmpl_var name='subdomain_txt'}</label>
+                <label for="subdomain" class="col-sm-3 control-label">{{ subdomain_txt }}</label>
                 <div class="col-sm-9"><select name="subdomain" id="subdomain" class="form-control">
-                    {tmpl_var name='subdomain'}
+                    {{ subdomain }}
                 </select></div>
             </div>
             <tmpl_if name="limit_ssl" op="==" value="y"><div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='ssl_txt'}</label>
+                <label class="col-sm-3 control-label">{{ ssl_txt }}</label>
                 <div class="col-sm-9" data-uncheck-fields="ssl_letsencrypt">
-                    {tmpl_var name='ssl'}
+                    {{ ssl }}
                 </div>
             </div>
             <tmpl_if name="limit_ssl_letsencrypt" op="==" value="y">
             <div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='ssl_letsencrypt_txt'}</label>
+                <label class="col-sm-3 control-label">{{ ssl_letsencrypt_txt }}</label>
                 <div class="col-sm-9" data-check-fields="ssl">
-                    {tmpl_var name='ssl_letsencrypt'}
+                    {{ ssl_letsencrypt }}
                 </div>
             </div></tmpl_if>
             </tmpl_if>
             <div class="form-group">
-                <label for="php" class="col-sm-3 control-label">{tmpl_var name='php_txt'}</label>
+                <label for="php" class="col-sm-3 control-label">{{ php_txt }}</label>
                 <div class="col-sm-9"><select name="php" id="php" class="form-control">
-                    {tmpl_var name='php'}
+                    {{ php }}
                 </select></div>
             </div>
             {tmpl_hook name="field_server_php_id"}
             <div class="form-group server_php_id">
-                <label for="server_php_id" class="col-sm-3 control-label">{tmpl_var name='server_php_id_txt'}</label>
+                <label for="server_php_id" class="col-sm-3 control-label">{{ server_php_id_txt }}</label>
                 <div class="col-sm-9"><select name="server_php_id" id="server_php_id" class="form-control">
-                    {tmpl_var name='server_php_id'}
+                    {{ server_php_id }}
                 </select></div>
                 <tmpl_if name="server_php_id_default_hidden_warning_confirmed">
-                    <input type="hidden" id="server_php_id_default_hidden_warning_confirmed" name="server_php_id_default_hidden_warning_confirmed" value="{tmpl_var name='server_php_id_default_hidden_warning_confirmed'}" />
+                    <input type="hidden" id="server_php_id_default_hidden_warning_confirmed" name="server_php_id_default_hidden_warning_confirmed" value="{{ server_php_id_default_hidden_warning_confirmed }}" />
                 </tmpl_if>
             </div>
             <tmpl_if name="limit_directive_snippets" op="==" value="y"><div class="form-group">
-				<label for="directive_snippets_id" class="col-sm-3 control-label">{tmpl_var name='directive_snippets_id_txt'}</label>
+				<label for="directive_snippets_id" class="col-sm-3 control-label">{{ directive_snippets_id_txt }}</label>
 				<div class="col-sm-9"><select name="directive_snippets_id" id="directive_snippets_id" class="form-control">
-					{tmpl_var name='directive_snippets_id'}
+					{{ directive_snippets_id }}
 				</select></div>
 			</div></tmpl_if>
 			<tmpl_if name="is_pagespeed_enabled" op="==" value="y">
 				<div class="form-group nginx pagespeed">
-					<label class="col-sm-3 control-label">{tmpl_var name='enable_pagespeed_txt'}</label>
-					<div class="col-sm-9">{tmpl_var name="enable_pagespeed"}</div>
+					<label class="col-sm-3 control-label">{{ enable_pagespeed_txt }}</label>
+					<div class="col-sm-9">{{ enable_pagespeed }}</div>
 				</div>
 			</tmpl_if>
 <!--
 			{tmpl_hook name="field_enable_pagespeed"}
 			<div class="form-group nginx pagespeed">
-				<label class="col-sm-3 control-label">{tmpl_var name='enable_pagespeed_txt'}</label>
+				<label class="col-sm-3 control-label">{{ enable_pagespeed_txt }}</label>
 				<div class="col-sm-9">
-					{tmpl_var name="enable_pagespeed"}
+					{{ enable_pagespeed }}
 				</div>
 			</div>
 -->
             {tmpl_hook name="field_active"}
             <div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='active_txt'}</label>
+                <label class="col-sm-3 control-label">{{ active_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='active'}
+                    {{ active }}
                 </div>
             </div>
 			{tmpl_hook name="end_form"}
 
-        <input type="hidden" name="id" value="{tmpl_var name='id'}">
+        <input type="hidden" name="id" value="{{ id }}">
 
         <div class="clear"><div class="right">
-            <button id="dom-edit-submit" class="btn btn-default formbutton-success" type="button" value="{tmpl_var name='btn_save_txt'}">{tmpl_var name='btn_save_txt'}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{tmpl_var name='btn_cancel_txt'}" data-load-content="sites/web_vhost_domain_list.php">{tmpl_var name='btn_cancel_txt'}</button>
+            <button id="dom-edit-submit" class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}">{{ btn_save_txt }}</button>
+            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="sites/web_vhost_domain_list.php">{{ btn_cancel_txt }}</button>
         </div></div>
 <script language="JavaScript" type="text/javascript">
     var serverId;
@@ -423,7 +423,7 @@
 	function reloadDirectiveSnippets() {
         jQuery.getJSON('sites/ajax_get_json.php'+ '?' + Math.round(new Date().getTime()), {server_id : serverId, type : "getdirectivesnippet"}, function(data) {
             var options = '<option value="0">-</option>';
-			options += "<optgroup label=\"{tmpl_var name='select_directive_snippet_txt'}\">";
+			options += "<optgroup label=\"{{ select_directive_snippet_txt }}\">";
 			for (var i = 0, len = data['snippets'].length; i < len; i++) {
 				var isSelected = '';
 
@@ -479,7 +479,7 @@
 			</tmpl_else>
 				serverphpidselected = '';
 			</tmpl_if>
-			//options += '<option value=""'+serverphpidselected+'>{tmpl_var name="default_php_txt"}</option>';
+			//options += '<option value=""'+serverphpidselected+'>{{ default_php_txt }}</option>';
             $('#server_php_id').html(options).change();
             if(noFormChange) ISPConfig.resetFormChanged();
         });

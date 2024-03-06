@@ -1,119 +1,119 @@
             <tmpl_if name="is_admin">
                 <div class="form-group">
                     <tmpl_if name="edit_disabled">
-                        <label for="server_id_disabled" class="col-sm-3 control-label">{tmpl_var name='server_id_txt'}</label>
+                        <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                         <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
-                            {tmpl_var name='server_id'}
+                            {{ server_id }}
                         </select></div>
-                        <input type="hidden" name="server_id" value="{tmpl_var name='server_id_value'}" />
+                        <input type="hidden" name="server_id" value="{{ server_id_value }}" />
                         <tmpl_else>
-                            <label for="server_id" class="col-sm-3 control-label">{tmpl_var name='server_id_txt'}</label>
+                            <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
-                                {tmpl_var name='server_id'}
+                                {{ server_id }}
                             </select></div>
                     </tmpl_if>
                 </div>
             <tmpl_else>
                 <tmpl_if name="only_one_server">
-                    <input type="hidden" id="server_id" name="server_id" value="{tmpl_var name='server_id_value'}" />
+                    <input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
                 <tmpl_else>
                     <div class="form-group">
                         <tmpl_if name="edit_disabled">
-                            <label for="server_id_disabled" class="col-sm-3 control-label">{tmpl_var name='server_id_txt'}</label>
+                            <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
-                                {tmpl_var name='server_id'}
+                                {{ server_id }}
                             </select></div>
-                            <input type="hidden" name="server_id" value="{tmpl_var name='server_id_value'}" />
+                            <input type="hidden" name="server_id" value="{{ server_id_value }}" />
                             <tmpl_else>
-                                <label for="server_id" class="col-sm-3 control-label">{tmpl_var name='server_id_txt'}</label>
+                                <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                                 <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
-                                    {tmpl_var name='server_id'}
+                                    {{ server_id }}
                                 </select></div>
                         </tmpl_if>
                     </div>
                 </tmpl_if>
             </tmpl_if>
             <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{tmpl_var name='parent_domain_id_txt'}</label>
+                <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
                 <div class="col-sm-9"><select name="parent_domain_id" id="parent_domain_id" class="form-control">
-                    {tmpl_var name='parent_domain_id'}
+                    {{ parent_domain_id }}
                 </select></div>
             </div>
             <div class="form-group">
-                <label for="type" class="col-sm-3 control-label">{tmpl_var name='type_txt'}</label>
+                <label for="type" class="col-sm-3 control-label">{{ type_txt }}</label>
                 <div class="col-sm-9"><select name="type" id="type" class="form-control">
-                    {tmpl_var name='type'}
+                    {{ type }}
                 </select></div>
             </div>
 			<div class="form-group">
-                <label for="database_name" class="col-sm-3 control-label">{tmpl_var name='database_name_txt'}</label>
+                <label for="database_name" class="col-sm-3 control-label">{{ database_name_txt }}</label>
                 <div class="col-sm-9">
 					<div class="input-group">
-						<span class="input-group-addon" id="database_name-desc">{tmpl_var name='database_name_prefix'}</span>
+						<span class="input-group-addon" id="database_name-desc">{{ database_name_prefix }}</span>
 						<tmpl_if name="edit_disabled">
-						<input type="text" name="database_name" id="database_name" value="{tmpl_var name='database_name'}" class="form-control" disabled="disabled" /><input name="database_name" type="hidden" value="{tmpl_var name='database_name'}" />
+						<input type="text" name="database_name" id="database_name" value="{{ database_name }}" class="form-control" disabled="disabled" /><input name="database_name" type="hidden" value="{{ database_name }}" />
 						<tmpl_else>
-						<input type="text" name="database_name" id="database_name" value="{tmpl_var name='database_name'}" class="form-control" aria-describedby="database_name-desc" />
+						<input type="text" name="database_name" id="database_name" value="{{ database_name }}" class="form-control" aria-describedby="database_name-desc" />
 						</tmpl_if>
 					</div>
 				</div>
             </div>
 			<div class="form-group">
-                <label for="database_quota" class="col-sm-3 control-label">{tmpl_var name='limit_database_quota_txt'}</label>
-                <div class="col-sm-9"><div class="input-group"><input type="text" name="database_quota" id="quota" value="{tmpl_var name='database_quota'}" class="form-control" aria-describedby="database_quota-desc" /><span class="input-group-addon" id="database_quota-desc">MB</span></div></div>
+                <label for="database_quota" class="col-sm-3 control-label">{{ limit_database_quota_txt }}</label>
+                <div class="col-sm-9"><div class="input-group"><input type="text" name="database_quota" id="quota" value="{{ database_quota }}" class="form-control" aria-describedby="database_quota-desc" /><span class="input-group-addon" id="database_quota-desc">MB</span></div></div>
             </div>
             <div class="form-group">
-                <label for="database_user_id" class="col-sm-3 control-label">{tmpl_var name='database_user_txt'}</label>
+                <label for="database_user_id" class="col-sm-3 control-label">{{ database_user_txt }}</label>
                 <div class="col-sm-9"><select name="database_user_id" id="database_user_id" class="form-control">
-                    {tmpl_var name='database_user_id'}
+                    {{ database_user_id }}
                 </select></div>
             </div>
             <div class="form-group">
-                <label for="database_ro_user_id" class="col-sm-3 control-label">{tmpl_var name='database_ro_user_txt'}</label>
+                <label for="database_ro_user_id" class="col-sm-3 control-label">{{ database_ro_user_txt }}</label>
                 <div class="col-sm-9"><select name="database_ro_user_id" id="database_ro_user_id" class="form-control" aria-describedby="database_ro_user_id-help">
-                    {tmpl_var name='database_ro_user_id'}
+                    {{ database_ro_user_id }}
                 </select>
-				<span id="database_ro_user_id-help" class="help-block">{tmpl_var name='optional_txt'}</span>
+				<span id="database_ro_user_id-help" class="help-block">{{ optional_txt }}</span>
 				</div>
             </div>
             <div class="form-group">
                 <tmpl_if name="edit_disabled">
-                    <label for="database_charset_disabled" class="col-sm-3 control-label">{tmpl_var name='database_charset_txt'}</label>
+                    <label for="database_charset_disabled" class="col-sm-3 control-label">{{ database_charset_txt }}</label>
                     <div class="col-sm-9"><select name="database_charset_disabled" id="database_charset_disabled" class="form-control" disabled="disabled">
-                        {tmpl_var name='database_charset'}
+                        {{ database_charset }}
                     </select></div>
-                    <input type="hidden" name="database_charset" value="{tmpl_var name='database_charset_value'}" />
+                    <input type="hidden" name="database_charset" value="{{ database_charset_value }}" />
                     <tmpl_else>
-                        <label for="database_charset" class="col-sm-3 control-label">{tmpl_var name='database_charset_txt'}</label>
+                        <label for="database_charset" class="col-sm-3 control-label">{{ database_charset_txt }}</label>
                         <div class="col-sm-9"><select name="database_charset" id="database_charset" class="form-control">
-                            {tmpl_var name='database_charset'}
+                            {{ database_charset }}
                         </select></div>
                 </tmpl_if>
             </div>
 	 <tmpl_unless name="disable_remote_db">
             <div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='remote_access_txt'}</label>
+                <label class="col-sm-3 control-label">{{ remote_access_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='remote_access'}
+                    {{ remote_access }}
                 </div>
             </div>
             <div class="form-group">
-                <label for="remote_ips" class="col-sm-3 control-label">{tmpl_var name='remote_ips_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="remote_ips" id="remote_ips" value="{tmpl_var name='remote_ips'}" class="form-control" /></div></div>
+                <label for="remote_ips" class="col-sm-3 control-label">{{ remote_ips_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="remote_ips" id="remote_ips" value="{{ remote_ips }}" class="form-control" /></div></div>
 	 </tmpl_if>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='active_txt'}</label>
+                <label class="col-sm-3 control-label">{{ active_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='active'}
+                    {{ active }}
                 </div>
             </div>
         
 
-        <input type="hidden" name="id" value="{tmpl_var name='id'}">
+        <input type="hidden" name="id" value="{{ id }}">
 
         <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{tmpl_var name='btn_save_txt'}" data-submit-form="pageForm" data-form-action="sites/database_edit.php">{tmpl_var name='btn_save_txt'}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{tmpl_var name='btn_cancel_txt'}" data-load-content="sites/database_list.php">{tmpl_var name='btn_cancel_txt'}</button>
+            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="sites/database_edit.php">{{ btn_save_txt }}</button>
+            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="sites/database_list.php">{{ btn_cancel_txt }}</button>
         </div></div>
 <script language="JavaScript" type="text/javascript">
     <tmpl_if name="is_admin">    
@@ -138,10 +138,10 @@
     </tmpl_if>
     jQuery('#remote_ips').ispconfigSearch({
         dataSrc: '/sites/ajax_get_json.php?type=get_ipv4',
-        resultsLimit: '$ <tmpl_var name="globalsearch_resultslimit_of_txt"> % <tmpl_var name="globalsearch_resultslimit_results_txt">',
-        ResultsTextPrefix: '<tmpl_var name="globalsearch_suggestions_text_txt">',
-        noResultsText: '<tmpl_var name="globalsearch_noresults_text_txt">',
-        noResultsLimit: '<tmpl_var name="globalsearch_noresults_limit_txt">',
+        resultsLimit: '$ {{ globalsearch_resultslimit_of_txt }} % {{ globalsearch_resultslimit_results_txt }}',
+        ResultsTextPrefix: '{{ globalsearch_suggestions_text_txt }}',
+        noResultsText: '{{ globalsearch_noresults_text_txt }}',
+        noResultsLimit: '{{ globalsearch_noresults_limit_txt }}',
         minChars: 0,
         cssPrefix: 'df-',
         fillSearchField: true,

@@ -1,7 +1,7 @@
 <div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b"><tmpl_var name="list_head_txt"></h1>
+	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
 </div>
-<p><tmpl_var name="list_desc_txt"></p>
+<p>{{ list_desc_txt }}</p>
 
 
         <tmpl_if name='datalog_changes_count' op='>' value='0'>
@@ -9,84 +9,84 @@
             <div class="systemmonitor-state state-info">
                 <div class="status"></div>
                 <div class="statusMsg">
-                    {tmpl_var name="datalog_changes_txt"}
+                    {{ datalog_changes_txt }}
                     <ul>
                     <tmpl_loop name="datalog_changes">
-                        <li><strong>{tmpl_var name="text"}:</strong> {tmpl_var name="count"}</li>
+                        <li><strong>{{ text }}:</strong> {{ count }}</li>
                     </tmpl_loop>
                     </ul>
-                    {tmpl_var name="datalog_changes_end_txt"}
+                    {{ datalog_changes_end_txt }}
                 </div>
             </div><br />
         </div>
         </tmpl_if>
-        <p class="fieldset-legend">{tmpl_var name="toolsarea_head_txt"}</p>
+        <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="mail/mail_user_edit.php">{tmpl_var name="add_new_record_txt"}</button>
-
-
+                <button class="btn btn-default formbutton-success" type="button" data-load-content="mail/mail_user_edit.php">{{ add_new_record_txt }}</button>
 
 
-        <p class="fieldset-legend"><tmpl_var name="list_head_txt"></p>
+
+
+        <p class="fieldset-legend">{{ list_head_txt }}</p>
             <div class="table-wrapper marginTop15">
 <table class='table w-full'>
                 <thead class="dark">
                     <tr>
-                        <th data-column="email"><tmpl_var name="email_txt"></th>
-                <tmpl_if name="enable_custom_login"><th data-column="login"><tmpl_var name="login_txt"></th></tmpl_if>
-                <th data-column="name"><tmpl_var name="name_txt"></th>
-                        <th class="tiny-col" data-column="autoresponder"><tmpl_var name="autoresponder_txt"></th>
-                        <th class="tiny-col" data-column="postfix"><tmpl_var name="postfix_txt"></th>
-                        <th class="tiny-col" data-column="disablesmtp"><tmpl_var name="disablesmtp_txt"></th>
-                        <th class="tiny-col" data-column="disabledeliver"><tmpl_var name="disabledeliver_txt"></th>
-                        <th class="tiny-col" data-column="disableimap"><tmpl_var name="disableimap_txt"></th>
-                        <th class="tiny-col" data-column="disablepop3"><tmpl_var name="disablepop3_txt"></th>
-                        <th class="small-col text-right">{tmpl_var name='search_limit'}</th>
+                        <th data-column="email">{{ email_txt }}</th>
+                <tmpl_if name="enable_custom_login"><th data-column="login">{{ login_txt }}</th></tmpl_if>
+                <th data-column="name">{{ name_txt }}</th>
+                        <th class="tiny-col" data-column="autoresponder">{{ autoresponder_txt }}</th>
+                        <th class="tiny-col" data-column="postfix">{{ postfix_txt }}</th>
+                        <th class="tiny-col" data-column="disablesmtp">{{ disablesmtp_txt }}</th>
+                        <th class="tiny-col" data-column="disabledeliver">{{ disabledeliver_txt }}</th>
+                        <th class="tiny-col" data-column="disableimap">{{ disableimap_txt }}</th>
+                        <th class="tiny-col" data-column="disablepop3">{{ disablepop3_txt }}</th>
+                        <th class="small-col text-right">{{ search_limit }}</th>
                     </tr>
                     <tr>
-                        <td><input class="form-control" type="text" name="search_email" value="{tmpl_var name='search_email'}" /></td>
-            <tmpl_if name="enable_custom_login"><td><input class="form-control" type="text" name="search_login" value="{tmpl_var name='search_login'}" /></td></tmpl_if>
-                        <td><input class="form-control" type="text" name="search_name" value="{tmpl_var name='search_name'}" /></td>
-                        <td><select class="form-control" name="search_autoresponder">{tmpl_var name='search_autoresponder'}</select></td>
-                        <td><select class="form-control" name="search_postfix">{tmpl_var name='search_postfix'}</select></td>
-                        <td><select class="form-control" name="search_disablesmtp">{tmpl_var name='search_disablesmtp'}</select></td>
-                        <td><select class="form-control" name="search_disabledeliver">{tmpl_var name='search_disabledeliver'}</select></td>
-                        <td><select class="form-control" name="search_disableimap">{tmpl_var name='search_disableimap'}</select></td>
-                        <td><select class="form-control" name="search_disablepop3">{tmpl_var name='search_disablepop3'}</select></td>
+                        <td><input class="form-control" type="text" name="search_email" value="{{ search_email }}" /></td>
+            <tmpl_if name="enable_custom_login"><td><input class="form-control" type="text" name="search_login" value="{{ search_login }}" /></td></tmpl_if>
+                        <td><input class="form-control" type="text" name="search_name" value="{{ search_name }}" /></td>
+                        <td><select class="form-control" name="search_autoresponder">{{ search_autoresponder }}</select></td>
+                        <td><select class="form-control" name="search_postfix">{{ search_postfix }}</select></td>
+                        <td><select class="form-control" name="search_disablesmtp">{{ search_disablesmtp }}</select></td>
+                        <td><select class="form-control" name="search_disabledeliver">{{ search_disabledeliver }}</select></td>
+                        <td><select class="form-control" name="search_disableimap">{{ search_disableimap }}</select></td>
+                        <td><select class="form-control" name="search_disablepop3">{{ search_disablepop3 }}</select></td>
                         <td class="text-right">
-                            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{tmpl_var name="filter_txt"}" data-submit-form="pageForm" data-form-action="mail/mail_user_list.php"><span class="icon icon-filter"></span></button>
+                            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="mail/mail_user_list.php"><span class="icon icon-filter"></span></button>
                         </td>
                     </tr>
                 </thead>
                 <tbody>
                 <tmpl_loop name="records">
                     <tr>
-                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={tmpl_var name='id'}" data-toggle="tooltip" data-placement="bottom" title="{tmpl_var name='email'}">{tmpl_var name="email"}</a></td>
-                        <tmpl_if name="enable_custom_login"><td><a href="#" data-load-content="mail/mail_user_edit.php?id={tmpl_var name='id'}">{tmpl_var name="login"}</a></td></tmpl_if>
-                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={tmpl_var name='id'}">{tmpl_var name="name"}</a></td>
-                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={tmpl_var name='id'}">{tmpl_var name="autoresponder"}</a></td>
-                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={tmpl_var name='id'}">{tmpl_var name="postfix"}</a></td>
-                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={tmpl_var name='id'}">{tmpl_var name="disablesmtp"}</a></td>
-                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={tmpl_var name='id'}">{tmpl_var name="disabledeliver"}</a></td>
-                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={tmpl_var name='id'}">{tmpl_var name="disableimap"}</a></td>
-                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={tmpl_var name='id'}">{tmpl_var name="disablepop3"}</a></td>
+                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ email }}">{{ email }}</a></td>
+                        <tmpl_if name="enable_custom_login"><td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ login }}</a></td></tmpl_if>
+                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ name }}</a></td>
+                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ autoresponder }}</a></td>
+                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ postfix }}</a></td>
+                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disablesmtp }}</a></td>
+                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disabledeliver }}</a></td>
+                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disableimap }}</a></td>
+                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disablepop3 }}</a></td>
                         <td class="text-right">
                             <tmpl_if name="mailboxlist_webmail_link">
-                                <a class="btn btn-default formbutton-default formbutton-narrow" href="mail/webmailer.php?id={tmpl_var name='id'}" target="webmail"><span class="icon icon-mail"></span></a>
+                                <a class="btn btn-default formbutton-default formbutton-narrow" href="mail/webmailer.php?id={{ id }}" target="webmail"><span class="icon icon-mail"></span></a>
                             </tmpl_if>
-                            <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_user_del.php?id={tmpl_var name='id'}&_csrf_id={tmpl_var name='csrf_id'}&_csrf_key={tmpl_var name='csrf_key'}&phpsessid={tmpl_var name='phpsessid'}','{tmpl_var name='delete_confirmation'}');"><span class="icon icon-delete"></span></a>
+                            <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_user_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                         </td>
                     </tr>
                 </tmpl_loop>
                 <tmpl_unless name="records">
                     <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
-                        <td colspan="<tmpl_if name="enable_custom_login">9<tmpl_else>8</tmpl_if>">{tmpl_var name='globalsearch_noresults_text_txt'}</td>
+                        <td colspan="<tmpl_if name="enable_custom_login">9<tmpl_else>8</tmpl_if>">{{ globalsearch_noresults_text_txt }}</td>
                     </tr>
                 </tmpl_unless>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="<tmpl_if name="enable_custom_login">9<tmpl_else>8</tmpl_if>"><tmpl_var name="paging"></td>
+                        <td colspan="<tmpl_if name="enable_custom_login">9<tmpl_else>8</tmpl_if>">{{ paging }}</td>
                     </tr>
                 </tfoot>
             </table>

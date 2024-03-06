@@ -1,47 +1,47 @@
             <div class="form-group">
-                <label class="col-sm-3 control-label"><em>*</em> {tmpl_var name='email_txt'}</label>
+                <label class="col-sm-3 control-label"><em>*</em> {{ email_txt }}</label>
                 <div class="col-sm-9">
 				    <div class='input-group'>
-						<input type="text" id="email_local_part" name="email_local_part" value="{tmpl_var name='email_local_part'}" class="form-control" />
+						<input type="text" id="email_local_part" name="email_local_part" value="{{ email_local_part }}" class="form-control" />
 						<span class='input-group-addon'>@</span>
                         <div class='input-group-field'>
-							<select name="email_domain" id="email_domain" class="form-control" style="height:50px;min-width:170px;">{tmpl_var name='email_domain'}</select>
+							<select name="email_domain" id="email_domain" class="form-control" style="height:50px;min-width:170px;">{{ email_domain }}</select>
                         </div>
                     </div>
 				</div>
             </div>
             <div class="form-group">
-                <label for="destination" class="col-sm-3 control-label"><em>*</em> {tmpl_var name='destination_txt'}</label>
-                <div class="col-sm-9"><textarea rows="10" cols="40" name="destination" id="destination" class="form-control">{tmpl_var name='destination'}</textarea></div>
+                <label for="destination" class="col-sm-3 control-label"><em>*</em> {{ destination_txt }}</label>
+                <div class="col-sm-9"><textarea rows="10" cols="40" name="destination" id="destination" class="form-control">{{ destination }}</textarea></div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='send_as_txt'}</label>
+                <label class="col-sm-3 control-label">{{ send_as_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='allow_send_as'} <small> {tmpl_var name='send_as_exp'}</small>
+                    {{ allow_send_as }} <small> {{ send_as_exp }}</small>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='greylisting_txt'}</label>
+                <label class="col-sm-3 control-label">{{ greylisting_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='greylisting'}
+                    {{ greylisting }}
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='active_txt'}</label>
+                <label class="col-sm-3 control-label">{{ active_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='active'}
+                    {{ active }}
                 </div>
             </div>
 
-        <input type="hidden" name="id" value="{tmpl_var name='id'}">
+        <input type="hidden" name="id" value="{{ id }}">
         <input type="hidden" name="type" value="forward">
 
         <div class="clear">
             <tmpl_if name='id'><tmpl_if name='show_delete_on_forms' op="==" value="y">
-                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_domain_del.php?id={tmpl_var name='id'}&_csrf_id={tmpl_var name='_csrf_id'}&_csrf_key={tmpl_var name='_csrf_key'}&phpsessid={tmpl_var name='phpsessid'}','{tmpl_var name='delete_confirmation'}');"><span class="icon icon-delete"></span></a>
+                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_domain_del.php?id={{ id }}&_csrf_id={{ _csrf_id }}&_csrf_key={{ _csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
             </tmpl_if></tmpl_if>
             <div class="right">
-                <button class="btn btn-default formbutton-success" type="button" value="{tmpl_var name='btn_save_txt'}" data-submit-form="pageForm" data-form-action="mail/mail_forward_edit.php">{tmpl_var name='btn_save_txt'}</button>
-                <button class="btn btn-default formbutton-default" type="button" value="{tmpl_var name='btn_cancel_txt'}" data-load-content="mail/mail_forward_list.php">{tmpl_var name='btn_cancel_txt'}</button>
+                <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="mail/mail_forward_edit.php">{{ btn_save_txt }}</button>
+                <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="mail/mail_forward_list.php">{{ btn_cancel_txt }}</button>
             </div>
         </div>

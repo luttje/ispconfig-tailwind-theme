@@ -1,13 +1,13 @@
-	<h2 class="text-2xl my-4">{tmpl_var name='available_modules_txt'}</h2>
+	<h2 class="text-2xl my-4">{{ available_modules_txt }}</h2>
 	<div style='margin: 0 auto;'>
 	<ul class='modules clear'>
 	<tmpl_loop name='modules'>
 		<li>
 			<div class="flex flex-col gap-2 items-center">
-				<div class='text-6xl icon icon-{tmpl_var name='modules_name'}'></div>
-				<div class='title font-bold'>{tmpl_var name='modules_title'}</div>
+				<div class='text-6xl icon icon-{{ modules_name }}'></div>
+				<div class='title font-bold'>{{ modules_title }}</div>
 
-				<a href='#' class='flex justify-center p-2 shadow-sm rounded self-stretch font-bold text-xs bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee]' data-capp='{tmpl_var name="modules_name"}'>{tmpl_var name='go_to_txt'} {tmpl_var name='modules_title'}</a>
+				<a href='#' class='flex justify-center p-2 shadow-sm rounded self-stretch font-bold text-xs bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee]' data-capp='{{ modules_name }}'>{{ go_to_txt }} {{ modules_title }}</a>
 			</div>
 		</li>
 	</tmpl_loop>

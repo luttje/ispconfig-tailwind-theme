@@ -1,9 +1,9 @@
 	<!-- main navigation -->
 	<nav id='main-navigation' class='flex flex-row flex-wrap align-items-center rounded overflow-clip border border-gray-300'>
     <tmpl_loop name="nav_top">
-		<a href="#" class="flex flex-1 flex-col justify-center items-center px-4 py-2 transition-all bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee] <tmpl_if name="active">active shadow-inner border-gray-300 border-x rounded"<tmpl_else>" data-capp="<tmpl_var name='module'>"</tmpl_if> data-icon-class="icon-<tmpl_var name='module'>">
-		  <div class="icon icon-<tmpl_var name='module'>"></div>
-		  <div class="title"><tmpl_var name="title"></div>
+		<a href="#" class="flex flex-1 flex-col justify-center items-center px-4 py-2 transition-all bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee] <tmpl_if name="active">active shadow-inner border-gray-300 border-x rounded"<tmpl_else>" data-capp="{{ module }}"</tmpl_if> data-icon-class="icon-{{ module }}">
+		  <div class="icon icon-{{ module }}"></div>
+		  <div class="title">{{ title }}</div>
 		</a>
     </tmpl_loop>
 	</nav>

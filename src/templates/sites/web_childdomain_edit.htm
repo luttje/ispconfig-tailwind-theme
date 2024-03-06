@@ -1,88 +1,88 @@
 			<tmpl_if name="childdomain_type" value="subdomain">
             <tmpl_if name="domain_option">
             <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{tmpl_var name='parent_domain_id_txt'}</label>
-                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{tmpl_var name='parent_domain_id'}</select></div>
+                <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
+                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
             </div>
             </tmpl_if>
             <div class="form-group">
-                <label for="domain" class="col-sm-3 control-label">{tmpl_var name='host_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{tmpl_var name='domain'}" class="form-control" /></div></div>
+                <label for="domain" class="col-sm-3 control-label">{{ host_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></div>
             <tmpl_if name="domain_option">
             <div class="form-group">
-                <label for="sel_domain" class="col-sm-3 control-label">{tmpl_var name='domain_txt'}</label>
+                <label for="sel_domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
                     <div class="col-sm-9"><select name="sel_domain" id="sel_domain" class="form-control">
-                        {tmpl_var name='domain_option'}
+                        {{ domain_option }}
                     </select></div>
             </div>
             <tmpl_else>
             <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{tmpl_var name='domain_txt'}</label>
-                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{tmpl_var name='parent_domain_id'}</select></div>
+                <label for="parent_domain_id" class="col-sm-3 control-label">{{ domain_txt }}</label>
+                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
             </div>
             </tmpl_if>
 			<tmpl_else>
             <div class="form-group">
                 <tmpl_if name="domain_option">
-                    <label for="domain" class="col-sm-3 control-label">{tmpl_var name='domain_txt'}</label>
+                    <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
                     <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
-                        {tmpl_var name='domain_option'}
+                        {{ domain_option }}
                     </select></div>
                 <tmpl_else>
-                    <label for="domain" class="col-sm-3 control-label">{tmpl_var name='domain_txt'}</label>
-                    <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{tmpl_var name='domain'}" class="form-control" /></div></tmpl_if>
+                    <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
+                    <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></tmpl_if>
             </div>
             <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{tmpl_var name='parent_domain_id_txt'}</label>
+                <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
                 <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">
-                    {tmpl_var name='parent_domain_id'}
+                    {{ parent_domain_id }}
                 </select></div>
             </div>
 			</tmpl_if>
             <div class="form-group">
-                <label for="redirect_type" class="col-sm-3 control-label">{tmpl_var name='redirect_type_txt'}</label>
+                <label for="redirect_type" class="col-sm-3 control-label">{{ redirect_type_txt }}</label>
                 <div class="col-sm-9"><select name="redirect_type" id="redirect_type" class="form-control">
-                    {tmpl_var name='redirect_type'}
+                    {{ redirect_type }}
                 </select></div>
             </div>
             <div class="form-group">
-                <label for="redirect_path" class="col-sm-3 control-label">{tmpl_var name='redirect_path_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="redirect_path" id="redirect_path" value="{tmpl_var name='redirect_path'}" class="form-control" /></div></div>
+                <label for="redirect_path" class="col-sm-3 control-label">{{ redirect_path_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="redirect_path" id="redirect_path" value="{{ redirect_path }}" class="form-control" /></div></div>
 			<tmpl_if name="childdomain_type" value="aliasdomain">
             <div class="form-group">
-                <label for="subdomain" class="col-sm-3 control-label">{tmpl_var name='subdomain_txt'}</label>
+                <label for="subdomain" class="col-sm-3 control-label">{{ subdomain_txt }}</label>
                 <div class="col-sm-9"><select name="subdomain" id="subdomain" class="form-control">
-                    {tmpl_var name='subdomain'}
+                    {{ subdomain }}
                 </select></div>
             </div>
 			<div class="form-group">
-                <label for="seo_redirect" class="col-sm-3 control-label">{tmpl_var name='seo_redirect_txt'}</label>
+                <label for="seo_redirect" class="col-sm-3 control-label">{{ seo_redirect_txt }}</label>
                 <div class="col-sm-9"><select name="seo_redirect" id="seo_redirect" class="form-control">
-                    {tmpl_var name='seo_redirect'}
+                    {{ seo_redirect }}
                 </select></div>
             </div>
 			</tmpl_if>
 			<tmpl_if name="limit_ssl_letsencrypt" op="==" value="y">
 				<div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='ssl_letsencrypt_exclude_txt'}</label>
+                <label class="col-sm-3 control-label">{{ ssl_letsencrypt_exclude_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='ssl_letsencrypt_exclude'}
+                    {{ ssl_letsencrypt_exclude }}
                 </div>
             </div>
 			</tmpl_if>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='active_txt'}</label>
+                <label class="col-sm-3 control-label">{{ active_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='active'}
+                    {{ active }}
                 </div>
             </div>
         
 
-        <input type="hidden" name="id" value="{tmpl_var name='id'}">
+        <input type="hidden" name="id" value="{{ id }}">
 
         <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{tmpl_var name='btn_save_txt'}" data-submit-form="pageForm" data-form-action="sites/web_childdomain_edit.php">{tmpl_var name='btn_save_txt'}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{tmpl_var name='btn_cancel_txt'}" data-load-content="sites/web_childdomain_list.php">{tmpl_var name='btn_cancel_txt'}</button>
+            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="sites/web_childdomain_edit.php">{{ btn_save_txt }}</button>
+            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="sites/web_childdomain_list.php">{{ btn_cancel_txt }}</button>
         </div></div>
 <script language="JavaScript" type="text/javascript">
     var webId = jQuery('#parent_domain_id').val();

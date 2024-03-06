@@ -1,37 +1,37 @@
 <div class='page-header'>
 	<h1 class="text-4xl pb-4 border-b">
-		<tmpl_var name="list_head_txt">
+		{{ list_head_txt }}
 	</h1>
 </div>
 
 <div class="panel panel_language_complete">
 	<div class="alert alert-info">
 		<p>
-			<tmpl_var name="list_desc_txt">
+			{{ list_desc_txt }}
 		</p>
 	</div>
 	<tmpl_if name="msg">
 		<div id="OKMsg">
-			<tmpl_var name="msg">
+			{{ msg }}
 		</div>
 	</tmpl_if>
 	<tmpl_if name="error">
 		<div id="errorMsg">
-			<tmpl_var name="error">
+			{{ error }}
 		</div>
 	</tmpl_if>
 
 	<div class="pnl_formsarea">
 		<div class="form-group">
-			<label for="lng_select" class="col-sm-3 control-label">{tmpl_var name='language_select_txt'}</label>
+			<label for="lng_select" class="col-sm-3 control-label">{{ language_select_txt }}</label>
 			<div class="col-sm-9">
-				<select name="lng_select" id="language" class="form-control flags">{tmpl_var name='language_option'}</select>
+				<select name="lng_select" id="language" class="form-control flags">{{ language_option }}</select>
 			</div>
 		</div>
 		<div class="clear">
 			<div class="right">
-				<button class="btn btn-default formbutton-success" type="button" value="{tmpl_var name='btn_save_txt'}" data-submit-form="pageForm" data-form-action="admin/language_complete.php">{tmpl_var name='btn_save_txt'}</button>
-				<button class="btn btn-default formbutton-default" type="button" value="{tmpl_var name='btn_cancel_txt'}" data-load-content="admin/language_list.php">{tmpl_var name='btn_cancel_txt'}</button>
+				<button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="admin/language_complete.php">{{ btn_save_txt }}</button>
+				<button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="admin/language_list.php">{{ btn_cancel_txt }}</button>
 			</div>
 		</div>
 	</div>

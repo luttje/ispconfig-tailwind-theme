@@ -1,72 +1,72 @@
 <div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b"><tmpl_var name="list_head_txt"></h1>
+	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
 </div>
-<p><tmpl_var name="list_desc_txt"></p>
+<p>{{ list_desc_txt }}</p>
 
 
         <legend>Advanced</legend>
             <div class="form-group">
-                <label for="veid" class="col-sm-3 control-label">{tmpl_var name='veid_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="veid" id="veid" value="{tmpl_var name='veid'}" class="form-control" /></div></div>
+                <label for="veid" class="col-sm-3 control-label">{{ veid_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="veid" id="veid" value="{{ veid }}" class="form-control" /></div></div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">{tmpl_var name='create_dns_txt'}</label>
+                <label class="col-sm-3 control-label">{{ create_dns_txt }}</label>
                 <div class="col-sm-9">
-                    {tmpl_var name='create_dns'}
+                    {{ create_dns }}
                 </div>
             </div>
             <div class="form-group">
-                <label for="diskspace" class="col-sm-3 control-label">{tmpl_var name='diskspace_txt'}</label>
-                <div class="col-sm-6"><input type="text" name="diskspace" id="diskspace" value="{tmpl_var name='diskspace'}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp;GB
+                <label for="diskspace" class="col-sm-3 control-label">{{ diskspace_txt }}</label>
+                <div class="col-sm-6"><input type="text" name="diskspace" id="diskspace" value="{{ diskspace }}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp;GB
             </div></div>
             <div class="form-group">
-                <label for="ram" class="col-sm-3 control-label">{tmpl_var name='ram_txt'}</label>
-                <div class="col-sm-6"><input type="text" name="ram" id="ram" value="{tmpl_var name='ram'}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp;MB
+                <label for="ram" class="col-sm-3 control-label">{{ ram_txt }}</label>
+                <div class="col-sm-6"><input type="text" name="ram" id="ram" value="{{ ram }}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp;MB
             </div></div>
             <div class="form-group">
-                <label for="ram_burst" class="col-sm-3 control-label">{tmpl_var name='ram_burst_txt'}</label>
-                <div class="col-sm-6"><input type="text" name="ram_burst" id="ram_burst" value="{tmpl_var name='ram_burst'}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp;MB
+                <label for="ram_burst" class="col-sm-3 control-label">{{ ram_burst_txt }}</label>
+                <div class="col-sm-6"><input type="text" name="ram_burst" id="ram_burst" value="{{ ram_burst }}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp;MB
             </div></div>
             <div class="form-group">
-                <label for="cpu_units" class="col-sm-3 control-label">{tmpl_var name='cpu_units_txt'}</label>
-                <div class="col-sm-6"><input type="text" name="cpu_units" id="cpu_units" value="{tmpl_var name='cpu_units'}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;(8 - 500000)
+                <label for="cpu_units" class="col-sm-3 control-label">{{ cpu_units_txt }}</label>
+                <div class="col-sm-6"><input type="text" name="cpu_units" id="cpu_units" value="{{ cpu_units }}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;(8 - 500000)
             </div></div>
             <div class="form-group">
-                <label for="cpu_num" class="col-sm-3 control-label">{tmpl_var name='cpu_num_txt'}</label>
-                <div class="col-sm-6"><input type="text" name="cpu_num" id="cpu_num" value="{tmpl_var name='cpu_num'}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;(1 - 64)
+                <label for="cpu_num" class="col-sm-3 control-label">{{ cpu_num_txt }}</label>
+                <div class="col-sm-6"><input type="text" name="cpu_num" id="cpu_num" value="{{ cpu_num }}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;(1 - 64)
             </div></div>
             <div class="form-group">
-                <label for="cpu_limit" class="col-sm-3 control-label">{tmpl_var name='cpu_limit_txt'}</label>
-                <div class="col-sm-6"><input type="text" name="cpu_limit" id="cpu_limit" value="{tmpl_var name='cpu_limit'}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;(10 - 6400)
+                <label for="cpu_limit" class="col-sm-3 control-label">{{ cpu_limit_txt }}</label>
+                <div class="col-sm-6"><input type="text" name="cpu_limit" id="cpu_limit" value="{{ cpu_limit }}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;(10 - 6400)
             </div></div>
             <div class="form-group">
-                <label for="io_priority" class="col-sm-3 control-label">{tmpl_var name='io_priority_txt'}</label>
-                <div class="col-sm-6"><input type="text" name="io_priority" id="io_priority" value="{tmpl_var name='io_priority'}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;(0 - 7)
+                <label for="io_priority" class="col-sm-3 control-label">{{ io_priority_txt }}</label>
+                <div class="col-sm-6"><input type="text" name="io_priority" id="io_priority" value="{{ io_priority }}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;(0 - 7)
             </div></div>
             <div class="form-group">
-                <label for="nameserver" class="col-sm-3 control-label">{tmpl_var name='nameserver_txt'}</label>
-                <div class="col-sm-6"><input type="text" name="nameserver" id="nameserver" value="{tmpl_var name='nameserver'}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;{tmpl_var name='nameserver_desc_txt'}
+                <label for="nameserver" class="col-sm-3 control-label">{{ nameserver_txt }}</label>
+                <div class="col-sm-6"><input type="text" name="nameserver" id="nameserver" value="{{ nameserver }}" class="form-control" /></div><div class="col-sm-3 input-sm">&nbsp;{{ nameserver_desc_txt }}
             </div></div>
             <div class="form-group">
-                <label for="capability" class="col-sm-3 control-label">{tmpl_var name='capability_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="capability" id="capability" value="{tmpl_var name='capability'}" class="form-control" />
+                <label for="capability" class="col-sm-3 control-label">{{ capability_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="capability" id="capability" value="{{ capability }}" class="form-control" />
 			</div></div>
             <div class="form-group">
-                <label for="features" class="col-sm-3 control-label">{tmpl_var name='features_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="features" id="features" value="{tmpl_var name='features'}" class="form-control" />
+                <label for="features" class="col-sm-3 control-label">{{ features_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="features" id="features" value="{{ features }}" class="form-control" />
 			</div></div>
             <div class="form-group">
-                <label for="iptables" class="col-sm-3 control-label">{tmpl_var name='iptables_txt'}</label>
-                <div class="col-sm-9"><input type="text" name="iptables" id="iptables" value="{tmpl_var name='iptables'}" class="form-control" />
+                <label for="iptables" class="col-sm-3 control-label">{{ iptables_txt }}</label>
+                <div class="col-sm-9"><input type="text" name="iptables" id="iptables" value="{{ iptables }}" class="form-control" />
 			</div></div>
 			<div class="form-group">
-				<label for="custom" class="col-sm-3 control-label">{tmpl_var name='custom_txt'}</label>
-				<div class="col-sm-9"><textarea class="form-control" name="custom" id="custom" rows='10' cols='30'>{tmpl_var name='custom'}</textarea></div>
+				<label for="custom" class="col-sm-3 control-label">{{ custom_txt }}</label>
+				<div class="col-sm-9"><textarea class="form-control" name="custom" id="custom" rows='10' cols='30'>{{ custom }}</textarea></div>
 			</div>
         
             
-        <input type="hidden" name="id" value="{tmpl_var name='id'}">
+        <input type="hidden" name="id" value="{{ id }}">
             
         <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{tmpl_var name='btn_save_txt'}" data-submit-form="pageForm" data-form-action="vm/openvz_vm_edit.php">{tmpl_var name='btn_save_txt'}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{tmpl_var name='btn_cancel_txt'}" data-load-content="vm/openvz_vm_list.php">{tmpl_var name='btn_cancel_txt'}</button>
+            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="vm/openvz_vm_edit.php">{{ btn_save_txt }}</button>
+            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="vm/openvz_vm_list.php">{{ btn_cancel_txt }}</button>
         </div></div>

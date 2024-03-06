@@ -3,35 +3,35 @@
 <head>
   <meta charset='utf-8' />
 
-  <title><tmpl_var name="company_name"><tmpl_var name="app_title"></title>
+  <title>{{ company_name }}{{ app_title }}</title>
 
   <meta name='viewport' content='width=device-width, user-scalable=yes'>
   <meta name='description' lang='en' content='' />
   <meta name='keywords' lang='en' content='' />
   <meta name='robots' content='noindex, nofollow' />
 
-  <meta name='theme-path' content='themes/<tmpl_var name='current_theme'>/assets/' />
+  <meta name='theme-path' content='themes/{{ current_theme }}/assets/' />
 
-  <link rel='apple-touch-icon' sizes='180x180' href='/themes/<tmpl_var name='current_theme'>/assets/favicon/apple-touch-icon.png'>
-  <link rel='icon' type='image/png' sizes='32x32' href='/themes/<tmpl_var name='current_theme'>/assets/favicon/favicon-32x32.png'>
-  <link rel='icon' type='image/png' sizes='16x16' href='/themes/<tmpl_var name='current_theme'>/assets/favicon/favicon-16x16.png'>
-  <link rel='manifest' href='/themes/<tmpl_var name='current_theme'>/assets/favicon/site.webmanifest'>
-  <link rel='mask-icon' href='/themes/<tmpl_var name='current_theme'>/assets/favicon/safari-pinned-tab.svg' color='#cc151c'>
-  <link rel='shortcut icon' href='/themes/<tmpl_var name='current_theme'>/assets/favicon/favicon.ico'>
+  <link rel='apple-touch-icon' sizes='180x180' href='/themes/{{ current_theme }}/assets/favicon/apple-touch-icon.png'>
+  <link rel='icon' type='image/png' sizes='32x32' href='/themes/{{ current_theme }}/assets/favicon/favicon-32x32.png'>
+  <link rel='icon' type='image/png' sizes='16x16' href='/themes/{{ current_theme }}/assets/favicon/favicon-16x16.png'>
+  <link rel='manifest' href='/themes/{{ current_theme }}/assets/favicon/site.webmanifest'>
+  <link rel='mask-icon' href='/themes/{{ current_theme }}/assets/favicon/safari-pinned-tab.svg' color='#cc151c'>
+  <link rel='shortcut icon' href='/themes/{{ current_theme }}/assets/favicon/favicon.ico'>
   <meta name='msapplication-TileColor' content='#cc151c'>
-  <meta name='msapplication-config' content='/themes/<tmpl_var name='current_theme'>/assets/favicon/browserconfig.xml'>
+  <meta name='msapplication-config' content='/themes/{{ current_theme }}/assets/favicon/browserconfig.xml'>
   <meta name='theme-color' content='#cc151c'>
   
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/dist/style.css' />
+  <link rel='stylesheet' href='themes/{{ current_theme }}/assets/dist/style.css' />
 
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/fonts.min.css' />
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/pushy.min.css' />
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/bootstrap-datetimepicker.min.css' />
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/themes/default/theme.css' />
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/select2.css' />
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/select2-bootstrap.css' />
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css' />
-  <tmpl_if name='logged_in' value='n'><link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/login.css' /></tmpl_if>
+  <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/fonts.min.css' />
+  <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/pushy.min.css' />
+  <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/bootstrap-datetimepicker.min.css' />
+  <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/themes/default/theme.css' />
+  <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/select2.css' />
+  <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/select2-bootstrap.css' />
+  <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css' />
+  <tmpl_if name='logged_in' value='n'><link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/login.css' /></tmpl_if>
 </head>
 
 <body>
@@ -47,7 +47,7 @@
             <!-- off canvas menu button -->
             <div class='menu-btn flex items-center cursor-pointer p-4 lg:hidden'>&#9776;</div>
             <!-- logo -->
-            <div id='logo' class='bg-no-repeat bg-contain' style="background: url({tmpl_var name="base64_logo_txt"}) no-repeat;width:{tmpl_var name="base64_logo_width"};height:{tmpl_var name="base64_logo_height"}"><a href='#'></a></div>
+            <div id='logo' class='bg-no-repeat bg-contain' style="background: url({{ base64_logo_txt }}) no-repeat;width:{{ base64_logo_width }};height:{{ base64_logo_height }}"><a href='#'></a></div>
           </div>
           <div id='headerbar' class='flex w-full justify-end mt-4'>
             <tmpl_if name="cpuser">
@@ -57,7 +57,7 @@
                   <div class='flex items-center'>
                     <div class='relative'>
                       <div class='flex'>
-                        <input id='globalsearch' type='text' class='form-input px-4 py-2 w-full rounded-md' placeholder='{tmpl_var name="globalsearch_searchfield_watermark_txt"}' />
+                        <input id='globalsearch' type='text' class='form-input px-4 py-2 w-full rounded-md' placeholder='{{ globalsearch_searchfield_watermark_txt }}' />
                         <button class='flex justify-center content-center p-2 ml-2 text-gray-600 rounded-md bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee]'>
                           <span class='icon icon-lens'></span>
                         </button>
@@ -68,12 +68,12 @@
               </tmpl_if>
 
               <!-- logout button -->
-              <button id='logout-button' class='px-4 py-2 self-start text-sm whitespace-nowrap font-medium text-white bg-[#c70f19] border-bottom-[#980b13] hover:bg-[#df111c] hover:border-bottom-[#800a10] rounded-md shadow uppercase' data-load-content="login/logout.php"><tmpl_var name="logout_txt"> <tmpl_var name="cpuser"></button>
+              <button id='logout-button' class='px-4 py-2 self-start text-sm whitespace-nowrap font-medium text-white bg-[#c70f19] border-bottom-[#980b13] hover:bg-[#df111c] hover:border-bottom-[#800a10] rounded-md shadow uppercase' data-load-content="login/logout.php">{{ logout_txt }} {{ cpuser }}</button>
             </tmpl_if>
           </div>
             
           <div class="notification cursor-pointer" @click="modalOpen = true">
-            <span class="notification_text">{tmpl_var name="datalog_changes_count"}</span>
+            <span class="notification_text">{{ datalog_changes_count }}</span>
           </div>
 
           <!-- Datalogstatus Modal -->
@@ -82,17 +82,17 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" @click="modalOpen = false">&times;</button>
-                  <h4 class="modal-title">{tmpl_var name="datalog_changes_txt"}</h4>
+                  <h4 class="modal-title">{{ datalog_changes_txt }}</h4>
                 </div>
                 <div class="modal-body">
                   <ul>
                 <tmpl_loop name="datalog_changes">
-                    <li><strong>{tmpl_var name="text"}:</strong> {tmpl_var name="count"}</li>
+                    <li><strong>{{ text }}:</strong> {{ count }}</li>
                 </tmpl_loop>
                 </ul>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="" @click="modalOpen = false">{tmpl_var name="datalog_changes_close_txt"}</button>
+                  <button type="button" class="" @click="modalOpen = false">{{ datalog_changes_close_txt }}</button>
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@
           <div id='content' class='flex-1 p-4 lg:w-3/4'>
             <noscript>This page needs JavaScript to be enabled.</noscript>
             <form method="post" action="" id="pageForm" name="pageForm" enctype="multipart/form-data" class='form-horizontal' role='form'>
-              <div id="pageContent" data-startpage="{tmpl_var name="startpage"}"><!-- AJAX CONTENT --></div>
+              <div id="pageContent" data-startpage="{{ startpage }}"><!-- AJAX CONTENT --></div>
             </form>
           </div>
           <!-- news sidebar -->
@@ -118,33 +118,33 @@
           </tmpl_if>
         </div>
         <footer id='footer' class='py-4 text-center bg-gray-100 text-gray-600'>
-          powered by <a href="<tmpl_var name="app_link">" target="_blank" class='text-blue-500 hover:underline'><tmpl_var name="app_title"></a>
+          powered by <a href="{{ app_link }}" target="_blank" class='text-blue-500 hover:underline'>{{ app_title }}</a>
         </footer>
       </div>
     </div>
   </div>
 
-  <script type="module" src="themes/<tmpl_var name='current_theme'>/assets/dist/tailwindone.es.js"></script>
+  <script type="module" src="themes/{{ current_theme }}/assets/dist/tailwindone.es.js"></script>
   <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script src='themes/<tmpl_var name='current_theme'>/assets/javascripts/bootstrap.min.js'></script>
-  <script src='themes/<tmpl_var name='current_theme'>/assets/javascripts/bootstrap-datetimepicker.min.js'></script>
-  <script src='themes/<tmpl_var name='current_theme'>/assets/javascripts/modernizr.custom.min.js'></script>
-  <script src='themes/<tmpl_var name='current_theme'>/assets/javascripts/pushy.min.js'></script>
+  <script src='themes/{{ current_theme }}/assets/javascripts/bootstrap.min.js'></script>
+  <script src='themes/{{ current_theme }}/assets/javascripts/bootstrap-datetimepicker.min.js'></script>
+  <script src='themes/{{ current_theme }}/assets/javascripts/modernizr.custom.min.js'></script>
+  <script src='themes/{{ current_theme }}/assets/javascripts/pushy.min.js'></script>
   <script src='js/select2/select2.min.js'></script>
   <script src='js/scrigo.js.php'></script>
   <script type="text/javascript" src="js/jquery.ispconfigsearch.js"></script>
   <script type="text/javascript" src="js/jquery.tipsy.js"></script>
   <tmpl_loop name="js_d_includes">
-	<script type="text/javascript" src="js/js.d/<tmpl_var name='file'>"></script>
+	<script type="text/javascript" src="js/js.d/{{ file }}"></script>
   </tmpl_loop>
   <script>
   <!--
 
     window.addEventListener('ispconfig:loaded', function() {
-      ISPConfig.tabChangeDiscard = '<tmpl_var name="tabchange_discard_enabled">';
-      ISPConfig.tabChangeWarning = '<tmpl_var name="tabchange_warning_enabled">';
-      ISPConfig.tabChangeWarningTxt = '<tmpl_var name="global_tabchange_warning_txt">';
-      ISPConfig.tabChangeDiscardTxt = '<tmpl_var name="global_tabchange_discard_txt">';
+      ISPConfig.tabChangeDiscard = '{{ tabchange_discard_enabled }}';
+      ISPConfig.tabChangeWarning = '{{ tabchange_warning_enabled }}';
+      ISPConfig.tabChangeWarningTxt = '{{ global_tabchange_warning_txt }}';
+      ISPConfig.tabChangeDiscardTxt = '{{ global_tabchange_discard_txt }}';
 
       <tmpl_if name="use_loadindicator" value="y">ISPConfig.setOption('useLoadIndicator', true);</tmpl_if>
       <tmpl_if name="use_combobox" value="y">ISPConfig.setOption('useComboBox', true);</tmpl_if>
@@ -153,10 +153,10 @@
 	$(document).ready(function() {
 		$('#globalsearch').ispconfigSearch({
 			dataSrc: '/dashboard/ajax_get_json.php?type=globalsearch',
-			resultsLimit: '$ <tmpl_var name="globalsearch_resultslimit_of_txt"> % <tmpl_var name="globalsearch_resultslimit_results_txt">',
-			noResultsText: '<tmpl_var name="globalsearch_noresults_text_txt">',
-			noResultsLimit: '<tmpl_var name="globalsearch_noresults_limit_txt">',
-			searchFieldWatermark: '<tmpl_var name="globalsearch_searchfield_watermark_txt">',
+			resultsLimit: '$ {{ globalsearch_resultslimit_of_txt }} % {{ globalsearch_resultslimit_results_txt }}',
+			noResultsText: '{{ globalsearch_noresults_text_txt }}',
+			noResultsLimit: '{{ globalsearch_noresults_limit_txt }}',
+			searchFieldWatermark: '{{ globalsearch_searchfield_watermark_txt }}',
 			resultBoxPosition: ''
 		});
 

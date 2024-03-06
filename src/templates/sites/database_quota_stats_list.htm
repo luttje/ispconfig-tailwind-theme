@@ -1,43 +1,43 @@
 <div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b"><tmpl_var name="list_head_txt"></h1>
+	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
 </div>
 
 
-		 <p class="fieldset-legend"><tmpl_var name="list_head_txt"></p>
+		 <p class="fieldset-legend">{{ list_head_txt }}</p>
 			 <div class="table-wrapper marginTop15">
 <table class='table w-full'>
 				<thead class="dark">
 				<tr>
-					<th data-column="database_name"><tmpl_var name="database_txt"></th>
-					<th data-column="server_name"><tmpl_var name="server_name_txt"></th>
-					<th data-column="client"><tmpl_var name="client_txt"></th>
-					<th data-column="used"><tmpl_var name="used_txt"></th>
-					<th data-column="quota"><tmpl_var name="quota_txt"></th>
-					<th data-column="percentage"><tmpl_var name="percentage_txt">
-					<th class="small-col text-right">{tmpl_var name='search_limit'}</th>
+					<th data-column="database_name">{{ database_txt }}</th>
+					<th data-column="server_name">{{ server_name_txt }}</th>
+					<th data-column="client">{{ client_txt }}</th>
+					<th data-column="used">{{ used_txt }}</th>
+					<th data-column="quota">{{ quota_txt }}</th>
+					<th data-column="percentage">{{ percentage_txt }}
+					<th class="small-col text-right">{{ search_limit }}</th>
 				</tr>
 				<tr>
-					<td><input class="form-control" type="text" name="search_database_name" value="{tmpl_var name='search_database_name'}" /></td>
+					<td><input class="form-control" type="text" name="search_database_name" value="{{ search_database_name }}" /></td>
 					<td class="server_name">&nbsp;</td>
 					<td class="client">&nbsp;</td>
 					<td class="used">&nbsp;</td>
 					<td class="quota">&nbsp;</td>
 					<td class="percentage">&nbsp;</td>
 					<td class="text-right">
-						<button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{tmpl_var name="filter_txt"}" data-submit-form="pageForm" data-form-action="sites/database_quota_stats.php"><span class="icon icon-filter"></span></button>
+						<button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/database_quota_stats.php"><span class="icon icon-filter"></span></button>
 					</td>
 				</tr>
 				</thead>
 				<tbody>
 					<tmpl_loop name="records">
 						<tr>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={tmpl_var name='id'}">{tmpl_var name="database"}</a></td>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={tmpl_var name='id'}">{tmpl_var name="server_name"}</a></td>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={tmpl_var name='id'}">{tmpl_var name="client"}</a></td>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={tmpl_var name='id'}">{tmpl_var name="used"}</a></td>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={tmpl_var name='id'}">{tmpl_var name="quota"}</a></td>
+							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ database }}</a></td>
+							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ server_name }}</a></td>
+							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ client }}</a></td>
+							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ used }}</a></td>
+							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ quota }}</a></td>
 							<td colspan="2">{tmpl_if name="progressbar" op="!=" value="-1"}<div class="progress">
-								<div class='progress-bar-striped progress-bar-{tmpl_if name="percentage" op="<" value="50"}success{tmpl_elseif name="percentage" op="<" value="75"}warning{tmpl_else}danger{/tmpl_if}' role="progressbar" style="width: {tmpl_var name="progressbar_value"}%;" aria-valuenow="{tmpl_var name="percentage"}" aria-valuemin="0" aria-valuemax="100"><span>{tmpl_var name="percentage"}%</span></div>
+								<div class='progress-bar-striped progress-bar-{tmpl_if name="percentage" op="<" value="50"}success{tmpl_elseif name="percentage" op="<" value="75"}warning{tmpl_else}danger{/tmpl_if}' role="progressbar" style="width: {{ progressbar_value }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"><span>{{ percentage }}%</span></div>
 						</div>{/tmpl_if}
 </td>
 
@@ -45,13 +45,13 @@
 					</tmpl_loop>
 					<tmpl_unless name="records">
 						<tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
-							<td colspan="7">{tmpl_var name='globalsearch_noresults_text_txt'}</td>
+							<td colspan="7">{{ globalsearch_noresults_text_txt }}</td>
 						</tr>
 					</tmpl_unless>
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="7"><tmpl_var name="paging"></td>
+						<td colspan="7">{{ paging }}</td>
 					</tr>
 				</tfoot>
 			</table>

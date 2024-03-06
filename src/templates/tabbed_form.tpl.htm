@@ -1,19 +1,19 @@
 	<tmpl_if name="form_hint">
 		<div class='page-header'>
-			<h1 class="text-4xl pb-4 border-b"><tmpl_var name="form_hint"></h1>
+			<h1 class="text-4xl pb-4 border-b">{{ form_hint }}</h1>
 		</div>
 	</tmpl_if>
 	<tmpl_if name="msg">
-		<div class='alert alert-notification'><tmpl_var name="msg"></div>
+		<div class='alert alert-notification'>{{ msg }}</div>
 	</tmpl_if>
 	<tmpl_if name="error">
 		<div class='alert alert-danger clear'>
 			<div class='alert-label'><strong>
-					<tmpl_var name="error_txt">
+					{{ error_txt }}
 				</strong></div>
 			<div class='alert-content'>
 				<ul style="list-style-type:none">
-					<tmpl_var name="error">
+					{{ error }}
 				</ul>
 			</div>
 		</div>
@@ -25,8 +25,8 @@
 		<ul class='nav nav-tabs'>
 			<tmpl_loop name="formTab">
 				<li<tmpl_if name="active"> class='active'</tmpl_if>>
-					<a href='#' onclick="return ISPConfig.changeTab('<tmpl_var name='name'>','<tmpl_var name='app_module'>/<tmpl_var name='form_action'>')">
-						<tmpl_var name='title'>
+					<a href='#' onclick="return ISPConfig.changeTab('{{ name }}','{{ app_module }}/{{ form_action }}')">
+						{{ title }}
 					</a>
 					</li>
 			</tmpl_loop>
@@ -38,8 +38,8 @@
 			</div>
 		</div>
 
-		<input type="hidden" name="_csrf_id" value="{tmpl_var name='_csrf_id'}" />
-		<input type="hidden" name="_csrf_key" value="{tmpl_var name='_csrf_key'}" />
+		<input type="hidden" name="_csrf_id" value="{{ _csrf_id }}" />
+		<input type="hidden" name="_csrf_key" value="{{ _csrf_key }}" />
 		<input type="hidden" name="next_tab" value="">
-		<input type="hidden" name="phpsessid" value="{tmpl_var name='phpsessid'}">
+		<input type="hidden" name="phpsessid" value="{{ phpsessid }}">
 	</div>

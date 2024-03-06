@@ -1,6 +1,6 @@
 <div class='table-wrapper'>
 	<table class='table w-full'>
-		<caption>{tmpl_var name='limits_txt'}</caption>
+		<caption>{{ limits_txt }}</caption>
 		<thead class="dark">
 			<tr>
 				<th class="col-md-4">&nbsp;</th>
@@ -11,17 +11,16 @@
 		<tbody>
 			<tmpl_loop name='rows'>
 				<tr>
-					<td>{tmpl_var name='field_txt'}</td>
-					<td>{tmpl_var name='usage'} {tmpl_var name='of_txt'} {tmpl_var name='value'}</td>
+					<td>{{ field_txt }}</td>
+					<td>{{ usage }} {{ of_txt }} {{ value }}</td>
 					{tmpl_if name="progressbar" op="!=" value="-1"}<td>
 						<div class='progress'>
 							<div class='progress-bar-striped progress-bar-{tmpl_if name="progressbar" op="<" value="50"}success{tmpl_elseif name="progressbar" op="<" value="75"}warning{tmpl_else}danger{/tmpl_if}'
 								role='progressbar' aria-valuemin='0' aria-valuemax='100'
-								aria-valuenow='{tmpl_var name="progressbar"}' style='width:{tmpl_var name="progressbar"}%'
-								data-toggle="tooltip" data-placement="bottom" title="{tmpl_var name='percentage'}%">
-								<span>{tmpl_var name="percentage"}%</span>
-								<span class='sr-only'>{tmpl_var name='usage'} {tmpl_var name='of_txt'} {tmpl_var
-									name='value'}</span>
+								aria-valuenow='{{ progressbar }}' style='width:{{ progressbar }}%'
+								data-toggle="tooltip" data-placement="bottom" title="{{ percentage }}%">
+								<span>{{ percentage }}%</span>
+								<span class='sr-only'>{{ usage }} {{ of_txt }} {{ value }}</span>
 							</div>
 						</div>
 					</td>
