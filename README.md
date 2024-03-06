@@ -24,7 +24,7 @@ The default theme, but with Tailwind CSS.
 4. For setting up ISPConfig, see:
 
     - [📚 The ISPConfig docs for Ubuntu/Debian instructions](https://www.ispconfig.org/documentation/)
-    - [🤖 Our guide for setting up ISPConfig in WSL2](./docs/ispconfig-on-wsl-windows.md)
+    - [🤖 Our guide for setting up ISPConfig in WSL2](./docs/ispconfig-on-wsl-windows.md)    
 
 ## 🔨 Configuring ISPConfig
 
@@ -33,3 +33,5 @@ Login to ISPConfig and go to `Tools` > `User Settings` > `Design`. Select the `t
 ## 🔎 About ISPConfig themes
 
 All template files inside ISPConfig should be copied to the `templates/` directory in this theme. From there we can modify the files to our liking. ISPConfig will override the default templates with the ones in our theme.
+
+Because the `.tpl` template isn't very friendly for our IDEs, we use a Liquid-like templating language we call `Liquidish`. [Read more about Liquidish here](./docs/liquidish.md).
