@@ -55,8 +55,8 @@ export default defineConfig({
           },
         },
         ...staticAssetsDirectories.map((dir) => ({
-          src: `src/${dir}/**/*`,
-          dest: dir,
+          src: `src/assets/${dir}`,
+          dest: `assets`,
         })),
       ],
     })
