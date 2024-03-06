@@ -11,12 +11,12 @@
 			</tr>
 		</thead>
 		<tbody>
-		<tmpl_loop name="records">
+		{% for records %}
 			<tr>
 				<td>{{ table }} ({{ count }})</td>
 				<td>{{ data }}</td>
 			</tr>
-		</tmpl_loop>
+		{% endfor %}
 		</tbody>
 		</table>
 	</div>

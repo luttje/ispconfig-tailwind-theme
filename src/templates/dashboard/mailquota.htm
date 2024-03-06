@@ -10,7 +10,7 @@
 		</tr>
 	  </thead>
 	  <tbody>
-	  <tmpl_loop name='mailquota'>
+	  {% for mailquota %}
 		  <tr>
 			  <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ mailuser_id }}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ email }}">{{ email }}</a></td>
 			  <td>{{ name }}</td>
@@ -24,7 +24,7 @@
 			  </div>
 		  </td>{tmpl_else}<td></td>{/tmpl_if}
 		  </tr>
-	  </tmpl_loop>
+	  {% endfor %}
 	  </tbody>
 		<tfoot>
 			<tr>

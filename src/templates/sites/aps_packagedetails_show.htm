@@ -87,10 +87,10 @@
                     <tmpl_if name='pkg_screenshots'>
                         <tr>
                             <td style="text-align:center;">
-                                <tmpl_loop name='pkg_screenshots'>
+                                {% for pkg_screenshots %}
                                     <img src="{{ ScreenPath }}" alt="{{ ScreenDescription }}" /><br />
                                     <em>{{ ScreenDescription }}</em><br /><br />
-                                </tmpl_loop>
+                                {% endfor %}
                             </td>
                         </tr>
                     </tmpl_if>
@@ -99,14 +99,14 @@
                         <tr>
                             <td>
                                 <ul>
-                                    <tmpl_loop name='pkg_changelog'>
+                                    {% for pkg_changelog %}
                                     <li>{{ ChangelogVersion }}</li>
                                 <ul>
                                     <tmpl_if name='ChangelogDescription'>
                                     <li>{{ ChangelogDescription }}</li>
                                     </tmpl_if>
                                 </ul>
-                                    </tmpl_loop>
+                                    {% endfor %}
                                 </ul>
                             </td>
                         </tr>
@@ -119,7 +119,7 @@
                     <tr>
                         <td>{{ php_settings_txt }}</td>
                         <td>
-                            <tmpl_loop name='pkg_requirements_php_settings'>{{ PHPSettingName }} = {{ PHPSettingValue }}<br /></tmpl_loop>
+                            {% for pkg_requirements_php_settings %}{{ PHPSettingName }} = {{ PHPSettingValue }}<br />{% endfor %}
                         </td>
                     </tr>
                     <tr>

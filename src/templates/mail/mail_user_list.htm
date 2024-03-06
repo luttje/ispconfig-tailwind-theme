@@ -11,9 +11,9 @@
                 <div class="statusMsg">
                     {{ datalog_changes_txt }}
                     <ul>
-                    <tmpl_loop name="datalog_changes">
+                    {% for datalog_changes %}
                         <li><strong>{{ text }}:</strong> {{ count }}</li>
-                    </tmpl_loop>
+                    {% endfor %}
                     </ul>
                     {{ datalog_changes_end_txt }}
                 </div>
@@ -59,7 +59,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tmpl_loop name="records">
+                {% for records %}
                     <tr>
                         <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ email }}">{{ email }}</a></td>
                         <tmpl_if name="enable_custom_login"><td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ login }}</a></td></tmpl_if>
@@ -77,7 +77,7 @@
                             <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_user_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                         </td>
                     </tr>
-                </tmpl_loop>
+                {% endfor %}
                 <tmpl_unless name="records">
                     <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
                         <td colspan="<tmpl_if name="enable_custom_login">9<tmpl_else>8</tmpl_if>">{{ globalsearch_noresults_text_txt }}</td>

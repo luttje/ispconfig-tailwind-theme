@@ -23,13 +23,13 @@
 	<div class='content-tab-wrapper'>
 		<!-- tabs -->
 		<ul class='nav nav-tabs'>
-			<tmpl_loop name="formTab">
+			{% for formTab %}
 				<li<tmpl_if name="active"> class='active'</tmpl_if>>
 					<a href='#' onclick="return ISPConfig.changeTab('{{ name }}','{{ app_module }}/{{ form_action }}')">
 						{{ title }}
 					</a>
 					</li>
-			</tmpl_loop>
+			{% endfor %}
 		</ul>
 
 		<div id="tabbox_content" class="tab-content">

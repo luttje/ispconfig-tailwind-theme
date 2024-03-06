@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          <tmpl_loop name="records">
+          {% for records %}
           <tr>
             <td><a href="#" data-load-content="billing/invoice_message_template_edit.php?id={{ id }}">{{ template_type }}</a></td>
             <td><a href="#" data-load-content="billing/invoice_message_template_edit.php?id={{ id }}">{{ template_name }}</a></td>
@@ -32,7 +32,7 @@
               </div>
             </td>
           </tr>
-          </tmpl_loop>
+          {% endfor %}
         </tbody>
         <tfoot>
           <tr>

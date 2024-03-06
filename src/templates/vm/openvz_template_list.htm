@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tmpl_loop name="records">
+                    {% for records %}
                         <tr>
                             <td><a href="#" data-load-content="vm/openvz_template_edit.php?id={{ id }}">{{ active }}</a></td>
                             <td><a href="#" data-load-content="vm/openvz_template_edit.php?id={{ id }}">{{ template_name }}</a></td>
@@ -36,7 +36,7 @@
                                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('vm/openvz_template_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                             </td>
                         </tr>
-                    </tmpl_loop>
+                    {% endfor %}
                     <tmpl_unless name="records">
                         <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
                             <td colspan="3">{{ globalsearch_noresults_text_txt }}</td>

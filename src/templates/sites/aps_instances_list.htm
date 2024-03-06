@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tmpl_loop name='records'>
+                    {% for records %}
                         <tr>
                             <td><a href="#" data-load-content="sites/aps_packagedetails_show.php?id={{ package_id }}">{{ package_name }}</a></td>
                             <td>{{ package_version }}-{{ package_release }}</td>
@@ -44,7 +44,7 @@
                                 </tmpl_if>
                             </td>        
                         </tr>
-                    </tmpl_loop>
+                    {% endfor %}
                 </tbody>
                 <tfoot>
                     <tr>

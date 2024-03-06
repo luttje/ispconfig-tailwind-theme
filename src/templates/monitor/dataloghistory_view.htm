@@ -55,12 +55,12 @@
 					<th>{{ value_txt }}</th>
 				</tr>
 			</thead>
-			<tmpl_loop name='inserts'>
+			{% for inserts %}
 				<tr>
 					<td>{{ key }}</td>
 					<td>{{ value }}</td>
 				</tr>
-			</tmpl_loop>
+			{% endfor %}
 		</tmpl_if>
 		<tmpl_if name='action_char' value='u'>
 			<tmpl_if name='no_changes'>
@@ -78,7 +78,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<tmpl_loop name='updates'>
+				{% for updates %}
 					<tmpl_if name='is_diff'>
 						<tr>
 							<td>{{ key }}</td>
@@ -94,7 +94,7 @@
 							<td>{{ new }}</td>
 						</tr>
 					</tmpl_if>
-				</tmpl_loop>
+				{% endfor %}
 				</tbody>
 			</tmpl_if>
 		</tmpl_if>
@@ -106,12 +106,12 @@
 				</tr>
 			</thead>
 			<tbody>
-			<tmpl_loop name='deletes'>
+			{% for deletes %}
 				<tr>
 					<td>{{ key }}</td>
 					<td>{{ value }}</td>
 				</tr>
-			</tmpl_loop>
+			{% endfor %}
 			</tbody>
 		</tmpl_if>
 

@@ -25,13 +25,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tmpl_loop name="records">
+                    {% for records %}
                         <tr>
                             <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ module }}</a></td>
                             <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ lang_file }}</a></td>
                             <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ lang_file_date }}</a></td>
                         </tr>
-                    </tmpl_loop>
+                    {% endfor %}
                 </tbody>
                 <tfoot>
                     <tr>

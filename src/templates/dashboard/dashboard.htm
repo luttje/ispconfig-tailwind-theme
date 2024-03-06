@@ -4,29 +4,29 @@
 
 <tmpl_if name='error'>
 	<div class="alert alert-danger">
-		<tmpl_loop name="error">
+		{% for error %}
 			{{ error_msg }}
-		</tmpl_loop>
+		{% endfor %}
 	</div>
 </tmpl_if>
 <tmpl_if name='warning'>
 	<div class="alert alert-danger">
-		<tmpl_loop name="warning">
+		{% for warning %}
 			{{ warning_msg }}
-		</tmpl_loop>
+		{% endfor %}
 	</div>
 </tmpl_if>
 <tmpl_if name='info'>
 	<div class="alert alert-notification">
-		<tmpl_loop name="info">
+		{% for info %}
 			{{ info_msg }}
-		</tmpl_loop>
+		{% endfor %}
 	</div>
 </tmpl_if>
 
-<tmpl_loop name='leftcol'>
+{% for leftcol %}
 	{{ content }}
-</tmpl_loop>
-<tmpl_loop name='rightcol'>
+{% endfor %}
+{% for rightcol %}
 	{{ content }}
-</tmpl_loop>
+{% endfor %}

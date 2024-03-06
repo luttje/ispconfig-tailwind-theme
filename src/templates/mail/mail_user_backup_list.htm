@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tmpl_loop name="records">
+                    {% for records %}
                         <tr>
                             <td>{{ date }}</td>
                             <td>{{ filename }}</td>
@@ -40,7 +40,7 @@
                                 </div>
                             </td>
                         </tr>
-                    </tmpl_loop>
+                    {% endfor %}
                     <tmpl_unless name="records">
                         <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
                             <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>

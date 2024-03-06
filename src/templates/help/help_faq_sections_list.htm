@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
 				<tbody>
-                <tmpl_loop name="records">
+                {% for records %}
                     <tr>
                         <td><b>{{ hfs_name }}</b></td>
                         <td class="text-right">
@@ -32,7 +32,7 @@
                             <a class="btn btn-default formbutton-default formbutton-narrow" data-load-content="help/faq_sections_edit.php?id={{ id }}"><span class="icon icon-edit"></span></a>
                         </td>
                     </tr>
-                </tmpl_loop>
+                {% endfor %}
                 <tmpl_unless name="records">
                     <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
                         <td colspan="3">{{ globalsearch_noresults_text_txt }}</td>

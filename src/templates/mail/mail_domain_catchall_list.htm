@@ -11,9 +11,9 @@
                 <div class="statusMsg">
                     {{ datalog_changes_txt }}
                     <ul>
-                    <tmpl_loop name="datalog_changes">
+                    {% for datalog_changes %}
                         <li><strong>{{ text }}:</strong> {{ count }}</li>
-                    </tmpl_loop>
+                    {% endfor %}
                     </ul>
                     {{ datalog_changes_end_txt }}
                 </div>
@@ -47,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tmpl_loop name="records">
+                    {% for records %}
                         <tr>
                             <td><a href="#" data-load-content="mail/mail_domain_catchall_edit.php?id={{ id }}">{{ active }}</a></td>
                             <td><a href="#" data-load-content="mail/mail_domain_catchall_edit.php?id={{ id }}">{{ source }}</a></td>
@@ -56,7 +56,7 @@
                                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_domain_catchall_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                             </td>
                         </tr>
-                    </tmpl_loop>
+                    {% endfor %}
                     <tmpl_unless name="records">
                         <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
                             <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>

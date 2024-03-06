@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tmpl_loop name="records">
+                {% for records %}
                     <tr>
                         <td><a target="_blank" href="http://{{ domain }}/stats">{{ domain }}</a></td>
                         <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ this_month }}</a></td>
@@ -37,7 +37,7 @@
                         <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ last_year }}</a></td>
                         <td class="text-right"></td>
                     </tr>
-                </tmpl_loop>
+                {% endfor %}
                 <tmpl_unless name="records">
                     <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
                         <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>

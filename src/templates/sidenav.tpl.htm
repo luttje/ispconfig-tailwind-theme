@@ -1,7 +1,7 @@
-<tmpl_loop name="nav_left">
+{% for nav_left %}
 	<tmpl_if name="title"><header><tmpl_if name="is_link" op="!=" value="no"><tmpl_if name="startpage"><a href="#" class="subnav-header" data-load-content="{{ startpage }}"></tmpl_if></tmpl_if>{{ title }}<tmpl_if name="is_link" op="!=" value="no"><tmpl_if name="startpage"></a></tmpl_if></tmpl_if></header></tmpl_if>
 	<ul id="sub-navigation">
-	  <tmpl_loop name="items">
+	  {% for items %}
 	  <li<tmpl_if name="html_id"> id='{{ html_id }}' </tmpl_if>>
 		<tmpl_if name="link">
 			<tmpl_if name="target" op="==" value="_blank">
@@ -20,6 +20,6 @@
 		</a>
 		</tmpl_if>
 	  </li>
-	  </tmpl_loop>
+	  {% endfor %}
 	</ul>
-</tmpl_loop>
+{% endfor %}

@@ -86,9 +86,9 @@
                 </div>
                 <div class="modal-body">
                   <ul>
-                <tmpl_loop name="datalog_changes">
+                {% for datalog_changes %}
                     <li><strong>{{ text }}:</strong> {{ count }}</li>
-                </tmpl_loop>
+                {% endfor %}
                 </ul>
                 </div>
                 <div class="modal-footer">
@@ -134,9 +134,9 @@
   <script src='js/scrigo.js.php'></script>
   <script type="text/javascript" src="js/jquery.ispconfigsearch.js"></script>
   <script type="text/javascript" src="js/jquery.tipsy.js"></script>
-  <tmpl_loop name="js_d_includes">
+  {% for js_d_includes %}
 	<script type="text/javascript" src="js/js.d/{{ file }}"></script>
-  </tmpl_loop>
+  {% endfor %}
   <script>
   <!--
 
