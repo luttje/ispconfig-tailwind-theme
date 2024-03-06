@@ -1,4 +1,4 @@
-var ISPConfig = {
+const ISPConfig = {
 	pageFormChanged: false,
 	tabChangeWarningTxt: '',
 	tabChangeDiscardTxt: '',
@@ -13,6 +13,12 @@ var ISPConfig = {
 	options: {
 		useLoadIndicator: false,
 		useComboBox: false
+	},
+
+	getThemePath: function () {
+		var themePath = document.querySelector('meta[name="theme-path"]')
+			.getAttribute('content');
+		return themePath;
 	},
 
 	setOption: function(key, value) {
@@ -45,6 +51,24 @@ var ISPConfig = {
 		ISPConfig.pageFormChanged = false;
 	},
 
+	fadeInIndicator: function (indicator, onFinish) {
+		indicator.classList.remove('hidden', 'opacity-0');
+
+		if (onFinish)
+			setTimeout(onFinish, 300);
+	},
+
+	fadeOutIndicator: function (indicator, onFinish) {
+		indicator.classList.add('opacity-0');
+
+		setTimeout(function () {
+			indicator.classList.add('hidden');
+
+			if (onFinish)
+				onFinish();
+		}, 300);
+	},
+
 	showLoadIndicator: function() {
 		document.body.style.cursor = 'wait';
 
@@ -52,21 +76,29 @@ var ISPConfig = {
 			ISPConfig.requestsRunning += 1;
 
 			if(ISPConfig.requestsRunning < 2) {
-				var indicator = $('#ajaxloader');
-				if(indicator.length < 1) {
-					indicator = $('<div id="ajaxloader" style="display: none;"></div>');
-					indicator.appendTo('body');
-				}
-				var parent = $('#content');
-				if(parent.length < 1) return;
-				ISPConfig.indicatorCompleted = false;
+				var indicator = document.querySelector('#ajaxloader');
 
-				var atx = parent.offset().left + 150; //((parent.outerWidth(true) - indicator.outerWidth(true)) / 2);
-				var aty = parent.offset().top + 150;
-				indicator.css( {'left': atx, 'top': aty } ).fadeIn('fast', function() {
-					// check if loader should be hidden immediately
+				if(indicator == null) {
+					indicator = document.createElement('div');
+					indicator.id = 'ajaxloader';
+					indicator.classList.add('hidden', 'transition-all', 'opacity-0', 'duration-300');
+					indicator.classList.add('fixed', 'shadow-xl', 'w-96', 'h-48', 'bg-white', 'bg-center', 'bg-no-repeat', 'border', 'border-gray-300', 'rounded-lg', 'p-4', 'text-center', 'z-50', 'top-1/2', 'left-1/2', 'transform', '-translate-x-1/2', '-translate-y-1/2');
+					indicator.style.backgroundImage = 'url("' + ISPConfig.getThemePath() + '/images/ajax-loader.gif")';
+
+					document.body.appendChild(indicator);
+				}
+
+				var parent = document.querySelector('#content');
+
+				if (parent === null) return;
+
+				const fadeOutIndicator = this.fadeOutIndicator;
+				this.fadeInIndicator(indicator, function () {
 					ISPConfig.indicatorCompleted = true;
-					if(ISPConfig.requestsRunning < 1) $(this).fadeOut('fast', function() { $(this).hide();});
+
+					if (ISPConfig.requestsRunning < 1) {
+						fadeOutIndicator(indicator);
+					}
 				});
 			}
 		}
@@ -78,7 +110,11 @@ var ISPConfig = {
 		ISPConfig.requestsRunning -= 1;
 		if(ISPConfig.requestsRunning < 1) {
 			ISPConfig.requestsRunning = 0; // just for the case...
-			if(ISPConfig.indicatorCompleted == true) $('#ajaxloader').fadeOut('fast', function() { $('#ajaxloader').hide(); } );
+
+			if (ISPConfig.indicatorCompleted == true) {
+				const indicator = document.querySelector('#ajaxloader');
+				this.fadeOutIndicator(indicator);
+			}
 		}
 	},
 
@@ -135,8 +171,6 @@ var ISPConfig = {
 			'fontAwesome': true,
 			'autoclose': true
 		});
-		$('[data-toggle="tooltip"]').tooltip({
-		});
 
 		$('input[autofocus]').focus();
 
@@ -183,7 +217,8 @@ var ISPConfig = {
 					ISPConfig.dataLogNotification();
 					ISPConfig.hideLoadIndicator();
 				},
-				error: function(jqXHR, textStatus, errorThrown) {
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR);
 					ISPConfig.hideLoadIndicator();
 					var parts = jqXHR.responseText.split(':');
 					ISPConfig.reportError('Ajax Request was not successful. 111');
@@ -596,6 +631,9 @@ var ISPConfig = {
 	  }
 	}
 };
+window.ISPConfig = ISPConfig;
+
+window.dispatchEvent(new Event('ispconfig:loaded'));
 
 $(document).on("change", function(event) {
 	var elName = event.target.localName;

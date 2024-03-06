@@ -1,5 +1,5 @@
 <div class='page-header'>
-	<h1><tmpl_if name='vhostdomain_type' op='==' value='domain'>{tmpl_var name="domain_list_head_txt"}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='subdomain'>{tmpl_var name="subdomain_list_head_txt"}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='aliasdomain'>{tmpl_var name="aliasdomain_list_head_txt"}</tmpl_if></h1>
+	<h1 class="text-4xl pb-4 border-b"><tmpl_if name='vhostdomain_type' op='==' value='domain'>{tmpl_var name="domain_list_head_txt"}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='subdomain'>{tmpl_var name="subdomain_list_head_txt"}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='aliasdomain'>{tmpl_var name="aliasdomain_list_head_txt"}</tmpl_if></h1>
 </div>
 <p><tmpl_var name="list_desc_txt"></p>
 
@@ -29,8 +29,8 @@
 
         <p class="fieldset-legend"><tmpl_var name="list_head_txt"></p>
             <div class="table-wrapper marginTop15">
-<table class="table">
-                <thead class="dark form-group-sm">
+<table class='table w-full'>
+                <thead class="dark">
                 <tr>
                     <tmpl_if name="vhostdomain_type" value="domain"><th class="small-col" data-column="domain_id"><tmpl_var name="domain_id_txt"></th></tmpl_if>
                     <th class="tiny-col" data-column="active"><tmpl_var name="active_txt"></th>

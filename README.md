@@ -18,7 +18,7 @@ The default theme, but with Tailwind CSS.
 3. Start the Tailwind CLI:
 
     ```bash
-    npm run watch
+    npm run dev
     ```
 
 4. For setting up ISPConfig, see:

@@ -1,5 +1,5 @@
 <div class='page-header'>
-	<h1><tmpl_var name="list_head_txt"></h1>
+	<h1 class="text-4xl pb-4 border-b"><tmpl_var name="list_head_txt"></h1>
 </div>
 <p><tmpl_var name="list_desc_txt"></p>
 
@@ -13,8 +13,8 @@
     
         <p class="fieldset-legend"><tmpl_var name="list_head_txt"></p>
             <div class="table-wrapper marginTop15">
-<table class="table">
-                <thead class="dark form-group-sm">
+<table class='table w-full'>
+                <thead class="dark">
                     <tr>
                         <th data-column="template_id"><tmpl_var name="template_id_txt"></th>
 						<tmpl_if name="is_admin"><th data-column="sys_groupid"><tmpl_var name="sys_groupid_txt"></th></tmpl_if>

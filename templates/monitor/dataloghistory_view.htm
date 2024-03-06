@@ -1,11 +1,11 @@
 <tmpl_if name="list_head_txt">
 <div class='page-header'>
-        <h1><tmpl_var name="list_head_txt"></h1>
+	<h1 class="text-4xl pb-4 border-b"><tmpl_var name="list_head_txt"></h1>
 </div>
 </tmpl_if>
 <div class="table-wrapper marginTop15">
-	<table class="table">
-		<thead class="dark form-group-sm">
+	<table class='table w-full'>
+		<thead class="dark">
 			<tr>
 				<th width="25%"><tmpl_var name="id_txt"></th>
 				<th><tmpl_var name="id"></th>
@@ -47,9 +47,9 @@
 </tmpl_if>
 
 <div class="table-wrapper marginTop15">
-	<table class="table">
+	<table class='table w-full'>
 		<tmpl_if name='action_char' value='i'>
-			<thead class="dark form-group-sm">
+			<thead class="dark">
 				<tr>
 					<th width="25%"><tmpl_var name="field_txt"></th>
 					<th><tmpl_var name="value_txt"></th>
@@ -70,7 +70,7 @@
 					</tr>
 				</tbody>
 			<tmpl_else>
-				<thead class="dark form-group-sm">
+				<thead class="dark">
 					<tr>
 						<th width="25%"><tmpl_var name="field_txt"></th>
 						<th><tmpl_var name="old_txt"></th>
@@ -99,7 +99,7 @@
 			</tmpl_if>
 		</tmpl_if>
 		<tmpl_if name='action_char' value='d'>
-			<thead class="dark form-group-sm">
+			<thead class="dark">
 				<tr>
 					<th width="25%"><tmpl_var name="field_txt"></th>
 					<th><tmpl_var name="value_txt"></th>
