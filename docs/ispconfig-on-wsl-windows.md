@@ -1,4 +1,4 @@
-# ISPConfig on WSL2
+# 🤖 ISPConfig on WSL2
 
 ## Prepare a 20.04 Ubuntu distro in WSL
 

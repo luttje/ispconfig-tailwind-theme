@@ -6,6 +6,7 @@
   },
   "scripts": {
     "watch": "npx tailwindcss -i ./src/assets/style.css -o ./assets/stylesheets/style.css --watch",
+    "build": "npx tailwindcss -i ./src/assets/style.css -o ./assets/stylesheets/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
