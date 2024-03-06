@@ -71,8 +71,10 @@ E.g: `<tmpl_if name="logged_in" op="!=" value="y">` to `{% if logged_in != 'y' %
 
 *E.g: `<tmpl_unless name="logged_in">` to `{% unless logged_in %}`*
 
-**Match:** `<tmpl_unless name="([^"]*?)">` or `<tmpl_unless name='([^']*?)'>`
+**Match:** `<tmpl_unless name="([^"]*?)">` or `<tmpl_unless name='([^']*?)'>` or `\{tmpl_unless name="([^"]*?)"\}` or `\{tmpl_unless name='([^']*?)'\}`
 **Replacement:** `{% unless $1 %}`
+
+**Replace the closing tag matched with:** `</tmpl_unless>` or `\{/tmpl_unless\}` by `{% endunless %}`
 
 ### Loops
 
@@ -84,3 +86,17 @@ E.g: `<tmpl_if name="logged_in" op="!=" value="y">` to `{% if logged_in != 'y' %
 Note the difference with Liquidish, where the `in` keyword is used to specify the iterable. Sadly in ISPConfig's `tpl` files, the iterable is not specified.
 
 **Replace the closing tag matched with:** `</tmpl_loop>` by `{% endfor %}`
+
+### Includes
+
+*E.g: `<tmpl_dyninclude name="content_tpl">` to `{% render 'content_tpl' %}`*
+
+**Match:** `<tmpl_dyninclude name="([^"]*?)">` or `<tmpl_dyninclude name='([^']*?)'>`
+**Replacement:** `{% render '$1' %}`
+
+### Hooks
+
+*E.g: `{tmpl_hook name="content"} to {% hook 'content' %}`*
+
+**Match:** `\{tmpl_hook name="([^"]*?)"\}` or `\{tmpl_hook name='([^']*?)'\}`
+**Replacement:** `{% hook '$1' %}`

@@ -11,7 +11,7 @@
 {% endif %}
 
 
-        {tmpl_hook name="begin_form"}
+        {% hook 'begin_form' %}
     {% if vhostdomain_type == 'domain' %}
             {% if is_admin %}
                 <div class="form-group">
@@ -236,7 +236,7 @@
                     {{ php }}
                 </select></div>
             </div>
-            {tmpl_hook name="field_server_php_id"}
+            {% hook 'field_server_php_id' %}
             <div class="form-group server_php_id">
                 <label for="server_php_id" class="col-sm-3 control-label">{{ server_php_id_txt }}</label>
                 <div class="col-sm-9"><select name="server_php_id" id="server_php_id" class="form-control">
@@ -259,7 +259,7 @@
 				</div>
 			{% endif %}
 <!--
-			{tmpl_hook name="field_enable_pagespeed"}
+			{% hook 'field_enable_pagespeed' %}
 			<div class="form-group nginx pagespeed">
 				<label class="col-sm-3 control-label">{{ enable_pagespeed_txt }}</label>
 				<div class="col-sm-9">
@@ -267,14 +267,14 @@
 				</div>
 			</div>
 -->
-            {tmpl_hook name="field_active"}
+            {% hook 'field_active' %}
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ active_txt }}</label>
                 <div class="col-sm-9">
                     {{ active }}
                 </div>
             </div>
-			{tmpl_hook name="end_form"}
+			{% hook 'end_form' %}
 
         <input type="hidden" name="id" value="{{ id }}">
 
