@@ -44,11 +44,11 @@
                             </td>
                         </tr>
                     {% endfor %}
-                    <tmpl_unless name="records">
+                    {% unless records %}
                         <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             {% if is_admin %}<td colspan="5">{% else %}<td colspan="4">{% endif %}{{ globalsearch_noresults_text_txt }}</td>
                         </tr>
-                    </tmpl_unless>
+                    {% endunless %}
                 </tbody>
                 <tfoot>
                     <tr>

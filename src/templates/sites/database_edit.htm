@@ -90,7 +90,7 @@
                         </select></div>
                 {% endif %}
             </div>
-	 <tmpl_unless name="disable_remote_db">
+	 {% unless disable_remote_db %}
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ remote_access_txt }}</label>
                 <div class="col-sm-9">

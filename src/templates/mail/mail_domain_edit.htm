@@ -50,14 +50,14 @@
             {% endif %}
 
             {% if is_reseller %}
-                <tmpl_unless name="domain_option">
+                {% unless domain_option %}
                     <div class="form-group">
                         <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
                         <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
                             {{ client_group_id }}
                         </select></div>
                     </div>
-                </tmpl_unless>
+                {% endunless %}
             {% endif %}
 
             <div class="form-group">
