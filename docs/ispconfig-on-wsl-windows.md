@@ -140,4 +140,4 @@ If you want to theme ISPConfig, we'll set up a symlink to a theme project on you
 
 - Use `ln -s {target} {link}`, e.g:
 
-  `ln -s /mnt/e/Projects/_Personal/Web/tailwindone /usr/local/ispconfig/interface/web/themes/tailwindone`
+  `ln -s /mnt/e/Projects/_Personal/Web/tailwindone/dist /usr/local/ispconfig/interface/web/themes/tailwindone`

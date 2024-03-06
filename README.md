@@ -21,10 +21,16 @@ The default theme, but with Tailwind CSS.
     npm run dev
     ```
 
-4. For setting up ISPConfig, see:
+4. Symlink the `dist/` directory into ISPConfig's `themes/` directory:
+
+    ```bash
+    ln -s /path/to/ispconfig-tailwind/dist/ /usr/local/ispconfig/interface/web/themes/tailwindone
+    ```
+
+5. For setting up ISPConfig, see:
 
     - [📚 The ISPConfig docs for Ubuntu/Debian instructions](https://www.ispconfig.org/documentation/)
-    - [🤖 Our guide for setting up ISPConfig in WSL2](./docs/ispconfig-on-wsl-windows.md)    
+    - [🤖 Our guide for setting up ISPConfig in WSL2](./docs/ispconfig-on-wsl-windows.md)
 
 ## 🔨 Configuring ISPConfig
 
