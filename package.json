@@ -1,0 +1,15 @@
+{
+  "name": "tailwindone",
+  "version": "1.0.0",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "scripts": {
+    "watch": "npx tailwindcss -i ./src/assets/style.css -o ./assets/stylesheets/style.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
