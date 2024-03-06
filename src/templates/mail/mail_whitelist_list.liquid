@@ -33,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for records %}
+                    {% loop records %}
                         <tr>
                             <td><a href="#" data-load-content="mail/mail_whitelist_edit.php?id={{ id }}">{{ active }}</a></td>
                             <td><a href="#" data-load-content="mail/mail_whitelist_edit.php?id={{ id }}">{{ server_id }}</a></td>
@@ -43,7 +43,7 @@
                                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_whitelist_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                             </td>
                         </tr>
-                    {% endfor %}
+                    {% endloop %}
                     {% unless records %}
                         <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>

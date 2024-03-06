@@ -1,7 +1,7 @@
-{% for nav_left %}
+{% loop nav_left %}
 	{% if title %}<header>{% if is_link != 'no' %}{% if startpage %}<a href="#" class="subnav-header" data-load-content="{{ startpage }}">{% endif %}{% endif %}{{ title }}{% if is_link != 'no' %}{% if startpage %}</a>{% endif %}{% endif %}</header>{% endif %}
 	<ul id="sub-navigation">
-	  {% for items %}
+	  {% loop items %}
 	  <li{% if html_id %} id='{{ html_id }}' {% endif %}>
 		{% if link %}
 			{% if target == '_blank' %}
@@ -20,6 +20,6 @@
 		</a>
 		{% endif %}
 	  </li>
-	  {% endfor %}
+	  {% endloop %}
 	</ul>
-{% endfor %}
+{% endloop %}

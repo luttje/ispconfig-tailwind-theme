@@ -87,10 +87,10 @@
                     {% if pkg_screenshots %}
                         <tr>
                             <td style="text-align:center;">
-                                {% for pkg_screenshots %}
+                                {% loop pkg_screenshots %}
                                     <img src="{{ ScreenPath }}" alt="{{ ScreenDescription }}" /><br />
                                     <em>{{ ScreenDescription }}</em><br /><br />
-                                {% endfor %}
+                                {% endloop %}
                             </td>
                         </tr>
                     {% endif %}
@@ -99,14 +99,14 @@
                         <tr>
                             <td>
                                 <ul>
-                                    {% for pkg_changelog %}
+                                    {% loop pkg_changelog %}
                                     <li>{{ ChangelogVersion }}</li>
                                 <ul>
                                     {% if ChangelogDescription %}
                                     <li>{{ ChangelogDescription }}</li>
                                     {% endif %}
                                 </ul>
-                                    {% endfor %}
+                                    {% endloop %}
                                 </ul>
                             </td>
                         </tr>
@@ -119,7 +119,7 @@
                     <tr>
                         <td>{{ php_settings_txt }}</td>
                         <td>
-                            {% for pkg_requirements_php_settings %}{{ PHPSettingName }} = {{ PHPSettingValue }}<br />{% endfor %}
+                            {% loop pkg_requirements_php_settings %}{{ PHPSettingName }} = {{ PHPSettingValue }}<br />{% endloop %}
                         </td>
                     </tr>
                     <tr>

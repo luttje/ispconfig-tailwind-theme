@@ -43,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for records %}
+                    {% loop records %}
                         <tr>
                             <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ client_id }}</a></td>
 							<td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ locked }}</a></td>
@@ -71,7 +71,7 @@
                                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('client/client_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                             </td>
                         </tr>
-                    {% endfor %}
+                    {% endloop %}
                     {% unless records %}
                         <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="{% if has_robot %}10{% else %}9{% endif %}">{{ globalsearch_noresults_text_txt }}</td>

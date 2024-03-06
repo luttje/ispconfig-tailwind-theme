@@ -55,12 +55,12 @@
 					<th>{{ value_txt }}</th>
 				</tr>
 			</thead>
-			{% for inserts %}
+			{% loop inserts %}
 				<tr>
 					<td>{{ key }}</td>
 					<td>{{ value }}</td>
 				</tr>
-			{% endfor %}
+			{% endloop %}
 		{% endif %}
 		{% if action_char == 'u' %}
 			{% if no_changes %}
@@ -78,7 +78,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				{% for updates %}
+				{% loop updates %}
 					{% if is_diff %}
 						<tr>
 							<td>{{ key }}</td>
@@ -94,7 +94,7 @@
 							<td>{{ new }}</td>
 						</tr>
 					{% endif %}
-				{% endfor %}
+				{% endloop %}
 				</tbody>
 			{% endif %}
 		{% endif %}
@@ -106,12 +106,12 @@
 				</tr>
 			</thead>
 			<tbody>
-			{% for deletes %}
+			{% loop deletes %}
 				<tr>
 					<td>{{ key }}</td>
 					<td>{{ value }}</td>
 				</tr>
-			{% endfor %}
+			{% endloop %}
 			</tbody>
 		{% endif %}
 

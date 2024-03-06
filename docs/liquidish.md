@@ -4,6 +4,51 @@ In order to get better IDE support when working with ISPConfig's `tpl` files, we
 
 When building the theme, it is compiled to `.tpl.htm` files for ISPConfig.
 
+## 📚 Liquidish Syntax (Transpiled)
+
+This syntax is transpiled (translated) to ISPConfig's `tpl` syntax.
+
+### Variables
+
+Variables are defined with double curly braces: `{{ VARIABLE }}`.
+
+### If-statements
+
+If-statements are defined with `{% if VARIABLE %}`. You can also use `==`, `!=`, `>`, `<`, `>=`, `<=` as operators.
+
+### Unless-statements
+
+Unless-statements are defined with `{% unless VARIABLE %}`.
+
+### Loops
+
+Loops are defined with `{% loop VARIABLE %}`. Unlike Liquid, the `in` keyword is not used to specify the iterable.
+
+### Dyninclude
+
+Dyninclude are defined with `{% dyninclude 'content_tpl' %}`.
+
+#### Hooks
+
+Hooks are defined with `{% hook 'content' %}`.
+
+#### 🔥 Extra Syntax Features
+
+> [!WARNING]
+> These features are not yet implemented.
+
+### Pre-compiling snippets with `{% render ... %}`
+
+When using `{% render './template/button' %}`, the sub-template will be compiled to the `.tpl.htm` file. This is unlike the `dyninclude` tag, which is included at runtime.
+
+To pass parameters to the sub-template, you can use following syntax:
+
+```liquid
+{% render './template/button', variable: 'value', another_variable: 'another_value' %}
+```
+
+#### 
+
 ## Migrate ISPConfig `tpl` to `Liquidish`
 
 This is a guide for migrating ISPConfig's `tpl` files to `Liquidish`. This can be useful when porting an existing theme to this workflow.
@@ -78,21 +123,19 @@ E.g: `<tmpl_if name="logged_in" op="!=" value="y">` to `{% if logged_in != 'y' %
 
 ### Loops
 
-*E.g: `<tmpl_loop name="VARIABLE">` to `{% for VARIABLE %}`*
+*E.g: `<tmpl_loop name="VARIABLE">` to `{% loop VARIABLE %}`*
 
 **Match:** `<tmpl_loop name="([^"]*?)">` or `<tmpl_loop name='([^']*?)'>`
-**Replacement:** `{% for $1 %}`
+**Replacement:** `{% loop $1 %}`
+\
+**Replace the closing tag matched with:** `</tmpl_loop>` by `{% endloop %}`
 
-Note the difference with Liquidish, where the `in` keyword is used to specify the iterable. Sadly in ISPConfig's `tpl` files, the iterable is not specified.
+### Dyninclude
 
-**Replace the closing tag matched with:** `</tmpl_loop>` by `{% endfor %}`
-
-### Includes
-
-*E.g: `<tmpl_dyninclude name="content_tpl">` to `{% render 'content_tpl' %}`*
+*E.g: `<tmpl_dyninclude name="content_tpl">` to `{% dyninclude 'content_tpl' %}`*
 
 **Match:** `<tmpl_dyninclude name="([^"]*?)">` or `<tmpl_dyninclude name='([^']*?)'>`
-**Replacement:** `{% render '$1' %}`
+**Replacement:** `{% dyninclude '$1' %}`
 
 ### Hooks
 

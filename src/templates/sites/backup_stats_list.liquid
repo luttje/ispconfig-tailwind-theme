@@ -18,7 +18,7 @@
 					</tr>
                 </thead>
 				<tbody>
-					{% for records %}
+					{% loop records %}
 					<tr class="tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
 						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ active }}</a> </td>
 						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ domain }}</a> </td>
@@ -27,7 +27,7 @@
 						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_copies_exists }}</a> </td>
 						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_size }}</a> </td>
 					</tr>
-					{% endfor %}
+					{% endloop %}
 				</tbody>
 				<tfoot>
 					<tr>

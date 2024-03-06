@@ -11,9 +11,9 @@
                 <div class="statusMsg">
                     {{ datalog_changes_txt }}
                     <ul>
-                    {% for datalog_changes %}
+                    {% loop datalog_changes %}
                         <li><strong>{{ text }}:</strong> {{ count }}</li>
-                    {% endfor %}
+                    {% endloop %}
                     </ul>
                     {{ datalog_changes_end_txt }}
                 </div>
@@ -47,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for records %}
+                    {% loop records %}
                         <tr>
                             <td><a href="#" data-load-content="mail/xmpp_domain_edit.php?id={{ id }}">{{ active }}</a></td>
                             <td><a href="#" data-load-content="mail/xmpp_domain_edit.php?id={{ id }}">{{ server_id }}</a></td>
@@ -56,7 +56,7 @@
                                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/xmpp_domain_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></button>
                             </td>
                         </tr>
-                    {% endfor %}
+                    {% endloop %}
                     {% unless records %}
                         <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>

@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for records %}
+                {% loop records %}
                     <tr>
                         <td><a href="#" data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ policy_name }}</a></td>
                         <td><a href="#" data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ virus_lover }}</a></td>
@@ -52,7 +52,7 @@
                             <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/spamfilter_policy_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                         </td>
                     </tr>
-                {% endfor %}
+                {% endloop %}
                 {% unless records %}
                     <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                         <td colspan="{% if content_filter == 'amavisd' %}6{% else %}4{% endif %}">{{ globalsearch_noresults_text_txt }}</td>

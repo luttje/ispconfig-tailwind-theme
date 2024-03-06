@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for records %}
+                    {% loop records %}
                         <tr>
                             <td><a href="#" data-load-content="admin/users_edit.php?id={{ id }}">{{ client_id }}</a></td>
                             <td><a href="#" data-load-content="admin/users_edit.php?id={{ id }}">{{ active }}</a></td>
@@ -47,7 +47,7 @@
                                 {% endif %}
                             </td>
                         </tr>
-                    {% endfor %}
+                    {% endloop %}
                     {% unless records %}
                         <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>

@@ -31,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for records %}
+                    {% loop records %}
                         <tr>
                             <td>{{ date }}</td>
                             <td>{{ backup_type }}</td>
@@ -50,7 +50,7 @@
                                 </div>
                             </td>
                         </tr>
-                    {% endfor %}
+                    {% endloop %}
                     {% unless records %}
                         <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>

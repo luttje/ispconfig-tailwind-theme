@@ -31,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for records %}
+                    {% loop records %}
                         <tr>
                             {% if is_admin %}<td><a href="#" data-load-content="help/support_message_edit.php?id={{ id }}">{{ sender_id }}</a></td>{% endif %}
                             <td><a href="#" data-load-content="help/support_message_edit.php?id={{ id }}">{{ subject }}</a></td>
@@ -40,7 +40,7 @@
                                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('help/support_message_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                             </td>
                         </tr>
-                    {% endfor %}
+                    {% endloop %}
                     {% unless records %}
                         <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
 							{% if is_admin %}<td colspan="4">{% else %}<td colspan="3">{% endif %}{{ globalsearch_noresults_text_txt }}</td>

@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for records %}
+                    {% loop records %}
                         <tr>
                             <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ email }}</a></td>
                             <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ this_month }}</a></td>
@@ -37,7 +37,7 @@
                             <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ last_year }}</a></td>
                             <td class="text-right"></td>
                         </tr>
-                    {% endfor %}
+                    {% endloop %}
                     {% unless records %}
                         <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>

@@ -6,14 +6,14 @@
 
         <fieldset id="wf_area_language_edit"><legend>{{ lang_file_txt }}: {{ file_path }}</legend>
             <span class="wf_oneField">
-                {% for records %}
+                {% loop records %}
                     <span class="wf_oneField">
                         <div class="col-sm-9">
                             <label for="records[{{ key }}]" class="wf_preField">{{ key }}</label>
                             <input class="form-control" type="text" id="records[{{ key }}]" name="records[{{ key }}]" value="{{ val }}" >
                         </div>
                     </span>
-                {% endfor %} 
+                {% endloop %} 
             </span> 
         </fieldset>
 

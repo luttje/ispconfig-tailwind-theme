@@ -43,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for records %}
+                    {% loop records %}
                         <tr>
                             <td><a href="#" data-load-content="sites/cron_edit.php?id={{ id }}">{{ active }}</a></td>
                             <td><a href="#" data-load-content="sites/cron_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ server_id }}">{{ server_id }}</a></td>
@@ -60,7 +60,7 @@
                                 </div>
                             </td>
                         </tr>
-                    {% endfor %}
+                    {% endloop %}
                     {% unless records %}
                         <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="10">{{ globalsearch_noresults_text_txt }}</td>

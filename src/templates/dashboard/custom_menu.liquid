@@ -1,9 +1,9 @@
 <header>{{ latest_news_txt }}</header>
 <ul>
-    {% for news %}
+    {% loop news %}
         <li>
             <a href="{{ link }}" target="_blank" style="margin-top:8px;padding-bottom:5px;"><b>{{ date }}</b><br />
                 {{ title }}</a>
         </li>
-    {% endfor %}
+    {% endloop %}
 </ul>

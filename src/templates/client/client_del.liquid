@@ -11,12 +11,12 @@
 			</tr>
 		</thead>
 		<tbody>
-		{% for records %}
+		{% loop records %}
 			<tr>
 				<td>{{ table }} ({{ count }})</td>
 				<td>{{ data }}</td>
 			</tr>
-		{% endfor %}
+		{% endloop %}
 		</tbody>
 		</table>
 	</div>

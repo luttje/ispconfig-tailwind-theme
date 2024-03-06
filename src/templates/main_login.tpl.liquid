@@ -39,7 +39,7 @@
 					<img src="{{ base64_logo_txt }}">
 			 	</div>
 			  	<div class="panel-body">
-			    	{% render 'content_tpl' %}
+			    	{% dyninclude 'content_tpl' %}
 					<br><center><small>{{ custom_login }}</small></center>
 			    </div>
 			</div>
@@ -56,9 +56,9 @@
   <script src='../js/scrigo.js.php'></script>
   <script type="text/javascript" src="../js/jquery.ispconfigsearch.js"></script>
   <script type="text/javascript" src="../js/jquery.tipsy.js"></script>
-  {% for js_d_includes %}
+  {% loop js_d_includes %}
 	<script type="text/javascript" src="../js/js.d/{{ file }}"></script>
-  {% endfor %}
+  {% endloop %}
 </body>
 
 </html>

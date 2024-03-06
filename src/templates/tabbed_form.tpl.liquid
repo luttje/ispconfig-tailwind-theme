@@ -23,18 +23,18 @@
 	<div class='content-tab-wrapper'>
 		<!-- tabs -->
 		<ul class='nav nav-tabs'>
-			{% for formTab %}
+			{% loop formTab %}
 				<li{% if active %} class='active'{% endif %}>
 					<a href='#' onclick="return ISPConfig.changeTab('{{ name }}','{{ app_module }}/{{ form_action }}')">
 						{{ title }}
 					</a>
 					</li>
-			{% endfor %}
+			{% endloop %}
 		</ul>
 
 		<div id="tabbox_content" class="tab-content">
 			<div class='tab-pane active fade in'>
-				{% render 'content_tpl' %}
+				{% dyninclude 'content_tpl' %}
 			</div>
 		</div>
 

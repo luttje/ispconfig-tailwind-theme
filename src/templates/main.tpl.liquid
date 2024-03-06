@@ -86,9 +86,9 @@
                 </div>
                 <div class="modal-body">
                   <ul>
-                {% for datalog_changes %}
+                {% loop datalog_changes %}
                     <li><strong>{{ text }}:</strong> {{ count }}</li>
-                {% endfor %}
+                {% endloop %}
                 </ul>
                 </div>
                 <div class="modal-footer">
@@ -134,9 +134,9 @@
   <script src='js/scrigo.js.php'></script>
   <script type="text/javascript" src="js/jquery.ispconfigsearch.js"></script>
   <script type="text/javascript" src="js/jquery.tipsy.js"></script>
-  {% for js_d_includes %}
+  {% loop js_d_includes %}
 	<script type="text/javascript" src="js/js.d/{{ file }}"></script>
-  {% endfor %}
+  {% endloop %}
   <script>
   <!--
 

@@ -94,8 +94,8 @@
             <div class="form-group">
                    <label for="web_aliasdomains" class="col-sm-3 control-label">{{ dependent_domains_txt }}</label>
                    <div class="col-sm-9">
-                           <textarea name="web_aliasdomains" id="web_aliasdomains" class="form-control" disabled="disabled">{% for web_aliasdomains_info %}{{ domain }}
-{% endfor %}</textarea>
+                           <textarea name="web_aliasdomains" id="web_aliasdomains" class="form-control" disabled="disabled">{% loop web_aliasdomains_info %}{{ domain }}
+{% endloop %}</textarea>
                    </div>
             </div>
             {% endif %}

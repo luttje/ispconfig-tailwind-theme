@@ -46,7 +46,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for records %}
+			{% loop records %}
 				<tr>
 					<td>{{ tstamp }}</td>
 					<td>{{ server_id }}</td>
@@ -65,7 +65,7 @@
 						{% endif %}
 					</td>
 				</tr>
-			{% endfor %}
+			{% endloop %}
 			{% unless records %}
 				<tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
 					<td colspan="5">{{ globalsearch_noresults_text_txt }}</td>

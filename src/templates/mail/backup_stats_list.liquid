@@ -18,7 +18,7 @@
 					</tr>
                 </thead>
 				<tbody>
-					{% for records %}
+					{% loop records %}
 					<tr class="tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
 						<td> <a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ active }}</a> </td>
 						<td> <a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ email }}</a> </td>
@@ -27,7 +27,7 @@
 						<td> <a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ backup_copies_exists }}</a> </td>
 						<td> <a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ backup_size }}</a> </td>
 					</tr>
-					{% endfor %}
+					{% endloop %}
 				</tbody>
 				<tfoot>
 					<tr>

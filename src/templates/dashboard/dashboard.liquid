@@ -4,29 +4,29 @@
 
 {% if error %}
 	<div class="alert alert-danger">
-		{% for error %}
+		{% loop error %}
 			{{ error_msg }}
-		{% endfor %}
+		{% endloop %}
 	</div>
 {% endif %}
 {% if warning %}
 	<div class="alert alert-danger">
-		{% for warning %}
+		{% loop warning %}
 			{{ warning_msg }}
-		{% endfor %}
+		{% endloop %}
 	</div>
 {% endif %}
 {% if info %}
 	<div class="alert alert-notification">
-		{% for info %}
+		{% loop info %}
 			{{ info_msg }}
-		{% endfor %}
+		{% endloop %}
 	</div>
 {% endif %}
 
-{% for leftcol %}
+{% loop leftcol %}
 	{{ content }}
-{% endfor %}
-{% for rightcol %}
+{% endloop %}
+{% loop rightcol %}
 	{{ content }}
-{% endfor %}
+{% endloop %}

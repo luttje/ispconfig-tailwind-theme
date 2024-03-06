@@ -9,7 +9,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for rows %}
+			{% loop rows %}
 				<tr>
 					<td>{{ field_txt }}</td>
 					<td>{{ usage }} {{ of_txt }} {{ value }}</td>
@@ -27,7 +27,7 @@
 					{% else %}
 						<td></td>{% endif %}
 				</tr>
-			{% endfor %}
+			{% endloop %}
 		</tbody>
 	</table>
 </div>

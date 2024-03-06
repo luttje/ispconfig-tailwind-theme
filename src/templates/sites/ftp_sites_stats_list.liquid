@@ -27,7 +27,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		{% for records %}
+		{% loop records %}
 			<tr>
 				<td><a target="_blank" href="http://{{ domain }}/stats">{{ domain }}</a></td>
 				<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ this_month_in }}/{{ this_month_out }}</a></td>
@@ -36,7 +36,7 @@
 				<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ last_year_in }}/{{ last_year_out }}</a></td>
 				<td class="text-right"></td>
 			</tr>
-		{% endfor %}
+		{% endloop %}
 		{% unless records %}
 			<tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
 				<td colspan="6">{{ globalsearch_noresults_text_txt }}</td>

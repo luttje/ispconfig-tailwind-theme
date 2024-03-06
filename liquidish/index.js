@@ -17,10 +17,10 @@
  * - `{% unless VARIABLE %}` -> {tmpl_unless name="VARIABLE"}
  * - `{% endunless %}` -> {/tmpl_unless}
  * 
- * - `{% for VARIABLE %}` -> {tmpl_loop name="VARIABLE"}
+ * - `{% loop VARIABLE %}` -> {tmpl_loop name="VARIABLE"}
  * - `{% endfor %}` -> {/tmpl_loop}
  * 
- * - {% render 'COMPONENT' %} -> {tmpl_dyninclude name="COMPONENT"}
+ * - {% dyninclude 'COMPONENT' %} -> {tmpl_dyninclude name="COMPONENT"}
  * 
  * - {% hook 'HOOKNAME' %} -> {tmpl_hook name="HOOKNAME"}
  */
@@ -46,9 +46,9 @@ addTransform(/{%\s*else\s*%}/g, '{tmpl_else}');
 addTransform(/{%\s*endif\s*%}/g, '{/tmpl_if}');
 addTransform(/{%\s*unless\s*(\w+)\s*%}/g, '{tmpl_unless name="$1"}');
 addTransform(/{%\s*endunless\s*%}/g, '{/tmpl_unless}');
-addTransform(/{%\s*for\s*(\w+)\s*%}/g, '{tmpl_loop name="$1"}');
-addTransform(/{%\s*endfor\s*%}/g, '{/tmpl_loop}');
-addTransform(/{%\s*render\s*'([^']+)'\s*%}/g, '{tmpl_dyninclude name="$1"}');
+addTransform(/{%\s*loop\s*(\w+)\s*%}/g, '{tmpl_loop name="$1"}');
+addTransform(/{%\s*endloop\s*%}/g, '{/tmpl_loop}');
+addTransform(/{%\s*dyninclude\s*'([^']+)'\s*%}/g, '{tmpl_dyninclude name="$1"}');
 addTransform(/{%\s*hook\s*'([^']+)'\s*%}/g, '{tmpl_hook name="$1"}');
 
 export function liquidishTransform(contents, path) {

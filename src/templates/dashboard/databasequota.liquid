@@ -9,7 +9,7 @@
 		</tr>
 	  </thead>
 	  <tbody>
-	  {% for databasequota %}
+	  {% loop databasequota %}
 		  <tr>
 			  <td><a href="#" data-load-content="sites/database_edit.php?id={{ database_id }}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ database_name }}">{{ database_name }}</a></td>
 			  <td>{{ used }}</td>
@@ -22,7 +22,7 @@
 			  </div>
 			  </td>{% else %}<td></td>{% endif %}
 		  </tr>
-	  {% endfor %}
+	  {% endloop %}
 	  </tbody>
     <tfoot>
       <tr>
