@@ -5,13 +5,14 @@ import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { liquidishTransform } from './liquidish';
 
 const path = (path) => resolve(__dirname, path);
+const srcTemplatesPath = path('src/templates');
 
-const staticDirectories = [
-  'src/assets/favicon',
-  'src/assets/fonts',
-  'src/assets/images',
-  'src/assets/javascripts',
-  'src/assets/stylesheets',
+const staticAssetsDirectories = [
+  'favicon',
+  'fonts',
+  'images',
+  'javascripts',
+  'stylesheets',
 ];
 
 export default defineConfig({
@@ -45,16 +46,17 @@ export default defineConfig({
         {
           src: 'src/templates/**/*.liquid',
           dest: 'templates',
-          structured: true,
           
-          // In order to get better editor support, we'll transform 'Liquidish' templates to the ISPConfig tmpl format
           transform: liquidishTransform,
 
-          rename: (name) => name.replace(/\.liquid$/, '.htm'),
+          rename: function (name, ext, fullPath) {
+            const path = fullPath.replace(srcTemplatesPath, '');
+            return path.replace(/\.liquid$/, '.htm');
+          },
         },
-        ...staticDirectories.map((dir) => ({
-          src: dir,
-          dest: dir.replace('src/', ''),
+        ...staticAssetsDirectories.map((dir) => ({
+          src: `src/${dir}/**/*`,
+          dest: dir,
         })),
       ],
     })
