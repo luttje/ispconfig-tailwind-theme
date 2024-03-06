@@ -44,13 +44,6 @@ background: linear-gradient(to bottom, white, #b9bbbd); }
 #searchform button:hover {
 background: linear-gradient(to bottom, #f2f2f2, #acaeb1); }
 
-#logout-button {
-	background: #c70f19;
-border-bottom-color: #980b13; }
-#logout-button:hover {
-	background: #df111c;
-border-bottom-color: #800a10; }
-
 #main-navigation a {
 	background: linear-gradient(to bottom, white, #b9bbbd);
 border-bottom-color: #878787; }

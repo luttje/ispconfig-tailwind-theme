@@ -87,9 +87,6 @@ max-width: 1260px; }
 		float: right;
 	}
 
-	#searchform {
-		float: right;
-	margin-top: 16px; }
 	#searchform > div {
 		position: relative;
 	display: table; }
@@ -101,22 +98,8 @@ max-width: 1260px; }
 		padding: 0 2px;
 	font-size: 16px; }
 
-	#logout-button {
-		float: right;
-		margin-top: 16px;
-		margin-left: 25px;
-		border-bottom-style: solid;
-		border-bottom-width: 2px;
-	transition: all ease 500ms; }
-
 	#main-navigation {
 	margin-top: 24px; }
-	#main-navigation a {
-		padding: 0 12px;
-		height: 70px;
-		border-bottom-style: solid;
-		border-bottom-width: 1px;
-	transition: all ease 500ms; }
 	#main-navigation .icon {
 	font-size: 32px; }
 	#main-navigation .title {
@@ -211,17 +194,6 @@ max-width: 1260px; }
 		border-radius: 4px;
 		border-style: solid;
 	border-width: 1px; }
-	.modules .icon {
-		float: left;
-		margin-right: 15px;
-	font-size: 50px; }
-	.modules .left {
-	margin-top: 5px; }
-	.modules .title {
-		margin-top: 6px;
-		margin-left: 20px;
-		font-size: 16px;
-	font-weight: bold; }
 	.modules .button {
 		margin-top: 10px;
 		width: 100%;

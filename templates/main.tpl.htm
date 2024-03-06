@@ -19,14 +19,17 @@
   <meta name='msapplication-TileColor' content='#cc151c'>
   <meta name='msapplication-config' content='/themes/<tmpl_var name='current_theme'>/assets/favicon/browserconfig.xml'>
   <meta name='theme-color' content='#cc151c'>
+  
+  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/style.css' />
+  <script src="//unpkg.com/alpinejs" defer></script>
 
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/bootstrap.min.css' />
+  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/ispconfig.css' />
+  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/responsive.css' />
+
   <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/fonts.min.css' />
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/ispconfig.css?ver=3.2.2' />
   <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/pushy.min.css' />
   <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/bootstrap-datetimepicker.min.css' />
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/responsive.min.css' />
-  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/themes/default/theme.min.css' />
+  <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/themes/default/theme.css' />
   <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/select2.css' />
   <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/select2-bootstrap.css' />
   <link rel='stylesheet' href='themes/<tmpl_var name='current_theme'>/assets/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css' />
@@ -38,81 +41,82 @@
   <nav class='pushy pushy-left'></nav>
   <div class='site-overlay'></div>
 
-  <div id='container'>
-    <div id='main-wrapper'>
+  <div id='container' class='min-h-screen flex flex-col' x-data="{ modalOpen: false }">
+    <div id='main-wrapper' class='flex-grow'>
       <div id='inner-wrapper'>
-        <div class='clear'>
-          <div class='left clear'>
+        <div class='flex w-full justify-between'>
+          <div class='flex w-full justify-between'>
             <!-- off canvas menu button -->
-            <div class='menu-btn left'>&#9776;</div>
+            <div class='menu-btn flex items-center cursor-pointer p-4 lg:hidden'>&#9776;</div>
             <!-- logo -->
-            <div id='logo' style="background: url({tmpl_var name="base64_logo_txt"}) no-repeat;width:{tmpl_var name="base64_logo_width"};height:{tmpl_var name="base64_logo_height"}"><a href='#'></a></div>
+            <div id='logo' class='bg-no-repeat bg-contain' style="background: url({tmpl_var name="base64_logo_txt"}) no-repeat;width:{tmpl_var name="base64_logo_width"};height:{tmpl_var name="base64_logo_height"}"><a href='#'></a></div>
           </div>
-          <div id='headerbar' class='clear'>
-            <!-- logout button -->
+          <div id='headerbar' class='flex w-full justify-end mt-4'>
             <tmpl_if name="cpuser">
-				<button type='button' id='logout-button' class='btn btn-sm btn-danger text-uppercase' data-load-content="login/logout.php"><tmpl_var name="logout_txt"> <tmpl_var name="cpuser"></button>
-				<tmpl_if name='usertype' op='==' value='normaluser'>
-					<!-- search field -->
-					<form action='#' method='get' id='searchform' role='form'>
-					  <div>
-						<div>
-						  <div class='input-group'>
-							<input id='globalsearch' type='text' class='form-control' placeholder='{tmpl_var name="globalsearch_searchfield_watermark_txt"}' />
-							<span class='input-group-btn'>
-                <button class='btn btn-default' title='{tmpl_var name="globalsearch_searchfield_watermark_txt"}'>
-								<span class='icon icon-lens'></span>
-							  </button>
-							</span>
-						  </div>
-						</div>
-					  </div>
-					</form>
-				</tmpl_if>
+              <tmpl_if name='usertype' op='==' value='normaluser'>
+                <!-- search field -->
+                <form action='#' method='get' id='searchform' class='flex'>
+                  <div class='flex items-center'>
+                    <div class='relative'>
+                      <div class='flex'>
+                        <input id='globalsearch' type='text' class='form-input px-4 py-2 w-full rounded-md' placeholder='{tmpl_var name="globalsearch_searchfield_watermark_txt"}' />
+                        <button class='flex justify-center content-center p-2 ml-2 text-gray-600 rounded-md bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee]'>
+                          <span class='icon icon-lens'></span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </tmpl_if>
+
+              <!-- logout button -->
+              <button id='logout-button' class='px-4 py-2 self-start text-sm whitespace-nowrap font-medium text-white bg-[#c70f19] border-bottom-[#980b13] hover:bg-[#df111c] hover:border-bottom-[#800a10] rounded-md shadow uppercase' data-load-content="login/logout.php"><tmpl_var name="logout_txt"> <tmpl_var name="cpuser"></button>
             </tmpl_if>
           </div>
-                    <div class="notification" data-toggle="modal" data-target="#datalogModal" style="display: none;">
-	            <span class="notification_text">{tmpl_var name="datalog_changes_count"}</span>
+            
+          <div class="notification cursor-pointer" @click="modalOpen = true">
+            <span class="notification_text">{tmpl_var name="datalog_changes_count"}</span>
+          </div>
+
+          <!-- Datalogstatus Modal -->
+          <div id="datalogModal" class="modal fade" role="dialog" x-show="modalOpen">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" @click="modalOpen = false">&times;</button>
+                  <h4 class="modal-title">{tmpl_var name="datalog_changes_txt"}</h4>
+                </div>
+                <div class="modal-body">
+                  <ul>
+                <tmpl_loop name="datalog_changes">
+                    <li><strong>{tmpl_var name="text"}:</strong> {tmpl_var name="count"}</li>
+                </tmpl_loop>
+                </ul>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="" @click="modalOpen = false">{tmpl_var name="datalog_changes_close_txt"}</button>
+                </div>
+              </div>
             </div>
-			<!-- Datalogstatus Modal -->
-			<div id="datalogModal" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">{tmpl_var name="datalog_changes_txt"}</h4>
-			      </div>
-			      <div class="modal-body">
-			        <ul>
-				    <tmpl_loop name="datalog_changes">
-				        <li><strong>{tmpl_var name="text"}:</strong> {tmpl_var name="count"}</li>
-				    </tmpl_loop>
-				    </ul>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">{tmpl_var name="datalog_changes_close_txt"}</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			<!-- END Datalogstatus Modal -->
+          </div>
+			    <!-- END Datalogstatus Modal -->
         </div>
-		<tmpl_if name='logged_in' value='y'><div id='topnav-container'>
-		</div></tmpl_if>
-		<div class='clear'>
+        <tmpl_if name='logged_in' value='y'><div id='topnav-container' class='p-4'>
+        </div></tmpl_if>
+        <div class='flex flex-wrap'>
           <!-- content -->
-          <div id='content' class='right'>
-			<noscript>This page needs JavaScript to be enabled.</noscript>
-			<form method="post" action="" id="pageForm" name="pageForm" enctype="multipart/form-data" class='form-horizontal' role='form'>
-				<div id="pageContent" data-startpage="{tmpl_var name="startpage"}"><!-- AJAX CONTENT --></div>
-			</form>
+          <div id='content' class='flex-1 p-4'>
+            <noscript>This page needs JavaScript to be enabled.</noscript>
+            <form method="post" action="" id="pageForm" name="pageForm" enctype="multipart/form-data" class='form-horizontal' role='form'>
+              <div id="pageContent" data-startpage="{tmpl_var name="startpage"}"><!-- AJAX CONTENT --></div>
+            </form>
           </div>
           <!-- news sidebar -->
-          <tmpl_if name='logged_in' value='y'><div id='sidebar' class='news-sidebar left'>
+          <tmpl_if name='logged_in' value='y'><div id='sidebar' class='w-full lg:w-1/4 p-4'>
           </div></tmpl_if>
         </div>
-        <footer id='footer'>
-          powered by <a href="<tmpl_var name="app_link">" target="_blank"><tmpl_var name="app_title"></a>
+        <footer id='footer' class='py-4 text-center bg-gray-100 text-gray-600'>
+          powered by <a href="<tmpl_var name="app_link">" target="_blank" class='text-blue-500 hover:underline'><tmpl_var name="app_title"></a>
         </footer>
       </div>
     </div>
