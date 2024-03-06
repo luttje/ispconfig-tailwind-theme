@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import tailwindcss from 'tailwindcss'
 import { defineConfig } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import { liquidishTransform } from './liquidish';
 
 const path = (path) => resolve(__dirname, path);
 
@@ -33,7 +34,7 @@ export default defineConfig({
     // Output JS and CSS to the assets directory
     rollupOptions: {
       output: {
-        dir: path('theme/assets'),
+        dir: path('dist/assets'),
       },
     },
   },
@@ -42,13 +43,14 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'src/templates/*',
+          src: 'src/templates/**/*.liquid',
           dest: 'templates',
+          structured: true,
           
           // In order to get better editor support, we'll transform 'Liquidish' templates to the ISPConfig tmpl format
-          // transform: (contents, path) => {
-          //   // TODO
-          // },
+          transform: liquidishTransform,
+
+          rename: (name) => name.replace(/\.liquid$/, '.htm'),
         },
         ...staticDirectories.map((dir) => ({
           src: dir,

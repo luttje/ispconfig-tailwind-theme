@@ -78,7 +78,7 @@ E.g: `<tmpl_if name="logged_in" op="!=" value="y">` to `{% if logged_in != 'y' %
 
 ### Loops
 
-*E.g: `<tmpl_loop name="VARIABLE">` to `{% for VARIABLE in VARIABLES %}`*
+*E.g: `<tmpl_loop name="VARIABLE">` to `{% for VARIABLE %}`*
 
 **Match:** `<tmpl_loop name="([^"]*?)">` or `<tmpl_loop name='([^']*?)'>`
 **Replacement:** `{% for $1 %}`
@@ -100,3 +100,11 @@ Note the difference with Liquidish, where the `in` keyword is used to specify th
 
 **Match:** `\{tmpl_hook name="([^"]*?)"\}` or `\{tmpl_hook name='([^']*?)'\}`
 **Replacement:** `{% hook '$1' %}`
+
+### Renaming all files
+
+Using powershell, you can rename all files in a directory with the following command:
+
+```powershell
+Get-ChildItem -Path ".\src\templates" -Filter *.htm -Recurse | Rename-Item -NewName { $_.Name -replace '.htm$', '.liquid' }
+```
