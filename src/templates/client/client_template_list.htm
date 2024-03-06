@@ -17,14 +17,14 @@
                 <thead class="dark">
                     <tr>
                         <th data-column="template_id">{{ template_id_txt }}</th>
-						<tmpl_if name="is_admin"><th data-column="sys_groupid">{{ sys_groupid_txt }}</th></tmpl_if>
+						{% if is_admin %}<th data-column="sys_groupid">{{ sys_groupid_txt }}</th>{% endif %}
                         <th data-column="template_type">{{ template_type_txt }}</th>
                         <th data-column="template_name">{{ template_name_txt }}</th>
                         <th class="small-col text-right">{{ search_limit }}</th>
                     </tr>
                     <tr>
                         <td><input class="form-control" type="text" name="search_template_id" value="{{ search_template_id }}" /></td>
-						<tmpl_if name="is_admin"><td><select class="form-control" name="search_sys_groupid"></tmpl_if>
+						{% if is_admin %}<td><select class="form-control" name="search_sys_groupid">{% endif %}
                         <td><select class="form-control" name="search_template_type">{{ search_template_type }}</select></td>
                         <td><input class="form-control" type="text" name="search_template_name" value="{{ search_template_name }}" /></td>
                         <td class="text-right">
@@ -36,7 +36,7 @@
                     {% for records %}
                         <tr>
                             <td><a href="#" data-load-content="client/client_template_edit.php?id={{ id }}">{{ template_id }}</a></td>
-							<tmpl_if name="is_admin"><td><a href="#" data-load-content="client/client_template_edit.php?id={{ id }}">{{ sys_groupid }}</a></td></tmpl_if>
+							{% if is_admin %}<td><a href="#" data-load-content="client/client_template_edit.php?id={{ id }}">{{ sys_groupid }}</a></td>{% endif %}
                             <td><a href="#" data-load-content="client/client_template_edit.php?id={{ id }}">{{ template_type }}</a></td>
                             <td><a href="#" data-load-content="client/client_template_edit.php?id={{ id }}">{{ template_name }}</a></td>
                             <td class="text-right">
@@ -45,14 +45,14 @@
                         </tr>
                     {% endfor %}
                     <tmpl_unless name="records">
-                        <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
-                            <tmpl_if name="is_admin"><td colspan="5"><tmpl_else><td colspan="4"></tmpl_if>{{ globalsearch_noresults_text_txt }}</td>
+                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                            {% if is_admin %}<td colspan="5">{% else %}<td colspan="4">{% endif %}{{ globalsearch_noresults_text_txt }}</td>
                         </tr>
                     </tmpl_unless>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <tmpl_if name="is_admin"><td colspan="5"><tmpl_else><td colspan="4"></tmpl_if>{{ paging }}</td>
+                        {% if is_admin %}<td colspan="5">{% else %}<td colspan="4">{% endif %}{{ paging }}</td>
                     </tr>
                 </tfoot>
             </table>

@@ -1,15 +1,15 @@
 <h1>
 	{{ installation_txt }}: {{ pkg_name }} {{ pkg_version }}-{{ pkg_release }}
 	<span style="float:right">
-		<tmpl_if name='pkg_icon' op='!=' value=''>
+		{% if pkg_icon != '' %}
 			<img src="{{ pkg_icon }}" height="32" width="32" alt="{{ pkg_name }}" style="vertical-align:text-bottom;" />
-		</tmpl_if>
+		{% endif %}
 	</span>
 </h1>
 
-<tmpl_if name='error'>
+{% if error %}
 	<div id="errorMsg"><h3>ERROR</h3><ol>{{ error }}</ol></div>
-</tmpl_if>
+{% endif %}
 
 
 
@@ -27,29 +27,29 @@
 					</div>
 				</div>
 			</div>
-			<tmpl_if name='pkg_requirements_database' op='!=' value=''>
+			{% if pkg_requirements_database != '' %}
 				<div class="form-group">
 					<label for="main_database_password" class="col-sm-3 control-label">{{ new_database_password_txt }}</label>
 					<div class="col-sm-9"><input type="text" class="form-control" name="main_database_password" id="main_database_password" value="{{ inp_main_database_password }}" /></div>
 				</div>
-			</tmpl_if>
+			{% endif %}
 
 			PKG_SETTINGS_SPACE
 
 			<legend>{{ license_txt }}</legend>
 			<div class="form-group">
 				<label for="license" class="col-sm-3 control-label">{{ license_txt }}</label>
-				<tmpl_if name='pkg_license_content' op='==' value=''>{{ pkg_license_name }}<br /></tmpl_if>
-				<tmpl_if name='pkg_license_type' op='==' value='url'>
+				{% if pkg_license_content == '' %}{{ pkg_license_name }}<br />{% endif %}
+				{% if pkg_license_type == 'url' %}
 					<a href="{{ pkg_license_content }}" target="_blank">{{ pkg_license_content }}</a>
-					<tmpl_elseif name='pkg_license_content'>
+					{% elsif pkg_license_content %}
 						<div class="col-sm-9"><textarea class="form-control" rows="10" cols="80" id="license_text">{{ pkg_license_content }}</textarea></div>
-				</tmpl_if>
+				{% endif %}
 			</div>
 			<div class="form-group">
 				<label for="license" class="col-sm-3 control-label">{{ acceptance_txt }}</label>
 				<div class="col-sm-6">
-					<input type="checkbox" name="license" id="license" <tmpl_if name='inp_license' op='==' value='true'>checked</tmpl_if>/> &nbsp;&nbsp;{{ acceptance_text }}
+					<input type="checkbox" name="license" id="license" {% if inp_license == 'true' %}checked{% endif %}/> &nbsp;&nbsp;{{ acceptance_text }}
 				</div>
 			</div>
 

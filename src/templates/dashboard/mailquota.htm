@@ -16,13 +16,13 @@
 			  <td>{{ name }}</td>
 			  <td>{{ used }}</td>
 			  <td>{{ quota }}</td>
-			  {tmpl_if name="quota_raw" op="!=" value="-1"}<td>
+			  {% if quota_raw != '-1' %}<td>
 			  <div class='progress'>
-				  <div class='progress-bar-striped progress-bar progress-bar-{tmpl_if name="used_percentage" op="<" value="50"}success{tmpl_elseif name="used_percentage" op="<" value="75"}warning{tmpl_else}danger{/tmpl_if}' role='progressbar' aria-valuemin='0' aria-valuemax='100' aria-valuenow='{{ used_percentage }}' style='width:{{ used_percentage }}%'><span>{{ used_percentage }}%</span>
+				  <div class='progress-bar-striped progress-bar progress-bar-{% if used_percentage < '50' %}success{% elsif used_percentage < '75' %}warning{% else %}danger{% endif %}' role='progressbar' aria-valuemin='0' aria-valuemax='100' aria-valuenow='{{ used_percentage }}' style='width:{{ used_percentage }}%'><span>{{ used_percentage }}%</span>
 				  <span class='sr-only'>{{ used }} {{ of_txt }} {{ quota }}</span>
 				  </div>
 			  </div>
-		  </td>{tmpl_else}<td></td>{/tmpl_if}
+		  </td>{% else %}<td></td>{% endif %}
 		  </tr>
 	  {% endfor %}
 	  </tbody>

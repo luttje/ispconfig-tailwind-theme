@@ -1,9 +1,9 @@
 <div class="alert alert-info"><h4 style="text-align:center">{{ config_for_txt }} {{ server_name }}</h4></div>
-            <tmpl_if name="missing_utils">
+            {% if missing_utils %}
                 <div class="tab-content alert alert-warning">
                     {{ backup_missing_utils_txt }} {{ missing_utils }}
                 </div>
-            </tmpl_if>
+            {% endif %}
 
 
 

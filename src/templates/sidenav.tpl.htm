@@ -1,24 +1,24 @@
 {% for nav_left %}
-	<tmpl_if name="title"><header><tmpl_if name="is_link" op="!=" value="no"><tmpl_if name="startpage"><a href="#" class="subnav-header" data-load-content="{{ startpage }}"></tmpl_if></tmpl_if>{{ title }}<tmpl_if name="is_link" op="!=" value="no"><tmpl_if name="startpage"></a></tmpl_if></tmpl_if></header></tmpl_if>
+	{% if title %}<header>{% if is_link != 'no' %}{% if startpage %}<a href="#" class="subnav-header" data-load-content="{{ startpage }}">{% endif %}{% endif %}{{ title }}{% if is_link != 'no' %}{% if startpage %}</a>{% endif %}{% endif %}</header>{% endif %}
 	<ul id="sub-navigation">
 	  {% for items %}
-	  <li<tmpl_if name="html_id"> id='{{ html_id }}' </tmpl_if>>
-		<tmpl_if name="link">
-			<tmpl_if name="target" op="==" value="_blank">
+	  <li{% if html_id %} id='{{ html_id }}' {% endif %}>
+		{% if link %}
+			{% if target == '_blank' %}
 				<a href="{{ link }}" target="_blank">
-			<tmpl_elseif name="target" op="==" value="_top">
+			{% elsif target == '_top' %}
 				<a href="{{ link }}" target="_top">
-			<tmpl_else>
+			{% else %}
 				<a href="#" data-load-content="{{ link }}">
-			</tmpl_if>
-		</tmpl_if>
-		  <div{tmpl_if name="css"} style="{{ css }}"{/tmpl_if}>
-			<tmpl_if name="title"><strong>{{ title }}</strong></tmpl_if>
-			<tmpl_if name="image"><div align="center">{{ image }}</div></tmpl_if>
+			{% endif %}
+		{% endif %}
+		  <div{% if css %} style="{{ css }}"{% endif %}>
+			{% if title %}<strong>{{ title }}</strong>{% endif %}
+			{% if image %}<div align="center">{{ image }}</div>{% endif %}
 		  </div>
-		<tmpl_if name="link">
+		{% if link %}
 		</a>
-		</tmpl_if>
+		{% endif %}
 	  </li>
 	  {% endfor %}
 	</ul>

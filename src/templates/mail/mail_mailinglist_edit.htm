@@ -1,22 +1,22 @@
-            <tmpl_if name="is_admin">
+            {% if is_admin %}
                 <div class="form-group">
                     <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
                     <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
                         {{ client_group_id }}
                     </select></div>
                 </div>
-            </tmpl_if>
+            {% endif %}
 
-            <tmpl_if name="is_reseller">
+            {% if is_reseller %}
                 <div class="form-group">
                     <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
                     <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
                         {{ client_group_id }}
                     </select></div>
                 </div>
-            </tmpl_if>
+            {% endif %}
 
-            <tmpl_if name="edit_disabled">
+            {% if edit_disabled %}
                 <div class="form-group">
                     <label for="domain_disabled" class="col-sm-3 control-label">{{ domain_txt }}</label>
                     <div class="col-sm-9"><select name="domain_disabled" id="domain_disabled" class="form-control" disabled="disabled">
@@ -33,7 +33,7 @@
                     <label for="email_disabled" class="col-sm-3 control-label">{{ email_txt }}</label>
                     <div class="col-sm-9"><input type="text" name="email_disabled" id="email_disabled" value="{{ email }}" class="form-control" disabled="disabled" /></div><input type="hidden" name="email" value="{{ email_value }}" />
                 </div>
-                <tmpl_else>
+                {% else %}
                     <div class="form-group">
                         <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
                         <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label for="email" class="col-sm-3 control-label">{{ email_txt }}</label>
                         <div class="col-sm-9"><input type="text" name="email" id="email" value="{{ email }}" class="form-control" /></div></div>
-            </tmpl_if>
+            {% endif %}
             <div class="form-group">
                 <label for="password" class="col-sm-3 control-label">{{ password_txt }}</label>
                 <div class="col-sm-9">

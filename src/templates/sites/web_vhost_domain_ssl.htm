@@ -1,4 +1,4 @@
-<tmpl_if name="config_error_msg">
+{% if config_error_msg %}
 <div class="alert alert-danger">
     <p>
       {{ configuration_error_txt }}
@@ -8,22 +8,22 @@
         </div>
     </p>
   </div>
-</tmpl_if>
+{% endif %}
 
-<tmpl_if name="is_le_enabled" op="==" value="y">
+{% if is_le_enabled == 'y' %}
   <div class="alert alert-info" style="text-align:center">
     {{ ssl_options_not_for_le_txt }}
   </div>
-</tmpl_if>
+{% endif %}
 
-			<tmpl_if name='show_helper_links'>
+			{% if show_helper_links %}
 				<div id="show_helper_links" style="display:none;">
 					<label></label>
 					<div class="col-sm-9">
-					<a href="javascript:void(0);" id="load_data"><tmpl_if name='is_admin'>{{ load_client_data_txt }}</tmpl_else>{{ load_my_data_txt }}</tmpl_if></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="reset_data">{{ reset_client_data_txt }}</a>
+					<a href="javascript:void(0);" id="load_data">{% if is_admin %}{{ load_client_data_txt }}{% else %}{{ load_my_data_txt }}{% endif %}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" id="reset_data">{{ reset_client_data_txt }}</a>
 					</div>
 				</div>
-			</tmpl_if>
+			{% endif %}
             <div class="form-group">
                 <label for="ssl_state" class="col-sm-3 control-label">{{ ssl_state_txt }}</label>
                 <div class="col-sm-9"><input type="text" name="ssl_state" id="ssl_state" value="{{ ssl_state }}" class="form-control" /></div></div>
@@ -81,7 +81,7 @@
 
 <script>
 <!--
-	<tmpl_if name='show_helper_links'>
+	{% if show_helper_links %}
 	if($("input[name=id]").val() > 0) $('#show_helper_links:hidden').show();
 
 	$('#reset_data').click(function(){
@@ -104,6 +104,6 @@
 			$('#ssl_organisation_unit').val('IT');
         });
     }
-	</tmpl_if>
+	{% endif %}
 //-->
 </script>

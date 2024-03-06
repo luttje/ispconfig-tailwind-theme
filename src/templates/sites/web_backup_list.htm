@@ -2,17 +2,17 @@
 <button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&make_backup=database','{{ make_backup_confirm_txt }}');">{{ make_backup_database_txt }}</button>
 <button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&make_backup=web','{{ make_backup_confirm_txt }}');">{{ make_backup_web_txt }}</button>
 
-<tmpl_if name="msg">
+{% if msg %}
   <br><br>
   <div id="OKMsg" class="tab-content alert alert-success text-center"><p>{{ msg }}</p></div>
-</tmpl_if>
-<tmpl_if name="error">
+{% endif %}
+{% if error %}
   <br><br>
   <div id="errorMsg" class="tab-content alert alert-danger text-center">
     <h4>{{ error_txt }}</h4>
     <p>{{ error }}</p>
   </div>
-</tmpl_if>
+{% endif %}
 <h3>{{ list_head_txt }}</h3>
 
         <p class="fieldset-legend">{{ list_head_txt }}</p>
@@ -43,16 +43,16 @@
                             <td class="text-center">
                                 <div class="buttons">
                                     <button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=restore&backup_id={{ backup_id }}','{{ restore_confirm_txt }}');">{{ restore_backup_txt }}</button>
-                                    <tmpl_if name="download_available">
+                                    {% if download_available %}
 										<button class="btn btn-default formbutton-default" type="button" data-load-content="sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=download&backup_id={{ backup_id }}">{{ download_backup_txt }}</button>
-									</tmpl_if>
+									{% endif %}
 									<button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=delete&backup_id={{ backup_id }}','{{ delete_confirm_txt }}');"><span>{{ delete_backup_txt }}</span></button>
                                 </div>
                             </td>
                         </tr>
                     {% endfor %}
                     <tmpl_unless name="records">
-                        <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
+                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>
                         </tr>
                     </tmpl_unless>

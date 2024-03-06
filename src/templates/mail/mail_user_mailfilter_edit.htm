@@ -10,11 +10,11 @@
 	<label for="purge_trash_days" class="col-sm-3 control-label">{{ purge_trash_days_txt }}</label>
 	<div class="col-sm-9">
 		<div class="input-group">
-        <tmpl_if name="show_config_info">
+        {% if show_config_info %}
 			<input type="text" name="purge_trash_days" id="purge_trash_days" value="{{ purge_trash_days }}" class="form-control" data-toggle="tooltip" title="{{ tooltip_purge_trash_days_txt }}">
-        <tmpl_else>
+        {% else %}
 			<input type="text" name="purge_trash_days" id="purge_trash_days" value="{{ purge_trash_days }}" class="form-control">
-        </tmpl_if>
+        {% endif %}
 		</div>
 	</div>
 </div>
@@ -23,11 +23,11 @@
 	<label for="purge_junk_days" class="col-sm-3 control-label">{{ purge_junk_days_txt }}</label>
 	<div class="col-sm-9">
 		<div class="input-group">
-        <tmpl_if name="show_config_info">
+        {% if show_config_info %}
 			<input type="text" name="purge_junk_days" id="purge_junk_days" value="{{ purge_junk_days }}" class="form-control" data-toggle="tooltip" title="{{ tooltip_purge_junk_days_txt }}">
-        <tmpl_else>
+        {% else %}
 			<input type="text" name="purge_junk_days" id="purge_junk_days" value="{{ purge_junk_days }}" class="form-control">
-        </tmpl_if>
+        {% endif %}
 		</div>
 	</div>
 </div>

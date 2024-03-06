@@ -1,4 +1,4 @@
-<tmpl_if name="config_error_msg">
+{% if config_error_msg %}
   <div class="alert alert-danger">
     <p>
       {{ configuration_error_txt }}
@@ -8,23 +8,23 @@
         </div>
     </p>
   </div>
-</tmpl_if>
-<tmpl_if name="is_admin">
+{% endif %}
+{% if is_admin %}
   <div class="form-group">
-    <tmpl_if name="edit_disabled">
+    {% if edit_disabled %}
       <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
       <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
           {{ server_id }}
         </select>
       </div>
       <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-      <tmpl_else>
+      {% else %}
         <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
         <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
             {{ server_id }}
           </select>
         </div>
-    </tmpl_if>
+    {% endif %}
   </div>
   <tmpl_unless name="domain_option">
     <div class="form-group">
@@ -35,29 +35,29 @@
       </div>
     </div>
   </tmpl_unless>
-  <tmpl_else>
-    <tmpl_if name="only_one_server">
+  {% else %}
+    {% if only_one_server %}
       <input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
-      <tmpl_else>
+      {% else %}
         <div class="form-group">
-          <tmpl_if name="edit_disabled">
+          {% if edit_disabled %}
             <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
             <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
                 {{ client_server_id }}
               </select>
             </div>
             <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-            <tmpl_else>
+            {% else %}
               <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
               <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
                   {{ client_server_id }}
                 </select>
               </div>
-          </tmpl_if>
+          {% endif %}
         </div>
-    </tmpl_if>
-</tmpl_if>
-<tmpl_if name="is_reseller">
+    {% endif %}
+{% endif %}
+{% if is_reseller %}
   <tmpl_unless name="domain_option">
     <div class="form-group">
       <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
@@ -67,22 +67,22 @@
       </div>
     </div>
   </tmpl_unless>
-</tmpl_if>
+{% endif %}
 <div class="form-group">
   <label for="origin" class="col-sm-3 control-label">{{ origin_txt }}</label>
-  <tmpl_if name="domain_option">
+  {% if domain_option %}
     <div class="col-sm-9">
       <select name="origin" id="origin" class="form-control">
         {{ domain_option }}
       </select>
       <p class="formHint">{{ eg_domain_tld }}</p>
     </div>
-    <tmpl_else>
+    {% else %}
       <div class="col-sm-9">
         <input type="text" name="origin" id="origin" value="{{ origin }}" class="form-control" />
         <p class="formHint">{{ eg_domain_tld }}</p>
       </div>
-  </tmpl_if>
+  {% endif %}
 </div>
 <div class="form-group">
   <label for="ns" class="col-sm-3 control-label">{{ ns_txt }}</label>
@@ -136,12 +136,12 @@
   <label for="also_notify" class="col-sm-3 control-label">{{ also_notify_txt }}</label>
   <div class="col-sm-9"><input type="text" name="also_notify" id="also_notify" value="{{ also_notify }}" class="form-control" /></div>
 </div>
-<tmpl_if name="is_admin">
+{% if is_admin %}
   <div class="form-group">
     <label for="update_acl" class="col-sm-3 control-label">{{ update_acl_txt }}</label>
     <div class="col-sm-9"><input type="text" name="update_acl" id="update_acl" value="{{ update_acl }}" class="form-control" /></div>
   </div>
-</tmpl_if>
+{% endif %}
 <div class="form-group">
   <label for="serial" class="col-sm-3 control-label">{{ serial_txt }}</label>
   <div class="col-sm-9"><textarea readonly="true" rows="1" id="serial" name="serial" class="form-control">{{ serial }}</textarea></div>
@@ -152,7 +152,7 @@
     {{ active }}
   </div>
 </div>
-<tmpl_if name="show_dnssec">
+{% if show_dnssec %}
   <div class="form-group">
     <label class="col-sm-3 control-label">{{ dnssec_wanted_txt }}</label>
     <div class="col-sm-9">
@@ -169,7 +169,7 @@
     <label for="update_acl" class="col-sm-3 control-label">{{ dnssec_info_txt }}</label>
     <div class="col-sm-9"><textarea readonly="true" rows="5" id="dnssec_info" name="dnssec_info" class="form-control">{{ dnssec_info }}</textarea></div>
   </div>
-</tmpl_if>
+{% endif %}
 <input type="hidden" name="id" value="{{ id }}">
 <input name="serial" type="hidden" value="{{ serial }}">
 <div class="clear">

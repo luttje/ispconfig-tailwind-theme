@@ -1,4 +1,4 @@
-<tmpl_if name="config_error_msg">
+{% if config_error_msg %}
 <div class="alert alert-danger">
     <p>
       {{ configuration_error_txt }}
@@ -8,25 +8,25 @@
         </div>
     </p>
   </div>
-</tmpl_if>
+{% endif %}
 
 
         {tmpl_hook name="begin_form"}
-    <tmpl_if name="vhostdomain_type" value="domain">
-            <tmpl_if name="is_admin">
+    {% if vhostdomain_type == 'domain' %}
+            {% if is_admin %}
                 <div class="form-group">
-                    <tmpl_if name="edit_disabled">
+                    {% if edit_disabled %}
                         <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                         <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
                             {{ server_id }}
                         </select></div>
                         <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-                        <tmpl_else>
+                        {% else %}
                             <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
                                 {{ server_id }}
                             </select></div>
-                    </tmpl_if>
+                    {% endif %}
                 </div>
                 <tmpl_unless name="domain_option">
                     <div class="form-group">
@@ -36,27 +36,27 @@
                         </select></div>
                     </div>
                 </tmpl_unless>
-            <tmpl_else>
-                <tmpl_if name="only_one_server">
+            {% else %}
+                {% if only_one_server %}
                     <input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
-                <tmpl_else>
+                {% else %}
                     <div class="form-group">
-                        <tmpl_if name="edit_disabled">
+                        {% if edit_disabled %}
                             <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
                                 {{ server_id }}
                             </select></div>
                             <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-                        <tmpl_else>
+                        {% else %}
                             <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
                                 {{ server_id }}
                             </select></div>
-                        </tmpl_if>
+                        {% endif %}
                     </div>
-                </tmpl_if>
-            </tmpl_if>
-            <tmpl_if name="is_reseller">
+                {% endif %}
+            {% endif %}
+            {% if is_reseller %}
                 <tmpl_unless name="domain_option">
                     <div class="form-group">
                         <label for="client_group_id" class="col-sm-3 control-label">{{ client_group_id_txt }}</label>
@@ -65,10 +65,10 @@
                         </select></div>
                     </div>
                 </tmpl_unless>
-            </tmpl_if>
-            <tmpl_if name="domain_option">
+            {% endif %}
+            {% if domain_option %}
                 <input type="hidden" id="client_group_id" name="client_group_id" value="{{ client_group_id_value }}" />
-            </tmpl_if>
+            {% endif %}
             <div class="form-group">
                 <label for="ip_address" class="col-sm-3 control-label">{{ ip_address_txt }}</label>
                 <div class="col-sm-9"><select name="ip_address" id="ip_address" class="form-control">
@@ -83,14 +83,14 @@
             </div>
             <div class="form-group">
                 <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
-                <tmpl_if name="domain_option">
+                {% if domain_option %}
                     <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
                         {{ domain_option }}
                     </select></div>
-                    <tmpl_else>
-                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></tmpl_if>
+                    {% else %}
+                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>{% endif %}
             </div>
-            <tmpl_if name="web_aliasdomains_info">
+            {% if web_aliasdomains_info %}
             <div class="form-group">
                    <label for="web_aliasdomains" class="col-sm-3 control-label">{{ dependent_domains_txt }}</label>
                    <div class="col-sm-9">
@@ -98,59 +98,59 @@
 {% endfor %}</textarea>
                    </div>
             </div>
-            </tmpl_if>
-			<tmpl_if name="edit_disabled">
+            {% endif %}
+			{% if edit_disabled %}
 				<div class="form-group">
 					<label for="document_root" class="col-sm-3 control-label" readonly >{{ document_root_txt }}</label>
 					<div class="col-sm-9">
                         <div class="checkbox">{{ document_root }}</div>
                     </div>
 				</div>
-			</tmpl_if>
+			{% endif %}
             <div class="form-group">
                 <label for="hd_quota" class="col-sm-3 control-label">{{ hd_quota_txt }}</label>
                 <div class="col-sm-9"><div class="input-group"><input type="text" name="hd_quota" id="hd_quota" value="{{ hd_quota }}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>
 			</div>
-		</tmpl_if>
-		<tmpl_if name="vhostdomain_type" value="subdomain">
+		{% endif %}
+		{% if vhostdomain_type == 'subdomain' %}
             <input type="hidden" name="server_id" id="server_id" value="{{ server_id_value }}" />
-            <tmpl_if name="domain_option">
+            {% if domain_option %}
             <div class="form-group">
                 <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
                 <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
             </div>
-            </tmpl_if>
+            {% endif %}
             <div class="form-group">
                 <label for="domain" class="col-sm-3 control-label">{{ host_txt }}</label>
                 <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></div>
-            <tmpl_if name="domain_option">
+            {% if domain_option %}
             <div class="form-group">
                 <label for="sel_domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
                     <div class="col-sm-9"><select name="sel_domain" id="sel_domain" class="form-control">
                         {{ domain_option }}
                     </select></div>
             </div>
-            <tmpl_else>
+            {% else %}
             <div class="form-group">
                 <label for="parent_domain_id" class="col-sm-3 control-label">{{ domain_txt }}</label>
                 <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
             </div>
-            </tmpl_if>
+            {% endif %}
             <div class="form-group">
                 <label for="web_folder" class="col-sm-3 control-label">{{ web_folder_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"<tmpl_if name='fixed_folder' op='==' value='y'>readonly="readonly"</tmpl_if> /></div>
+                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"{% if fixed_folder == 'y' %}readonly="readonly"{% endif %} /></div>
             </div>
-		</tmpl_if>
-		<tmpl_if name="vhostdomain_type" value="aliasdomain">
+		{% endif %}
+		{% if vhostdomain_type == 'aliasdomain' %}
             <input type="hidden" name="server_id" id="server_id" value="{{ server_id_value }}" />
             <div class="form-group">
                 <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
-                <tmpl_if name="domain_option">
+                {% if domain_option %}
                     <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
                         {{ domain_option }}
                     </select></div>
-                    <tmpl_else>
-                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></tmpl_if>
+                    {% else %}
+                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>{% endif %}
             </div>
             <div class="form-group">
                 <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
@@ -160,55 +160,55 @@
             </div>
             <div class="form-group">
                 <label for="web_folder" class="col-sm-3 control-label">{{ web_folder_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"<tmpl_if name='fixed_folder' op='==' value='y'> readonly="readonly"</tmpl_if> /></div>
+                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"{% if fixed_folder == 'y' %} readonly="readonly"{% endif %} /></div>
             </div>
-		</tmpl_if>
+		{% endif %}
             <div class="form-group">
                 <label for="traffic_quota" class="col-sm-3 control-label">{{ traffic_quota_txt }}</label>
                 <div class="col-sm-9"><div class="input-group"><input type="text" name="traffic_quota" id="traffic_quota" value="{{ traffic_quota }}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>{{ traffic_quota_exceeded_txt }}
             </div>
-            <tmpl_if name="limit_cgi" op="==" value="y"><div class="form-group">
+            {% if limit_cgi == 'y' %}<div class="form-group">
                 <label class="col-sm-3 control-label">{{ cgi_txt }}</label>
                 <div class="col-sm-9">
                     {{ cgi }}
                 </div>
-            </div></tmpl_if>
-            <tmpl_if name="limit_ssi" op="==" value="y"><div class="form-group">
+            </div>{% endif %}
+            {% if limit_ssi == 'y' %}<div class="form-group">
                 <label class="col-sm-3 control-label">{{ ssi_txt }}</label>
                 <div class="col-sm-9">
                     {{ ssi }}
                 </div>
-            </div></tmpl_if>
-            <tmpl_if name="limit_perl" op="==" value="y"><div class="form-group apache">
+            </div>{% endif %}
+            {% if limit_perl == 'y' %}<div class="form-group apache">
                 <label class="col-sm-3 control-label">{{ perl_txt }}</label>
                 <div class="col-sm-9">
                     {{ perl }}
                 </div>
-            </div></tmpl_if>
-            <tmpl_if name="limit_ruby" op="==" value="y"><div class="form-group apache">
+            </div>{% endif %}
+            {% if limit_ruby == 'y' %}<div class="form-group apache">
                 <label class="col-sm-3 control-label">{{ ruby_txt }}</label>
                 <div class="col-sm-9">
                     {{ ruby }}
                 </div>
-            </div></tmpl_if>
-            <tmpl_if name="limit_python" op="==" value="y"><div class="form-group apache">
+            </div>{% endif %}
+            {% if limit_python == 'y' %}<div class="form-group apache">
                 <label class="col-sm-3 control-label">{{ python_txt }}</label>
                 <div class="col-sm-9">
                     {{ python }}
                 </div>
-            </div></tmpl_if>
-            <tmpl_if name="force_suexec" op="==" value="n"><div class="form-group apache">
+            </div>{% endif %}
+            {% if force_suexec == 'n' %}<div class="form-group apache">
                 <label class="col-sm-3 control-label">{{ suexec_txt }}</label>
                 <div class="col-sm-9">
                     {{ suexec }}
                 </div>
-            </div></tmpl_if>
-            <tmpl_if name="limit_hterror" op="==" value="y"><div class="form-group">
+            </div>{% endif %}
+            {% if limit_hterror == 'y' %}<div class="form-group">
                 <label class="col-sm-3 control-label">{{ errordocs_txt }}</label>
                 <div class="col-sm-9">
                     {{ errordocs }}
                 </div>
-            </div></tmpl_if>
+            </div>{% endif %}
 
             <div class="form-group">
                 <label for="subdomain" class="col-sm-3 control-label">{{ subdomain_txt }}</label>
@@ -216,20 +216,20 @@
                     {{ subdomain }}
                 </select></div>
             </div>
-            <tmpl_if name="limit_ssl" op="==" value="y"><div class="form-group">
+            {% if limit_ssl == 'y' %}<div class="form-group">
                 <label class="col-sm-3 control-label">{{ ssl_txt }}</label>
                 <div class="col-sm-9" data-uncheck-fields="ssl_letsencrypt">
                     {{ ssl }}
                 </div>
             </div>
-            <tmpl_if name="limit_ssl_letsencrypt" op="==" value="y">
+            {% if limit_ssl_letsencrypt == 'y' %}
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ ssl_letsencrypt_txt }}</label>
                 <div class="col-sm-9" data-check-fields="ssl">
                     {{ ssl_letsencrypt }}
                 </div>
-            </div></tmpl_if>
-            </tmpl_if>
+            </div>{% endif %}
+            {% endif %}
             <div class="form-group">
                 <label for="php" class="col-sm-3 control-label">{{ php_txt }}</label>
                 <div class="col-sm-9"><select name="php" id="php" class="form-control">
@@ -242,22 +242,22 @@
                 <div class="col-sm-9"><select name="server_php_id" id="server_php_id" class="form-control">
                     {{ server_php_id }}
                 </select></div>
-                <tmpl_if name="server_php_id_default_hidden_warning_confirmed">
+                {% if server_php_id_default_hidden_warning_confirmed %}
                     <input type="hidden" id="server_php_id_default_hidden_warning_confirmed" name="server_php_id_default_hidden_warning_confirmed" value="{{ server_php_id_default_hidden_warning_confirmed }}" />
-                </tmpl_if>
+                {% endif %}
             </div>
-            <tmpl_if name="limit_directive_snippets" op="==" value="y"><div class="form-group">
+            {% if limit_directive_snippets == 'y' %}<div class="form-group">
 				<label for="directive_snippets_id" class="col-sm-3 control-label">{{ directive_snippets_id_txt }}</label>
 				<div class="col-sm-9"><select name="directive_snippets_id" id="directive_snippets_id" class="form-control">
 					{{ directive_snippets_id }}
 				</select></div>
-			</div></tmpl_if>
-			<tmpl_if name="is_pagespeed_enabled" op="==" value="y">
+			</div>{% endif %}
+			{% if is_pagespeed_enabled == 'y' %}
 				<div class="form-group nginx pagespeed">
 					<label class="col-sm-3 control-label">{{ enable_pagespeed_txt }}</label>
 					<div class="col-sm-9">{{ enable_pagespeed }}</div>
 				</div>
-			</tmpl_if>
+			{% endif %}
 <!--
 			{tmpl_hook name="field_enable_pagespeed"}
 			<div class="form-group nginx pagespeed">
@@ -440,11 +440,11 @@
 	}
 
     function reloadWebIP() {
-        ISPConfig.loadOptionInto('ip_address','sites/ajax_get_ip.php?ip_type=IPv4&server_id='+serverId+'&client_group_id='+clientGroupId<tmpl_if name="use_combobox" value="y">, rerenderSelect2</tmpl_if>);
-        ISPConfig.loadOptionInto('ipv6_address','sites/ajax_get_ip.php?ip_type=IPv6&server_id='+serverId+'&client_group_id='+clientGroupId<tmpl_if name="use_combobox" value="y">, rerenderSelect2</tmpl_if>);
-		<tmpl_if name="use_combobox" value="y">
+        ISPConfig.loadOptionInto('ip_address','sites/ajax_get_ip.php?ip_type=IPv4&server_id='+serverId+'&client_group_id='+clientGroupId{% if use_combobox == 'y' %}, rerenderSelect2{% endif %});
+        ISPConfig.loadOptionInto('ipv6_address','sites/ajax_get_ip.php?ip_type=IPv6&server_id='+serverId+'&client_group_id='+clientGroupId{% if use_combobox == 'y' %}, rerenderSelect2{% endif %});
+		{% if use_combobox == 'y' %}
 		//$('#ip_address').add('#ipv6_address').select2();
-		</tmpl_if>
+		{% endif %}
     }
 
 	function rerenderSelect2(elem) {
@@ -459,42 +459,42 @@
             $.each(data.phpversion, function(akey,aval) {
                 key=Object.getOwnPropertyNames(aval)[0];
                 val=aval[key];
-				<tmpl_if name="id">
+				{% if id %}
                 if($('#server_php_id').val() == key){
                     serverphpidselected = ' selected="selected"';
                 } else {
                     serverphpidselected = '';
                 }
-				</tmpl_else>
+				{% else %}
 					serverphpidselected = '';
-				</tmpl_if>
+				{% endif %}
                 options += '<option value="'+key+'"'+serverphpidselected+'>'+val+'</option>';
             });
-			<tmpl_if name="id">
+			{% if id %}
 			if($('#server_php_id').val() == '0'){
                 serverphpidselected = ' selected="selected"';
             } else {
                 serverphpidselected = '';
             }
-			</tmpl_else>
+			{% else %}
 				serverphpidselected = '';
-			</tmpl_if>
+			{% endif %}
 			//options += '<option value=""'+serverphpidselected+'>{{ default_php_txt }}</option>';
             $('#server_php_id').html(options).change();
             if(noFormChange) ISPConfig.resetFormChanged();
         });
     }
 
-    <tmpl_if name="readonly_tab">
+    {% if readonly_tab %}
         jQuery('div.panel_web_domain').find('fieldset').find('input,select,button').not('#directive_snippets_id').bind('click mousedown', function(e) { e.preventDefault(); }).focus(function() { $(this).blur(); });
         jQuery('#dom-edit-submit').click(function() {
 			ISPConfig.submitForm('pageForm','sites/web_vhost_domain_edit.php');
         });
-    <tmpl_else>
+    {% else %}
         jQuery('#dom-edit-submit').click(function() {
             ISPConfig.submitForm('pageForm','sites/web_vhost_domain_edit.php');
         });
-    </tmpl_if>
+    {% endif %}
 
 	if($('#domain').val() == ''){
 		$('#web_folder_domain').text('[DOMAIN]');

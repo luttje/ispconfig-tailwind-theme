@@ -1,4 +1,4 @@
-<tmpl_if name="config_error_msg">
+{% if config_error_msg %}
   <div class="alert alert-danger">
       <p>
         {{ configuration_error_txt }}
@@ -8,7 +8,7 @@
           </div>
       </p>
     </div>
-</tmpl_if>
+{% endif %}
 
 
 <div class="form-group">
@@ -42,11 +42,11 @@
   </div>
   <div id="collapseCompression" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCompression">
     <div class="panel-body">
-      <tmpl_if name="missing_utils">
+      {% if missing_utils %}
         <div class="tab-content alert alert-warning">
           {{ backup_missing_utils_txt }} {{ missing_utils }}
         </div>
-      </tmpl_if>
+      {% endif %}
       <div class="form-group">
         <label for="backup_format_web" class="col-sm-3 control-label">{{ backup_format_web_txt }}</label>
         <div class="col-sm-9">

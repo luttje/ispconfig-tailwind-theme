@@ -1,14 +1,14 @@
-<tmpl_if name="list_head_txt">
+{% if list_head_txt %}
 <div class='page-header'>
 	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
 </div>
-</tmpl_if>
+{% endif %}
 
-<tmpl_if name='success'>
+{% if success %}
 	{{ success_txt }}
-<tmpl_else>
+{% else %}
 	{{ error_txt }}
-</tmpl_if>
+{% endif %}
 
 <div class="clear">
 	<div class="right">

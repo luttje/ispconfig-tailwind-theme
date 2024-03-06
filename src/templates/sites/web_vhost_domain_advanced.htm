@@ -1,4 +1,4 @@
-<tmpl_if name="config_error_msg">
+{% if config_error_msg %}
   <div class="alert alert-danger">
       <p>
         {{ configuration_error_txt }}
@@ -8,7 +8,7 @@
           </div>
       </p>
     </div>
-</tmpl_if>
+{% endif %}
 <input name="document_root" id="document_root" value="{{ document_root }}" size="30" maxlength="255" type="hidden" class="textInput" />
 <div class="form-group">
   <label for="added_date" class="col-sm-3 control-label">{{ added_date_txt }}</label>

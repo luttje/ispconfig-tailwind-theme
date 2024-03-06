@@ -10,16 +10,16 @@
 			{{ list_desc_txt }}
 		</p>
 	</div>
-	<tmpl_if name="msg">
+	{% if msg %}
 		<div id="OKMsg">
 			{{ msg }}
 		</div>
-	</tmpl_if>
-	<tmpl_if name="error">
+	{% endif %}
+	{% if error %}
 		<div id="errorMsg">
 			{{ error }}
 		</div>
-	</tmpl_if>
+	{% endif %}
 
 	<div class="pnl_formsarea">
 		<div class="form-group">

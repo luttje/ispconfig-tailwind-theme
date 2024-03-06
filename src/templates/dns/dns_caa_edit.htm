@@ -23,7 +23,7 @@ For future use.  At this time, CA’s do not recognize any other flag values as 
 
 <div class="form-group">
 	<label for="name" class="col-sm-2 control-label">{{ ca_hostname_txt }}</label>
-	<div class="col-sm-4"><input type="text" name="additional" id="additional" value="{{ additional }}" class="form-control" <tmpl_if name="edit_disabled">readonly</tmpl_if> /> </div>
+	<div class="col-sm-4"><input type="text" name="additional" id="additional" value="{{ additional }}" class="form-control" {% if edit_disabled %}readonly{% endif %} /> </div>
 	<div class="input-sm">{{ ca_hostname_note_txt }}</div>
 </div>
 

@@ -8,7 +8,7 @@
 </p>
 <div class="panel panel_language_import" style="padding:20px;">
 	<div class="pnl_formsarea">
-		<tmpl_if name="is_admin">
+		{% if is_admin %}
 			<div class="form-group">
 				<label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
 				<div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
@@ -21,27 +21,27 @@
 						{{ client_group_id }}
 					</select></div>
 			</div>
-			<tmpl_else>
-				<tmpl_if name="only_one_server">
+			{% else %}
+				{% if only_one_server %}
 					<input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
-					<tmpl_else>
+					{% else %}
 						<div class="form-group">
 							<label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
 							<div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
 									{{ server_id }}
 								</select></div>
 						</div>
-				</tmpl_if>
-		</tmpl_if>
+				{% endif %}
+		{% endif %}
 		<div class="form-group">
 			<label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
-			<tmpl_if name="domain_option">
+			{% if domain_option %}
 				<div class="col-sm-9"><select name="domain" id="domain" class="form-control">
 						{{ domain_option }}
 					</select></div>
-				<tmpl_else>
+				{% else %}
 					<div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" onkeydown="keydown(event.which);" /></div>
-			</tmpl_if>
+			{% endif %}
 			<div class="col-sm-3 col-text"></div>
 			<div class="col-sm-9 col-text">
 				{{ domain_field_desc_txt }}</div>
@@ -51,14 +51,14 @@
 				<div class="col-sm-9 col-text"><input name="file" id="file" size="30" type="file" class="fileUpload" /></div>
 			</div>
 
-			<tmpl_if name="msg">
+			{% if msg %}
 				<div id="OKMsg">
 					<p>
 						{{ msg }}
 					</p>
 				</div>
-			</tmpl_if>
-			<tmpl_if name="error">
+			{% endif %}
+			{% if error %}
 				<div class='alert alert-danger clear'>
 					<div class='alert-label'>
 						<strong>
@@ -71,7 +71,7 @@
 						</ul>
 					</div>
 				</div>
-			</tmpl_if>
+			{% endif %}
 
 			<input type="hidden" name="id" value="{{ id }}">
 

@@ -29,7 +29,7 @@
                 <div class="form-group">
                     &nbsp;
                 </div>
-				<tmpl_if name="is_admin">
+				{% if is_admin %}
                 <div class="form-group">
                     <label for="parent_client_id_id" class="col-sm-3 control-label">{{ parent_client_id_txt }}</label>
                     <div class="col-sm-9"><select name="parent_client_id" id="parent_client_id" class="form-control">
@@ -40,7 +40,7 @@
                     <label for="reseller" class="col-sm-3 control-label">{{ reseller_txt }}</label>
                     <div class="col-sm-9"><input type="checkbox" name="reseller" value="1" id="reseller" /></div>
 				</div>
-                </tmpl_if>
+                {% endif %}
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingWeb">
@@ -241,14 +241,14 @@
 								{{ limit_mail_backup }}
 						</div>
 				</div>
-				<tmpl_if name="show_per_domain_relay_options">
+				{% if show_per_domain_relay_options %}
 				<div class="form-group">
 						<label class="col-sm-3 control-label">{{ limit_relayhost_txt }}</label>
 						<div class="col-sm-9">
 								{{ limit_relayhost }}
 						</div>
 				</div>
-			</tmpl_if>
+			{% endif %}
       </div>
   </div>
   </div>
@@ -439,7 +439,7 @@
       </div>
     </div>
   </div>
-  <tmpl_if name="show_aps_menu">
+  {% if show_aps_menu %}
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingAPS">
       <h4 class="panel-title">
@@ -457,7 +457,7 @@
       </div>
     </div>
   </div>
-  </tmpl_if>
+  {% endif %}
 </div>
         <input type="hidden" name="id" value="{{ id }}">
 

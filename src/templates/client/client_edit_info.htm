@@ -7,11 +7,11 @@
                         <li>Contact Name: {{ contact_name }}</li>
                         <li>E-mail: <a href="mailto:{{ email }}">{{ email }}</a></li>
                         <li>Login as:
-							<tmpl_if name="is_admin">
+							{% if is_admin %}
 									<a class="btn btn-default formbutton-success formbutton-narrow" data-load-content="login/login_as.php?cid={{ id }}"><span class="icon icon-loginas"></span></a>
-							<tmpl_elseif name="is_reseller">
+							{% elsif is_reseller %}
 									<a class="btn btn-default formbutton-success formbutton-narrow" data-load-content="login/login_as.php?cid={{ id }}"><span class="icon icon-loginas"></span></a>
-							</tmpl_if>
+							{% endif %}
 						</li>
                 </ul>
          </div>

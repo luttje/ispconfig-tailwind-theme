@@ -1,12 +1,12 @@
-	<tmpl_if name="form_hint">
+	{% if form_hint %}
 		<div class='page-header'>
 			<h1 class="text-4xl pb-4 border-b">{{ form_hint }}</h1>
 		</div>
-	</tmpl_if>
-	<tmpl_if name="msg">
+	{% endif %}
+	{% if msg %}
 		<div class='alert alert-notification'>{{ msg }}</div>
-	</tmpl_if>
-	<tmpl_if name="error">
+	{% endif %}
+	{% if error %}
 		<div class='alert alert-danger clear'>
 			<div class='alert-label'><strong>
 					{{ error_txt }}
@@ -17,14 +17,14 @@
 				</ul>
 			</div>
 		</div>
-	</tmpl_if>
+	{% endif %}
 
 	<!-- content in tabs -->
 	<div class='content-tab-wrapper'>
 		<!-- tabs -->
 		<ul class='nav nav-tabs'>
 			{% for formTab %}
-				<li<tmpl_if name="active"> class='active'</tmpl_if>>
+				<li{% if active %} class='active'{% endif %}>
 					<a href='#' onclick="return ISPConfig.changeTab('{{ name }}','{{ app_module }}/{{ form_action }}')">
 						{{ title }}
 					</a>

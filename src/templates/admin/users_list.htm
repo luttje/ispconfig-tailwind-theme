@@ -41,15 +41,15 @@
                             <td><div class="icons16 group-{{ typ }}" title="{{ typ }}"><span>{{ typ }}</span></div> <div class="group-icon"><a href="#" data-load-content="admin/users_edit.php?id={{ id }}">{{ username }}</a></div></td>
                             <td>{{ groups }}</td>
                             <td class="text-right">
-                                <tmpl_if name="client_id" op="!=" value="0">
+                                {% if client_id != '0' %}
                                     <a class="btn btn-default formbutton-success formbutton-narrow" data-load-content="login/login_as.php?cid={{ client_id }}"><span class="icon icon-loginas"></span></a>
                                     <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('admin/users_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                                </tmpl_if>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
                     <tmpl_unless name="records">
-                        <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
+                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
                         </tr>
                     </tmpl_unless>

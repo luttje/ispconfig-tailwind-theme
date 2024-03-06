@@ -39,7 +39,7 @@
                         </tr>
                     {% endfor %}
                     <tmpl_unless name="records">
-                        <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
+                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
                         </tr>
                     </tmpl_unless>

@@ -6,12 +6,12 @@
 
         <legend>{{ head_txt }} {{ veid }}</legend>
             
-            <tmpl_if name="msg">
+            {% if msg %}
                 <div id="OKMsg"><p>{{ msg }}</p></div>
-            </tmpl_if>
-            <tmpl_if name="error">
+            {% endif %}
+            {% if error %}
                 <div id="errorMsg"><h3>{{ error_txt }}</h3><ol>{{ error }}</ol></div>
-            </tmpl_if>
+            {% endif %}
                 
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ start_txt }}</label>

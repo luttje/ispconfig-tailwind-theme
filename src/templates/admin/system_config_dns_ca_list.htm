@@ -1,5 +1,5 @@
-<tmpl_if name="edit_record">
-<tmpl_else>
+{% if edit_record %}
+{% else %}
 <table class='table w-full'>
 	<thead class="dark">
 		<tr>
@@ -22,4 +22,4 @@
 		{% endfor %}
 	</tbody>
 </table>
-</tmpl_if>
+{% endif %}

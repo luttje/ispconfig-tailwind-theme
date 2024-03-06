@@ -1,10 +1,10 @@
 
-{tmpl_if name='rendered_zone'}
+{% if rendered_zone %}
     {{ rendered_zone_txt }}
     <pre>{{ rendered_zone }}</pre>
-{tmpl_else}
+{% else %}
     {{ rendered_zone_unavailable_txt }}
-{/tmpl_if}
+{% endif %}
 
 <div class="pnl_formsarea">
     <input type="hidden" name="id" value="{{ id }}">

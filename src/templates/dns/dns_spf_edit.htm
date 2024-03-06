@@ -53,9 +53,9 @@
             
         <div class="clear"><div class="right">
             <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="dns/dns_spf_edit.php">{{ btn_save_txt }}</button>
-            <tmpl_if name="is_admin">
+            {% if is_admin %}
             <button class="btn btn-default formbutton-default" type="button" value="{{ btn_edit_as_txt_record_txt }}" data-load-content="dns/dns_txt_edit.php?id={{ id }}&zone={{ zone }}&edit_raw=1">{{ btn_edit_as_txt_record_txt }}</button>
-            </tmpl_if>
+            {% endif %}
             <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="dns/dns_soa_edit.php?id={{ zone }}&next_tab=dns_records">{{ btn_cancel_txt }}</button>
         </div></div>
 

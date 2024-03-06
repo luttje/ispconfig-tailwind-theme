@@ -1,16 +1,16 @@
             <div class="form-group">
-                <tmpl_if name="edit_disabled">
+                {% if edit_disabled %}
                     <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
                     <div class="col-sm-9"><select name="parent_domain_id" id="parent_domain_id" class="form-control" disabled="disabled">
                         {{ parent_domain_id }}
                     </select></div>
                     <input type="hidden" name="parent_domain_id" value="{{ parent_domain_id_value }}" />
-                    <tmpl_else>
+                    {% else %}
                         <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
                         <div class="col-sm-9"><select name="parent_domain_id" id="parent_domain_id" class="form-control">
                             {{ parent_domain_id }}
                         </select></div>
-                </tmpl_if>
+                {% endif %}
             </div>
 			<div class="form-group">
                 <label for="username" class="col-sm-3 control-label">{{ username_txt }}</label>

@@ -1,10 +1,10 @@
 <div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b"><tmpl_if name='childdomain_type' op='==' value='aliasdomain'>{{ aliasdomain_list_head_txt }}</tmpl_else>{{ subdomain_list_head_txt }}</tmpl_if></h1>
+	<h1 class="text-4xl pb-4 border-b">{% if childdomain_type == 'aliasdomain' %}{{ aliasdomain_list_head_txt }}{% else %}{{ subdomain_list_head_txt }}{% endif %}</h1>
 </div>
 <p>{{ list_desc_txt }}</p>
 
 
-        <tmpl_if name='datalog_changes_count' op='>' value='0'>
+        {% if datalog_changes_count > '0' %}
         <div>
             <div class="systemmonitor-state state-info">
                 <div class="status"></div>
@@ -19,10 +19,10 @@
                 </div>
             </div><br />
         </div>
-        </tmpl_if>
+        {% endif %}
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
             
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/web_childdomain_edit.php?type={{ childdomain_type }}"><tmpl_if name='childdomain_type' op='==' value='aliasdomain'>{{ add_new_aliasdomain_txt }}</tmpl_else>{{ add_new_subdomain_txt }}</tmpl_if></button>
+                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/web_childdomain_edit.php?type={{ childdomain_type }}">{% if childdomain_type == 'aliasdomain' %}{{ add_new_aliasdomain_txt }}{% else %}{{ add_new_subdomain_txt }}{% endif %}</button>
             
         
 
@@ -35,7 +35,7 @@
                         <th class="tiny-col" data-column="active">{{ active_txt }}</th>
                         <th data-column="server_id">{{ server_id_txt }}</th>
                         <th data-column="parent_domain_id">{{ parent_domain_id_txt }}</th>
-                        <th data-column="domain"><tmpl_if name='childdomain_type' op='==' value='aliasdomain'>{{ aliasdomain_txt }}</tmpl_else>{{ subdomain_txt }}</tmpl_if></th>
+                        <th data-column="domain">{% if childdomain_type == 'aliasdomain' %}{{ aliasdomain_txt }}{% else %}{{ subdomain_txt }}{% endif %}</th>
                         <th class="small-col text-right">{{ search_limit }}</th>
                     </tr>
                     <tr>
@@ -61,7 +61,7 @@
                         </tr>
                     {% endfor %}
                     <tmpl_unless name="records">
-                        <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
+                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
                         </tr>
                     </tmpl_unless>

@@ -1,16 +1,16 @@
             <div class="form-group">
-                <tmpl_if name="edit_disabled">
+                {% if edit_disabled %}
                     <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
                     <div class="col-sm-9"><select name="parent_domain_id" id="parent_domain_id" class="form-control" disabled="disabled">
                         {{ parent_domain_id }}
                     </select></div>
                     <input type="hidden" name="parent_domain_id" value="{{ parent_domain_id_value }}" />
-                <tmpl_else>
+                {% else %}
                         <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
                         <div class="col-sm-9"><select name="parent_domain_id" id="parent_domain_id" class="form-control">
                             {{ parent_domain_id }}
                         </select></div>
-                </tmpl_if>
+                {% endif %}
             </div>
 			<div class="form-group">
                 <label for="username" class="col-sm-3 control-label">{{ username_txt }}</label>
@@ -25,7 +25,7 @@
 					</div>
 				</div>
             </div>
-			<tmpl_if name="ssh_authentication" op="!=" value="key">
+			{% if ssh_authentication != 'key' %}
 			<div class="form-group">
                 <label for="password" class="col-sm-3 control-label">{{ password_txt }}</label>
                 <div class="col-sm-9">
@@ -53,7 +53,7 @@
 					<div id="confirmpasswordOK" style="display:none;" class="confirmpasswordok">{{ password_match_txt }}</div>
 				</div>
 			</div>
-			</tmpl_if>
+			{% endif %}
             <div class="form-group">
                 <label for="chroot" class="col-sm-3 control-label">{{ chroot_txt }}</label>
                 <div class="col-sm-9"><select name="chroot" id="chroot" class="form-control">
@@ -64,12 +64,12 @@
                 <label for="quota_size" class="col-sm-3 control-label">{{ quota_size_txt }}</label>
                 <div class="col-sm-9"><div class="input-group"><input type="text" name="quota_size" id="quota_size" value="{{ quota_size }}" class="form-control" aria-describedby="quota_size-desc" /><span class="input-group-addon" id="quota_size-desc">MB</span></div></div>
             </div>
-			<tmpl_if name="ssh_authentication" op="!=" value="password">
+			{% if ssh_authentication != 'password' %}
             <div class="form-group">
                 <label for="ssh_rsa" class="col-sm-3 control-label">{{ ssh_rsa_txt }}</label>
                 <div class="col-sm-9"><textarea class="form-control" name="ssh_rsa" id="ssh_rsa" rows="10" cols="30">{{ ssh_rsa }}</textarea></div>
             </div>
-			</tmpl_if>
+			{% endif %}
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ active_txt }}</label>
                 <div class="col-sm-9">

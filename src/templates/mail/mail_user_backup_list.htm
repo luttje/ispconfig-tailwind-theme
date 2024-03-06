@@ -1,7 +1,7 @@
-<tmpl_if name="msg">
+{% if msg %}
     <div id="OKMsg"><p>{{ msg }}</p></div>
-</tmpl_if>
-<tmpl_if name="error">
+{% endif %}
+{% if error %}
   <div class='alert alert-danger clear'>
     <div class='alert-label'>
       <strong>{{ error_txt }}</strong>
@@ -12,7 +12,7 @@
       </ul>
     </div>
   </div>
-</tmpl_if>
+{% endif %}
 <h3>{{ list_head_txt }}</h3>
 
 
@@ -42,7 +42,7 @@
                         </tr>
                     {% endfor %}
                     <tmpl_unless name="records">
-                        <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
+                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                             <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>
                         </tr>
                     </tmpl_unless>

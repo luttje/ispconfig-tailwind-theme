@@ -15,13 +15,13 @@
 					{{ language_option }}
 				</select></div>
 		</div>
-		<tmpl_if name="msg">
+		{% if msg %}
 			<div id="OKMsg">
 				<p>
 					{{ msg }}
 				</p>
 			</div>
-		</tmpl_if>
+		{% endif %}
 
 		<input type="hidden" name="id" value="{{ id }}">
 

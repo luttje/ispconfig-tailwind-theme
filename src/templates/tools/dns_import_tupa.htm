@@ -21,14 +21,14 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="dboptions">Tupa database options</label>
                 <div class="col-sm-9" id="dboptions">
-                    <label class="checkbox-inline" for="dbssl"><input type="checkbox" id="dbssl" value="1" name="dbssl" <tmpl_if name='dbssl' op='==' value='true'>checked</tmpl_if>/> Use SSL</label>
+                    <label class="checkbox-inline" for="dbssl"><input type="checkbox" id="dbssl" value="1" name="dbssl" {% if dbssl == 'true' %}checked{% endif %}/> Use SSL</label>
                 </div>
             </div>
 
-        <tmpl_if name="msg">
+        {% if msg %}
             <div id="OKMsg"><p>{{ msg }}</p></div>
-        </tmpl_if>
-        <tmpl_if name="error">
+        {% endif %}
+        {% if error %}
           <div class='alert alert-danger clear'>
             <div class='alert-label'>
               <strong>{{ error_txt }}</strong>
@@ -39,7 +39,7 @@
               </ul>
             </div>
           </div>
-        </tmpl_if>
+        {% endif %}
 
         <input type="hidden" name="id" value="{{ id }}">
 		<input type="hidden" name="start" value="1">

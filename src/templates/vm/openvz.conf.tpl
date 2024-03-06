@@ -7,96 +7,96 @@ ONBOOT="{{ onboot }}"
 BOOTORDER="{{ bootorder }}"
 
 # VSwap requires RAM and SWAP, all other memory parameters are optional.
-<tmpl_if name='physpages'>
+{% if physpages %}
 # RAM
 PHYSPAGES="{{ physpages }}"
-</tmpl_if>
-<tmpl_if name='swappages'>
+{% endif %}
+{% if swappages %}
 # SWAP
 SWAPPAGES="{{ swappages }}"
-</tmpl_if>
+{% endif %}
 
-<tmpl_if name='kmemsize'>
+{% if kmemsize %}
 KMEMSIZE="{{ kmemsize }}"
-</tmpl_if>
-<tmpl_if name='lockedpages'>
+{% endif %}
+{% if lockedpages %}
 LOCKEDPAGES="{{ lockedpages }}"
-</tmpl_if>
-<tmpl_if name='privvmpages'>
+{% endif %}
+{% if privvmpages %}
 PRIVVMPAGES="{{ privvmpages }}"
-</tmpl_if>
-<tmpl_if name='shmpages'>
+{% endif %}
+{% if shmpages %}
 SHMPAGES="{{ shmpages }}"
-</tmpl_if>
-<tmpl_if name='vmguarpages'>
+{% endif %}
+{% if vmguarpages %}
 VMGUARPAGES="{{ vmguarpages }}"
-</tmpl_if>
-<tmpl_if name='oomguarpages'>
+{% endif %}
+{% if oomguarpages %}
 OOMGUARPAGES="{{ oomguarpages }}"
-</tmpl_if>
+{% endif %}
 # alternative meminfo: "pages:256000"
 MEMINFO="privvmpages:1"
 
-<tmpl_if name='vmguarpages'>
+{% if vmguarpages %}
 NUMPROC="{{ numproc }}"
-</tmpl_if>
-<tmpl_if name='numtcpsock'>
+{% endif %}
+{% if numtcpsock %}
 NUMTCPSOCK="{{ numtcpsock }}"
-</tmpl_if>
-<tmpl_if name='numflock'>
+{% endif %}
+{% if numflock %}
 NUMFLOCK="{{ numflock }}"
-</tmpl_if>
-<tmpl_if name='numpty'>
+{% endif %}
+{% if numpty %}
 NUMPTY="{{ numpty }}"
-</tmpl_if>
-<tmpl_if name='numsiginfo'>
+{% endif %}
+{% if numsiginfo %}
 NUMSIGINFO="{{ numsiginfo }}"
-</tmpl_if>
-<tmpl_if name='tcpsndbuf'>
+{% endif %}
+{% if tcpsndbuf %}
 TCPSNDBUF="{{ tcpsndbuf }}"
-</tmpl_if>
-<tmpl_if name='tcprcvbuf'>
+{% endif %}
+{% if tcprcvbuf %}
 TCPRCVBUF="{{ tcprcvbuf }}"
-</tmpl_if>
-<tmpl_if name='othersockbuf'>
+{% endif %}
+{% if othersockbuf %}
 OTHERSOCKBUF="{{ othersockbuf }}"
-</tmpl_if>
-<tmpl_if name='dgramrcvbuf'>
+{% endif %}
+{% if dgramrcvbuf %}
 DGRAMRCVBUF="{{ dgramrcvbuf }}"
-</tmpl_if>
-<tmpl_if name='numothersock'>
+{% endif %}
+{% if numothersock %}
 NUMOTHERSOCK="{{ numothersock }}"
-</tmpl_if>
-<tmpl_if name='dcachesize'>
+{% endif %}
+{% if dcachesize %}
 DCACHESIZE="{{ dcachesize }}"
-</tmpl_if>
-<tmpl_if name='numfile'>
+{% endif %}
+{% if numfile %}
 NUMFILE="{{ numfile }}"
-</tmpl_if>
-<tmpl_if name='avnumproc'>
+{% endif %}
+{% if avnumproc %}
 AVNUMPROC="{{ avnumproc }}"
-</tmpl_if>
-<tmpl_if name='numiptent'>
+{% endif %}
+{% if numiptent %}
 NUMIPTENT="{{ numiptent }}"
-</tmpl_if>
+{% endif %}
 
 DISKSPACE="{{ diskspace }}"
 DISKINODES="{{ diskinodes }}"
 QUOTAUGIDLIMIT="10000"
 QUOTATIME="0"
-<tmpl_if name='io_priority'>
+{% if io_priority %}
 IOPRIO="{{ io_priority }}"
-</tmpl_if>
+{% endif %}
 
-<tmpl_if name='cpu_num'>
+{% if cpu_num %}
 CPUS="{{ cpu_num }}"
-</tmpl_if>
-<tmpl_if name='cpu_units'>
+{% endif %}
+{% if cpu_units %}
 CPUUNITS="{{ cpu_units }}"
-</tmpl_if>
-<tmpl_if name='cpu_limit'>
+{% endif %}
+{% if cpu_limit %}
 CPULIMIT="{{ cpu_limit }}"
-</tmpl_if>
+{% endif %}
 
 VE_ROOT="/vz/root/$VEID"
 VE_PRIVATE="/vz/private/$VEID"
@@ -106,15 +106,15 @@ HOSTNAME="{{ hostname }}"
 IP_ADDRESS="{{ ip_address }}"
 NAMESERVER="{{ nameserver }}"
 
-<tmpl_if name='capability'>
+{% if capability %}
 CAPABILITY="{{ capability }}"
-</tmpl_if>
-<tmpl_if name='features'>
+{% endif %}
+{% if features %}
 FEATURES="{{ features }}"
-</tmpl_if>
-<tmpl_if name='iptables'>
+{% endif %}
+{% if iptables %}
 IPTABLES="{{ iptables }}"
-</tmpl_if>
-<tmpl_if name='custom'>
+{% endif %}
+{% if custom %}
 {{ custom }}
-</tmpl_if>
+{% endif %}

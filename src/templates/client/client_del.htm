@@ -1,6 +1,6 @@
 <div class='page-header'>
 	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }} {{ contactname }}</h1></div>
-<tmpl_if name='number_records'>
+{% if number_records %}
 	{{ delete_explanation }}:<br /><br />
 	<div class="table-wrapper marginTop15">
 		<table class='table w-full'>
@@ -20,9 +20,9 @@
 		</tbody>
 		</table>
 	</div>
-</tmpl_else>
+{% else %}
 	<h3>{{ confirm_client_delete_txt }}</h3>
-</tmpl_if>
+{% endif %}
 &nbsp;
 <div> <input type="checkbox" name="confirm" value="yes" /> <b>{{ confirm_action_txt }}</b></div>
 &nbsp;

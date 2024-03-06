@@ -1,18 +1,18 @@
-<tmpl_if name="limit_xmpp_anon" value="y">
+{% if limit_xmpp_anon == 'y' %}
     <div class="form-group">
         <label class="col-sm-3 control-label">{{ use_anon_host_txt }}</label>
         <div class="col-sm-9">
             {{ use_anon_host }}
         </div>
     </div>
-</tmpl_if>
+{% endif %}
 <div class="form-group">
     <label class="col-sm-3 control-label">{{ use_pubsub_txt }}</label>
     <div class="col-sm-9">
         {{ use_pubsub }}
     </div>
 </div>
-<tmpl_if name="limit_xmpp_vjud" value="y">
+{% if limit_xmpp_vjud == 'y' %}
     <div class="form-group">
         <label class="col-sm-3 control-label">{{ use_vjud_txt }}</label>
         <div class="col-sm-9">
@@ -25,23 +25,23 @@
             {{ vjud_opt_mode }}
         </select></div>
     </div>
-</tmpl_if>
-<tmpl_if name="limit_xmpp_proxy" value="y">
+{% endif %}
+{% if limit_xmpp_proxy == 'y' %}
     <div class="form-group">
         <label class="col-sm-3 control-label">{{ use_proxy_txt }}</label>
         <div class="col-sm-9">
             {{ use_proxy }}
         </div>
     </div>
-</tmpl_if>
-<tmpl_if name="limit_xmpp_status" value="y">
+{% endif %}
+{% if limit_xmpp_status == 'y' %}
     <div class="form-group">
         <label class="col-sm-3 control-label">{{ use_status_host_txt }}</label>
         <div class="col-sm-9">
             {{ use_status_host }}
         </div>
     </div>
-</tmpl_if>
+{% endif %}
 
 
 

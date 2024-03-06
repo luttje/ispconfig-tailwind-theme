@@ -1,10 +1,10 @@
 <div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b"><tmpl_if name='vhostdomain_type' op='==' value='domain'>{{ domain_list_head_txt }}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='subdomain'>{{ subdomain_list_head_txt }}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='aliasdomain'>{{ aliasdomain_list_head_txt }}</tmpl_if></h1>
+	<h1 class="text-4xl pb-4 border-b">{% if vhostdomain_type == 'domain' %}{{ domain_list_head_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ subdomain_list_head_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ aliasdomain_list_head_txt }}{% endif %}</h1>
 </div>
 <p>{{ list_desc_txt }}</p>
 
 
-        <tmpl_if name='datalog_changes_count' op='>' value='0'>
+        {% if datalog_changes_count > '0' %}
         <div>
             <div class="systemmonitor-state state-info">
                 <div class="status"></div>
@@ -19,10 +19,10 @@
                 </div>
             </div><br />
         </div>
-        </tmpl_if>
+        {% endif %}
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}"><tmpl_if name='vhostdomain_type' op='==' value='domain'>{{ add_new_record_txt }}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='subdomain'>{{ add_new_subdomain_txt }}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='aliasdomain'>{{ add_new_aliasdomain_txt }}</tmpl_if></button>
+                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}">{% if vhostdomain_type == 'domain' %}{{ add_new_record_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ add_new_subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ add_new_aliasdomain_txt }}{% endif %}</button>
 
 
 
@@ -32,18 +32,18 @@
 <table class='table w-full'>
                 <thead class="dark">
                 <tr>
-                    <tmpl_if name="vhostdomain_type" value="domain"><th class="small-col" data-column="domain_id">{{ domain_id_txt }}</th></tmpl_if>
+                    {% if vhostdomain_type == 'domain' %}<th class="small-col" data-column="domain_id">{{ domain_id_txt }}</th>{% endif %}
                     <th class="tiny-col" data-column="active">{{ active_txt }}</th>
                     <th data-column="server_id">{{ server_id_txt }}</th>
-					<tmpl_if name="vhostdomain_type" op="!=" value="domain"><th data-column="parent_domain_id">{{ parent_domain_id_txt }}</th></tmpl_if>
-                    <th data-column="domain"><tmpl_if name='vhostdomain_type' op='==' value='domain'>{{ domain_txt }}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='subdomain'>{{ subdomain_txt }}</tmpl_if><tmpl_if name='vhostdomain_type' op='==' value='aliasdomain'>{{ aliasdomain_txt }}</tmpl_if></th>
+					{% if vhostdomain_type != 'domain' %}<th data-column="parent_domain_id">{{ parent_domain_id_txt }}</th>{% endif %}
+                    <th data-column="domain">{% if vhostdomain_type == 'domain' %}{{ domain_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ aliasdomain_txt }}{% endif %}</th>
                     <th class="small-col text-right">{{ search_limit }}</th>
                 </tr>
                 <tr>
-                    <tmpl_if name="vhostdomain_type" value="domain"><td><input class="form-control" type="text" name="search_domain_id" value="{{ search_domain_id }}" /></td></tmpl_if>
+                    {% if vhostdomain_type == 'domain' %}<td><input class="form-control" type="text" name="search_domain_id" value="{{ search_domain_id }}" /></td>{% endif %}
                     <td><select class="form-control active-switch" name="search_active">{{ search_active }}</select></td>
                     <td><select class="form-control" name="search_server_id">{{ search_server_id }}</select></td>
-					<tmpl_if name="vhostdomain_type" op="!=" value="domain"><td><select class="form-control" name="search_parent_domain_id">{{ search_parent_domain_id }}</select></td></tmpl_if>
+					{% if vhostdomain_type != 'domain' %}<td><select class="form-control" name="search_parent_domain_id">{{ search_parent_domain_id }}</select></td>{% endif %}
                     <td><input class="form-control" type="text" name="search_domain" value="{{ search_domain }}" /></td>
                     <td class="text-right">
                         <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/web_vhost_domain_list.php"><span class="icon icon-filter"></span></button>
@@ -52,21 +52,21 @@
                 </thead>
                 <tbody>
                 {% for records %}
-					<tr <tmpl_if name="warn_inactive"> class="danger" </tmpl_if> >
-                    	<tmpl_if name="vhostdomain_type" value="domain"><td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ domain_id }}</a></td></tmpl_if>
+					<tr {% if warn_inactive %} class="danger" {% endif %} >
+                    	{% if vhostdomain_type == 'domain' %}<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ domain_id }}</a></td>{% endif %}
                         <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ active }}</a></td>
                         <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}" data-toggle="tooltip" data-placement="bottom" title="{{ server_id }}">{{ server_id }}</a></td>
-						<tmpl_if name="vhostdomain_type" op="!=" value="domain"><td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ parent_domain_id }}</a></td></tmpl_if>
+						{% if vhostdomain_type != 'domain' %}<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ parent_domain_id }}</a></td>{% endif %}
                         <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}" data-toggle="tooltip" data-placement="bottom" title="{{ domain }}">{{ domain }}</a></td>
                         <td class="text-right">
 							<a href="http://{{ domain }}" target="_blank" class="btn btn-default formbutton-default formbutton-narrow"><span class="icon icon-link"></span></button>
-                            <a href="http://{{ domain }}/stats/" target="_blank" class="btn btn-default formbutton-default formbutton-narrow"<tmpl_if name='stats_type' op='==' value=''> disabled</tmpl_if>><span class="glyphicon glyphicon-signal"></span></a>
+                            <a href="http://{{ domain }}/stats/" target="_blank" class="btn btn-default formbutton-default formbutton-narrow"{% if stats_type == '' %} disabled{% endif %}><span class="glyphicon glyphicon-signal"></span></a>
 							<a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('sites/web_vhost_domain_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></button>
                         </td>
                     </tr>
                 {% endfor %}
                 <tmpl_unless name="records">
-                    <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
+                    <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                         <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
                     </tr>
                 </tmpl_unless>

@@ -1,10 +1,10 @@
 <div class='page-header'>
 	<h1 class="text-4xl pb-4 border-b">{{ page_head_txt }}</h1>
 </div>
-            <tmpl_if name="okmsg">
+            {% if okmsg %}
                 <div id="OKMsg"><p>{{ okmsg }}</p></div>
-            </tmpl_if>
-            <tmpl_if name="error">
+            {% endif %}
+            {% if error %}
 							<div class='alert alert-danger clear'>
 								<div class='alert-label'>
 									<strong>{{ error_txt }}</strong>
@@ -15,7 +15,7 @@
 									</ul>
 								</div>
 							</div>
-            </tmpl_if>
+            {% endif %}
             <div class="form-group">
                 <label for="sender" class="col-sm-3 control-label">{{ sender_txt }}</label>
                 <div class="col-sm-9"><input type="text" name="sender" id="sender" value="{{ sender }}" class="form-control" /></div></div>

@@ -53,18 +53,18 @@
                     <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ used }}</a></td>
                     <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ quota }}</a></td>
                     <td colspan="2">
-                        {tmpl_if name="quota" op="!=" value="0"}<div class="progress" style="height: 20px">
-                            <div class='progress-bar-striped progress-bar-{tmpl_if name="percentage_sort" op="<" value="50"}success{tmpl_elseif name="percentage_sort" op="<" value="75"}warning{tmpl_else}danger{/tmpl_if}'
+                        {% if quota != '0' %}<div class="progress" style="height: 20px">
+                            <div class='progress-bar-striped progress-bar-{% if percentage_sort < '50' %}success{% elsif percentage_sort < '75' %}warning{% else %}danger{% endif %}'
                                 role="progressbar" style="width: {{ progressbar }}%;"
                                 aria-valuenow="{{  percentage }}" aria-valuemin="0" aria-valuemax="100">
                                 <span>{{ percentage }}</span</div>
-                        </div>{/tmpl_if}
+                        </div>{% endif %}
                     </td>
 
                 </tr>
             {% endfor %}
             <tmpl_unless name="records">
-                <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
+                <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                     <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
                 </tr>
             </tmpl_unless>

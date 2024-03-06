@@ -19,10 +19,10 @@
                     </div>
 				</div>
             </div>
-            <tmpl_if name="enable_custom_login"><div class="form-group">
+            {% if enable_custom_login %}<div class="form-group">
                     <label for="login" class="col-sm-3 control-label">{{ login_txt }}</label>
                     <div class="col-sm-9"><input type="text" id="login" name="login" value="{{ login }}" class="form-control" /></div></label>
-                </div></tmpl_if>
+                </div>{% endif %}
             <div class="form-group">
                 <label for="password" class="col-sm-3 control-label">{{ password_txt }}</label>
                 <div class="col-sm-9">
@@ -69,12 +69,12 @@
                 <label for="sender_name" class="col-sm-3 control-label">{{ sender_cc_txt }}</label>
                 <div class="col-sm-6"><input type="text" name="sender_cc" id="sender_cc" value="{{ sender_cc }}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }} {{ sender_cc_note_txt }}
             </div></div>
-            <tmpl_if name="is_admin"><div class="form-group">
+            {% if is_admin %}<div class="form-group">
                 <label for="imap_prefix" class="col-sm-3 control-label">{{ imap_prefix_txt }}</label>
                 <div class="col-sm-6">
                     <input type="text" name="imap_prefix" id="imap_prefix" value="{{ imap_prefix }}" data-toggle="tooltip" title="{{ tooltip_imap_prefix_txt }}" class="form-control" />
                 </div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }}</div>
-            </div></tmpl_if>
+            </div>{% endif %}
             <div class="form-group">
                 <label for="policy" class="col-sm-3 control-label">{{ policy_txt }}</label>
                 <div class="col-sm-9"><select name="policy" id="policy" class="form-control">
@@ -121,9 +121,9 @@
         <input type="hidden" name="id" value="{{ id }}">
 
         <div class="clear">
-            <tmpl_if name='id'><tmpl_if name='show_delete_on_forms' op="==" value="y">
+            {% if id %}{% if show_delete_on_forms == 'y' %}
                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_user_del.php?id={{ id }}&_csrf_id={{ _csrf_id }}&_csrf_key={{ _csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-            </tmpl_if></tmpl_if>
+            {% endif %}{% endif %}
             <div class="right">
                 <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="mail/mail_user_edit.php">{{ btn_save_txt }}</button>
                 <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="mail/mail_user_list.php">{{ btn_cancel_txt }}</button>

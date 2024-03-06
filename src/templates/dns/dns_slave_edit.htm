@@ -1,17 +1,17 @@
-            <tmpl_if name="is_admin">
+            {% if is_admin %}
                 <div class="form-group">
-                    <tmpl_if name="edit_disabled">
+                    {% if edit_disabled %}
                         <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                         <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
                             {{ server_id }}
                         </select></div>
                         <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-                    <tmpl_else>
+                    {% else %}
                             <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
                                 {{ server_id }}
                             </select></div>
-                    </tmpl_if>
+                    {% endif %}
                 </div>
                 <tmpl_unless name="domain_option">
                     <div class="form-group">
@@ -21,8 +21,8 @@
                         </select></div>
                     </div>
                 </tmpl_unless>
-            </tmpl_if>
-            <tmpl_if name="is_reseller">
+            {% endif %}
+            {% if is_reseller %}
                 <tmpl_unless name="domain_option">
                     <div class="form-group">
                         <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
@@ -31,18 +31,18 @@
                         </select></div>
                     </div>
                 </tmpl_unless>
-            </tmpl_if>
+            {% endif %}
             <div class="form-group">
                 <label for="origin" class="col-sm-3 control-label">{{ origin_txt }}</label>
-                <tmpl_if name="domain_option">
+                {% if domain_option %}
                     <div class="col-sm-9"><select name="origin" id="origin" class="form-control">
                         {{ domain_option }}
                     </select></div>
-                    <tmpl_else>
+                    {% else %}
                         <div class="col-sm-9">
 							<input type="text" name="origin" id="origin" value="{{ origin }}" class="form-control" />
 							<p class="formHint">{{ eg_domain_tld }}</p>
-						</div></tmpl_if>
+						</div>{% endif %}
                 
             </div>
             <div class="form-group">

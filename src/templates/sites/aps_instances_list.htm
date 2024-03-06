@@ -8,9 +8,9 @@
                     <tr>
                         <th>{{ name_txt }}</th>
                         <th>{{ version_txt }}</th>
-                        <tmpl_if name='is_noclient'>
+                        {% if is_noclient %}
                         <!--<th>{{ customer_txt }}</th>-->
-                        </tmpl_if>
+                        {% endif %}
                         <th>{{ install_location_txt }}</th>
                         <th>{{ status_txt }}</th>
                         <th class="small-col text-right" >&nbsp;</th>
@@ -18,9 +18,9 @@
                     <tr>
                         <td><input class="form-control" type="text" name="search_name" value="{{ search_name }}" /></td>
                         <td><input class="form-control" type="text" name="search_version" value="{{ search_version }}" /></td>
-                        <tmpl_if name='is_noclient'>
+                        {% if is_noclient %}
                         <!--<td><input class="form-control" type="text" name="search_customer_name" value="{{ search_customer_name }}" /></td>-->
-                        </tmpl_if>
+                        {% endif %}
                         <td>&nbsp;</td>
                         <td><select class="form-control" name="search_instance_status" onChange="ISPConfig.submitForm('pageForm','sites/aps_installedpackages_list.php');">{{ search_instance_status }}</select></td>
                         <td class="text-right">
@@ -33,15 +33,15 @@
                         <tr>
                             <td><a href="#" data-load-content="sites/aps_packagedetails_show.php?id={{ package_id }}">{{ package_name }}</a></td>
                             <td>{{ package_version }}-{{ package_release }}</td>
-                            <tmpl_if name='is_noclient'>
+                            {% if is_noclient %}
                                 <!--<td><a href="#" data-load-content="sites/aps_packagedetails_show.php?id={{ package_id }}">{{ customer_name }}</a></td>-->
-                            </tmpl_if>
+                            {% endif %}
                             <td><a href="http://{{ install_location }}" target="_blank">{{ install_location_short }}</a></td>
                             <td><span id="status_content{{ __ROWNUM__ }}">{{ instance_status }}</span></td>
                             <td class="text-right">
-                                <tmpl_if name='delete_possible'>
+                                {% if delete_possible %}
                                     <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('sites/aps_do_operation.php?action=delete_instance&id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}','{{ pkg_delete_confirmation }}')"><span class="icon icon-delete"></span></button>
-                                </tmpl_if>
+                                {% endif %}
                             </td>        
                         </tr>
                     {% endfor %}

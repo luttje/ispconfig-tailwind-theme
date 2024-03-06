@@ -53,21 +53,21 @@
 					<td>{{ loglevel }}</td>
 					<td>{{ message }}</td>
 					<td class="text-right">
-						<tmpl_if name="loglevel" op="==" value="Error">
+						{% if loglevel == 'Error' %}
 							<a class="btn btn-default formbutton-danger formbutton-narrow"
 								href="javascript: ISPConfig.confirm_action('monitor/log_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
 									class="icon icon-delete"></span></a>
-						</tmpl_if>
-						<tmpl_if name="loglevel" op="==" value="Warning">
+						{% endif %}
+						{% if loglevel == 'Warning' %}
 							<a class="btn btn-default formbutton-danger formbutton-narrow"
 								href="javascript: ISPConfig.confirm_action('monitor/log_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
 									class="icon icon-delete"></span></a>
-						</tmpl_if>
+						{% endif %}
 					</td>
 				</tr>
 			{% endfor %}
 			<tmpl_unless name="records">
-				<tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
+				<tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
 					<td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
 				</tr>
 			</tmpl_unless>

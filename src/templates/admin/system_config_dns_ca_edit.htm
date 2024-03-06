@@ -1,7 +1,7 @@
-<tmpl_if name="edit_record">
-<tmpl_if name="error">
+{% if edit_record %}
+{% if error %}
     <div style="background: #ffdfdf; border: 1px solid #df7d7d; border-width: 1px 0; margin: 1.5em 0 1.5em 0; padding: 7px;">{{ error }}</div>
-</tmpl_if>
+{% endif %}
 <input type="hidden" name="id" value="{{ id }}">
 <div class="form-group">
 	<label for="ca_name" class="col-sm-2 control-label">{{ ca_name_txt }}</label>
@@ -15,12 +15,12 @@
 
 <div class="form-group">
     <label class="col-sm-2 control-label">{{ ca_wildcard_txt }}</label>
-	<div class="col-sm-6"><input type="checkbox" value="{{ ca_wildcard }}" id="ca_wildcard" name="ca_wildcard" <tmpl_if name='ca_wildcard' op='==' value='Y'>checked</tmpl_if> /></div>
+	<div class="col-sm-6"><input type="checkbox" value="{{ ca_wildcard }}" id="ca_wildcard" name="ca_wildcard" {% if ca_wildcard == 'Y' %}checked{% endif %} /></div>
 </div>
 
 <div class="form-group">
     <label class="col-sm-2 control-label">{{ ca_critical_txt }}</label>
-	<div class="col-sm-6"><input type="checkbox" value="{{ ca_critical }}" id="ca_critical" name="ca_critical" <tmpl_if name='ca_critical'>checked</tmpl_if> /></div>
+	<div class="col-sm-6"><input type="checkbox" value="{{ ca_critical }}" id="ca_critical" name="ca_critical" {% if ca_critical %}checked{% endif %} /></div>
 </div>
 <!--
 <div class="form-group">
@@ -30,7 +30,7 @@
 -->
 <div class="form-group">
     <label class="col-sm-2 control-label">{{ active_txt }}</label>
-	<div class="col-sm-6"><input type="checkbox" value="{{ active }}" id="active" name="active" <tmpl_if name='active' op='==' value='Y'>checked</tmpl_if> /></div>
+	<div class="col-sm-6"><input type="checkbox" value="{{ active }}" id="active" name="active" {% if active == 'Y' %}checked{% endif %} /></div>
 </div>
 
 </div>
@@ -38,4 +38,4 @@
 	<button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" onClick="ISPConfig.changeTab('dns_ca','admin/system_config_edit.php?action=save&id={{ id }}', true);">{{ btn_save_txt }}</button>
 	<button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="admin/system_config_edit.php?next_tab=dns_ca">{{ btn_cancel_txt }}</button>
 </div></div>
-</tmpl_if>
+{% endif %}

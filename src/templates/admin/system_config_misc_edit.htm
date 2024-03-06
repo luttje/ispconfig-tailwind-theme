@@ -141,14 +141,14 @@
     <input type="text" name="maintenance_mode_exclude_ips" id="maintenance_mode_exclude_ips" value="{{ maintenance_mode_exclude_ips }}" class="form-control" />
   </div>
 </div>
-<tmpl_if name="msg">
+{% if msg %}
   <div id="OKMsg">
     <p>
       {{ msg }}
     </p>
   </div>
-</tmpl_if>
-<tmpl_if name="error">
+{% endif %}
+{% if error %}
   <div class='alert alert-danger clear'>
     <div class='alert-label'>
       <strong>{{ error_txt }}</strong>
@@ -159,7 +159,7 @@
       </ul>
     </div>
   </div>
-</tmpl_if>
+{% endif %}
 <input type="hidden" name="id" id="id" value="{{ id }}">
 <div class="clear">
   <div class="right">

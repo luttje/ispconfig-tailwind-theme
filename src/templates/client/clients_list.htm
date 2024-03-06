@@ -24,7 +24,7 @@
                         <th data-column="username">{{ username_txt }}</th>
                         <th data-column="city">{{ city_txt }}</th>
                         <th data-column="country">{{ country_txt }}</th>
-						<tmpl_if name="has_robot"><th data-column="validation_status">{{ validation_status_txt }}</th></tmpl_if>
+						{% if has_robot %}<th data-column="validation_status">{{ validation_status_txt }}</th>{% endif %}
                         <th class="small-col text-right">{{ search_limit }}</th>
                     </tr>
                     <tr>
@@ -36,7 +36,7 @@
                         <td><input class="form-control" type="text" name="search_username" value="{{ search_username }}" /></td>
                         <td><input class="form-control" type="text" name="search_city" value="{{ search_city }}" /></td>
                         <td><select class="form-control flags" name="search_country">{{ search_country }}</select></td>
-						<tmpl_if name="has_robot"><td><select class="form-control" name="search_validation_status">{{ search_validation_status }}</select></td></tmpl_if>
+						{% if has_robot %}<td><select class="form-control" name="search_validation_status">{{ search_validation_status }}</select></td>{% endif %}
                         <td class="text-right">
                             <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="client/client_list.php"><span class="icon icon-filter"></span></button>
                         </td>
@@ -53,34 +53,34 @@
                             <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ username }}">{{ username }}</a></td>
                             <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ city }}</a></td>
                             <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}"><span class="flags flag-{{ countryiso }}">{{ country }}</span></a></td>
-							<tmpl_if name="has_robot"><td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ validation_status }}</a></td></tmpl_if>
+							{% if has_robot %}<td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ validation_status }}</a></td>{% endif %}
                             <td class="text-right">
-								<tmpl_if name="has_robot">
+								{% if has_robot %}
 									<a class="btn btn-default formbutton-default formbutton-narrow" href="#" data-load-content="client/client_action.php?id={{ id }}" title="{{ client_actions_txt }}" style="background: no-repeat center url('themes/default/assets/images/arrow.png');"><span class="icon">&nbsp;&nbsp;</span></a>
-									<tmpl_if name='activation_code' op='!=' value=''>
-										<tmpl_if name='validation_status' op='==' value='review'>
+									{% if activation_code != '' %}
+										{% if validation_status == 'review' %}
 											<a class="btn btn-default formbutton-default formbutton-narrow" href="client/client_get_activation_pdf.php?id={{ id }}" style="background: no-repeat center url('billing/lib/icon/pdficon_small.gif');" title="{{ show_pdf_txt }}"><span class="icon">&nbsp;&nbsp;</span></a>
-										</tmpl_if>
-									</tmpl_if>
-								</tmpl_if>
-                                <tmpl_if name="is_admin">
+										{% endif %}
+									{% endif %}
+								{% endif %}
+                                {% if is_admin %}
                                     <a class="btn btn-default formbutton-success formbutton-narrow" data-load-content="login/login_as.php?cid={{ id }}"><span class="icon icon-loginas"></span></a>
-                                <tmpl_elseif name="is_reseller">
+                                {% elsif is_reseller %}
                                     <a class="btn btn-default formbutton-success formbutton-narrow" data-load-content="login/login_as.php?cid={{ id }}"><span class="icon icon-loginas"></span></a>
-                                </tmpl_if>
+                                {% endif %}
                                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('client/client_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                             </td>
                         </tr>
                     {% endfor %}
                     <tmpl_unless name="records">
-                        <tr class="tbl_row_noresults tbl_row_{tmpl_if name='__EVEN__'}even{tmpl_else}uneven{/tmpl_if}">
-                            <td colspan="{tmpl_if name="has_robot"}10{tmpl_else}9{/tmpl_if}">{{ globalsearch_noresults_text_txt }}</td>
+                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                            <td colspan="{% if has_robot %}10{% else %}9{% endif %}">{{ globalsearch_noresults_text_txt }}</td>
                         </tr>
                     </tmpl_unless>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="{tmpl_if name="has_robot"}10{tmpl_else}9{/tmpl_if}">{{ paging }}</td>
+                        <td colspan="{% if has_robot %}10{% else %}9{% endif %}">{{ paging }}</td>
                     </tr>
                 </tfoot>
             </table>

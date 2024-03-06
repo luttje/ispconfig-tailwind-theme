@@ -2,27 +2,27 @@
   <h1 class="text-4xl pb-4 border-b">{{ welcome_user }}xx</h1>
 </div>
 
-<tmpl_if name='error'>
+{% if error %}
 	<div class="alert alert-danger">
 		{% for error %}
 			{{ error_msg }}
 		{% endfor %}
 	</div>
-</tmpl_if>
-<tmpl_if name='warning'>
+{% endif %}
+{% if warning %}
 	<div class="alert alert-danger">
 		{% for warning %}
 			{{ warning_msg }}
 		{% endfor %}
 	</div>
-</tmpl_if>
-<tmpl_if name='info'>
+{% endif %}
+{% if info %}
 	<div class="alert alert-notification">
 		{% for info %}
 			{{ info_msg }}
 		{% endfor %}
 	</div>
-</tmpl_if>
+{% endif %}
 
 {% for leftcol %}
 	{{ content }}

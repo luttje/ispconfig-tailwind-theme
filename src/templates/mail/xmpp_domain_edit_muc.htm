@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <tmpl_if name='limit_xmpp_pastebin' value="y">
+    {% if limit_xmpp_pastebin == 'y' %}
         <div class="form-group">
             <label class="col-sm-3 control-label">{{ use_pastebin_txt }}</label>
             <div class="col-sm-9">
@@ -47,9 +47,9 @@
                 </div>
             </div>
         </div>
-    </tmpl_if>
+    {% endif %}
 
-    <tmpl_if name='limit_xmpp_httparchive' value="y">
+    {% if limit_xmpp_httparchive == 'y' %}
         <div class="form-group">
             <label class="col-sm-3 control-label">{{ use_http_archive_txt }}</label>
             <div class="col-sm-9">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-    </tmpl_if>
+    {% endif %}
 
 </div>
 

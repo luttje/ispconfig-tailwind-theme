@@ -1,4 +1,4 @@
-<tmpl_if name="config_error_msg">
+{% if config_error_msg %}
   <div class="alert alert-danger">
     <p>
       {{ configuration_error_txt }}
@@ -8,9 +8,9 @@
         </div>
     </p>
   </div>
-</tmpl_if>
+{% endif %}
 <div class="pnl_toolsarea">
-        <tmpl_if name='datalog_changes_count' op='>' value='0'>
+        {% if datalog_changes_count > '0' %}
             <div class="systemmonitor-state state-info">
                 <div class="status"></div>
                 <div class="statusMsg">
@@ -23,7 +23,7 @@
                     {{ datalog_changes_end_txt }}
                 </div>
             </div>
-        </tmpl_if>
+        {% endif %}
     <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
         <div class="buttons topbuttons">
             <button class="btn btn-default dns-record-btn formbutton-success" type="button" data-load-content="dns/dns_a_edit.php?zone={{ parent_id }}">A</button>
@@ -92,7 +92,7 @@
                     </tr>
                 {% endfor %}
                 <tmpl_unless name="records">
-                    <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
+                    <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
                         <td colspan="7">{{ globalsearch_noresults_text_txt }}</td>
                     </tr>
                 </tmpl_unless>

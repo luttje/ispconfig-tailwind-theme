@@ -1,4 +1,4 @@
-<tmpl_if name="config_error_msg">
+{% if config_error_msg %}
 <div class="alert alert-danger">
     <p>
       {{ configuration_error_txt }}
@@ -8,7 +8,7 @@
         </div>
     </p>
   </div>
-</tmpl_if>
+{% endif %}
 
             <div class="form-group">
                 <label for="backup_interval" class="col-sm-3 control-label">{{ backup_interval_txt }}</label>

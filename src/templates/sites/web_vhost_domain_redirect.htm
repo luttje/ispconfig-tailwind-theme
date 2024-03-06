@@ -1,4 +1,4 @@
-<tmpl_if name="config_error_msg">
+{% if config_error_msg %}
 <div class="alert alert-danger">
     <p>
       {{ configuration_error_txt }}
@@ -8,7 +8,7 @@
         </div>
     </p>
   </div>
-</tmpl_if>
+{% endif %}
 
 
 
@@ -32,14 +32,14 @@
                 <div class="col-sm-9"><textarea class="form-control" name="rewrite_rules" id="rewrite_rules" rows='10' cols='50'>{{ rewrite_rules }}</textarea>
 				<b>{{ allowed_rewrite_rule_directives_txt }}</b>&nbsp;break&nbsp;if&nbsp;return&nbsp;rewrite&nbsp;set<br />&nbsp;<a href="http://wiki.nginx.org/HttpRewriteModule" target="_blank">http://wiki.nginx.org/HttpRewriteModule</a></div>
             </div>
-			<tmpl_if name="is_ssl_enabled" op="==" value="y">
+			{% if is_ssl_enabled == 'y' %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">{{ rewrite_to_https_txt }}</label>
 				<div class="col-sm-9">
 					{{ rewrite_to_https }}
 				</div>
 			</div>
-			</tmpl_if>
+			{% endif %}
 
         <input type="hidden" name="id" value="{{ id }}">
 

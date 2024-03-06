@@ -27,9 +27,9 @@
             </div>
 
 
-              <tmpl_if name="msg">
+              {% if msg %}
               <div id="OKMsg"><p>{{ msg }}</p></div>
-        </tmpl_if>
+        {% endif %}
 
 
                 <div class="clear"><div class="right">

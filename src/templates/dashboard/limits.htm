@@ -13,9 +13,9 @@
 				<tr>
 					<td>{{ field_txt }}</td>
 					<td>{{ usage }} {{ of_txt }} {{ value }}</td>
-					{tmpl_if name="progressbar" op="!=" value="-1"}<td>
+					{% if progressbar != '-1' %}<td>
 						<div class='progress'>
-							<div class='progress-bar-striped progress-bar-{tmpl_if name="progressbar" op="<" value="50"}success{tmpl_elseif name="progressbar" op="<" value="75"}warning{tmpl_else}danger{/tmpl_if}'
+							<div class='progress-bar-striped progress-bar-{% if progressbar < '50' %}success{% elsif progressbar < '75' %}warning{% else %}danger{% endif %}'
 								role='progressbar' aria-valuemin='0' aria-valuemax='100'
 								aria-valuenow='{{ progressbar }}' style='width:{{ progressbar }}%'
 								data-toggle="tooltip" data-placement="bottom" title="{{ percentage }}%">
@@ -24,8 +24,8 @@
 							</div>
 						</div>
 					</td>
-					<tmpl_else>
-						<td></td>{/tmpl_if}
+					{% else %}
+						<td></td>{% endif %}
 				</tr>
 			{% endfor %}
 		</tbody>

@@ -31,7 +31,7 @@
   <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/select2.css' />
   <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/select2-bootstrap.css' />
   <link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css' />
-  <tmpl_if name='logged_in' value='n'><link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/login.css' /></tmpl_if>
+  {% if logged_in == 'n' %}<link rel='stylesheet' href='themes/{{ current_theme }}/assets/stylesheets/login.css' />{% endif %}
 </head>
 
 <body>
@@ -50,8 +50,8 @@
             <div id='logo' class='bg-no-repeat bg-contain' style="background: url({{ base64_logo_txt }}) no-repeat;width:{{ base64_logo_width }};height:{{ base64_logo_height }}"><a href='#'></a></div>
           </div>
           <div id='headerbar' class='flex w-full justify-end mt-4'>
-            <tmpl_if name="cpuser">
-              <tmpl_if name='usertype' op='==' value='normaluser'>
+            {% if cpuser %}
+              {% if usertype == 'normaluser' %}
                 <!-- search field -->
                 <form action='#' method='get' id='searchform' class='flex'>
                   <div class='flex items-center'>
@@ -65,11 +65,11 @@
                     </div>
                   </div>
                 </form>
-              </tmpl_if>
+              {% endif %}
 
               <!-- logout button -->
               <button id='logout-button' class='px-4 py-2 self-start text-sm whitespace-nowrap font-medium text-white bg-[#c70f19] border-bottom-[#980b13] hover:bg-[#df111c] hover:border-bottom-[#800a10] rounded-md shadow uppercase' data-load-content="login/logout.php">{{ logout_txt }} {{ cpuser }}</button>
-            </tmpl_if>
+            {% endif %}
           </div>
             
           <div class="notification cursor-pointer" @click="modalOpen = true">
@@ -99,10 +99,10 @@
           </div>
 			    <!-- END Datalogstatus Modal -->
         </div>
-        <tmpl_if name='logged_in' value='y'>
+        {% if logged_in == 'y' %}
           <div id='topnav-container' class='py-4'>
           </div>
-        </tmpl_if>
+        {% endif %}
         <div class='flex flex-wrap flex-col lg:flex-row'>
           <!-- content -->
           <div id='content' class='flex-1 p-4 lg:w-3/4'>
@@ -112,10 +112,10 @@
             </form>
           </div>
           <!-- news sidebar -->
-          <tmpl_if name='logged_in' value='y'>
+          {% if logged_in == 'y' %}
             <div id='sidebar' class='w-full lg:w-1/4 p-4 border rounded self-start float-right'>
             </div>
-          </tmpl_if>
+          {% endif %}
         </div>
         <footer id='footer' class='py-4 text-center bg-gray-100 text-gray-600'>
           powered by <a href="{{ app_link }}" target="_blank" class='text-blue-500 hover:underline'>{{ app_title }}</a>
@@ -146,8 +146,8 @@
       ISPConfig.tabChangeWarningTxt = '{{ global_tabchange_warning_txt }}';
       ISPConfig.tabChangeDiscardTxt = '{{ global_tabchange_discard_txt }}';
 
-      <tmpl_if name="use_loadindicator" value="y">ISPConfig.setOption('useLoadIndicator', true);</tmpl_if>
-      <tmpl_if name="use_combobox" value="y">ISPConfig.setOption('useComboBox', true);</tmpl_if>
+      {% if use_loadindicator == 'y' %}ISPConfig.setOption('useLoadIndicator', true);{% endif %}
+      {% if use_combobox == 'y' %}ISPConfig.setOption('useComboBox', true);{% endif %}
     });
 
 	$(document).ready(function() {

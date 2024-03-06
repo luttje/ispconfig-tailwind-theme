@@ -4,7 +4,7 @@
 <p>{{ list_desc_txt }}</p>
 
 
-        <tmpl_if name='datalog_changes_count' op='>' value='0'>
+        {% if datalog_changes_count > '0' %}
         <div>
             <div class="systemmonitor-state state-info">
                 <div class="status"></div>
@@ -19,7 +19,7 @@
                 </div>
             </div><br />
         </div>
-        </tmpl_if>
+        {% endif %}
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
                 <button class="btn btn-default formbutton-success" type="button" data-load-content="mail/mail_user_edit.php">{{ add_new_record_txt }}</button>
@@ -33,7 +33,7 @@
                 <thead class="dark">
                     <tr>
                         <th data-column="email">{{ email_txt }}</th>
-                <tmpl_if name="enable_custom_login"><th data-column="login">{{ login_txt }}</th></tmpl_if>
+                {% if enable_custom_login %}<th data-column="login">{{ login_txt }}</th>{% endif %}
                 <th data-column="name">{{ name_txt }}</th>
                         <th class="tiny-col" data-column="autoresponder">{{ autoresponder_txt }}</th>
                         <th class="tiny-col" data-column="postfix">{{ postfix_txt }}</th>
@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td><input class="form-control" type="text" name="search_email" value="{{ search_email }}" /></td>
-            <tmpl_if name="enable_custom_login"><td><input class="form-control" type="text" name="search_login" value="{{ search_login }}" /></td></tmpl_if>
+            {% if enable_custom_login %}<td><input class="form-control" type="text" name="search_login" value="{{ search_login }}" /></td>{% endif %}
                         <td><input class="form-control" type="text" name="search_name" value="{{ search_name }}" /></td>
                         <td><select class="form-control" name="search_autoresponder">{{ search_autoresponder }}</select></td>
                         <td><select class="form-control" name="search_postfix">{{ search_postfix }}</select></td>
@@ -62,7 +62,7 @@
                 {% for records %}
                     <tr>
                         <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ email }}">{{ email }}</a></td>
-                        <tmpl_if name="enable_custom_login"><td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ login }}</a></td></tmpl_if>
+                        {% if enable_custom_login %}<td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ login }}</a></td>{% endif %}
                         <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ name }}</a></td>
                         <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ autoresponder }}</a></td>
                         <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ postfix }}</a></td>
@@ -71,22 +71,22 @@
                         <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disableimap }}</a></td>
                         <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disablepop3 }}</a></td>
                         <td class="text-right">
-                            <tmpl_if name="mailboxlist_webmail_link">
+                            {% if mailboxlist_webmail_link %}
                                 <a class="btn btn-default formbutton-default formbutton-narrow" href="mail/webmailer.php?id={{ id }}" target="webmail"><span class="icon icon-mail"></span></a>
-                            </tmpl_if>
+                            {% endif %}
                             <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_user_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                         </td>
                     </tr>
                 {% endfor %}
                 <tmpl_unless name="records">
-                    <tr class="tbl_row_noresults tbl_row_<tmpl_if name='__EVEN__'}even<tmpl_else>uneven</tmpl_if>">
-                        <td colspan="<tmpl_if name="enable_custom_login">9<tmpl_else>8</tmpl_if>">{{ globalsearch_noresults_text_txt }}</td>
+                    <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                        <td colspan="{% if enable_custom_login %}9{% else %}8{% endif %}">{{ globalsearch_noresults_text_txt }}</td>
                     </tr>
                 </tmpl_unless>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="<tmpl_if name="enable_custom_login">9<tmpl_else>8</tmpl_if>">{{ paging }}</td>
+                        <td colspan="{% if enable_custom_login %}9{% else %}8{% endif %}">{{ paging }}</td>
                     </tr>
                 </tfoot>
             </table>

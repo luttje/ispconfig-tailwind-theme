@@ -6,7 +6,7 @@
 	<div class="col-sm-9"><select name="directive_snippets_id" id="directive_snippets_id" class="form-control">
 		<option value="0"></option>
 		{% for records %}
-		<option {tmpl_if name='is_selected' op='==' value='true'}selected="selected" {/tmpl_if}value="{{ directive_snippets_id }}">
+		<option {% if is_selected == 'true' %}selected="selected" {% endif %}value="{{ directive_snippets_id }}">
 			{{ name }}
 		</option>
 		{% endfor %}

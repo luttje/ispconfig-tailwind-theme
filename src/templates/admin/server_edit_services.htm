@@ -43,14 +43,14 @@
                     {{ xmpp_server }}
                 </div>
             </div>
-			 <tmpl_if name="id" op="!=" value="1">
+			 {% if id != '1' %}
 	            <div class="form-group">
     	            <label for="mirror_server_id" class="col-sm-3 control-label">{{ mirror_server_id_txt }}</label>
         	        <div class="col-sm-9"><select name="mirror_server_id" id="server_id" class="form-control">
             	        {{ mirror_server_id }}
                 	</select></div>
 	            </div>
-			</tmpl_if>
+			{% endif %}
             <div class="form-group">
                 <label for="active" class="col-sm-3 control-label">{{ active_txt }}</label>
                 <div class="col-sm-9"><select name="active" id="active" class="form-control">

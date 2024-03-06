@@ -5,20 +5,20 @@
 
 
         <legend>Settings</legend>
-            <tmpl_if name="is_admin">
+            {% if is_admin %}
                 <div class="form-group">
-                    <tmpl_if name="edit_disabled">
+                    {% if edit_disabled %}
                         <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                         <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
                             {{ server_id }}
                         </select></div>
                         <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-                    <tmpl_else>
+                    {% else %}
                             <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                             <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control" onChange="ISPConfig.loadOptionInto('ip_address','vm/ajax_get_ip.php?server_id='+document.getElementById('server_id').value)">
                                 {{ server_id }}
                             </select></div>
-                    </tmpl_if>
+                    {% endif %}
                 </div>
                 <div class="form-group">
                     <label for="client_group_id" class="col-sm-3 control-label">{{ client_group_id_txt }}</label>
@@ -26,16 +26,16 @@
                         {{ client_group_id }}
                     </select></div>
                 </div>
-            </tmpl_if>
-            <tmpl_if name="is_reseller">
+            {% endif %}
+            {% if is_reseller %}
                 <div class="form-group">
                     <label for="client_group_id" class="col-sm-3 control-label">{{ client_group_id_txt }}</label>
                     <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
                         {{ client_group_id }}
                     </select></div>
                 </div>
-            </tmpl_if>
-            <tmpl_if name="edit_disabled">
+            {% endif %}
+            {% if edit_disabled %}
                 <div class="form-group">
                     <label for="ostemplate_id_disabled" class="col-sm-3 control-label">{{ ostemplate_id_txt }}</label>
                     <div class="col-sm-9"><select name="ostemplate_id_disabled" id="ostemplate_id_disabled" class="form-control" disabled="disabled">
@@ -43,14 +43,14 @@
                     </select></div>
                 </div>
                 <input type="hidden" name="ostemplate_id" value="{{ ostemplate_id_value }}">
-            <tmpl_else>
+            {% else %}
                 <div class="form-group">
                     <label for="ostemplate_id" class="col-sm-3 control-label">{{ ostemplate_id_txt }}</label>
                     <div class="col-sm-9"><select name="ostemplate_id" id="ostemplate_id" class="form-control">
                         {{ ostemplate_id }}
                     </select></div>
                 </div>
-            </tmpl_if>
+            {% endif %}
             <div class="form-group">
                 <label for="template_id" class="col-sm-3 control-label">{{ template_id_txt }}</label>
                 <div class="col-sm-9"><select name="template_id" id="template_id" class="form-control">

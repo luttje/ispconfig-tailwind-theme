@@ -24,14 +24,14 @@
 		</div>
 
 
-		<tmpl_if name="msg">
+		{% if msg %}
 			<div id="OKMsg">
 				<p>
 					{{ msg }}
 				</p>
 			</div>
-		</tmpl_if>
-		<tmpl_if name="error">
+		{% endif %}
+		{% if error %}
 			<div id="errorMsg">
 				<h3>
 					{{ error_txt }}
@@ -40,7 +40,7 @@
 					{{ error }}
 				</ol>
 			</div>
-		</tmpl_if>
+		{% endif %}
 
 		<input type="hidden" name="id" value="{{ id }}">
 

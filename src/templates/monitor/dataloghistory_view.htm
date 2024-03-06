@@ -1,8 +1,8 @@
-<tmpl_if name="list_head_txt">
+{% if list_head_txt %}
 <div class='page-header'>
 	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
 </div>
-</tmpl_if>
+{% endif %}
 <div class="table-wrapper marginTop15">
 	<table class='table w-full'>
 		<thead class="dark">
@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>{{ table_txt }}</td>
-				<td>{{ table }}<tmpl_if name='table_id'> ({{ table_id }})</tmpl_if></td>
+				<td>{{ table }}{% if table_id %} ({{ table_id }}){% endif %}</td>
 			</tr>
 			<tr>
 				<td>{{ action_txt }}</td>
@@ -36,19 +36,19 @@
     </table>
 </div>
 
-<tmpl_if name='action_char' value='i'>
+{% if action_char == 'i' %}
 	<h2>{{ fields_inserted_txt }}</h2>
-</tmpl_if>
-<tmpl_if name='action_char' value='u'>
+{% endif %}
+{% if action_char == 'u' %}
 	<h2>{{ fields_updated_txt }}</h2>
-</tmpl_if>
-<tmpl_if name='action_char' value='d'>
+{% endif %}
+{% if action_char == 'd' %}
 	<h2>{{ fields_deleted_txt }}</h2>
-</tmpl_if>
+{% endif %}
 
 <div class="table-wrapper marginTop15">
 	<table class='table w-full'>
-		<tmpl_if name='action_char' value='i'>
+		{% if action_char == 'i' %}
 			<thead class="dark">
 				<tr>
 					<th width="25%">{{ field_txt }}</th>
@@ -61,15 +61,15 @@
 					<td>{{ value }}</td>
 				</tr>
 			{% endfor %}
-		</tmpl_if>
-		<tmpl_if name='action_char' value='u'>
-			<tmpl_if name='no_changes'>
+		{% endif %}
+		{% if action_char == 'u' %}
+			{% if no_changes %}
 				<tbody>
 					<tr>
 						<td class="text-center"><h3>{{ no_changes_txt }}</h3></td>
 					</tr>
 				</tbody>
-			<tmpl_else>
+			{% else %}
 				<thead class="dark">
 					<tr>
 						<th width="25%">{{ field_txt }}</th>
@@ -79,7 +79,7 @@
 				</thead>
 				<tbody>
 				{% for updates %}
-					<tmpl_if name='is_diff'>
+					{% if is_diff %}
 						<tr>
 							<td>{{ key }}</td>
 							<td colspan="2">
@@ -87,18 +87,18 @@
 								<div class="finediff">{{ diff }}</div>
 							</td>
 						</tr>
-					<tmpl_else>
+					{% else %}
 						<tr>
 							<td>{{ key }}</td>
 							<td>{{ old }}</td>
 							<td>{{ new }}</td>
 						</tr>
-					</tmpl_if>
+					{% endif %}
 				{% endfor %}
 				</tbody>
-			</tmpl_if>
-		</tmpl_if>
-		<tmpl_if name='action_char' value='d'>
+			{% endif %}
+		{% endif %}
+		{% if action_char == 'd' %}
 			<thead class="dark">
 				<tr>
 					<th width="25%">{{ field_txt }}</th>
@@ -113,16 +113,16 @@
 				</tr>
 			{% endfor %}
 			</tbody>
-		</tmpl_if>
+		{% endif %}
 
     </table>
 </div>
 
 <div class="clear">
 	<div class="right">
-		<tmpl_if name='can_undo'>
+		{% if can_undo %}
 			<a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('monitor/dataloghistory_undo.php?id={{ id }}','{{ undo_confirmation_txt }}');"> {{ undo_txt }}</a>
-		</tmpl_if>
+		{% endif %}
 		<button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="monitor/dataloghistory_list.php">{{ btn_cancel_txt }}</button>
 	</div>
 </div>

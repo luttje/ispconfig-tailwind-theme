@@ -4,11 +4,11 @@
     <p>
         {{ hf_answer }}
     </p>
-    <tmpl_if name='is_admin'>
+    {% if is_admin %}
         <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('help/faq_delete.php?id={{ id }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
         <a href="#" data-load-content="help/faq_edit.php?id={{ id }}">{{ edit_txt }}</a>
         <br/>
         <br/>
         <br/>
-    </tmpl_if>
+    {% endif %}
 {% endfor %}

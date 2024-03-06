@@ -10,14 +10,14 @@
 			<label for="shell" class="col-sm-3 control-label">{{ shell_txt }}</label>
 			<div class="col-sm-9"><input type="text" name="shell" id="shell" value="{{ shell }}" class="form-control" /></div>
 		</div>
-		<tmpl_if name="is_jailkit">
+		{% if is_jailkit %}
 		<input type="hidden" name="dir" id="dir" value="{{ dir }}">
-		</tmpl_else>
+		{% else %}
 		<div class="form-group">
 			<label for="dir" class="col-sm-3 control-label">{{ dir_txt }}</label>
 			<div class="col-sm-9"><input type="text" name="dir" id="dir" value="{{ dir }}" class="form-control" /></div>
 		</div>
-		</tmpl_if>
+		{% endif %}
 	
 
         <input type="hidden" name="id" value="{{ id }}">

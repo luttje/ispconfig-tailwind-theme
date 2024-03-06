@@ -39,9 +39,9 @@
         <input type="hidden" name="type" value="alias">
 
         <div class="clear">
-            <tmpl_if name='id'><tmpl_if name='show_delete_on_forms' op="==" value="y">
+            {% if id %}{% if show_delete_on_forms == 'y' %}
                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_alias_del.php?id={{ id }}&_csrf_id={{ _csrf_id }}&_csrf_key={{ _csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-            </tmpl_if></tmpl_if>
+            {% endif %}{% endif %}
             <div class="right">
                 <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="mail/mail_alias_edit.php">{{ btn_save_txt }}</button>
                 <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="mail/mail_alias_list.php">{{ btn_cancel_txt }}</button>

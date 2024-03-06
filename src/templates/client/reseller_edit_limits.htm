@@ -1,7 +1,7 @@
 <div class="panel panel_client">
 
     <div class="pnl_formsarea">
-			<tmpl_if name="is_admin">
+			{% if is_admin %}
                 <div class="form-group">
                     <label for="template_master" class="col-sm-3 control-label">{{ template_master_txt }}</label>
                     <div class="col-sm-9"><select name="template_master" id="template_master" class="form-control">
@@ -14,11 +14,11 @@
                         {{ tpl_add_select }}
                     </select></div>
                 </div>
-				<tmpl_if name="is_admin">
+				{% if is_admin %}
 				<div class="clear"><div class="right">
 					<button class="btn btn-default formbutton-success" type="button" onclick="ISPConfig.addAdditionalTemplate();">{{ add_additional_template_txt }}</button>
 				</div></div>
-				</tmpl_if>
+				{% endif %}
                 <div class="form-group">
                     <label class="col-sm-3 control-label">{{ active_template_additional_txt }}</label>
                     <div id="template_additional_list" class="col-sm-9 col-text">
@@ -31,7 +31,7 @@
                 <div class="form-group">
                     &nbsp;
                 </div>
-            </tmpl_if>
+            {% endif %}
 			<div class="form-group">
                 <label for="customer_no_template" class="col-sm-3 control-label">{{ customer_no_template_txt }}</label>
                 <div class="col-sm-9"><input type="text" name="customer_no_template" id="customer_no_template" value="{{ customer_no_template }}" class="form-control" /></div></div>
@@ -242,14 +242,14 @@
 								{{ limit_mail_backup }}
 						</div>
 				</div>
-        <tmpl_if name="show_per_domain_relay_options">
+        {% if show_per_domain_relay_options %}
 				<div class="form-group">
 						<label class="col-sm-3 control-label">{{ limit_relayhost_txt }}</label>
 						<div class="col-sm-9">
 								{{ limit_relayhost }}
 						</div>
 				</div>
-			</tmpl_if>
+			{% endif %}
 			</div>
       </div>
   </div>
@@ -441,7 +441,7 @@
     </div>
   </div>
   <!-- APS -->
-  <tmpl_if name="show_aps_menu">
+  {% if show_aps_menu %}
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingAPS">
       <h4 class="panel-title">
@@ -459,7 +459,7 @@
       </div>
     </div>
   </div>
-  </tmpl_if>
+  {% endif %}
   <!-- Client -->
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingClient">
@@ -492,7 +492,7 @@
     </div>
 
 </div>
-<tmpl_if name="is_admin">
+{% if is_admin %}
 <script type="text/javascript">
 <!--
 function custom_template_selected() {
@@ -521,4 +521,4 @@ jQuery('div.panel_client')
 
 //-->
 </script>
-</tmpl_if>
+{% endif %}

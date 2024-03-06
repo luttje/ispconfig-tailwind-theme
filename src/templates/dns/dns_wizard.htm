@@ -6,7 +6,7 @@
 
 <div class="panel panel_language_import" style="padding:20px;">
 	<div class="pnl_formsarea">
-		<tmpl_if name="error">
+		{% if error %}
 			<div class='alert alert-danger clear'>
 				<div class='alert-label'><strong>
 						{{ error_txt }}
@@ -17,14 +17,14 @@
 					</ul>
 				</div>
 			</div>
-		</tmpl_if>
+		{% endif %}
 		<div class="form-group">
 			<label for="template_id" class="col-sm-3 control-label">{{ template_id_txt }}</label>
 			<div class="col-sm-9"><select name="template_id" id="template_id" class="form-control" onChange="ISPConfig.submitForm('pageForm','dns/dns_wizard.php')">
 					{{ template_id_option }}
 				</select></div>
 		</div>
-		<tmpl_if name="is_admin">
+		{% if is_admin %}
 			<div class="form-group">
 				<label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
 				<div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
@@ -39,19 +39,19 @@
 						</select></div>
 				</div>
 			</tmpl_unless>
-			<tmpl_else>
-				<tmpl_if name="only_one_server">
+			{% else %}
+				{% if only_one_server %}
 					<input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
-					<tmpl_else>
+					{% else %}
 						<div class="form-group">
 							<label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
 							<div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
 									{{ server_id }}
 								</select></div>
 						</div>
-				</tmpl_if>
-		</tmpl_if>
-		<tmpl_if name="is_reseller">
+				{% endif %}
+		{% endif %}
+		{% if is_reseller %}
 			<tmpl_unless name="domain_option">
 				<div class="form-group">
 					<label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
@@ -60,61 +60,61 @@
 						</select></div>
 				</div>
 			</tmpl_unless>
-		</tmpl_if>
-		<tmpl_if name="DOMAIN_VISIBLE">
+		{% endif %}
+		{% if DOMAIN_VISIBLE %}
 			<div class="form-group">
 				<label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
-				<tmpl_if name="domain_option">
+				{% if domain_option %}
 					<div class="col-sm-9"><select name="domain" id="domain" class="form-control">
 							{{ domain_option }}
 						</select></div>
-					<tmpl_else>
+					{% else %}
 						<div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>
-				</tmpl_if>
+				{% endif %}
 			</div>
-		</tmpl_if>
-		<tmpl_if name="IP_VISIBLE">
+		{% endif %}
+		{% if IP_VISIBLE %}
 			<div class="form-group">
 				<label for="ip" class="col-sm-3 control-label">{{ ip_txt }}</label>
 				<div class="col-sm-9"><input type="text" name="ip" id="ip" value="{{ ip }}" class="form-control" /></div>
 			</div>
-		</tmpl_if>
-		<tmpl_if name="IPV6_VISIBLE">
+		{% endif %}
+		{% if IPV6_VISIBLE %}
 			<div class="form-group">
 				<label for="ipv6" class="col-sm-3 control-label">{{ ipv6_txt }}</label>
 				<div class="col-sm-9"><input type="text" name="ipv6" id="ipv6" value="{{ ipv6 }}" class="form-control" /></div>
 			</div>
-		</tmpl_if>
-		<tmpl_if name="NS1_VISIBLE">
+		{% endif %}
+		{% if NS1_VISIBLE %}
 			<div class="form-group">
 				<label for="ns1" class="col-sm-3 control-label">{{ ns1_txt }}</label>
 				<div class="col-sm-9"><input type="text" name="ns1" id="ns1" value="{{ ns1 }}" class="form-control" /></div>
 			</div>
-		</tmpl_if>
-		<tmpl_if name="NS2_VISIBLE">
+		{% endif %}
+		{% if NS2_VISIBLE %}
 			<div class="form-group">
 				<label for="ns2" class="col-sm-3 control-label">{{ ns2_txt }}</label>
 				<div class="col-sm-9"><input type="text" name="ns2" id="ns2" value="{{ ns2 }}" class="form-control" /></div>
 			</div>
-		</tmpl_if>
-		<tmpl_if name="EMAIL_VISIBLE">
+		{% endif %}
+		{% if EMAIL_VISIBLE %}
 			<div class="form-group">
 				<label for="email" class="col-sm-3 control-label">{{ email_txt }}</label>
 				<div class="col-sm-9"><input type="text" name="email" id="email" value="{{ email }}" class="form-control" /></div>
 			</div>
-		</tmpl_if>
-		<tmpl_if name="DKIM_VISIBLE">
+		{% endif %}
+		{% if DKIM_VISIBLE %}
 			<div class="form-group">
 				<label for="dkim" class="col-sm-3 control-label">{{ dkim_txt }}</label>
 				<div class="col-sm-9"><input type="checkbox" disabled readonly checked><input name="dkim" type="hidden" maxlength="255" type="text" /></div>
 			</div>
-		</tmpl_if>
-		<tmpl_if name="DNSSEC_VISIBLE">
+		{% endif %}
+		{% if DNSSEC_VISIBLE %}
 			<div class="form-group">
 				<label for="dkim" class="col-sm-3 control-label">{{ dnssec_txt }}</label>
 				<div class="col-sm-9"><input type="checkbox" name="dnssec" value="Y"></div>
 			</div>
-		</tmpl_if>
+		{% endif %}
 
 		<input type="hidden" name="create" value="0" />
 

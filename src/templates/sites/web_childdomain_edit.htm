@@ -1,36 +1,36 @@
-			<tmpl_if name="childdomain_type" value="subdomain">
-            <tmpl_if name="domain_option">
+			{% if childdomain_type == 'subdomain' %}
+            {% if domain_option %}
             <div class="form-group">
                 <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
                 <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
             </div>
-            </tmpl_if>
+            {% endif %}
             <div class="form-group">
                 <label for="domain" class="col-sm-3 control-label">{{ host_txt }}</label>
                 <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></div>
-            <tmpl_if name="domain_option">
+            {% if domain_option %}
             <div class="form-group">
                 <label for="sel_domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
                     <div class="col-sm-9"><select name="sel_domain" id="sel_domain" class="form-control">
                         {{ domain_option }}
                     </select></div>
             </div>
-            <tmpl_else>
+            {% else %}
             <div class="form-group">
                 <label for="parent_domain_id" class="col-sm-3 control-label">{{ domain_txt }}</label>
                 <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
             </div>
-            </tmpl_if>
-			<tmpl_else>
+            {% endif %}
+			{% else %}
             <div class="form-group">
-                <tmpl_if name="domain_option">
+                {% if domain_option %}
                     <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
                     <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
                         {{ domain_option }}
                     </select></div>
-                <tmpl_else>
+                {% else %}
                     <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
-                    <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></tmpl_if>
+                    <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>{% endif %}
             </div>
             <div class="form-group">
                 <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
@@ -38,7 +38,7 @@
                     {{ parent_domain_id }}
                 </select></div>
             </div>
-			</tmpl_if>
+			{% endif %}
             <div class="form-group">
                 <label for="redirect_type" class="col-sm-3 control-label">{{ redirect_type_txt }}</label>
                 <div class="col-sm-9"><select name="redirect_type" id="redirect_type" class="form-control">
@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label for="redirect_path" class="col-sm-3 control-label">{{ redirect_path_txt }}</label>
                 <div class="col-sm-9"><input type="text" name="redirect_path" id="redirect_path" value="{{ redirect_path }}" class="form-control" /></div></div>
-			<tmpl_if name="childdomain_type" value="aliasdomain">
+			{% if childdomain_type == 'aliasdomain' %}
             <div class="form-group">
                 <label for="subdomain" class="col-sm-3 control-label">{{ subdomain_txt }}</label>
                 <div class="col-sm-9"><select name="subdomain" id="subdomain" class="form-control">
@@ -61,15 +61,15 @@
                     {{ seo_redirect }}
                 </select></div>
             </div>
-			</tmpl_if>
-			<tmpl_if name="limit_ssl_letsencrypt" op="==" value="y">
+			{% endif %}
+			{% if limit_ssl_letsencrypt == 'y' %}
 				<div class="form-group">
                 <label class="col-sm-3 control-label">{{ ssl_letsencrypt_exclude_txt }}</label>
                 <div class="col-sm-9">
                     {{ ssl_letsencrypt_exclude }}
                 </div>
             </div>
-			</tmpl_if>
+			{% endif %}
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ active_txt }}</label>
                 <div class="col-sm-9">
