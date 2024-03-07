@@ -2,10 +2,12 @@ import { resolve } from 'path'
 import tailwindcss from 'tailwindcss'
 import { defineConfig } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
-import { liquidishTransform } from './liquidish';
+import { LiquidishTransformer } from './liquidish';
 
 const path = (path) => resolve(__dirname, path);
 const srcTemplatesPath = path('src/templates');
+
+const liquidish = new LiquidishTransformer({});
 
 const staticAssetsDirectories = [
   'favicon',
@@ -46,8 +48,8 @@ export default defineConfig({
         {
           src: 'src/templates/**/*.liquid',
           dest: 'templates',
-          
-          transform: liquidishTransform,
+
+          transform: (contents, path) => liquidish.transform(contents, path),
 
           rename: function (name, ext, fullPath) {
             const path = fullPath.replace(srcTemplatesPath, '');

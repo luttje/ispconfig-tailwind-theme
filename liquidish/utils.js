@@ -1,6 +1,6 @@
 import indentString from 'indent-string';
 import { resolve, dirname } from 'path';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 
 export function trimTrailingNewline(contents) {
     return contents.replace(/\n$/, '');
@@ -17,7 +17,13 @@ export function getIndentationFromLineStart(string, offset) {
 }
 
 export function readComponentWithIndentation(path, component, indentation = 0) {
-    const contents = readFileSync(resolve(dirname(path), component), 'utf8');
+    let componentPath = resolve(dirname(path), component);
+
+    if (existsSync(componentPath) === false) {
+        componentPath = resolve(dirname(path), component + '.liquid');
+    }
+
+    const contents = readFileSync(componentPath, 'utf8');
     let indented = indentString(contents, indentation);
 
     // The first line should not be indented (since it's indented from where we are rendering it)
