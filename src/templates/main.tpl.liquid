@@ -55,8 +55,6 @@
     <link rel='stylesheet'
           href='themes/{{ current_theme }}/assets/stylesheets/bootstrap-datetimepicker.min.css' />
     <link rel='stylesheet'
-          href='themes/{{ current_theme }}/assets/stylesheets/themes/default/theme.css' />
-    <link rel='stylesheet'
           href='themes/{{ current_theme }}/assets/stylesheets/select2.css' />
     <link rel='stylesheet'
           href='themes/{{ current_theme }}/assets/stylesheets/select2-bootstrap.css' />
@@ -114,13 +112,14 @@
                             </form>
                             {% endif %}
 
-                            {% comment %}
-                            <!-- logout button -->
-                            <button id='logout-button'
-                                    class='px-4 py-2 self-start text-sm whitespace-nowrap font-medium text-white bg-[#c70f19] border-bottom-[#980b13] hover:bg-[#df111c] hover:border-bottom-[#800a10] rounded-md shadow uppercase'
-                                    data-load-content="login/logout.php">{{ logout_txt }} {{ cpuser }}</button>
-                            {% endcomment %}
-                            {% render 'components/button/danger.liquid', slot: '{{ logout_txt }} {{ cpuser }}', attributes: 'data-load-content="login/logout.php"' %}
+                            {% render_json 'components/button/danger', {
+                                    "slot": "{{ logout_txt }} {{ cpuser }}",
+                                    "attributes": [
+                                        ["id", "logout-button"],
+                                        ["data-load-content", "login/logout.php"]
+                                    ]
+                                }
+                            %}
                         {% endif %}
                     </div>
 
@@ -164,7 +163,7 @@
                      class='py-4'>
                 </div>
                 {% endif %}
-                <div class='flex flex-wrap flex-col lg:flex-row'>
+                <div class='flex flex-wrap flex-col lg:flex-row-reverse'>
                     <!-- content -->
                     <div id='content'
                          class='flex-1 p-4 lg:w-3/4'>

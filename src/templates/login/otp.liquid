@@ -4,7 +4,7 @@
 {% if error %}
 <div class="alert alert-danger" role="alert">{{ error }}</div>
 {% endif %}
-<h2>{{ otp_code_txt }}</h2>
+{% render '../components/h2', slot: '{{ otp_code_txt }}' %}
 <p>{{ otp_code_desc_txt }}</p>
 <form accept-charset="UTF-8" role="form" method="post" action="otp.php">
 <fieldset>

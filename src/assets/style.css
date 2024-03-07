@@ -328,22 +328,6 @@ p.fieldset-legend {
   display: none;
 }
 
-.content-tab-wrapper {
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.content-tab-wrapper .nav-tabs>li>a {
-  border-radius: 0;
-  border: none !important;
-  border-right-style: solid !important;
-  border-right-width: 1px !important;
-  outline: none;
-  font-weight: bold;
-  transition: background ease 500ms;
-}
-
 .content-tab-wrapper .nav-tabs li:not(:first-child) a {
   margin-left: -2px;
 }

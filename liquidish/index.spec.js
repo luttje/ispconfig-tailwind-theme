@@ -16,7 +16,7 @@ function readFixtureFile(name) {
 }
 
 function getDefaultTransform(contents, path) {
-    return new LiquidishTransformer().transform(contents, path);
+    return new LiquidishTransformer().transform(contents, path ?? fixturesPath);
 }
 
 describe('LiquidishTransformer (default)', () => {
@@ -86,29 +86,43 @@ describe('LiquidishTransformer (default)', () => {
     });
 
     it('should transform render statements', () => {
-        const transformed = getDefaultTransform(`{% render 'render-basic.liquid' %}`, resolve(fixturesPath, 'render-basic.liquid'));
+        const transformed = getDefaultTransform(`{% render './render-basic.liquid' %}`, resolve(fixturesPath, 'render-basic.liquid'));
         const expected = readFixtureFile('render-basic.expected.htm');
 
         expect(transformed).toBe(expected);
     });
 
     it('should transform render statements with implicit .liquid extension', () => {
-        const transformed = getDefaultTransform(`{% render 'render-basic' %}`, resolve(fixturesPath, 'render-basic.liquid'));
+        const transformed = getDefaultTransform(`{% render './render-basic' %}`, resolve(fixturesPath, 'render-basic.liquid'));
         const expected = readFixtureFile('render-basic.expected.htm');
 
         expect(transformed).toBe(expected);
     });
 
     it('should transform render statements within render statements', () => {
-        const transformed = getDefaultTransform(`{% render 'render-sub-components.liquid' %}`, resolve(fixturesPath, 'render-sub-components.liquid'));
+        const transformed = getDefaultTransform(`{% render './render-sub-components.liquid' %}`, resolve(fixturesPath, 'render-sub-components.liquid'));
         const expected = readFixtureFile('render-sub-components.expected.htm');
 
         expect(transformed).toBe(expected);
     });
 
+    it('should transform render statements relative to the current file', () => {
+        const transformed = getDefaultTransform(`{% render './subdir/render-subdir-sub.liquid' %}`, resolve(fixturesPath, 'render-from-root.liquid'));
+        const expected = readFixtureFile('subdir/render-subdir-sub.expected.htm');
+
+        expect(transformed).toBe(expected);
+    });
+
     it('should render variables with other quote types correctly', () => {
-        const transformed = getDefaultTransform(`{% render 'render-attributes-component.liquid', slot: '{{ logout_txt }} {{ cpuser }}', attributes: 'data-load-content="login/logout.php"' %}`, resolve(fixturesPath, 'render-attributes.liquid'));
+        const transformed = getDefaultTransform(`{% render './render-attributes-component.liquid', slot: '{{ logout_txt }} {{ cpuser }}', attributes: 'data-load-content="login/logout.php"' %}`, resolve(fixturesPath, 'render-attributes.liquid'));
         const expected = readFixtureFile('render-attributes.expected.htm');
+
+        expect(transformed).toBe(expected);
+    });
+
+    it('should be able to render_json statements', () => {
+        const transformed = getDefaultTransform(readFixtureFile('./render-json.liquid'), resolve(fixturesPath, 'render-json.liquid'));
+        const expected = readFixtureFile('render-json.expected.htm');
 
         expect(transformed).toBe(expected);
     });
@@ -129,21 +143,21 @@ describe('LiquidishTransformer (customized)', () => {
         const transformer = new LiquidishTransformer({ maxRenderDepth: 1 });
 
         expect(
-            () => transformer.transform(`{% render 'render-sub-components.liquid' %}`, resolve(fixturesPath, 'render-sub-components.liquid'))
+            () => transformer.transform(`{% render './render-sub-components.liquid' %}`, resolve(fixturesPath, 'render-sub-components.liquid'))
         ).toThrowError('Max render depth of 1 reached. Aborting transformation.');
     });
 
     it('can be configured to show comments as HTML comments', () => {
         const transformer = new LiquidishTransformer({ showComments: true });
 
-        const transformed = transformer.transform(`{% comment %} This is a comment {% endcomment %}`);
+        const transformed = transformer.transform(`{% comment %} This is a comment {% endcomment %}`, fixturesPath);
         expect(transformed).toBe('<!-- This is a comment -->');
     });
 
     it('should transform multiline comment statements', () => {
         const transformer = new LiquidishTransformer({ showComments: true });
 
-        const transformed = transformer.transform(`{% comment %}\nThis is a comment\nwith multiple lines\n{% endcomment %}`);
+        const transformed = transformer.transform(`{% comment %}\nThis is a comment\nwith multiple lines\n{% endcomment %}`, fixturesPath);
         expect(transformed).toBe('<!--\nThis is a comment\nwith multiple lines\n-->');
     });
 });

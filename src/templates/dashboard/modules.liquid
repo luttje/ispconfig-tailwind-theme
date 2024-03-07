@@ -1,5 +1,5 @@
-	<h2 class="text-2xl my-4">{{ available_modules_txt }}</h2>
-	<div style='margin: 0 auto;'>
+{% render '../components/h2', slot: '{{ available_modules_txt }}' %}
+<div style='margin: 0 auto;'>
 	<ul class='modules clear'>
 	{% loop modules %}
 		<li>
@@ -7,9 +7,15 @@
 				<div class='text-6xl icon icon-{{ modules_name }}'></div>
 				<div class='title font-bold'>{{ modules_title }}</div>
 
-				<a href='#' class='flex justify-center p-2 shadow-sm rounded self-stretch font-bold text-xs bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee]' data-capp='{{ modules_name }}'>{{ go_to_txt }} {{ modules_title }}</a>
+                {% render_json '../components/button/primary', {
+                    "slot": "{{ go_to_txt }} {{ modules_title }}",
+                    "attributes": [
+                        ["href", "#"],
+                        ["data-capp", "{{ modules_name }}"]
+                    ]
+                } %}
 			</div>
 		</li>
 	{% endloop %}
 	</ul>
-	</div>
+</div>

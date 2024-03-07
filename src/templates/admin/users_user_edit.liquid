@@ -7,7 +7,7 @@
           				<div class="input-group">
           					<input type="password" name="passwort" id="passwort" value="{{ passwort }}" title="{{ password_click_to_set_txt }}" class="form-control" autocomplete="off" onkeyup="pass_check(this.value);checkPassMatch('passwort','repeat_password');" />
           					<span class="input-group-btn">
-          						<button class="btn btn-default" type="button" onclick="generatePassword('passwort','repeat_password');">{{ generate_password_txt }}</button>
+                                {% render '../components/button/generate-password', password: 'passwort' %}
           					</span>
           				</div>
           				</div>

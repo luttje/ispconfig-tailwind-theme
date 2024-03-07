@@ -37,13 +37,13 @@
 </div>
 
 {% if action_char == 'i' %}
-	<h2>{{ fields_inserted_txt }}</h2>
+	{% render '../components/h2', slot: '{{ fields_inserted_txt }}' %}
 {% endif %}
 {% if action_char == 'u' %}
-	<h2>{{ fields_updated_txt }}</h2>
+	{% render '../components/h2', slot: '{{ fields_updated_txt }}' %}
 {% endif %}
 {% if action_char == 'd' %}
-	<h2>{{ fields_deleted_txt }}</h2>
+	{% render '../components/h2', slot: '{{ fields_deleted_txt }}' %}
 {% endif %}
 
 <div class="table-wrapper marginTop15">

@@ -1,53 +1,92 @@
-            <div class="form-group">
-                <label for="remote_username" class="col-sm-3 control-label">{{ username_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="remote_username" id="username" value="{{ remote_username }}" class="form-control" /></div></div>
-                
-            <div class="form-group">
-                <label for="remote_password" class="col-sm-3 control-label">{{ password_txt }}</label>
-                <div class="col-sm-9">
-					<div class="input-group">
-						<input type="password" name="remote_password" id="password" value="{{ remote_password }}" class="form-control" autocomplete="off" onkeyup="pass_check(this.value);checkPassMatch('password','repeat_password');" />
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" onclick="generatePassword('password','repeat_password');">{{ generate_password_txt }}</button>
-						</span>
-					</div><!-- /input-group -->
-				</div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ password_strength_txt }}</label>
-                <div class="col-sm-9 checkbox">
-                <div id="passBar"></div>
-                <span id="passText">&nbsp;</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="repeat_password" class="col-sm-3 control-label">{{ repeat_password_txt }}</label>
-                <div class="col-sm-9"><input type="password" name="repeat_password" id="repeat_password" value="" class="form-control" autocomplete="off" onkeyup="checkPassMatch('password','repeat_password');" /></div></div>
-            <div class="form-group">
-				<div class="col-sm-offset-3 col-sm-9">
-					<div id="confirmpasswordError" style="display:none;" class="confirmpassworderror">{{ password_mismatch_txt }}</div>
-					<div id="confirmpasswordOK" style="display:none;" class="confirmpasswordok">{{ password_match_txt }}</div>
-				</div>
-			</div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ remote_access_txt }}</label>
-                <div class="col-sm-9">{{ remote_access }}</div></div>
-            <div class="form-group">
-                <label for="remote_ips" class="col-sm-3 control-label">{{ remote_ips_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="remote_ips" id="remote_ips" value="{{ remote_ips }}" class="form-control" /></div></div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ function_txt }}</label>
-                <div class="col-sm-9">
-                    {{ remote_functions }}
-                </div>
-            </div>
-                
-        
-            
-        <input type="hidden" name="remote_userid" value="{{ id }}">
-        <input type="hidden" name="id" value="{{ id }}">
-            
-        <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="admin/remote_user_edit.php">{{ btn_save_txt }}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="admin/remote_user_list.php">{{ btn_cancel_txt }}</button>
-        </div></div>
+<div class="flex flex-col gap-2">
+    {% render '../components/input/text-group', id: 'username', name: 'remote_username', value: '{{ remote_username }}', label: '{{ username_txt }}' %}
+
+    <div class="form-group">
+        <label for="remote_password"
+               class="col-sm-3 control-label">{{ password_txt }}</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input type="password"
+                       name="remote_password"
+                       id="password"
+                       value="{{ remote_password }}"
+                       class="form-control"
+                       autocomplete="off"
+                       onkeyup="pass_check(this.value);checkPassMatch('password','repeat_password');" />
+                <span class="input-group-btn">
+                    {% render '../components/button/generate-password', password: 'password' %}
+                </span>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{ password_strength_txt }}</label>
+        <div class="col-sm-9 checkbox">
+            <div id="passBar"></div>
+            <span id="passText">&nbsp;</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="repeat_password"
+               class="col-sm-3 control-label">{{ repeat_password_txt }}</label>
+        <div class="col-sm-9"><input type="password"
+                   name="repeat_password"
+                   id="repeat_password"
+                   value=""
+                   class="form-control"
+                   autocomplete="off"
+                   onkeyup="checkPassMatch('password','repeat_password');" /></div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <div id="confirmpasswordError"
+                 style="display:none;"
+                 class="confirmpassworderror">{{ password_mismatch_txt }}</div>
+            <div id="confirmpasswordOK"
+                 style="display:none;"
+                 class="confirmpasswordok">{{ password_match_txt }}</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{ remote_access_txt }}</label>
+        <div class="col-sm-9">{{ remote_access }}</div>
+    </div>
+    <div class="form-group">
+        <label for="remote_ips"
+               class="col-sm-3 control-label">{{ remote_ips_txt }}</label>
+        <div class="col-sm-9"><input type="text"
+                   name="remote_ips"
+                   id="remote_ips"
+                   value="{{ remote_ips }}"
+                   class="form-control" /></div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{ function_txt }}</label>
+        <div class="col-sm-9">
+            {{ remote_functions }}
+        </div>
+    </div>
+
+
+
+    <input type="hidden"
+           name="remote_userid"
+           value="{{ id }}">
+    <input type="hidden"
+           name="id"
+           value="{{ id }}">
+
+    <div class="clear">
+        <div class="right">
+            <button class="btn btn-default formbutton-success"
+                    type="button"
+                    value="{{ btn_save_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="admin/remote_user_edit.php">{{ btn_save_txt }}</button>
+            <button class="btn btn-default formbutton-default"
+                    type="button"
+                    value="{{ btn_cancel_txt }}"
+                    data-load-content="admin/remote_user_list.php">{{ btn_cancel_txt }}</button>
+        </div>
+    </div>
+</div>

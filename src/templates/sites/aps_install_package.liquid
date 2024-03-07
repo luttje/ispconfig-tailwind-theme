@@ -69,7 +69,7 @@
 					<div class="input-group">
 						<input type="password" name="password" id="password" value="{{ password }}" class="form-control" autocomplete="off" onkeyup="pass_check(this.value);checkPassMatch('password','repeat_password');" />
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" onclick="generatePassword('password','repeat_password');">{{ generate_password_txt }}</button>
+							{% render '../components/button/generate-password', password: 'password' %}
 						</span>
 						<p class="formHint"></p>
 					</div>
@@ -102,7 +102,7 @@
 
 				let passwordFieldFormGroup = passwordField.closest('.form-group');
 				let passwordFieldWithChecks = jQuery('#passwordFieldWithChecks');
-		
+
 				let originalLabel = passwordFieldFormGroup.find('label').first().text();
 				let originalName = passwordField.prop('name');
 				let originalMaxLength = passwordField.prop('maxlength');
@@ -115,7 +115,7 @@
 				passwordFieldWithChecksInputField.prop('name', originalName);
 				passwordFieldWithChecks.find('label').first().text(originalLabel);
 				passwordFieldWithChecks.find('.formHint').text(originalFormHint);
-		
+
 				if (originalMaxLength && originalMaxLength > 0) {
 					passwordFieldWithChecksInputField.prop('maxlength', originalMaxLength);
 				}

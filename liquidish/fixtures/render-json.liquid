@@ -1,0 +1,7 @@
+{% render_json 'render-json-component.liquid', {
+    "slot": "{{ logout_txt }} {{ cpuser }}",
+    "attributes": [
+        ["id", "logout-button"],
+        ["data-load-content", "login/logout.php"]
+    ]
+} %}

@@ -1,0 +1,6 @@
+<div class="flex flex-row items-center">
+    <label for="{{ name }}" class="w-3/12 px-4 text-sm text-right after:content-[':']">{{ label }}</label>
+    <div class="w-9/12">
+        {% render './text', id: '{{ id }}', name: '{{ name }}', value: '{{ value }}' %}
+    </div>
+</div>

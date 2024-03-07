@@ -4,6 +4,8 @@ In order to get better IDE support when working with ISPConfig's `tpl` files, we
 
 When building the theme, it is compiled to `.tpl.htm` files for ISPConfig.
 
+> Check out [this VSCode extension](https://marketplace.visualstudio.com/items?itemName=sissel.shopify-liquid) for Liquid syntax highlighting and other language features.
+
 ## 📚 Liquidish Syntax (Transpiled)
 
 This syntax is transpiled (translated) to ISPConfig's `tpl` syntax.
@@ -34,26 +36,97 @@ Hooks are defined with `{% hook 'content' %}`.
 
 #### 🔥 Extra Syntax Features
 
+These features suplement the ISPConfig `tpl` syntax, by performing string manipulation at compile-time.
+
 > [!WARNING]
-> These features are not yet implemented.
+> These features are implement using very basic string manipulation. They can be error-prone if not used correctly.
+
+### Commenting out code
+
+You can comment out code using `{% comment %}` and `{% endcomment %}`.
+
+```liquid
+{% comment %}
+    This is a comment
+{% endcomment %}
+```
+
+By default this will be removed from the output.
 
 ### Pre-compiling snippets with `{% render ... %}`
 
-When using `{% render './template/button' %}`, the sub-template will be compiled to the `.tpl.htm` file. This is unlike the `dyninclude` tag, which is included at runtime.
+When using `{% render './path/to/sub-template.liquid' %}` the sub-template will be compiled to the final `.tpl.htm` file. This is unlike the `dyninclude` tag, which is included at runtime by ISPConfig.
+
+You must provide the path starting with `./` or `../` so it can be adjusted to the correct path when compiled.
+
+```liquid
+{% render './components/button.liquid' %}
+```
 
 To pass parameters to the sub-template, you can use following syntax:
 
 ```liquid
-{% render './template/button', variable: 'value', another_variable: 'another_value' %}
+{% render './components/button', variable: 'value', another_variable: 'another_value' %}
 ```
 
-#### 
+Note that the `.liquid` extension is optional.
+
+### Pre-compiling snippets with `{% render_json ... %}`
+
+In order to pass complex JSON objects/arrays to a component you can use:
+
+```liquid
+{% render_json 'components/heading', {
+    "slot": "{{ logout_txt }} {{ cpuser }}",
+    "attributes": [
+        ["id", "logout-button"],
+        ["data-load-content", "login/logout.php"]
+    ]
+} %}
+```
+
+Due to the limited implementation of this feature, you can not have the JSON object contain `%}`.
+
+### Looping over variables with `{% for ... in ... %}`
+
+Where `{% loop ... %}` transpiles to a runtime loop. `{% for ... in ... %}` transpiles to a compile-time loop.
+
+Provide it with a variable that is known at compile-time, and it will loop over it:
+
+```liquid
+{% for item in items %}
+    {{ item }}
+{% endfor %}
+```
+
+This can be useful when you want to loop over a bunch of items that are known at compile-time, e.g: for attributes in a button component:
+
+```liquid
+<button class="px-4 py-2"
+        {% for attribute in attributes %}
+        {{ attribute[0] }}="{{ attribute[1] }}"
+        {% endfor %}>
+        {{ slot }}
+</button>
+```
+
+The attributes would be provided like this:
+
+```liquid
+{% render_json 'components/button', {
+    "slot": "Click me",
+    "attributes": [
+        ["id", "click-me"],
+        ["data-load-content", "click.php"]
+    ]
+} %}
+```
 
 ## Migrate ISPConfig `tpl` to `Liquidish`
 
 This is a guide for migrating ISPConfig's `tpl` files to `Liquidish`. This can be useful when porting an existing theme to this workflow.
 
-### Variables
+### Migrating Variables
 
 *E.g: `<tmpl_var name='VARIABLE'>` to `{{ VARIABLE }}`*
 
@@ -69,7 +142,7 @@ This is a guide for migrating ISPConfig's `tpl` files to `Liquidish`. This can b
 
 **Replacement:** `{{ $1 }}`
 
-### If-statements
+### Migrating If-statements
 
 *E.g: `<tmpl_if name="logged_in">` to `{% if logged_in %}`*
 *E.g: `<tmpl_if name="logged_in" value="y">` to `{% if logged_in == 'y' %}`*
@@ -112,7 +185,7 @@ E.g: `<tmpl_if name="logged_in" op="!=" value="y">` to `{% if logged_in != 'y' %
 
 **Replace the closing tag matched with:** `</tmpl_if>` or `\{/tmpl_if\}` by `{% endif %}`
 
-### Unless-statements
+### Migrating Unless-statements
 
 *E.g: `<tmpl_unless name="logged_in">` to `{% unless logged_in %}`*
 
@@ -121,7 +194,7 @@ E.g: `<tmpl_if name="logged_in" op="!=" value="y">` to `{% if logged_in != 'y' %
 
 **Replace the closing tag matched with:** `</tmpl_unless>` or `\{/tmpl_unless\}` by `{% endunless %}`
 
-### Loops
+### Migrating Loops
 
 *E.g: `<tmpl_loop name="VARIABLE">` to `{% loop VARIABLE %}`*
 
@@ -130,14 +203,14 @@ E.g: `<tmpl_if name="logged_in" op="!=" value="y">` to `{% if logged_in != 'y' %
 \
 **Replace the closing tag matched with:** `</tmpl_loop>` by `{% endloop %}`
 
-### Dyninclude
+### Migrating Dyninclude
 
 *E.g: `<tmpl_dyninclude name="content_tpl">` to `{% dyninclude 'content_tpl' %}`*
 
 **Match:** `<tmpl_dyninclude name="([^"]*?)">` or `<tmpl_dyninclude name='([^']*?)'>`
 **Replacement:** `{% dyninclude '$1' %}`
 
-### Hooks
+### Migrating Hooks
 
 *E.g: `{tmpl_hook name="content"} to {% hook 'content' %}`*
 
