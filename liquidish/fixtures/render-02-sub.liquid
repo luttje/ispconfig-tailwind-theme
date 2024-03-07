@@ -1,0 +1,7 @@
+<div class="flex flex-col gap-4"
+    data-foo="bar"
+    data-bar="baz"
+    wire:ignore
+    @click="console.log('clicked')">
+    {% render 'render-01-sub.liquid', slot: {{ SLOT_VARIABLE }} %}
+</div>

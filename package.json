@@ -14,7 +14,8 @@
   "description": "",
   "dependencies": {
     "@ryangjchandler/alpine-tooltip": "^2.0.0",
-    "alpinejs": "^3.13.6"
+    "alpinejs": "^3.13.6",
+    "indent-string": "^5.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.18",

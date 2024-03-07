@@ -1,17 +1,19 @@
-import { resolve, dirname } from 'path';
-import { readFileSync } from 'fs';
+import { getIndentationFromLineStart, readComponentWithIndentation } from './utils';
 
 /**
  * Liquidish is a custom template language that is similar to Liquid, but with some differences.
  *
  * It transpiles to the ISPConfig template language.
  */
+
+const MAX_ITERATIONS = 100;
+
 const transformRegexes = [];
 
 /**
  * Adds a transformation regex to the list of regexes.
  *
- * @param {RegExp} regex The regex to add
+ * @param {RegExp|RegExp[]} regex The regex to add
  * @param {string} replacement The replacement string
  */
 function addTransform(regex, replacement) {
@@ -79,19 +81,30 @@ addTransform(/{%\s*hook\s*'([^']+)'\s*%}/g, '{tmpl_hook name="$1"}');
 /**
  * Custom additions
  */
+
 // {% render 'COMPONENT' %} -> {contents of that COMPONENT file}
-addTransform(/{%\s*render\s*'([^']+)'\s*%}/g, (path, match, component) => {
-    return readFileSync(resolve(dirname(path), component), 'utf8');
+const renderRegexes = [
+    /{%\s*render\s*'([^']+)'\s*%}/g,
+    /{%\s*render\s*"([^"]+)"\s*%}/g
+];
+addTransform(renderRegexes, (path, match, component, offset, string) => {
+    return readComponentWithIndentation(path, component, getIndentationFromLineStart(string, offset));
 });
 
 // {% render 'COMPONENT', variable: 'value', another: 'value' %} -> {contents of that COMPONENT file with the variables replaced}
-addTransform(/{%\s*render\s*'([^']+)'\s*,\s*([^%]+)\s*%}/g, (path, match, component, variables) => {
+const renderWithVariablesRegexes = [
+    /{%\s*render\s*'([^']+)'\s*,\s*([^%]+)\s*%}/g,
+    /{%\s*render\s*"([^"]+)"\s*,\s*([^%]+)\s*%}/g
+];
+addTransform(renderWithVariablesRegexes, (path, match, component, variables, offset, string) => {
     const parsedVariables = variables.split(',').map(variable => {
-        const [name, value] = variable.split(':').map(v => v.trim());
+        const [name, value] = variable.split(':')
+            .map(v => v.trim().replace(/^['"]|['"]$/g, ''));
+
         return { name, value };
     });
 
-    let contents = readFileSync(resolve(dirname(path), component), 'utf8');
+    let contents = readComponentWithIndentation(path, component, getIndentationFromLineStart(string, offset));
     for (const { name, value } of parsedVariables) {
         contents = contents.replace(new RegExp(`{{\\s*${name}\\s*}}`, 'g'), value);
     }
@@ -99,12 +112,48 @@ addTransform(/{%\s*render\s*'([^']+)'\s*,\s*([^%]+)\s*%}/g, (path, match, compon
     return contents;
 });
 
+function transformContents(contents, path, regex, replacement) {
+    if (typeof replacement === 'function')
+        contents = contents.replace(regex, (...args) => replacement(path, ...args));
+    else
+        contents = contents.replace(regex, replacement);
+
+    return contents;
+}
+
+/**
+ * Keeps transforming the provided contents to ISPConfig tpl format until
+ * no more transformations are occurring, or when the maximum number of
+ * iterations is reached.
+ */
 export function liquidishTransform(contents, path) {
-    for (const { regex, replacement } of transformRegexes) {
-        if (typeof replacement === 'function')
-            contents = contents.replace(regex, (...args) => replacement(path, ...args));
-        else
-            contents = contents.replace(regex, replacement);
+    let iterations = 0;
+    let transformed = true;
+
+    while (transformed && iterations < MAX_ITERATIONS) {
+        transformed = false;
+
+        for (const { regex, replacement } of transformRegexes) {
+            if (Array.isArray(regex)) {
+                for (const r of regex) {
+                    if (contents.match(r)) {
+                        contents = transformContents(contents, path, r, replacement);
+                        transformed = true;
+                    }
+                }
+            } else {
+                if (contents.match(regex)) {
+                    contents = transformContents(contents, path, regex, replacement);
+                    transformed = true;
+                }
+            }
+        }
+
+        if (!transformed) {
+            break;
+        }
+
+        iterations++;
     }
 
     return contents;
