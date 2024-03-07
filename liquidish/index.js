@@ -1,4 +1,4 @@
-import { getIndentationFromLineStart, readComponentWithIndentation, renderWithVariablesReplacement, buildVariablesScope, trimTrailingNewline, tryFindComponentPath } from './utils';
+import { getIndentationFromLineStart, readComponentWithIndentation, buildVariablesScope, trimTrailingNewline, tryFindComponentPath } from './utils';
 import { resolve, dirname } from 'path';
 import { existsSync } from 'fs';
 
@@ -54,14 +54,16 @@ const renderJsonRegexes = [
 addDefaultTransform(renderJsonRegexes, ({ transformer, match }, component, json, offset, string) => {
     const variables = JSON.parse(json);
 
-    transformer.pushToScope(variables);
-
     const { contents, path } = readComponentWithIndentation(transformer.getPath(), component, getIndentationFromLineStart(string, offset));
 
-    return renderWithVariablesReplacement(
-        transformer.fixupPathsInComponent(contents, path),
-        variables
-    );
+    transformer.pushToScope({
+        ...variables,
+        path
+    });
+
+    const rendered = transformer.transform(contents);
+
+    return rendered;
 });
 
 // {% render 'COMPONENT', variable: 'value', another: 'value' %} -> {contents of that COMPONENT file with the variables replaced}
@@ -70,21 +72,25 @@ const renderWithVariablesRegexes = [
     /{%\s*render\s*"([^"]+)"\s*,\s*([^%]+)\s*%}/g
 ];
 addDefaultTransform(renderWithVariablesRegexes, ({ transformer }, component, variablesString, offset, string) => {
-    const variables = variablesString.split(',').map(variable => {
+    let variables = variablesString.split(',').map(variable => {
         const [name, value] = variable.split(':')
             .map(v => v.trim().replace(/^['"]|['"]$/g, ''));
 
-        return { name, value };
+        return { [name]: value };
     });
-
-    transformer.pushToScope(variables);
+    // Turn it from an array of objects to a single object
+    variables = Object.assign({}, ...variables);
 
     const { contents, path } = readComponentWithIndentation(transformer.getPath(), component, getIndentationFromLineStart(string, offset));
 
-    return renderWithVariablesReplacement(
-        transformer.fixupPathsInComponent(contents, path),
-        variables
-    );
+    transformer.pushToScope({
+        ...variables,
+        path
+    });
+
+    const rendered = transformer.transform(contents);
+
+    return rendered;
 });
 
 // {% render 'COMPONENT' %} -> {contents of that COMPONENT file}
@@ -95,7 +101,9 @@ const renderRegexes = [
 addDefaultTransform(renderRegexes, ({ transformer }, component, offset, string) => {
     const { contents, path } = readComponentWithIndentation(transformer.getPath(), component, getIndentationFromLineStart(string, offset));
 
-    return transformer.fixupPathsInComponent(contents, path);
+    transformer.pushToScope({ path });
+
+    return transformer.transform(contents);
 });
 
 // {% for item in items %}
@@ -105,7 +113,12 @@ addDefaultTransform(/\{%\s*for\s+(\w+)\s+in\s+(\w+)\s*%\}(.*?)\{%\s*endfor\s*%\}
     const scope = transformer.getScope();
 
     if (!Array.isArray(scope[collectionName])) {
-        throw new Error(`The collection ${collectionName} is not an array.`);
+        if (scope[collectionName] === undefined) {
+            // This will happen when vite transforms the file.
+            return '';
+        }
+
+        throw new Error(`The collection ${collectionName} is not an array. It's a ${typeof scope[collectionName]} (in ${transformer.getPath()})}`);
     }
 
     // trim only leading whitespace
@@ -117,7 +130,7 @@ addDefaultTransform(/\{%\s*for\s+(\w+)\s+in\s+(\w+)\s*%\}(.*?)\{%\s*endfor\s*%\}
 
         transformer.pushToScope(variables);
 
-        return renderWithVariablesReplacement(statement, variables);
+        return transformer.transform(statement);
     }).join('');
 });
 
@@ -129,7 +142,17 @@ addDefaultTransform(/\{%\s*for\s+(\w+)\s+in\s+(\w+)\s*%\}(.*?)\{%\s*endfor\s*%\}
  * Variable
  */
 // `{{ VARIABLE }}` -> {tmpl_var name="VARIABLE"}
-addDefaultTransform(/{{\s*(\w+)\s*}}/g, '{tmpl_var name="$1"}');
+addDefaultTransform(/{{\s*(\w+(?:\[[^\]]*\])*)?\s*}}/g, ({ transformer }, variable) => {
+    const scope = transformer.getScope();
+
+    // If the variable is defined in the current scope, use it
+    if (scope[variable] !== undefined) {
+        return scope[variable];
+    }
+
+    // Otherwise it's a template variable
+    return `{tmpl_var name="${variable}"}`;
+});
 
 /**
  * If-statement
@@ -180,33 +203,52 @@ addDefaultTransform(/{%\s*hook\s*'([^']+)'\s*%}/g, '{tmpl_hook name="$1"}');
 export class LiquidishTransformer {
     constructor(options = {}) {
         this.showComments = options.showComments || false;
-        this.maxRenderDepth = options.maxRenderDepth || 100;
 
         this.transformRegexes = [
             ...defaultTransformations,
             ...(options.transformRegexes || []),
         ];
 
-        // Used to store render parameters to be used by the for loop
-        this.variableScope = {};
+        // Used to store nested scopes for variables
+        this.variableScopes = [];
 
         // Used to keep track of the current file being transformed
         this.basePath = null;
     }
 
+    // Create a new scope object and push it onto the stack
     pushToScope(variables) {
-        this.variableScope = {
-            ...this.variableScope,
-            ...variables,
-        };
+        this.variableScopes.push(variables);
 
-        return this.variableScope;
+        return this.variableScopes[this.variableScopes.length - 1];
     }
 
-    // TODO: Track the scope of the variables and pop them
+    peekScope() {
+        return this.variableScopes[this.variableScopes.length - 1];
+    }
 
+    popScope() {
+        // Remove the topmost scope from the stack
+        if (this.variableScopes.length > 0) {
+            const pop = this.variableScopes.pop();
+
+            return pop;
+        }
+
+        return {};
+    }
+
+    // Return the entire scope as a flat key and value map, let later scopes override earlier ones
     getScope() {
-        return this.variableScope;
+        const scope = {};
+
+        for (const s of this.variableScopes) {
+            for (const [key, value] of Object.entries(s)) {
+                scope[key] = value;
+            }
+        }
+
+        return scope;
     }
 
     transformContents({ contents, regex, replacement }) {
@@ -227,23 +269,13 @@ export class LiquidishTransformer {
     }
 
     getPath() {
+        const topScope = this.peekScope();
+
+        if (topScope?.path) {
+            return topScope.path;
+        }
+
         return this.basePath;
-    }
-
-    /**
-     * Goes through the contents finding any paths and fixing them to be relative to the current file.
-     */
-    fixupPathsInComponent(contents, path) {
-        return contents.replace(/(['"])(\.\.\/|\.\.\\|\.\/|\.\\)([^'"]+)(['"])/g, (match, quote1, dots, rest, quote2) => {
-            const correctedPath = tryFindComponentPath(resolve(dirname(path), dots, rest));
-
-            if (!existsSync(correctedPath)) {
-                // Ignore paths that don't point to a file
-                return match;
-            }
-
-            return `${quote1}${correctedPath}${quote2}`;
-        });
     }
 
     /**
@@ -251,49 +283,35 @@ export class LiquidishTransformer {
      * no more transformations are occurring, or when the maximum number of
      * iterations is reached.
      */
-    transform(contents, path) {
-        let iterations = 0;
-        let transformed = true;
+    transform(contents, path = null) {
+        if (path) {
+            this.basePath = path;
+        }
 
-        this.basePath = dirname(path);
-
-        while (transformed && iterations < this.maxRenderDepth) {
-            transformed = false;
-
-            for (const { regex, replacement } of this.transformRegexes) {
-                if (Array.isArray(regex)) {
-                    for (const r of regex) {
-                        if (contents.match(r)) {
-                            contents = this.transformContents({
-                                contents,
-                                regex: r,
-                                replacement,
-                            });
-                            transformed = true;
-                        }
-                    }
-                } else {
-                    if (contents.match(regex)) {
+        for (const { regex, replacement } of this.transformRegexes) {
+            if (Array.isArray(regex)) {
+                for (const r of regex) {
+                    if (contents.match(r)) {
                         contents = this.transformContents({
                             contents,
-                            regex,
+                            regex: r,
                             replacement,
                         });
-                        transformed = true;
                     }
                 }
+            } else {
+                if (contents.match(regex)) {
+                    contents = this.transformContents({
+                        contents,
+                        regex,
+                        replacement,
+                    });
+                }
             }
-
-            if (!transformed) {
-                break;
-            }
-
-            iterations++;
         }
 
-        if (iterations >= this.maxRenderDepth) {
-            throw new Error(`Max render depth of ${this.maxRenderDepth} reached. Aborting transformation.`);
-        }
+        // Clean up the scope after processing a block/component
+        this.popScope();
 
         return contents;
     }

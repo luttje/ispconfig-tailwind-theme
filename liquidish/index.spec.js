@@ -139,14 +139,6 @@ describe('LiquidishTransformer (default)', () => {
 });
 
 describe('LiquidishTransformer (customized)', () => {
-    it('can be configured to allow no deep rendering', () => {
-        const transformer = new LiquidishTransformer({ maxRenderDepth: 1 });
-
-        expect(
-            () => transformer.transform(`{% render './render-sub-components.liquid' %}`, resolve(fixturesPath, 'render-sub-components.liquid'))
-        ).toThrowError('Max render depth of 1 reached. Aborting transformation.');
-    });
-
     it('can be configured to show comments as HTML comments', () => {
         const transformer = new LiquidishTransformer({ showComments: true });
 

@@ -33,7 +33,7 @@ export function tryFindComponentPath(componentPath) {
 }
 
 export function readComponentWithIndentation(path, component, indentation = 0) {
-    let componentPath = tryFindComponentPath(resolve(path, component));
+    let componentPath = tryFindComponentPath(resolve(dirname(path), component));
 
     if (existsSync(componentPath) === false) {
         throw new Error(`Component file not found: ${component} in ${path}`);
@@ -49,20 +49,6 @@ export function readComponentWithIndentation(path, component, indentation = 0) {
     indented = trimTrailingNewline(indented);
 
     return { contents: indented, path: componentPath };
-}
-
-export function renderWithVariablesReplacement(contents, variables) {
-    if (Array.isArray(variables)) {
-        for (const { name, value } of variables) {
-            contents = contents.replace(new RegExp(`{{\\s*${escapeRegExp(name)}\\s*}}`, 'g'), value);
-        }
-    } else {
-        for (const [name, value] of Object.entries(variables)) {
-            contents = contents.replace(new RegExp(`{{\\s*${escapeRegExp(name)}\\s*}}`, 'g'), value);
-        }
-    }
-
-    return contents;
 }
 
 export function buildVariablesScope(item, itemName, variables) {
