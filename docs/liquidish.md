@@ -4,7 +4,10 @@ In order to get better IDE support when working with ISPConfig's `tpl` files, we
 
 When building the theme, it is compiled to `.tpl.htm` files for ISPConfig.
 
-> Check out [this VSCode extension](https://marketplace.visualstudio.com/items?itemName=sissel.shopify-liquid) for Liquid syntax highlighting and other language features.
+> Check out one of these VSCode extensions for Liquid syntax highlighting and other language features:
+>
+> - [Official Shopify Liquid extension](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode)
+> - [Alternative extension](https://marketplace.visualstudio.com/items?itemName=sissel.shopify-liquid) 
 
 ## 📚 Liquidish Syntax (Transpiled)
 
