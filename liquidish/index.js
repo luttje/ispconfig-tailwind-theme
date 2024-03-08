@@ -1,6 +1,4 @@
-import { getIndentationFromLineStart, readComponentWithIndentation, buildVariablesScope, trimTrailingNewline, tryFindComponentPath } from './utils';
-import { resolve, dirname } from 'path';
-import { existsSync } from 'fs';
+import { getIndentationFromLineStart, readComponentWithIndentation, buildVariablesScope } from './utils';
 
 /**
  * Liquidish is a custom template language that is similar to Liquid, but with some differences.
@@ -47,11 +45,10 @@ addDefaultTransform(/{%\s*comment\s*%}([\s\S]*?){%\s*endcomment\s*%}/g, ({ trans
 //     ]
 // } %} -> {contents of that COMPONENT file with the variables replaced}
 // NOTE: For simplicty sake the JSON cannot contain %}
-const renderJsonRegexes = [
+addDefaultTransform([
     /{%\s*render_json\s*'([^']+)'\s*,\s*({.*?})\s*%}/gs,
     /{%\s*render_json\s*"([^"]+)"\s*,\s*({.*?})\s*%}/gs
-];
-addDefaultTransform(renderJsonRegexes, ({ transformer, match }, component, json, offset, string) => {
+], ({ transformer, match }, component, json, offset, string) => {
     const variables = JSON.parse(json);
 
     const { contents, path } = readComponentWithIndentation(transformer.getPath(), component, getIndentationFromLineStart(string, offset));
@@ -67,11 +64,10 @@ addDefaultTransform(renderJsonRegexes, ({ transformer, match }, component, json,
 });
 
 // {% render 'COMPONENT', variable: 'value', another: 'value' %} -> {contents of that COMPONENT file with the variables replaced}
-const renderWithVariablesRegexes = [
+addDefaultTransform([
     /{%\s*render\s*'([^']+)'\s*,\s*([^%]+)\s*%}/g,
     /{%\s*render\s*"([^"]+)"\s*,\s*([^%]+)\s*%}/g
-];
-addDefaultTransform(renderWithVariablesRegexes, ({ transformer }, component, variablesString, offset, string) => {
+], ({ transformer }, component, variablesString, offset, string) => {
     let variables = variablesString.split(',').map(variable => {
         const [name, value] = variable.split(':')
             .map(v => v.trim().replace(/^['"]|['"]$/g, ''));
@@ -94,11 +90,10 @@ addDefaultTransform(renderWithVariablesRegexes, ({ transformer }, component, var
 });
 
 // {% render 'COMPONENT' %} -> {contents of that COMPONENT file}
-const renderRegexes = [
+addDefaultTransform([
     /{%\s*render\s*'([^']+)'\s*%}/g,
     /{%\s*render\s*"([^"]+)"\s*%}/g
-];
-addDefaultTransform(renderRegexes, ({ transformer }, component, offset, string) => {
+], ({ transformer }, component, offset, string) => {
     const { contents, path } = readComponentWithIndentation(transformer.getPath(), component, getIndentationFromLineStart(string, offset));
 
     transformer.pushToScope({ path });
@@ -160,12 +155,18 @@ addDefaultTransform(/{{\s*(\w+(?:\[[^\]]*\])*)?\s*}}/g, ({ transformer }, variab
 // `{% if VARIABLE %}` -> {tmpl_if name="VARIABLE"}
 addDefaultTransform(/{%\s*if\s*(\w+)\s*%}/g, '{tmpl_if name="$1"}');
 // `{% if VARIABLE OPERATOR 'VALUE' %}` -> {tmpl_if name="VARIABLE" op="OPERATOR" value="VALUE"}
-addDefaultTransform(/{%\s*if\s*(\w+)\s*(\S+)\s*'([^']*)'\s*%}/g, '{tmpl_if name="$1" op="$2" value="$3"}');
+addDefaultTransform([
+    /{%\s*if\s*(\w+)\s*(\S+)\s*'([^']*)'\s*%}/g,
+    /{%\s*if\s*(\w+)\s*(\S+)\s*"([^"]*)"\s*%}/g
+], '{tmpl_if name="$1" op="$2" value="$3"}');
 
 // `{% elsif VARIABLE %}` -> {tmpl_elseif name="VARIABLE"}
 addDefaultTransform(/{%\s*elsif\s*(\w+)\s*%}/g, '{tmpl_elseif name="$1"}');
 // `{% elsif VARIABLE OPERATOR 'VALUE' %}` -> {tmpl_elseif name="VARIABLE" op="OPERATOR" value="VALUE"}
-addDefaultTransform(/{%\s*elsif\s*(\w+)\s*(\S+)\s*'([^']*)'\s*%}/g, '{tmpl_elseif name="$1" op="$2" value="$3"}');
+addDefaultTransform([
+    /{%\s*elsif\s*(\w+)\s*(\S+)\s*'([^']*)'\s*%}/g,
+    /{%\s*elsif\s*(\w+)\s*(\S+)\s*"([^"]*)"\s*%}/g
+], '{tmpl_elseif name="$1" op="$2" value="$3"}');
 
 // `{% else %}` -> {tmpl_else}
 addDefaultTransform(/{%\s*else\s*%}/g, '{tmpl_else}');
@@ -192,13 +193,19 @@ addDefaultTransform(/{%\s*endloop\s*%}/g, '{/tmpl_loop}');
  * Dyninclude
  */
 // {% dyninclude 'COMPONENT' %} -> {tmpl_dyninclude name="COMPONENT"}
-addDefaultTransform(/{%\s*dyninclude\s*'([^']+)'\s*%}/g, '{tmpl_dyninclude name="$1"}');
+addDefaultTransform([
+    /{%\s*dyninclude\s*'([^']+)'\s*%}/g,
+    /{%\s*dyninclude\s*"([^"]+)"\s*%}/g
+], '{tmpl_dyninclude name="$1"}');
 
 /**
  * Hook
  */
 // {% hook 'HOOKNAME' %} -> {tmpl_hook name="HOOKNAME"}
-addDefaultTransform(/{%\s*hook\s*'([^']+)'\s*%}/g, '{tmpl_hook name="$1"}');
+addDefaultTransform([
+    /{%\s*hook\s*'([^']+)'\s*%}/g,
+    /{%\s*hook\s*"([^"]+)"\s*%}/g
+], '{tmpl_hook name="$1"}');
 
 export class LiquidishTransformer {
     constructor(options = {}) {

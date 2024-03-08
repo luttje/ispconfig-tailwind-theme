@@ -31,8 +31,10 @@ describe('LiquidishTransformer (default)', () => {
     });
 
     it('should transform if statements with operators', () => {
-        const transformed = getDefaultTransform(`{% if VARIABLE OPERATOR 'VALUE' %}`);
-        expect(transformed).toBe('{tmpl_if name="VARIABLE" op="OPERATOR" value="VALUE"}');
+        const transformed1 = getDefaultTransform(`{% if VARIABLE OPERATOR 'VALUE' %}`);
+        const transformed2 = getDefaultTransform(`{% if VARIABLE OPERATOR "VALUE" %}`);
+        expect(transformed1).toBe('{tmpl_if name="VARIABLE" op="OPERATOR" value="VALUE"}');
+        expect(transformed2).toBe('{tmpl_if name="VARIABLE" op="OPERATOR" value="VALUE"}');
     });
 
     it('should transform elsif statements', () => {
@@ -41,8 +43,10 @@ describe('LiquidishTransformer (default)', () => {
     });
 
     it('should transform elsif statements with operators', () => {
-        const transformed = getDefaultTransform(`{% elsif VARIABLE OPERATOR 'VALUE' %}`);
-        expect(transformed).toBe('{tmpl_elseif name="VARIABLE" op="OPERATOR" value="VALUE"}');
+        const transformed1 = getDefaultTransform(`{% elsif VARIABLE OPERATOR 'VALUE' %}`);
+        const transformed2 = getDefaultTransform(`{% elsif VARIABLE OPERATOR "VALUE" %}`);
+        expect(transformed1).toBe('{tmpl_elseif name="VARIABLE" op="OPERATOR" value="VALUE"}');
+        expect(transformed2).toBe('{tmpl_elseif name="VARIABLE" op="OPERATOR" value="VALUE"}');
     });
 
     it('should transform else statements', () => {
@@ -76,48 +80,62 @@ describe('LiquidishTransformer (default)', () => {
     });
 
     it('should transform dyninclude statements', () => {
-        const transformed = getDefaultTransform(`{% dyninclude 'COMPONENT' %}`);
-        expect(transformed).toBe('{tmpl_dyninclude name="COMPONENT"}');
+        const transformed1 = getDefaultTransform(`{% dyninclude 'COMPONENT' %}`);
+        const transformed2 = getDefaultTransform(`{% dyninclude "COMPONENT" %}`);
+        expect(transformed1).toBe('{tmpl_dyninclude name="COMPONENT"}');
+        expect(transformed2).toBe('{tmpl_dyninclude name="COMPONENT"}');
     });
 
     it('should transform hook statements', () => {
-        const transformed = getDefaultTransform(`{% hook 'HOOKNAME' %}`);
-        expect(transformed).toBe('{tmpl_hook name="HOOKNAME"}');
+        const transformed1 = getDefaultTransform(`{% hook 'HOOKNAME' %}`);
+        const transformed2 = getDefaultTransform(`{% hook "HOOKNAME" %}`);
+        expect(transformed1).toBe('{tmpl_hook name="HOOKNAME"}');
+        expect(transformed2).toBe('{tmpl_hook name="HOOKNAME"}');
     });
 
     it('should transform render statements', () => {
-        const transformed = getDefaultTransform(`{% render './render-basic.liquid' %}`, resolve(fixturesPath, 'render-basic.liquid'));
+        const transformed1 = getDefaultTransform(`{% render './render-basic.liquid' %}`, resolve(fixturesPath, 'render-basic.liquid'));
+        const transformed2 = getDefaultTransform(`{% render "render-basic.liquid" %}`, resolve(fixturesPath, 'render-basic.liquid'));
         const expected = readFixtureFile('render-basic.expected.htm');
 
-        expect(transformed).toBe(expected);
+        expect(transformed1).toBe(expected);
+        expect(transformed2).toBe(expected);
     });
 
     it('should transform render statements with implicit .liquid extension', () => {
-        const transformed = getDefaultTransform(`{% render './render-basic' %}`, resolve(fixturesPath, 'render-basic.liquid'));
+        const transformed1 = getDefaultTransform(`{% render './render-basic' %}`, resolve(fixturesPath, 'render-basic.liquid'));
+        const transformed2 = getDefaultTransform(`{% render "render-basic" %}`, resolve(fixturesPath, 'render-basic.liquid'));
         const expected = readFixtureFile('render-basic.expected.htm');
 
-        expect(transformed).toBe(expected);
+        expect(transformed1).toBe(expected);
+        expect(transformed2).toBe(expected);
     });
 
     it('should transform render statements within render statements', () => {
-        const transformed = getDefaultTransform(`{% render './render-sub-components.liquid' %}`, resolve(fixturesPath, 'render-sub-components.liquid'));
+        const transformed1 = getDefaultTransform(`{% render './render-sub-components.liquid' %}`, resolve(fixturesPath, 'render-sub-components.liquid'));
+        const transformed2 = getDefaultTransform(`{% render "render-sub-components.liquid" %}`, resolve(fixturesPath, 'render-sub-components.liquid'));
         const expected = readFixtureFile('render-sub-components.expected.htm');
 
-        expect(transformed).toBe(expected);
+        expect(transformed1).toBe(expected);
+        expect(transformed2).toBe(expected);
     });
 
     it('should transform render statements relative to the current file', () => {
-        const transformed = getDefaultTransform(`{% render './subdir/render-subdir-sub.liquid' %}`, resolve(fixturesPath, 'render-from-root.liquid'));
+        const transformed1 = getDefaultTransform(`{% render './subdir/render-subdir-sub.liquid' %}`, resolve(fixturesPath, 'render-from-root.liquid'));
+        const transformed2 = getDefaultTransform(`{% render "subdir/render-subdir-sub.liquid" %}`, resolve(fixturesPath, 'render-from-root.liquid'));
         const expected = readFixtureFile('subdir/render-subdir-sub.expected.htm');
 
-        expect(transformed).toBe(expected);
+        expect(transformed1).toBe(expected);
+        expect(transformed2).toBe(expected);
     });
 
     it('should render variables with other quote types correctly', () => {
-        const transformed = getDefaultTransform(`{% render './render-attributes-component.liquid', slot: '{{ logout_txt }} {{ cpuser }}', attributes: 'data-load-content="login/logout.php"' %}`, resolve(fixturesPath, 'render-attributes.liquid'));
+        const transformed1 = getDefaultTransform(`{% render './render-attributes-component.liquid', slot: '{{ logout_txt }} {{ cpuser }}', attributes: 'data-load-content="login/logout.php"' %}`, resolve(fixturesPath, 'render-attributes.liquid'));
+        const transformed2 = getDefaultTransform(`{% render "render-attributes-component.liquid", slot: "{{ logout_txt }} {{ cpuser }}", attributes: 'data-load-content="login/logout.php"' %}`, resolve(fixturesPath, 'render-attributes.liquid'));
         const expected = readFixtureFile('render-attributes.expected.htm');
 
-        expect(transformed).toBe(expected);
+        expect(transformed1).toBe(expected);
+        expect(transformed2).toBe(expected);
     });
 
     it('should be able to render_json statements', () => {
