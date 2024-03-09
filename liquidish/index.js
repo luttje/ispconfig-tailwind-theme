@@ -65,8 +65,8 @@ addDefaultTransform([
 
 // {% render 'COMPONENT', variable: 'value', another: 'value' %} -> {contents of that COMPONENT file with the variables replaced}
 addDefaultTransform([
-    /{%\s*render\s*'([^']+)'\s*,\s*([^%]+)\s*%}/g,
-    /{%\s*render\s*"([^"]+)"\s*,\s*([^%]+)\s*%}/g
+    /{%\s*render\s*'([^']+)'(?:\s*,\s*((?:[^%]+|%(?!}))*))\s*%}/g,
+    /{%\s*render\s*"([^"]+)"(?:\s*,\s*((?:[^%]+|%(?!}))*))\s*%}/g
 ], ({ transformer }, component, variablesString, offset, string) => {
     const variables = {};
 

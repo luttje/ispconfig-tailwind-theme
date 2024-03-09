@@ -147,6 +147,13 @@ describe('LiquidishTransformer (default)', () => {
         expect(transformed2).toBe(expected);
     });
 
+    it('should handle variables with percentage values correctly', () => {
+        const transformed = getDefaultTransform(`{% render './render-percentage-component.liquid', class: 'w-[8%]' %}`, resolve(fixturesPath, 'render-percentage-component.liquid'));
+        const expected = readFixtureFile('render-percentage-component.expected.htm');
+
+        expect(transformed).toBe(expected);
+    });
+
     it('should be able to render_json statements', () => {
         const transformed = getDefaultTransform(readFixtureFile('./render-json.liquid'), resolve(fixturesPath, 'render-json.liquid'));
         const expected = readFixtureFile('render-json.expected.htm');
