@@ -105,11 +105,6 @@ body {
   float: right;
 }
 
-#searchform .icon {
-  padding: 0 2px;
-  font-size: 16px;
-}
-
 #main-navigation {
   margin-top: 24px;
 }
@@ -133,39 +128,6 @@ body {
 
 .dns-record-btn {
   margin-top: 3px;
-}
-
-#sidebar header {
-  margin: 1px;
-  padding: 0 10px;
-  min-height: 40px;
-  line-height: 40px;
-  font-weight: bold;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-}
-
-#sidebar ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-#sidebar li {
-  border-top-style: solid;
-  border-top-width: 1px;
-  font-size: 12px;
-}
-
-#sidebar a {
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-  transition: color ease 500ms;
-}
-
-#sidebar header a {
-  padding: 0;
 }
 
 #select_server a {

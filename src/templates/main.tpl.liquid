@@ -102,7 +102,7 @@
                                 <div class="flex gap-2 items-stretch">
                                     {% render './components/input/text', id: 'globalsearch', placeholder: '{{ globalsearch_searchfield_watermark_txt }}' %}
                                     {% render_json './components/button/primary', {
-                                        "slot": "<span class=\"icon icon-lens\"></span>"
+                                        "slot": "<span class=\"icon icon-lens -ml-[5px] text-base group-hover:text-white\"></span>"
                                     } %}
                                 </div>
                             </form>
@@ -156,13 +156,13 @@
                 </div>
                 {% if logged_in == "y" %}
                 <div id="topnav-container"
-                     class="py-4">
+                     class="py-6">
                 </div>
                 {% endif %}
-                <div class="flex flex-wrap flex-col lg:flex-row-reverse">
+                <div class="flex flex-wrap gap-6 flex-col lg:flex-row-reverse">
                     <!-- content -->
                     <div id="content"
-                         class="flex-1 p-4 lg:w-3/4">
+                         class="flex-1 lg:w-3/4">
                         <noscript>This page needs JavaScript to be enabled.</noscript>
                         <form method="post"
                               action=""
@@ -178,7 +178,7 @@
                     <!-- news sidebar -->
                     {% if logged_in == "y" %}
                     <div id="sidebar"
-                         class="w-full lg:w-1/4 p-4 border rounded self-start float-right">
+                         class="w-full lg:w-1/4 p-4 border rounded self-start float-right bg-gray-50 shadow-inner">
                     </div>
                     {% endif %}
                 </div>

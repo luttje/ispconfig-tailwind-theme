@@ -1,9 +1,14 @@
-<header>{{ latest_news_txt }}</header>
-<ul>
+<header class="rounded-t font-bold p-2">
+    {{ latest_news_txt }}
+</header>
+
+<ul class="p-0 m-0">
     {% loop news %}
-        <li>
-            <a href="{{ link }}" target="_blank" style="margin-top:8px;padding-bottom:5px;"><b>{{ date }}</b><br />
-                {{ title }}</a>
+        <li class="border-t border-gray-200">
+            <a href="{{ link }}" target="_blank" class="flex flex-col rounded p-2 my-2 no-underline text-black hover:text-white bg-gradient-to-b hover:from-gray-600 hover:to-gray-700 transition-colors">
+                <b class="text-sm">{{ date }}</b>
+                <span>{{ title }}</span>
+            </a>
         </li>
     {% endloop %}
 </ul>

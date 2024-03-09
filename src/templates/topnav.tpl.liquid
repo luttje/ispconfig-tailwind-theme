@@ -1,7 +1,7 @@
 	<!-- main navigation -->
 	<nav id='main-navigation' class='flex flex-row flex-wrap align-items-center rounded overflow-clip border border-gray-300'>
     {% loop nav_top %}
-		<a href="#" class="flex flex-1 flex-col justify-center items-center px-4 py-2 transition-all bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee] {% if active %}active shadow-inner border-gray-300 border-x rounded"{% else %}" data-capp="{{ module }}"{% endif %} data-icon-class="icon-{{ module }}">
+		<a href="#" class="flex flex-1 flex-col justify-center items-center px-4 py-2 transition-all bg-gradient-to-b hover:text-white hover:from-gray-700 hover:to-gray-800 {% if active %}active shadow-inner text-white from-gray-600 to-gray-700{% else %}from-white to-[#eef0f2] text-black{% endif %}" data-capp="{{ module }}" data-icon-class="icon-{{ module }}">
 		  <div class="icon icon-{{ module }}"></div>
 		  <div class="title">{{ title }}</div>
 		</a>

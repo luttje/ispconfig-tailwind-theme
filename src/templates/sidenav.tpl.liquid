@@ -1,19 +1,33 @@
 {% loop nav_left %}
-	{% if title %}<header>{% if is_link != 'no' %}{% if startpage %}<a href="#" class="subnav-header" data-load-content="{{ startpage }}">{% endif %}{% endif %}{{ title }}{% if is_link != 'no' %}{% if startpage %}</a>{% endif %}{% endif %}</header>{% endif %}
-	<ul id="sub-navigation">
+	{% if title %}
+        <header class="rounded-t font-bold p-2 border-b border-gray-200 mt-4 mb-2" >
+            {% if is_link != 'no' %}
+                {% if startpage %}
+                    <a href="#" class="subnav-header" data-load-content="{{ startpage }}">
+                {% endif %}
+            {% endif %}
+            {{ title }}
+            {% if is_link != 'no' %}
+                {% if startpage %}
+                    </a>
+                {% endif %}
+            {% endif %}
+        </header>
+    {% endif %}
+	<ul id="sub-navigation p-0 m-0">
 	  {% loop items %}
-	  <li{% if html_id %} id='{{ html_id }}' {% endif %}>
+	    <li {% if html_id %}id='{{ html_id }}' {% endif %}>
 		{% if link %}
 			{% if target == '_blank' %}
-				<a href="{{ link }}" target="_blank">
+				<a href="{{ link }}" target="_blank" class="flex flex-col rounded p-2 no-underline text-black hover:text-white bg-gradient-to-b hover:from-gray-600 hover:to-gray-700 transition-colors">
 			{% elsif target == '_top' %}
-				<a href="{{ link }}" target="_top">
+				<a href="{{ link }}" target="_top" class="flex flex-col rounded p-2 no-underline text-black hover:text-white bg-gradient-to-b hover:from-gray-600 hover:to-gray-700 transition-colors">
 			{% else %}
-				<a href="#" data-load-content="{{ link }}">
+				<a href="#" data-load-content="{{ link }}" class="flex flex-col rounded p-2 no-underline text-black hover:text-white bg-gradient-to-b hover:from-gray-600 hover:to-gray-700 transition-colors">
 			{% endif %}
 		{% endif %}
 		  <div{% if css %} style="{{ css }}"{% endif %}>
-			{% if title %}<strong>{{ title }}</strong>{% endif %}
+			{% if title %}{{ title }}{% endif %}
 			{% if image %}<div align="center">{{ image }}</div>{% endif %}
 		  </div>
 		{% if link %}
