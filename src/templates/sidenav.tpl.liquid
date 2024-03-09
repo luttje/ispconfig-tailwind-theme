@@ -1,6 +1,6 @@
 {% loop nav_left %}
 	{% if title %}
-        <header class="rounded-t font-bold p-2 border-b border-gray-200 mt-4 mb-2" >
+        <header class="rounded-t font-bold p-2 border-b border-gray-200 mt-2 first:mt-0 mb-2" >
             {% if is_link != 'no' %}
                 {% if startpage %}
                     <a href="#" class="subnav-header" data-load-content="{{ startpage }}">

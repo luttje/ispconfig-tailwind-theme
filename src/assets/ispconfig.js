@@ -412,7 +412,7 @@ const ISPConfig = {
 				ISPConfig.hideLoadIndicator();
 				$('#sidebar').html(jqXHR.responseText);
 				ISPConfig.onAfterSideNavLoaded();
-				ISPConfig.loadPushyMenu();
+				ISPConfig.loadResponsiveMenu();
 			},
 			error: function() {
 				ISPConfig.hideLoadIndicator();
@@ -431,7 +431,7 @@ const ISPConfig = {
 			success: function(data, textStatus, jqXHR) {
 				ISPConfig.hideLoadIndicator();
 				$('#topnav-container').html(jqXHR.responseText);
-				ISPConfig.loadPushyMenu();
+				ISPConfig.loadResponsiveMenu();
 			},
 			error: function(o) {
 				ISPConfig.hideLoadIndicator();

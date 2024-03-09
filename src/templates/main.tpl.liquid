@@ -51,8 +51,6 @@
     <link rel="stylesheet"
           href="themes/{{ current_theme }}/assets/stylesheets/fonts.min.css" />
     <link rel="stylesheet"
-          href="themes/{{ current_theme }}/assets/stylesheets/pushy.min.css" />
-    <link rel="stylesheet"
           href="themes/{{ current_theme }}/assets/stylesheets/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet"
           href="themes/{{ current_theme }}/assets/stylesheets/select2.css" />
@@ -69,29 +67,34 @@
     {% endif %}
 </head>
 
-<body>
+<body x-data="{ modalOpen: false, sidebarOpen: false }"
+    :class="{ 'overflow-hidden sm:overflow-auto': sidebarOpen }">
     <!-- off canvas -->
-    <nav class="pushy pushy-left"></nav>
+    <nav id="responsive-navigation"
+        data-open="false"
+        x-effect="$el.setAttribute('data-open', sidebarOpen.toString())"
+        class="flex flex-col -translate-x-full data-[open=true]:-translate-x-0 opacity-0 data-[open=true]:opacity-100 fixed top-0 w-full sm:w-1/2 md:w-1/3 lg:hidden h-full overflow-y-auto bg-gray-800 text-white z-50 shadow-lg transition-all p-6 duration-300 motion-reduce:transition-none">
+    </nav>
     <div class="site-overlay"></div>
 
     <div id="container"
-         class="min-h-screen flex flex-col"
-         x-data="{ modalOpen: false }">
+         class="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8 min-h-screen flex flex-col">
         <div id="main-wrapper"
-             class="container mx-auto flex-grow">
+             class="flex-grow">
             <div id="inner-wrapper">
-                <div class="flex w-full justify-between">
-                    <div class="flex w-full">
+                <div class="flex flex-col gap-4 sm:flex-row w-full sm:justify-between items-center mt-4">
+                    <div class="flex w-full gap-4 items-center">
                         <!-- off canvas menu button -->
-                        <div class="menu-btn flex items-center cursor-pointer p-4 lg:hidden">&#9776;</div>
+                        <div class="menu-btn flex items-center cursor-pointer rounded px-4 py-2 lg:hidden hover:bg-gray-800 hover:text-white"
+                            @click="sidebarOpen = !sidebarOpen">&#9776;</div>
                         <!-- logo -->
                         <div id="logo"
-                             class="bg-no-repeat bg-contain"
+                             class="bg-no-repeat bg-contain w-[200px] h-[65px]"
                              style="background: url({{ base64_logo_txt }}) no-repeat;width:{{ base64_logo_width }};height:{{ base64_logo_height }}">
-                            <a href="#"></a></div>
+                            <a href="#" class="block w-full h-full"></a></div>
                     </div>
                     <div id="headerbar"
-                         class="flex w-full items-center justify-end mt-4 gap-4">
+                         class="flex w-full items-center justify-end gap-4">
                         {% if cpuser %}
                             {% if usertype == "normaluser" %}
                             <!-- search field -->
@@ -156,7 +159,7 @@
                 </div>
                 {% if logged_in == "y" %}
                 <div id="topnav-container"
-                     class="py-6">
+                     class="pb-6">
                 </div>
                 {% endif %}
                 <div class="flex flex-wrap gap-6 flex-col lg:flex-row-reverse">
@@ -199,7 +202,6 @@
     <script src="themes/{{ current_theme }}/assets/javascripts/bootstrap.min.js"></script>
     <script src="themes/{{ current_theme }}/assets/javascripts/bootstrap-datetimepicker.min.js"></script>
     <script src="themes/{{ current_theme }}/assets/javascripts/modernizr.custom.min.js"></script>
-    <script src="themes/{{ current_theme }}/assets/javascripts/pushy.min.js"></script>
     <script src="js/select2/select2.min.js"></script>
     <script src="js/scrigo.js.php"></script>
     <script type="text/javascript"
