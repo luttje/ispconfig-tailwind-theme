@@ -5,7 +5,7 @@ ISPConfig.loadPushyMenu = function() {
   var $responsiveNavigation = $('nav.pushy');
 
   $responsiveNavigation.html('');
-  
+
   // Hauptnavigation
   $('<ul />').appendTo($responsiveNavigation);
 
@@ -14,10 +14,10 @@ ISPConfig.loadPushyMenu = function() {
     var $item = $(this);
     var $activeClass = $item.hasClass('active') ? ' class="active"' : '';
     var isactive = $activeClass != '' ? true : false;
-    
+
     var capp = $item.attr('data-capp');
     if(capp) $activeClass += ' data-capp="' + capp + '"';
-	
+
 	capp = $item.attr('data-load-content');
     if(capp) $activeClass += ' data-load-content="' + capp + '"';
 
@@ -32,17 +32,17 @@ ISPConfig.loadPushyMenu = function() {
 
   $($subNavigation).find('a').each(function () {
     var $item = $(this);
-    
+
     var addattr = '';
 	var capp = $item.attr('data-capp');
     if(capp) addattr += ' data-capp="' + capp + '"';
-	
+
 	capp = $item.attr('data-load-content');
     if(capp) addattr += ' data-load-content="' + capp + '"';
 
 	capp = $item.hasClass('subnav-header');
 	if(capp) addattr += ' class="subnav-header"';
-	
-    $responsiveNavigation.find('ul.subnavi').append($('<li><a href="' + $item.attr('href') + '"' + addattr + '>' + $item.text() + '</a></li>'));
+
+    $responsiveNavigation.find('ul.subnavi').append($('<li><a href="' + $item.attr('href') + '"' + addattr + ' class="!flex flex-row items-center font-normal">' + $item.text() + '</a></li>'));
   });
 };

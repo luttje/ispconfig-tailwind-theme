@@ -81,12 +81,6 @@ body {
   padding: 4px 6px;
 }
 
-#main-wrapper {
-  margin: 0 auto;
-  width: 95%;
-  max-width: 1260px;
-}
-
 #logo {
   float: left;
   width: 200px;
@@ -330,11 +324,6 @@ thead.dark td select {
   border-top-width: 1px;
   text-align: center;
   font-size: 10px;
-}
-
-.menu-btn {
-  display: none;
-  cursor: pointer;
 }
 
 .df-container,

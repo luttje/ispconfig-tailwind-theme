@@ -81,7 +81,7 @@ const ISPConfig = {
 				if(indicator == null) {
 					indicator = document.createElement('div');
 					indicator.id = 'ajaxloader';
-					indicator.classList.add('hidden', 'transition-all', 'opacity-0', 'duration-300');
+					indicator.classList.add('hidden', 'transition-all', 'motion-reduce:transition-none', 'opacity-0', 'duration-300');
 					indicator.classList.add('fixed', 'shadow-xl', 'w-96', 'h-48', 'bg-white', 'bg-center', 'bg-no-repeat', 'border', 'border-gray-300', 'rounded-lg', 'p-4', 'text-center', 'z-50', 'top-1/2', 'left-1/2', 'transform', '-translate-x-1/2', '-translate-y-1/2');
 					indicator.style.backgroundImage = 'url("' + ISPConfig.getThemePath() + '/images/ajax-loader.gif")';
 
