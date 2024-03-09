@@ -17,6 +17,9 @@ This syntax is transpiled (translated) to ISPConfig's `tpl` syntax.
 
 Variables are defined with double curly braces: `{{ VARIABLE }}`.
 
+> ![NOTE]
+> If variables are known at compile-time (e.g: when using `render`/`render_json` or `for` loops), they will be replaced with their value at compile-time.
+
 ### If-statements
 
 If-statements are defined with `{% if VARIABLE %}`. You can also use `==`, `!=`, `>`, `<`, `>=`, `<=` as operators.

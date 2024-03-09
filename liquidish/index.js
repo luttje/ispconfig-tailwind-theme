@@ -68,14 +68,17 @@ addDefaultTransform([
     /{%\s*render\s*'([^']+)'\s*,\s*([^%]+)\s*%}/g,
     /{%\s*render\s*"([^"]+)"\s*,\s*([^%]+)\s*%}/g
 ], ({ transformer }, component, variablesString, offset, string) => {
-    let variables = variablesString.split(',').map(variable => {
-        const [name, value] = variable.split(':')
-            .map(v => v.trim().replace(/^['"]|['"]$/g, ''));
+    const variables = {};
 
-        return { [name]: value };
+    variablesString.replace(/(\w+):\s*((?:"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'))/g, (match, name, value) => {
+        const quoteType = value[0];
+        value = value.slice(1, -1);
+
+        // Unescape the value
+        value = value.replace(new RegExp(`\\\\${quoteType}`, 'g'), quoteType);
+
+        variables[name] = value;
     });
-    // Turn it from an array of objects to a single object
-    variables = Object.assign({}, ...variables);
 
     const { contents, path } = readComponentWithIndentation(transformer.getPath(), component, getIndentationFromLineStart(string, offset));
 

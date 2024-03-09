@@ -1,5 +1,1 @@
-<input type="text"
-    name="{{ name }}"
-    id="{{ id }}"
-    value="{{ value }}"
-    class="w-full border rounded px-2 py-1" />
+{% render './base', type: 'text', id: '{{ id }}', name: '{{ name }}', value: '{{ value }}', autocomplete: 'on', onkeyup: '' %}

@@ -138,6 +138,15 @@ describe('LiquidishTransformer (default)', () => {
         expect(transformed2).toBe(expected);
     });
 
+    it('should render variables that contain quotes correctly', () => {
+        const transformed1 = getDefaultTransform(`{% render './render-quotes-component.liquid', type: 'password', value: '{{ value }}', onkeyup: "pass_check(this.value);checkPassMatch('password','repeat_password');" %}`, resolve(fixturesPath, 'render-quotes.liquid'));
+        const transformed2 = getDefaultTransform(`{% render "render-quotes-component.liquid", type: "password", value: "{{ value }}", onkeyup: 'pass_check(this.value);checkPassMatch(\\'password\\',\\'repeat_password\\');' %}`, resolve(fixturesPath, 'render-quotes.liquid'));
+        const expected = readFixtureFile('render-quotes-component.expected.htm');
+
+        expect(transformed1).toBe(expected);
+        expect(transformed2).toBe(expected);
+    });
+
     it('should be able to render_json statements', () => {
         const transformed = getDefaultTransform(readFixtureFile('./render-json.liquid'), resolve(fixturesPath, 'render-json.liquid'));
         const expected = readFixtureFile('render-json.expected.htm');

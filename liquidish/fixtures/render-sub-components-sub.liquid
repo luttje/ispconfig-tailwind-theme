@@ -3,5 +3,5 @@
     data-bar="baz"
     wire:ignore
     @click="console.log('clicked')">
-    {% render './render-basic-sub.liquid', slot: {{ SLOT_VARIABLE }} %}
+    {% render './render-basic-sub.liquid', slot: '{{ SLOT_VARIABLE }}' %}
 </div>

@@ -1,31 +1,5 @@
-<div class="form-group">
-  <label for="passwort" class="col-sm-3 control-label">{{ password_txt }}</label>
-  <div class="col-sm-9">
-    <div class="input-group">
-      <input type="password" name="passwort" id="passwort" value="{{ passwort }}" class="form-control" autocomplete="off" onkeyup="pass_check(this.value);checkPassMatch('passwort','repeat_password');" />
-      <span class="input-group-btn">
-      {% render '../components/button/generate-password', password: 'passwort' %}
-      </span>
-    </div>
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-sm-3 control-label">{{ password_strength_txt }}</label>
-  <div class="col-sm-9 checkbox">
-    <div id="passBar"></div>
-    <span id="passText">&nbsp;</span>
-  </div>
-</div>
-<div class="form-group">
-  <label for="repeat_password" class="col-sm-3 control-label">{{ repeat_password_txt }}</label>
-  <div class="col-sm-9"><input type="password" name="repeat_password" id="repeat_password" value="" class="form-control" autocomplete="off"  onkeyup="checkPassMatch('passwort','repeat_password');" /></div>
-</div>
-<div class="form-group">
-  <div class="col-sm-offset-3 col-sm-9">
-    <div id="confirmpasswordError" style="display:none;" class="confirmpassworderror">{{ password_mismatch_txt }}</div>
-    <div id="confirmpasswordOK" style="display:none;" class="confirmpasswordok">{{ password_match_txt }}</div>
-  </div>
-</div>
+{% render '../components/list-start' %}
+{% render '../components/input/password-group-complete', name: 'passwort', id: 'passwort', value: '{{ passwort }}', label: '{{ password_txt }}' %}
 <div class="form-group">
   <label for="2fa" class="col-sm-3 control-label">{{ otp_auth_txt }}</label>
   <div class="col-sm-9">
@@ -64,3 +38,4 @@
     <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="tools/index.php">{{ btn_cancel_txt }}</button>
   </div>
 </div>
+{% render '../components/list-end' %}

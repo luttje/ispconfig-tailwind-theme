@@ -146,22 +146,6 @@ body {
   margin-top: 3px;
 }
 
-#passBar,
-#passText {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-#passBar {
-  height: 11px;
-  padding: 0;
-}
-
-#passBar>div {
-  height: 100%;
-  padding: 0;
-}
-
 #sidebar header {
   margin: 1px;
   padding: 0 10px;
