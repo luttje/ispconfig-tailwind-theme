@@ -11,7 +11,7 @@
 	  <tbody>
 	  {% loop databasequota %}
 		  <tr>
-			  <td><a href="#" data-load-content="sites/database_edit.php?id={{ database_id }}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ database_name }}">{{ database_name }}</a></td>
+			  <td><a href="#" data-load-content="sites/database_edit.php?id={{ database_id }}" x-tooltip.placement.bottom.raw="" data-original-title="{{ database_name }}">{{ database_name }}</a></td>
 			  <td>{{ used }}</td>
 			  <td>{{ database_quota }}</td>
 			  {% if quota_raw != '-1' %}<td>

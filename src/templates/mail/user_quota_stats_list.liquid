@@ -48,7 +48,7 @@
         <tbody>
             {% loop records %}
                 <tr>
-                    <td><a href="#" data-toggle="tooltip" data-placement="auto" title='{{ email }}' data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ email }}</a></td>
+                    <td><a href="#" x-tooltip.raw="{{ email }}" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ email }}</a></td>
                     <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ name }}</a></td>
                     <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ used }}</a></td>
                     <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ quota }}</a></td>

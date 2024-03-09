@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ forward_in_lda_txt }}</label>
                 <div class="col-sm-9">
-                    <a data-toggle="tooltip" title="{{ tooltip_forward_in_lda_txt }}">{{ forward_in_lda }}</a>
+                    <a x-tooltip.raw="{{ tooltip_forward_in_lda_txt }}">{{ forward_in_lda }}</a>
                 </div>
             </div>
             <div class="form-group">
@@ -72,7 +72,7 @@
             {% if is_admin %}<div class="form-group">
                 <label for="imap_prefix" class="col-sm-3 control-label">{{ imap_prefix_txt }}</label>
                 <div class="col-sm-6">
-                    <input type="text" name="imap_prefix" id="imap_prefix" value="{{ imap_prefix }}" data-toggle="tooltip" title="{{ tooltip_imap_prefix_txt }}" class="form-control" />
+                    <input type="text" name="imap_prefix" id="imap_prefix" value="{{ imap_prefix }}" x-tooltip.raw="{{ tooltip_imap_prefix_txt }}" class="form-control" />
                 </div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }}</div>
             </div>{% endif %}
             <div class="form-group">
@@ -84,19 +84,19 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ postfix_txt }}</label>
                 <div class="col-sm-9">
-                    <a data-toggle="tooltip" title="{{ tooltip_postfix_txt }}">{{ postfix }}</a>
+                    <a x-tooltip.raw="{{ tooltip_postfix_txt }}">{{ postfix }}</a>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ disablesmtp_txt }}</label>
                 <div class="col-sm-9">
-                    <a data-toggle="tooltip" title="{{ tooltip_disablesmtp_txt }}">{{ disablesmtp }}</a>
+                    <a x-tooltip.raw="{{ tooltip_disablesmtp_txt }}">{{ disablesmtp }}</a>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ disabledeliver_txt }}</label>
                 <div class="col-sm-9">
-                    <a data-toggle="tooltip" title="{{ tooltip_disabledeliver_txt }}">{{ disabledeliver }}</a>
+                    <a x-tooltip.raw="{{ tooltip_disabledeliver_txt }}">{{ disabledeliver }}</a>
                 </div>
             </div>
             <div class="form-group">

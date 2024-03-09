@@ -63,22 +63,22 @@
 			</div>
 			<div class="form-group rspamd">
                 <label for="rspamd_redis_servers" class="col-sm-3 control-label">{{ rspamd_redis_servers_txt }}</label>
-                <div class="col-sm-9" data-toggle="tooltip" title="{{ tooltip_rspamd_redis_servers_txt }}">
+                <div class="col-sm-9" x-tooltip.raw="{{ tooltip_rspamd_redis_servers_txt }}">
 			<input type="text" name="rspamd_redis_servers" id="rspamd_redis_servers" value="{{ rspamd_redis_servers }}" class="form-control" /></div>
 			</div>
 			<div class="form-group rspamd">
                 <label for="rspamd_redis_password" class="col-sm-3 control-label">{{ rspamd_redis_password_txt }}</label>
-                <div class="col-sm-9" data-toggle="tooltip" title="{{ tooltip_rspamd_redis_password_txt }}">
+                <div class="col-sm-9" x-tooltip.raw="{{ tooltip_rspamd_redis_password_txt }}">
 			<input type="text" name="rspamd_redis_password" id="rspamd_redis_password" value="{{ rspamd_redis_password }}" class="form-control" /></div>
 			</div>
 			<div class="form-group rspamd">
                 <label for="rspamd_redis_bayes_servers" class="col-sm-3 control-label">{{ rspamd_redis_bayes_servers_txt }}</label>
-                <div class="col-sm-9" data-toggle="tooltip" title="{{ tooltip_rspamd_redis_bayes_servers_txt }}">
+                <div class="col-sm-9" x-tooltip.raw="{{ tooltip_rspamd_redis_bayes_servers_txt }}">
 			<input type="text" name="rspamd_redis_bayes_servers" id="rspamd_redis_bayes_servers" value="{{ rspamd_redis_bayes_servers }}" class="form-control" /></div>
 			</div>
 			<div class="form-group rspamd">
                 <label for="rspamd_redis_bayes_password" class="col-sm-3 control-label">{{ rspamd_redis_bayes_password_txt }}</label>
-                <div class="col-sm-9" data-toggle="tooltip" title="{{ tooltip_rspamd_redis_bayes_password_txt }}">
+                <div class="col-sm-9" x-tooltip.raw="{{ tooltip_rspamd_redis_bayes_password_txt }}">
 			<input type="text" name="rspamd_redis_bayes_password" id="rspamd_redis_bayes_password" value="{{ rspamd_redis_bayes_password }}" class="form-control" /></div>
 			</div>
             <div class="form-group">
@@ -128,7 +128,7 @@
             </div></div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ reject_unknown_txt }}</label>
-                <div class="col-sm-9"><a data-toggle="tooltip" title="{{ tooltip_reject_unknown_txt }}">
+                <div class="col-sm-9"><a x-tooltip.raw="{{ tooltip_reject_unknown_txt }}">
                     <select name="reject_unknown" id="reject_unknown" class="form-control">
                         {{ reject_unknown }}
                     </select></a>
@@ -137,7 +137,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ stress_adaptive_txt }}</label>
                 <div class="col-sm-9">
-                    <a data-toggle="tooltip" title="{{ tooltip_stress_adaptive_txt }}">{{ stress_adaptive }}</a>
+                    <a x-tooltip.raw="{{ tooltip_stress_adaptive_txt }}">{{ stress_adaptive }}</a>
                 </div>
             </div>
             <div class="form-group">

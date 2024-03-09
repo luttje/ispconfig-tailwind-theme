@@ -12,7 +12,7 @@
 	  <tbody>
 	  {% loop mailquota %}
 		  <tr>
-			  <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ mailuser_id }}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ email }}">{{ email }}</a></td>
+			  <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ mailuser_id }}" x-tooltip.placement.bottom.raw="" data-original-title="{{ email }}">{{ email }}</a></td>
 			  <td>{{ name }}</td>
 			  <td>{{ used }}</td>
 			  <td>{{ quota }}</td>

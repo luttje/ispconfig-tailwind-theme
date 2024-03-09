@@ -21,12 +21,12 @@
         </div>
         {% endif %}
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
-            
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/database_edit.php">{{ add_new_record_txt }}</button>
-            
-        
 
-    
+                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/database_edit.php">{{ add_new_record_txt }}</button>
+
+
+
+
         <p class="fieldset-legend">{{ list_head_txt }}</p>
             <div class="table-wrapper marginTop15">
 <table class='table w-full'>
@@ -66,9 +66,9 @@
 <!--
                             <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ type }}</a></td>
 -->
-                            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ server_id }}">{{ server_id }}</a></td>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>
-                            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ database_user_id }}">{{ database_user_id }}</a></td>
+                            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
+							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>
+                            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ database_user_id }}">{{ database_user_id }}</a></td>
                             <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ database_name }}</a></td>
                             <td class="text-right">
                                 {% if dblist_phpmyadmin_link %}

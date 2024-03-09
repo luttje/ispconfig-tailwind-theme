@@ -1,4 +1,4 @@
-# 🎨 ISPConfig Tailwind Theme
+# 🎨 ISPConfig Tailwind Theme #1
 
 Starting point for creating a custom theme for ISPConfig, using Tailwind CSS. The provided theme closely resembles the default ISPConfig theme, but with a few changes to the layout and styles.
 

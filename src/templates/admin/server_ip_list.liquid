@@ -4,12 +4,12 @@
 
 
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
-            
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="admin/server_ip_edit.php">{{ add_new_record_txt }}</button>
-            
-        
 
-    
+                <button class="btn btn-default formbutton-success" type="button" data-load-content="admin/server_ip_edit.php">{{ add_new_record_txt }}</button>
+
+
+
+
         <p class="fieldset-legend">{{ list_head_txt }}</p>
             <div class="table-wrapper marginTop15">
 <table class='table w-full'>
@@ -38,10 +38,10 @@
                 <tbody>
                     {% loop records %}
                         <tr>
-                            <td><a href="#" data-load-content="admin/server_ip_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ server_id }}">{{ server_id }}</a></td>
-                            <td><a href="#" data-load-content="admin/server_ip_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ client_id }}">{{ client_id }}</a></td>
+                            <td><a href="#" data-load-content="admin/server_ip_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
+                            <td><a href="#" data-load-content="admin/server_ip_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ client_id }}">{{ client_id }}</a></td>
                             <td><a href="#" data-load-content="admin/server_ip_edit.php?id={{ id }}">{{ ip_type }}</a></td>
-                            <td><a href="#" data-load-content="admin/server_ip_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ ip_address }}">{{ ip_address }}</a></td>
+                            <td><a href="#" data-load-content="admin/server_ip_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ ip_address }}">{{ ip_address }}</a></td>
                             <td><a href="#" data-load-content="admin/server_ip_edit.php?id={{ id }}">{{ virtualhost }}</a></td>
                             <td><a href="#" data-load-content="admin/server_ip_edit.php?id={{ id }}">{{ virtualhost_port }}</a></td>
                             <td class="text-right">

@@ -50,7 +50,7 @@
                             <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ company_name }}</a></td>
                             <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ contact_name }}</a></td>
 							<td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ customer_no }}</a></td>
-                            <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ username }}">{{ username }}</a></td>
+                            <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ username }}">{{ username }}</a></td>
                             <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ city }}</a></td>
                             <td><a href="#" data-load-content="client/client_edit.php?id={{ id }}"><span class="flags flag-{{ countryiso }}">{{ country }}</span></a></td>
 							{% if has_robot %}<td><a href="#" data-load-content="client/client_edit.php?id={{ id }}">{{ validation_status }}</a></td>{% endif %}

@@ -176,12 +176,12 @@ const ISPConfig = {
 
 		// grab all password fields and set the readonly prop to prevent password managers to fill in new password
 		$('input[type="password"]').each(function() {
-			$(this).prop('readonly', true)
-			.tooltip({title: "Click to set", placement: "left"});
+            $(this).prop('readonly', true);
+            $(this).attr('x-tooltip.placement.left.raw', 'Click to set');
 		});
 		$('input[type="password"]').on('click focus', function() {
 			$(this).prop('readonly', false);
-			$(this).tooltip('destroy');
+            $(this).removeAttr('x-tooltip.placement.left.raw');
 		});
 
 		ISPConfig.callHook('onAfterContentLoad', {'url': url, 'data': data });

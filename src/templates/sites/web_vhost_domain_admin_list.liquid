@@ -42,8 +42,8 @@
                         <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ active }}</a></td>
                         {% if vhostdomain_type == 'domain' %}<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ sys_groupid }}</a></td>{% endif %}
                         <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ server_id }}</a></td>
-						{% if vhostdomain_type != 'domain' %}<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>{% endif %}
-                        <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}" data-toggle="tooltip" data-placement="bottom" title="{{ domain }}">{{ domain }}</a></td>
+						{% if vhostdomain_type != 'domain' %}<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>{% endif %}
+                        <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}" x-tooltip.placement.bottom.raw="{{ domain }}">{{ domain }}</a></td>
                         <td class="text-right">
 							<a href="http://{{ domain }}" target="_blank" class="btn btn-default formbutton-default formbutton-narrow"><span class="icon icon-link"></span></a>
 							<a href="http://{{ domain }}/stats/" target="_blank" class="btn btn-default formbutton-default formbutton-narrow"{% if stats_type == '' %} disabled{% endif %}><span class="glyphicon glyphicon-signal"></span></a>

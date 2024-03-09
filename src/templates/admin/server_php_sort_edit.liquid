@@ -1,10 +1,10 @@
             <div class="form-group">
                 <label for="name" class="col-sm-3 control-label">{{ sortprio_txt }}</label>
-                <div class="col-sm-9"><input type="number" name="sortprio" id="sortprio" data-html="true" data-toggle="tooltip" data-placement="top"  title="{{ sortprio_long_txt }}" value="{{ sortprio }}" class="form-control" /></div>
+                <div class="col-sm-9"><input type="number" name="sortprio" id="sortprio" x-tooltip.placement.top.html.raw="{{ sortprio_long_txt }}" value="{{ sortprio }}" class="form-control" /></div>
             </div>
-            
+
         <input type="hidden" name="id" value="{{ id }}">
-            
+
         <div class="clear"><div class="right">
             <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="admin/server_php_edit.php">{{ btn_save_txt }}</button>
             <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="admin/server_php_list.php">{{ btn_cancel_txt }}</button>

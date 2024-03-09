@@ -61,7 +61,7 @@
                 <tbody>
                 {% loop records %}
                     <tr>
-                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ email }}">{{ email }}</a></td>
+                        <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ email }}">{{ email }}</a></td>
                         {% if enable_custom_login %}<td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ login }}</a></td>{% endif %}
                         <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ name }}</a></td>
                         <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ autoresponder }}</a></td>

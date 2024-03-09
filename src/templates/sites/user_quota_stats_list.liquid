@@ -33,7 +33,7 @@
                 <tbody>
                     {% loop records %}
                         <tr>
-                            <td><a href="#" data-toggle="tooltip" title='{{ domain }}' data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ domain }}</a></td>
+                            <td><a href="#" x-tooltip.raw='{{ domain }}' data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ domain }}</a></td>
                             <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ system_user }}</a></td>
                             <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ used }}</a></td>
                             <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ soft }}</a></td>
@@ -58,5 +58,5 @@
                 </tfoot>
             </table>
 </div>
-        
+
     </div>

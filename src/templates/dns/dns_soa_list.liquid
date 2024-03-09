@@ -56,10 +56,10 @@
                 {% loop records %}
                     <tr>
                         <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records">{{ active }}{% if dnssec_initialized == 'Y' %} <i class="fa fa-key" aria-hidden="true"></i>{% endif %}</td>
-                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" data-toggle="tooltip" data-placement="bottom" title="{{ server_id }}">{{ server_id }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" data-toggle="tooltip" data-placement="bottom" title="{{ origin }}">{{ origin }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" data-toggle="tooltip" data-placement="bottom" title="{{ ns }}">{{ ns }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" data-toggle="tooltip" data-placement="bottom" title="{{ mbox }}">{{ mbox }}</a></td>
+                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
+                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" x-tooltip.placement.bottom.raw="{{ origin }}">{{ origin }}</a></td>
+                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" x-tooltip.placement.bottom.raw="{{ ns }}">{{ ns }}</a></td>
+                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" x-tooltip.placement.bottom.raw="{{ mbox }}">{{ mbox }}</a></td>
                         <td class="text-right">
                             <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('dns/dns_soa_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
                         </td>

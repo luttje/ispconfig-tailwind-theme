@@ -136,19 +136,19 @@
   <div class="form-group">
     <label class="col-sm-3 control-label">{{ jailkit_chroot_app_sections_txt }}</label>
     <div class="col-sm-9">
-      <input name="jailkit_chroot_app_sections" id="jailkit_chroot_app_sections" value="{{ jailkit_chroot_app_sections }}" data-toggle="tooltip" title="{{ tooltip_jailkit_chroot_app_sections_txt }}" type="text" class="form-control" />
+      <input name="jailkit_chroot_app_sections" id="jailkit_chroot_app_sections" value="{{ jailkit_chroot_app_sections }}" x-tooltip.raw="{{ tooltip_jailkit_chroot_app_sections_txt }}" type="text" class="form-control" />
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-3 control-label">{{ jailkit_chroot_app_programs_txt }}</label>
     <div class="col-sm-9">
-      <input name="jailkit_chroot_app_programs" id="jailkit_chroot_app_programs" value="{{ jailkit_chroot_app_programs }}" data-toggle="tooltip" title="{{ tooltip_jailkit_chroot_app_programs_txt }}" type="text" class="form-control" />
+      <input name="jailkit_chroot_app_programs" id="jailkit_chroot_app_programs" value="{{ jailkit_chroot_app_programs }}" x-tooltip.raw="{{ tooltip_jailkit_chroot_app_programs_txt }}" type="text" class="form-control" />
     </div>
   </div>
   <div class="form-group">
     <label class="col-sm-3 control-label">{{ delete_unused_jailkit_txt }}</label>
     <div class="col-sm-9">
-      <a data-toggle="tooltip" title="{{ tooltip_delete_unused_jailkit_txt }}">{{ delete_unused_jailkit }}</a>
+      <a x-tooltip.raw="{{ tooltip_delete_unused_jailkit_txt }}">{{ delete_unused_jailkit }}</a>
     </div>
   </div>
 </div>

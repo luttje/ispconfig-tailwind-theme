@@ -5,12 +5,12 @@
 
 
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
-            
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="client/reseller_edit.php">{{ add_new_record_txt }}</button>
-            
-        
 
-    
+                <button class="btn btn-default formbutton-success" type="button" data-load-content="client/reseller_edit.php">{{ add_new_record_txt }}</button>
+
+
+
+
         <p class="fieldset-legend">{{ list_head_txt }}</p>
             <div class="table-wrapper marginTop15">
 <table class='table w-full'>
@@ -45,7 +45,7 @@
                             <td><a href="#" data-load-content="client/reseller_edit.php?id={{ id }}">{{ company_name }}</a></td>
                             <td><a href="#" data-load-content="client/reseller_edit.php?id={{ id }}">{{ contact_name }}</a></td>
 							<td><a href="#" data-load-content="client/reseller_edit.php?id={{ id }}">{{ customer_no }}</a></td>
-                            <td><a href="#" data-load-content="client/reseller_edit.php?id={{ id }}" data-toggle="tooltip" data-placement="bottom" title="{{ username }}">{{ username }}</a></td>
+                            <td><a href="#" data-load-content="client/reseller_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ username }}">{{ username }}</a></td>
                             <td><a href="#" data-load-content="client/reseller_edit.php?id={{ id }}">{{ city }}</a></td>
                             <td><a href="#" data-load-content="client/reseller_edit.php?id={{ id }}"><span class="flags flag-{{ countryiso }}">{{ country }}</span></a></td>
                             <td class="text-right">

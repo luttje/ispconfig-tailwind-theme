@@ -18,7 +18,7 @@
 							<div class='progress-bar-striped progress-bar-{% if progressbar < '50' %}success{% elsif progressbar < '75' %}warning{% else %}danger{% endif %}'
 								role='progressbar' aria-valuemin='0' aria-valuemax='100'
 								aria-valuenow='{{ progressbar }}' style='width:{{ progressbar }}%'
-								data-toggle="tooltip" data-placement="bottom" title="{{ percentage }}%">
+								x-tooltip.placement.bottom.raw="{{ percentage }}%">
 								<span>{{ percentage }}%</span>
 								<span class='sr-only'>{{ usage }} {{ of_txt }} {{ value }}</span>
 							</div>

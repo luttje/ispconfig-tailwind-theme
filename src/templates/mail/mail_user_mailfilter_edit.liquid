@@ -11,7 +11,7 @@
 	<div class="col-sm-9">
 		<div class="input-group">
         {% if show_config_info %}
-			<input type="text" name="purge_trash_days" id="purge_trash_days" value="{{ purge_trash_days }}" class="form-control" data-toggle="tooltip" title="{{ tooltip_purge_trash_days_txt }}">
+			<input type="text" name="purge_trash_days" id="purge_trash_days" value="{{ purge_trash_days }}" class="form-control" x-tooltip.raw="{{ tooltip_purge_trash_days_txt }}">
         {% else %}
 			<input type="text" name="purge_trash_days" id="purge_trash_days" value="{{ purge_trash_days }}" class="form-control">
         {% endif %}
@@ -24,7 +24,7 @@
 	<div class="col-sm-9">
 		<div class="input-group">
         {% if show_config_info %}
-			<input type="text" name="purge_junk_days" id="purge_junk_days" value="{{ purge_junk_days }}" class="form-control" data-toggle="tooltip" title="{{ tooltip_purge_junk_days_txt }}">
+			<input type="text" name="purge_junk_days" id="purge_junk_days" value="{{ purge_junk_days }}" class="form-control" x-tooltip.raw="{{ tooltip_purge_junk_days_txt }}">
         {% else %}
 			<input type="text" name="purge_junk_days" id="purge_junk_days" value="{{ purge_junk_days }}" class="form-control">
         {% endif %}
