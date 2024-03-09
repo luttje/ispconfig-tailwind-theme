@@ -2,7 +2,7 @@
 
 
         <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper marginTop15">
+            <div class="table-wrapper mt-1">
 <table class='table w-full'>
                 <thead class="dark">
                     <tr>
@@ -42,7 +42,7 @@
                                 {% if delete_possible %}
                                     <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('sites/aps_do_operation.php?action=delete_instance&id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}','{{ pkg_delete_confirmation }}')"><span class="icon icon-delete"></span></button>
                                 {% endif %}
-                            </td>        
+                            </td>
                         </tr>
                     {% endloop %}
                 </tbody>
@@ -53,5 +53,5 @@
                 </tfoot>
             </table>
 </div>
-        
+
     </div>

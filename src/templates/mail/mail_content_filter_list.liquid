@@ -1,74 +1,96 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-
-        {% if datalog_changes_count > '0' %}
-        <div>
-            <div class="systemmonitor-state state-info">
-                <div class="status"></div>
-                <div class="statusMsg">
-                    {{ datalog_changes_txt }}
-                    <ul>
+{% if datalog_changes_count > '0' %}
+    <div>
+        <div class="systemmonitor-state state-info">
+            <div class="status"></div>
+            <div class="statusMsg">
+                {{ datalog_changes_txt }}
+                <ul>
                     {% loop datalog_changes %}
-                        <li><strong>{{ text }}:</strong> {{ count }}</li>
+                    <li><strong>{{ text }}:</strong> {{ count }}</li>
                     {% endloop %}
-                    </ul>
-                    {{ datalog_changes_end_txt }}
-                </div>
-            </div><br />
-        </div>
-        {% endif %}
-        <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+                </ul>
+                {{ datalog_changes_end_txt }}
+            </div>
+        </div><br />
+    </div>
+{% endif %}
+<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="mail/mail_content_filter_edit.php">{{ add_new_record_txt }}</button>
+{% render_json '../components/button/primary', {
+    "slot": "{{ add_new_record_txt }}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ add_new_record_txt }}" ],
+        [ "data-load-content", "mail/mail_content_filter_edit.php"]
+    ]
+} %}
 
-
-
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper marginTop15">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th class="tiny-col" data-column="active">{{ active_txt }}</th>
-                        <th data-column="server_id">{{ server_id_txt }}</th>
-                        <th data-column="pattern">{{ pattern_txt }}</th>
-                        <th data-column="action">{{ action_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
-                    <tr>
-                        <td><select class="form-control" name="search_active">{{ search_active }}</select></td>
-                        <td><select class="form-control" name="search_server_id">{{ search_server_id }}</select></td>
-                        <td><input class="form-control" type="text" name="search_pattern" value="{{ search_pattern }}" /></td>
-                        <td><select class="form-control" name="search_action">{{ search_action }}</select></td>
-                        <td class="text-right">
-                            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="mail/mail_content_filter_list.php"><span class="icon icon-filter"></span></button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" data-load-content="mail/mail_content_filter_edit.php?id={{ id }}">{{ active }}</a></td>
-                            <td><a href="#" data-load-content="mail/mail_content_filter_edit.php?id={{ id }}">{{ server_id }}</a></td>
-                            <td><a href="#" data-load-content="mail/mail_content_filter_edit.php?id={{ id }}">{{ pattern }}</a></td>
-                            <td><a href="#" data-load-content="mail/mail_content_filter_edit.php?id={{ id }}">{{ action }}</a></td>
-                            <td class="text-right">
-                                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_content_filter_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                            </td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
+<p class="fieldset-legend">{{ list_head_txt }}</p>
+<div class="table-wrapper mt-1">
+    <table class='table w-full'>
+        <thead class="dark">
+            <tr>
+                <th class="tiny-col"
+                    data-column="active">{{ active_txt }}</th>
+                <th data-column="server_id">{{ server_id_txt }}</th>
+                <th data-column="pattern">{{ pattern_txt }}</th>
+                <th data-column="action">{{ action_txt }}</th>
+                <th class="small-col text-right">{{ search_limit }}</th>
+            </tr>
+            <tr>
+                <td><select class="form-control"
+                            name="search_active">{{ search_active }}</select></td>
+                <td><select class="form-control"
+                            name="search_server_id">{{ search_server_id }}</select></td>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_pattern"
+                           value="{{ search_pattern }}" /></td>
+                <td><select class="form-control"
+                            name="search_action">{{ search_action }}</select></td>
+                <td class="text-right">
+                    <button type="button"
+                            class="btn btn-default formbutton-default formbutton-narrow"
+                            name="Filter"
+                            id="Filter"
+                            value="{{ filter_txt }}"
+                            data-submit-form="pageForm"
+                            data-form-action="mail/mail_content_filter_list.php"><span
+                              class="icon icon-filter"></span></button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% loop records %}
+            <tr>
+                <td><a href="#"
+                       data-load-content="mail/mail_content_filter_edit.php?id={{ id }}">{{ active }}</a></td>
+                <td><a href="#"
+                       data-load-content="mail/mail_content_filter_edit.php?id={{ id }}">{{ server_id }}</a></td>
+                <td><a href="#"
+                       data-load-content="mail/mail_content_filter_edit.php?id={{ id }}">{{ pattern }}</a></td>
+                <td><a href="#"
+                       data-load-content="mail/mail_content_filter_edit.php?id={{ id }}">{{ action }}</a></td>
+                <td class="text-right">
+                    <a class="btn btn-default formbutton-danger formbutton-narrow"
+                       href="javascript: ISPConfig.confirm_action('mail/mail_content_filter_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
+                              class="icon icon-delete"></span></a>
+                </td>
+            </tr>
+            {% endloop %}
+            {% unless records %}
+            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
+            </tr>
+            {% endunless %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">{{ paging }}</td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
-

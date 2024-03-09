@@ -1,45 +1,45 @@
-	{% if form_hint %}
-		{% render './components/heading/h1', slot: '{{ form_hint }}' %}
-	{% endif %}
-	{% if msg %}
-		<div class='alert alert-notification'>{{ msg }}</div>
-	{% endif %}
-	{% if error %}
-		<div class='alert alert-danger clear'>
-			<div class='alert-label'><strong>
-					{{ error_txt }}
-				</strong></div>
-			<div class='alert-content'>
-				<ul style="list-style-type:none">
-					{{ error }}
-				</ul>
-			</div>
-		</div>
-	{% endif %}
+{% if form_hint %}
+    {% render './components/heading/h1', slot: '{{ form_hint }}' %}
+{% endif %}
+{% if msg %}
+    <div class='alert alert-notification'>{{ msg }}</div>
+{% endif %}
+{% if error %}
+    <div class='alert alert-danger clear'>
+        <div class='alert-label'><strong>
+                {{ error_txt }}
+            </strong></div>
+        <div class='alert-content'>
+            <ul style="list-style-type:none">
+                {{ error }}
+            </ul>
+        </div>
+    </div>
+{% endif %}
 
-	<!-- content in tabs -->
-	<div class='content-tab-wrapper rounded border'>
-		<!-- tabs -->
-		<ul class='bg-gradient-to-b rounded-t from-white to-[#eef0f2]'>
-			{% loop formTab %}
-				<li{% if active %} class='active'{% endif %}>
-					<a href='#'
-                        onclick="return ISPConfig.changeTab('{{ name }}','{{ app_module }}/{{ form_action }}')"
-                        class="inline-flex px-4 py-2 rounded bg-white border-r hover:from-[#fafafa] hover:to-[#e8ebee]">
-						{{ title }}
-					</a>
-					</li>
-			{% endloop %}
-		</ul>
+<!-- content in tabs -->
+<div class='content-tab-wrapper rounded border'>
+    <!-- tabs -->
+    <ul class='flex flex-row gap-1 flex-wrap bg-gradient-to-b rounded-t from-white to-[#eef0f2]'>
+        {% loop formTab %}
+            <li{% if active %} class='active'{% endif %}>
+                <a href='#'
+                    onclick="return ISPConfig.changeTab('{{ name }}','{{ app_module }}/{{ form_action }}')"
+                    class="inline-flex px-4 py-2 rounded-t bg-white border-r hover:from-[#fafafa] hover:to-[#e8ebee]">
+                    {{ title }}
+                </a>
+                </li>
+        {% endloop %}
+    </ul>
 
-		<div id="tabbox_content" class="tab-content">
-			<div class='tab-pane active fade in'>
-				{% dyninclude 'content_tpl' %}
-			</div>
-		</div>
+    <div id="tabbox_content" class="tab-content">
+        <div class='tab-pane active fade in'>
+            {% dyninclude 'content_tpl' %}
+        </div>
+    </div>
 
-		<input type="hidden" name="_csrf_id" value="{{ _csrf_id }}" />
-		<input type="hidden" name="_csrf_key" value="{{ _csrf_key }}" />
-		<input type="hidden" name="next_tab" value="">
-		<input type="hidden" name="phpsessid" value="{{ phpsessid }}">
-	</div>
+    <input type="hidden" name="_csrf_id" value="{{ _csrf_id }}" />
+    <input type="hidden" name="_csrf_key" value="{{ _csrf_key }}" />
+    <input type="hidden" name="next_tab" value="">
+    <input type="hidden" name="phpsessid" value="{{ phpsessid }}">
+</div>

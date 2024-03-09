@@ -1,48 +1,66 @@
 <h1>
     {% if pkg_icon != '' %}
-        <img src="{{ pkg_icon }}" height="32" width="32" alt="{{ pkg_name }}" style="vertical-align:text-bottom;" /> 
+    <img src="{{ pkg_icon }}"
+         height="32"
+         width="32"
+         alt="{{ pkg_name }}"
+         style="vertical-align:text-bottom;" />
     {% endif %}
     {{ pkg_name }}
 </h1>
+
 <b>{{ pkg_summary }}</b>
 <p>&nbsp;</p>
 
 <div class="pnl_toolsarea">
     <fieldset>
-        
-            <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/aps_install_package.php?id={{ pkg_id }}">{{ install_package_txt }}</button>
-        
+        {% render_json '../components/button/primary', {
+            "slot": "{{ install_package_txt }}",
+            "attributes": [
+                [ "type", "button" ],
+                [ "value", "{{ install_package_txt }}" ],
+                [ "data-load-content", "sites/aps_install_package.php?id={{ pkg_id }}"]
+            ]
+        } %}
     </fieldset>
-<p>&nbsp;</p><p>&nbsp;</p>
 
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
 
-<div class="content-tab-wrapper">
-    <input type="hidden" name="next_tab" value="" />
-    <ul class='nav nav-tabs'>
-        <li{% if next_tab == 'details' %} class="active"{% endif %}>
-            <a href="#" onclick="return ISPConfig.changeTab('details', 'sites/aps_packagedetails_show.php?id={{ pkg_id }}');">{{ details_txt }}</a>
-        </li>
-        {% if pkg_screenshots %}
-        <li{% if next_tab == 'screenshots' %} class="active"{% endif %}>
-            <a href="#" onclick="return ISPConfig.changeTab('screenshots', 'sites/aps_packagedetails_show.php?id={{ pkg_id }}');">{{ screenshots_txt }}</a>
-        </li>{% endif %}
-        {% if pkg_changelog %}
-        <li{% if next_tab == 'changelog' %} class="active"{% endif %}>
-            <a href="#" onclick="return ISPConfig.changeTab('changelog', 'sites/aps_packagedetails_show.php?id={{ pkg_id }}');">{{ changelog_txt }}</a>
-        </li>{% endif %}
-        <li{% if next_tab == 'settings' %} class="active"{% endif %}>
-            <a href="#" onclick="return ISPConfig.changeTab('settings', 'sites/aps_packagedetails_show.php?id={{ pkg_id }}');">{{ settings_txt }}</a>
-        </li>
-    </ul>
-</div>
+    <div class="content-tab-wrapper">
+        <input type="hidden"
+               name="next_tab"
+               value="" />
+        <ul class='nav nav-tabs'>
+            <li{% if next_tab == 'details' %} class="active"
+                                              {% endif %}>
+                <a href="#"
+                   onclick="return ISPConfig.changeTab('details', 'sites/aps_packagedetails_show.php?id={{ pkg_id }}');">{{ details_txt }}</a>
+                </li>
+                {% if pkg_screenshots %}
+                <li{% if next_tab == 'screenshots' %} class="active" {% endif %}>
+                    <a href="#"
+                       onclick="return ISPConfig.changeTab('screenshots', 'sites/aps_packagedetails_show.php?id={{ pkg_id }}');">{{ screenshots_txt }}</a>
+                    </li>
+                {% endif %}
+                {% if pkg_changelog %}
+                <li{% if next_tab == 'changelog' %} class="active" {% endif %}>
+                    <a href="#"
+                        onclick="return ISPConfig.changeTab('changelog', 'sites/aps_packagedetails_show.php?id={{ pkg_id }}');">{{ changelog_txt }}</a>
+                </li>
+                {% endif %}
+                <li{% if next_tab == 'settings' %} class="active" {% endif %}>
+                    <a href="#"
+                        onclick="return ISPConfig.changeTab('settings', 'sites/aps_packagedetails_show.php?id={{ pkg_id }}');">{{ settings_txt }}</a>
+                </li>
+        </ul>
+    </div>
 
-<div class="panel panel_list_packages">
-    
-    
-        <div class="table-wrapper marginTop15">
-<table class='table w-full'>
-            <tbody>
-                {% if next_tab == 'details' %}
+    <div class="panel panel_list_packages">
+        <div class="table-wrapper mt-1">
+            <table class='table w-full'>
+                <tbody>
+                    {% if next_tab == 'details' %}
                     <tr>
                         <td width="25%">{{ version_txt }}</td>
                         <td>{{ pkg_version }} (Release {{ pkg_release }})</td>
@@ -58,7 +76,8 @@
                     <tr>
                         <td>{{ homepage_txt }}</td>
                         <td>
-                            <a href="{{ pkg_homepage }}" target="_blank">{{ pkg_homepage }}</a>
+                            <a href="{{ pkg_homepage }}"
+                               target="_blank">{{ pkg_homepage }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -77,41 +96,45 @@
                         <td>{{ license_txt }}</td>
                         <td>
                             {% if pkg_license_name %}{{ pkg_license_name }}<br />{% endif %}
-                            {% if pkg_license_type == 'url' %}<a href="{{ pkg_license_content }}" target="_blank">{{ pkg_license_content }}</a>
+                            {% if pkg_license_type == 'url' %}<a href="{{ pkg_license_content }}"
+                               target="_blank">{{ pkg_license_content }}</a>
                             {% elsif pkg_license_content %}
-                                <div class="col-sm-9"><textarea class="form-control" rows="10" cols="80">{{ pkg_license_content }}</textarea></div>
+                            <div class="col-sm-9"><textarea class="form-control"
+                                          rows="10"
+                                          cols="80">{{ pkg_license_content }}</textarea></div>
                             {% endif %}
                         </td>
                     </tr>
-                {% elsif next_tab == 'screenshots' %}
+                    {% elsif next_tab == 'screenshots' %}
                     {% if pkg_screenshots %}
-                        <tr>
-                            <td style="text-align:center;">
-                                {% loop pkg_screenshots %}
-                                    <img src="{{ ScreenPath }}" alt="{{ ScreenDescription }}" /><br />
-                                    <em>{{ ScreenDescription }}</em><br /><br />
-                                {% endloop %}
-                            </td>
-                        </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            {% loop pkg_screenshots %}
+                            <img src="{{ ScreenPath }}"
+                                 alt="{{ ScreenDescription }}" /><br />
+                            <em>{{ ScreenDescription }}</em><br /><br />
+                            {% endloop %}
+                        </td>
+                    </tr>
                     {% endif %}
-                {% elsif next_tab == 'changelog' %}
+                    {% elsif next_tab == 'changelog' %}
                     {% if pkg_changelog %}
-                        <tr>
-                            <td>
-                                <ul>
-                                    {% loop pkg_changelog %}
-                                    <li>{{ ChangelogVersion }}</li>
+                    <tr>
+                        <td>
+                            <ul>
+                                {% loop pkg_changelog %}
+                                <li>{{ ChangelogVersion }}</li>
                                 <ul>
                                     {% if ChangelogDescription %}
                                     <li>{{ ChangelogDescription }}</li>
                                     {% endif %}
                                 </ul>
-                                    {% endloop %}
-                                </ul>
-                            </td>
-                        </tr>
+                                {% endloop %}
+                            </ul>
+                        </td>
+                    </tr>
                     {% endif %}
-                {% elsif next_tab == 'settings' %}
+                    {% elsif next_tab == 'settings' %}
                     <tr>
                         <td width="25%">{{ php_extensions_txt }}</td>
                         <td>{{ pkg_requirements_php_extensions }}</td>
@@ -130,9 +153,8 @@
                         <td>{{ database_txt }}</td>
                         <td>{{ pkg_requirements_database }}</a></td>
                     </tr>
-                {% endif %}
-            </tbody>
-        </table>
-</div>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
     </div>
-    

@@ -1,7 +1,7 @@
 {% if list_head_txt %}
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 {% endif %}
-<div class="table-wrapper marginTop15">
+<div class="table-wrapper mt-1">
 	<table class='table w-full'>
 		<thead class="dark">
 			<tr>
@@ -44,7 +44,7 @@
 	{% render '../components/heading/h2', slot: '{{ fields_deleted_txt }}' %}
 {% endif %}
 
-<div class="table-wrapper marginTop15">
+<div class="table-wrapper mt-1">
 	<table class='table w-full'>
 		{% if action_char == 'i' %}
 			<thead class="dark">

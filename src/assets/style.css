@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TODO: Move this to (tailwind) components */
+/* TODO: Move all of the below to (tailwind) components */
+
 body {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -12,19 +13,6 @@ body {
   content: "";
   display: table;
   clear: both;
-}
-
-.marginTop15 {
-  margin-top: 15px;
-}
-
-.paddingX5 {
-  padding-left: 5px !important;
-  padding-right: 5px !important;
-}
-
-.width65 {
-  width: 65px;
 }
 
 .form-group input[type='checkbox'] {
@@ -45,10 +33,6 @@ body {
 
 .control-label-plain:after {
   content: "";
-}
-
-.inlineLabel {
-  font-weight: 400;
 }
 
 .formbutton-default {

@@ -1,64 +1,79 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-
-        {% if datalog_changes_count > '0' %}
-        <div>
-            <div class="systemmonitor-state state-info">
-                <div class="status"></div>
-                <div class="statusMsg">
-                    {{ datalog_changes_txt }}
-                    <ul>
+{% if datalog_changes_count > '0' %}
+    <div>
+        <div class="systemmonitor-state state-info">
+            <div class="status"></div>
+            <div class="statusMsg">
+                {{ datalog_changes_txt }}
+                <ul>
                     {% loop datalog_changes %}
-                        <li><strong>{{ text }}:</strong> {{ count }}</li>
+                    <li><strong>{{ text }}:</strong> {{ count }}</li>
                     {% endloop %}
-                    </ul>
-                    {{ datalog_changes_end_txt }}
-                </div>
-            </div><br />
-        </div>
-        {% endif %}
-        <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+                </ul>
+                {{ datalog_changes_end_txt }}
+            </div>
+        </div><br />
+    </div>
+{% endif %}
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/database_user_edit.php">{{ add_new_record_txt }}</button>
+<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
+{% render_json '../components/button/primary', {
+    "slot": "{{ add_new_record_txt }}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ add_new_record_txt }}" ],
+        [ "data-load-content", "sites/database_user_edit.php"]
+    ]
+} %}
 
-
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper marginTop15">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th data-column="database_user">{{ database_user_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
-                    <tr>
-                        <td><input class="form-control" type="text" name="search_database_user" value="{{ search_database_user }}"/></td>
-                        <td class="text-right"><button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/database_user_list.php"><span class="icon icon-filter"></span></button></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" data-load-content="sites/database_user_edit.php?id={{ id }}">{{ database_user }}</a></td>
-                            <td class="text-right">
-                                <a class="btn btn-default formbutton-default formbutton-narrow" data-load-content="sites/database_user_edit.php?id={{ id }}"><span class="icon icon-edit"></span></a>
-                                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('sites/database_user_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                            </td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="2">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
+<p class="fieldset-legend">{{ list_head_txt }}</p>
+<div class="table-wrapper mt-1">
+    <table class='table w-full'>
+        <thead class="dark">
+            <tr>
+                <th data-column="database_user">{{ database_user_txt }}</th>
+                <th class="small-col text-right">{{ search_limit }}</th>
+            </tr>
+            <tr>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_database_user"
+                           value="{{ search_database_user }}" /></td>
+                <td class="text-right"><button type="button"
+                            class="btn btn-default formbutton-default formbutton-narrow"
+                            name="Filter"
+                            id="Filter"
+                            value="{{ filter_txt }}"
+                            data-submit-form="pageForm"
+                            data-form-action="sites/database_user_list.php"><span class="icon icon-filter"></span></button></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% loop records %}
+            <tr>
+                <td><a href="#"
+                       data-load-content="sites/database_user_edit.php?id={{ id }}">{{ database_user }}</a></td>
+                <td class="text-right">
+                    <a class="btn btn-default formbutton-default formbutton-narrow"
+                       data-load-content="sites/database_user_edit.php?id={{ id }}"><span class="icon icon-edit"></span></a>
+                    <a class="btn btn-default formbutton-danger formbutton-narrow"
+                       href="javascript: ISPConfig.confirm_action('sites/database_user_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+                </td>
+            </tr>
+            {% endloop %}
+            {% unless records %}
+            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                <td colspan="2">{{ globalsearch_noresults_text_txt }}</td>
+            </tr>
+            {% endunless %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">{{ paging }}</td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
-

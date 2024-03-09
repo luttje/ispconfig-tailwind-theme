@@ -1,61 +1,94 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
+<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-        <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+{% render_json '../components/button/primary', {
+    "slot": "{{ add_new_record_txt }}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ add_new_record_txt }}" ],
+        [ "data-load-content", "admin/users_edit.php"]
+    ]
+} %}
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="admin/users_edit.php">{{ add_new_record_txt }}</button>
-								<br><br>
-								<div class="alert alert-warning"><p>{{ warning_txt }}</p></div>
+<div class="alert alert-warning">
+    <p>{{ warning_txt }}</p>
+</div>
 
-
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper marginTop15">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th class="small-col" data-column="client_id">{{ client_id_txt }}</th>
-                        <th class="tiny-col" data-column="active">{{ active_txt }}</th>
-                        <th data-column="username">{{ username_txt }}</th>
-                        <th data-column="groups">{{ groups_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
-                    <tr>
-                        <td><input class="form-control" type="text" name="search_client_id" value="{{ search_client_id }}" /></td>
-                        <td><select class="form-control" name="search_active">{{ search_active }}</select></td>
-                        <td><input class="form-control" type="text" name="search_username" value="{{ search_username }}" /></td>
-                        <td><select class="form-control" name="search_groups">{{ search_groups }}</select></td>
-                        <td class="text-right">
-                            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="admin/users_list.php"><span class="icon icon-filter"></span></button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" data-load-content="admin/users_edit.php?id={{ id }}">{{ client_id }}</a></td>
-                            <td><a href="#" data-load-content="admin/users_edit.php?id={{ id }}">{{ active }}</a></td>
-                            <td><div class="icons16 group-{{ typ }}" title="{{ typ }}"><span>{{ typ }}</span></div> <div class="group-icon"><a href="#" data-load-content="admin/users_edit.php?id={{ id }}">{{ username }}</a></div></td>
-                            <td>{{ groups }}</td>
-                            <td class="text-right">
-                                {% if client_id != '0' %}
-                                    <a class="btn btn-default formbutton-success formbutton-narrow" data-load-content="login/login_as.php?cid={{ client_id }}"><span class="icon icon-loginas"></span></a>
-                                    <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('admin/users_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
+<p class="fieldset-legend">{{ list_head_txt }}</p>
+<div class="table-wrapper mt-1">
+    <table class='table w-full'>
+        <thead class="dark">
+            <tr>
+                <th class="small-col"
+                    data-column="client_id">{{ client_id_txt }}</th>
+                <th class="tiny-col"
+                    data-column="active">{{ active_txt }}</th>
+                <th data-column="username">{{ username_txt }}</th>
+                <th data-column="groups">{{ groups_txt }}</th>
+                <th class="small-col text-right">{{ search_limit }}</th>
+            </tr>
+            <tr>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_client_id"
+                           value="{{ search_client_id }}" /></td>
+                <td><select class="form-control"
+                            name="search_active">{{ search_active }}</select></td>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_username"
+                           value="{{ search_username }}" /></td>
+                <td><select class="form-control"
+                            name="search_groups">{{ search_groups }}</select></td>
+                <td class="text-right">
+                    <button type="button"
+                            class="btn btn-default formbutton-default formbutton-narrow"
+                            name="Filter"
+                            id="Filter"
+                            value="{{ filter_txt }}"
+                            data-submit-form="pageForm"
+                            data-form-action="admin/users_list.php"><span class="icon icon-filter"></span></button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% loop records %}
+            <tr>
+                <td><a href="#"
+                       data-load-content="admin/users_edit.php?id={{ id }}">{{ client_id }}</a></td>
+                <td><a href="#"
+                       data-load-content="admin/users_edit.php?id={{ id }}">{{ active }}</a></td>
+                <td>
+                    <div class="icons16 group-{{ typ }}"
+                         title="{{ typ }}"><span>{{ typ }}</span></div>
+                    <div class="group-icon"><a href="#"
+                           data-load-content="admin/users_edit.php?id={{ id }}">{{ username }}</a></div>
+                </td>
+                <td>{{ groups }}</td>
+                <td class="text-right">
+                    {% if client_id != '0' %}
+                    <a class="btn btn-default formbutton-success formbutton-narrow"
+                       data-load-content="login/login_as.php?cid={{ client_id }}"><span
+                              class="icon icon-loginas"></span></a>
+                    <a class="btn btn-default formbutton-danger formbutton-narrow"
+                       href="javascript: ISPConfig.confirm_action('admin/users_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
+                              class="icon icon-delete"></span></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endloop %}
+            {% unless records %}
+            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
+            </tr>
+            {% endunless %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">{{ paging }}</td>
+            </tr>
+        </tfoot>
+    </table>
 </div>

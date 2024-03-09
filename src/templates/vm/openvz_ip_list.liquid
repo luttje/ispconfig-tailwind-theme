@@ -1,57 +1,76 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
+<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-        <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+{% render_json '../components/button/primary', {
+    "slot": "{{ add_new_record_txt }}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ add_new_record_txt }}" ],
+        [ "data-load-content", "vm/openvz_ip_edit.php"]
+    ]
+} %}
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="vm/openvz_ip_edit.php">{{ add_new_record_txt }}</button>
-
-
-
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper marginTop15">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th data-column="server_id">{{ server_id_txt }}</th>
-                        <th data-column="vm_id">{{ vm_id_txt }}</th>
-                        <th data-column="ip_address">{{ ip_address_txt }}</th>
-                        <th data-column="reserved">{{ reserved_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
-                    <tr>
-                        <td><select class="form-control" name="search_server_id">{{ search_server_id }}</select></td>
-                        <td><select class="form-control" name="search_vm_id">{{ search_vm_id }}</select></td>
-                        <td><input class="form-control" type="text" name="search_ip_address" value="{{ search_ip_address }}" /></td>
-                        <td><select class="form-control" name="search_reserved">{{ search_reserved }}</select></td>
-                        <td class="text-right">
-                            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="vm/openvz_ip_list.php"><span class="icon icon-filter"></span></button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" data-load-content="vm/openvz_ip_edit.php?id={{ id }}">{{ server_id }}</a></td>
-                            <td><a href="#" data-load-content="vm/openvz_ip_edit.php?id={{ id }}">{{ vm_id }}</a></td>
-                            <td><a href="#" data-load-content="vm/openvz_ip_edit.php?id={{ id }}">{{ ip_address }}</a></td>
-                            <td><a href="#" data-load-content="vm/openvz_ip_edit.php?id={{ id }}">{{ reserved }}</a></td>
-                            <td class="text-right">
-                                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('vm/openvz_ip_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                            </td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
+<p class="fieldset-legend">{{ list_head_txt }}</p>
+<div class="table-wrapper mt-1">
+    <table class='table w-full'>
+        <thead class="dark">
+            <tr>
+                <th data-column="server_id">{{ server_id_txt }}</th>
+                <th data-column="vm_id">{{ vm_id_txt }}</th>
+                <th data-column="ip_address">{{ ip_address_txt }}</th>
+                <th data-column="reserved">{{ reserved_txt }}</th>
+                <th class="small-col text-right">{{ search_limit }}</th>
+            </tr>
+            <tr>
+                <td><select class="form-control"
+                            name="search_server_id">{{ search_server_id }}</select></td>
+                <td><select class="form-control"
+                            name="search_vm_id">{{ search_vm_id }}</select></td>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_ip_address"
+                           value="{{ search_ip_address }}" /></td>
+                <td><select class="form-control"
+                            name="search_reserved">{{ search_reserved }}</select></td>
+                <td class="text-right">
+                    <button type="button"
+                            class="btn btn-default formbutton-default formbutton-narrow"
+                            name="Filter"
+                            id="Filter"
+                            value="{{ filter_txt }}"
+                            data-submit-form="pageForm"
+                            data-form-action="vm/openvz_ip_list.php"><span class="icon icon-filter"></span></button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% loop records %}
+            <tr>
+                <td><a href="#"
+                       data-load-content="vm/openvz_ip_edit.php?id={{ id }}">{{ server_id }}</a></td>
+                <td><a href="#"
+                       data-load-content="vm/openvz_ip_edit.php?id={{ id }}">{{ vm_id }}</a></td>
+                <td><a href="#"
+                       data-load-content="vm/openvz_ip_edit.php?id={{ id }}">{{ ip_address }}</a></td>
+                <td><a href="#"
+                       data-load-content="vm/openvz_ip_edit.php?id={{ id }}">{{ reserved }}</a></td>
+                <td class="text-right">
+                    <a class="btn btn-default formbutton-danger formbutton-narrow"
+                       href="javascript: ISPConfig.confirm_action('vm/openvz_ip_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+                </td>
+            </tr>
+            {% endloop %}
+            {% unless records %}
+            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
+            </tr>
+            {% endunless %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">{{ paging }}</td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
-

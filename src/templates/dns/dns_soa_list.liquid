@@ -1,78 +1,131 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-
-        {% if datalog_changes_count > '0' %}
-        <div>
-            <div class="systemmonitor-state state-info">
-                <div class="status"></div>
-                <div class="statusMsg">
-                    {{ datalog_changes_txt }}
-                    <ul>
+{% if datalog_changes_count > '0' %}
+    <div>
+        <div class="systemmonitor-state state-info">
+            <div class="status"></div>
+            <div class="statusMsg">
+                {{ datalog_changes_txt }}
+                <ul>
                     {% loop datalog_changes %}
-                        <li><strong>{{ text }}:</strong> {{ count }}</li>
+                    <li><strong>{{ text }}:</strong> {{ count }}</li>
                     {% endloop %}
-                    </ul>
-                    {{ datalog_changes_end_txt }}
-                </div>
-            </div><br />
-        </div>
-        {% endif %}
-        <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+                </ul>
+                {{ datalog_changes_end_txt }}
+            </div>
+        </div><br />
+    </div>
+{% endif %}
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="dns/dns_wizard.php">{{ add_new_record_wizard_txt }}</button>
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="dns/dns_soa_edit.php">{{ add_new_record_txt }}</button>
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="dns/dns_import.php">{{ import_zone_file_txt }}</button>
+<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
+<div class="flex flex-row gap-4">
+{% render_json '../components/button/primary', {
+    "slot": "{{ add_new_record_wizard_txt }}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ add_new_record_wizard_txt }}" ],
+        [ "data-load-content", "dns/dns_wizard.php"]
+    ]
+} %}
 
+{% render_json '../components/button/primary', {
+    "slot": "{{ add_new_record_txt }}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ add_new_record_txt }}" ],
+        [ "data-load-content", "dns/dns_soa_edit.php"]
+    ]
+} %}
 
+{% render_json '../components/button/primary', {
+    "slot": "{{ import_zone_file_txt }}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ import_zone_file_txt }}" ],
+        [ "data-load-content", "dns/dns_import.php"]
+    ]
+} %}
+</div>
 
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper marginTop15">
-<table class='table w-full'>
-            <thead class="dark">
-                <tr>
-                    <th class="tiny-col" data-column="active">{{ active_txt }}</th>
-                    <th data-column="server_id">{{ server_id_txt }}</th>
-                    <th data-column="origin">{{ origin_txt }}</th>
-                    <th data-column="ns">{{ ns_txt }}</th>
-                    <th data-column="mbox">{{ mbox_txt }}</th>
-                    <th class="small-col text-right">{{ search_limit }}</th>
-                </tr>
-                <tr>
-                    <td><select class="form-control" name="search_active">{{ search_active }}</select></td>
-                    <td><select class="form-control" name="search_server_id">{{ search_server_id }}</select></td>
-                    <td><input class="form-control" type="text" name="search_origin" value="{{ search_origin }}" /></td>
-                    <td><input class="form-control" type="text" name="search_ns" value="{{ search_ns }}" /></td>
-                    <td><input class="form-control" type="text" name="search_mbox" value="{{ search_mbox }}" /></td>
-                    <td class="text-right">
-                        <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="dns/dns_soa_list.php"><span class="icon icon-filter"></span></button>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                {% loop records %}
-                    <tr>
-                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records">{{ active }}{% if dnssec_initialized == 'Y' %} <i class="fa fa-key" aria-hidden="true"></i>{% endif %}</td>
-                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" x-tooltip.placement.bottom.raw="{{ origin }}">{{ origin }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" x-tooltip.placement.bottom.raw="{{ ns }}">{{ ns }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records" x-tooltip.placement.bottom.raw="{{ mbox }}">{{ mbox }}</a></td>
-                        <td class="text-right">
-                            <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('dns/dns_soa_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                        </td>
-                    </tr>
-                {% endloop %}
-                {% unless records %}
-                    <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                        <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
-                    </tr>
-                {% endunless %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6">{{ paging }}</td>
-                </tr>
-            </tfoot>
-            </table>
+<p class="fieldset-legend">{{ list_head_txt }}</p>
+<div class="table-wrapper mt-1">
+    <table class='table w-full'>
+        <thead class="dark">
+            <tr>
+                <th class="tiny-col"
+                    data-column="active">{{ active_txt }}</th>
+                <th data-column="server_id">{{ server_id_txt }}</th>
+                <th data-column="origin">{{ origin_txt }}</th>
+                <th data-column="ns">{{ ns_txt }}</th>
+                <th data-column="mbox">{{ mbox_txt }}</th>
+                <th class="small-col text-right">{{ search_limit }}</th>
+            </tr>
+            <tr>
+                <td><select class="form-control"
+                            name="search_active">{{ search_active }}</select></td>
+                <td><select class="form-control"
+                            name="search_server_id">{{ search_server_id }}</select></td>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_origin"
+                           value="{{ search_origin }}" /></td>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_ns"
+                           value="{{ search_ns }}" /></td>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_mbox"
+                           value="{{ search_mbox }}" /></td>
+                <td class="text-right">
+                    <button type="button"
+                            class="btn btn-default formbutton-default formbutton-narrow"
+                            name="Filter"
+                            id="Filter"
+                            value="{{ filter_txt }}"
+                            data-submit-form="pageForm"
+                            data-form-action="dns/dns_soa_list.php"><span class="icon icon-filter"></span></button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% loop records %}
+            <tr>
+                <td><a href="#"
+                       data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records">{{ active }}{% if
+                        dnssec_initialized == 'Y' %} <i class="fa fa-key"
+                           aria-hidden="true"></i>{% endif %}</td>
+                <td><a href="#"
+                       data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records"
+                       x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
+                <td><a href="#"
+                       data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records"
+                       x-tooltip.placement.bottom.raw="{{ origin }}">{{ origin }}</a></td>
+                <td><a href="#"
+                       data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records"
+                       x-tooltip.placement.bottom.raw="{{ ns }}">{{ ns }}</a></td>
+                <td><a href="#"
+                       data-load-content="dns/dns_soa_edit.php?id={{ id }}&next_tab=dns_records"
+                       x-tooltip.placement.bottom.raw="{{ mbox }}">{{ mbox }}</a></td>
+                <td class="text-right">
+                    <a class="btn btn-default formbutton-danger formbutton-narrow"
+                       href="javascript: ISPConfig.confirm_action('dns/dns_soa_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
+                              class="icon icon-delete"></span></a>
+                </td>
+            </tr>
+            {% endloop %}
+            {% unless records %}
+            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
+            </tr>
+            {% endunless %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">{{ paging }}</td>
+            </tr>
+        </tfoot>
+    </table>
 </div>

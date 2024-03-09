@@ -1,51 +1,67 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
+<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-        <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+{% render_json '../components/button/primary', {
+    "slot": "{{ add_new_record_txt }}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ add_new_record_txt }}" ],
+        [ "data-load-content", "vm/openvz_template_edit.php"]
+    ]
+} %}
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="vm/openvz_template_edit.php">{{ add_new_record_txt }}</button>
-
-
-
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper marginTop15">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th class="tiny-col" data-column="active">{{ active_txt }}</th>
-                        <th data-column="template_name">{{ template_name_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
-                    <tr>
-                        <td><select class="form-control" name="search_active">{{ search_active }}</select></td>
-                        <td><input class="form-control" type="text" name="search_template_name" value="{{ search_template_name }}" /></td>
-                        <td class="text-right">
-                            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="vm/openvz_template_list.php"><span class="icon icon-filter"></span></button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" data-load-content="vm/openvz_template_edit.php?id={{ id }}">{{ active }}</a></td>
-                            <td><a href="#" data-load-content="vm/openvz_template_edit.php?id={{ id }}">{{ template_name }}</a></td>
-                            <td class="text-right">
-                                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('vm/openvz_template_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                            </td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="3">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
+<p class="fieldset-legend">{{ list_head_txt }}</p>
+<div class="table-wrapper mt-1">
+    <table class='table w-full'>
+        <thead class="dark">
+            <tr>
+                <th class="tiny-col"
+                    data-column="active">{{ active_txt }}</th>
+                <th data-column="template_name">{{ template_name_txt }}</th>
+                <th class="small-col text-right">{{ search_limit }}</th>
+            </tr>
+            <tr>
+                <td><select class="form-control"
+                            name="search_active">{{ search_active }}</select></td>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_template_name"
+                           value="{{ search_template_name }}" /></td>
+                <td class="text-right">
+                    <button type="button"
+                            class="btn btn-default formbutton-default formbutton-narrow"
+                            name="Filter"
+                            id="Filter"
+                            value="{{ filter_txt }}"
+                            data-submit-form="pageForm"
+                            data-form-action="vm/openvz_template_list.php"><span class="icon icon-filter"></span></button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% loop records %}
+            <tr>
+                <td><a href="#"
+                       data-load-content="vm/openvz_template_edit.php?id={{ id }}">{{ active }}</a></td>
+                <td><a href="#"
+                       data-load-content="vm/openvz_template_edit.php?id={{ id }}">{{ template_name }}</a></td>
+                <td class="text-right">
+                    <a class="btn btn-default formbutton-danger formbutton-narrow"
+                       href="javascript: ISPConfig.confirm_action('vm/openvz_template_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+                </td>
+            </tr>
+            {% endloop %}
+            {% unless records %}
+            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                <td colspan="3">{{ globalsearch_noresults_text_txt }}</td>
+            </tr>
+            {% endunless %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">{{ paging }}</td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
-

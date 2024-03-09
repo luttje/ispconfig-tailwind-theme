@@ -1,62 +1,84 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
+<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-        <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+{% render_json '../components/button/primary', {
+    "slot": "{{ add_new_record_txt }}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ add_new_record_txt }}" ],
+        [ "data-load-content", "mail/spamfilter_whitelist_edit.php"]
+    ]
+} %}
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="mail/spamfilter_whitelist_edit.php">{{ add_new_record_txt }}</button>
+<p class="fieldset-legend">{{ list_head_txt }}</p>
+<div class="table-wrapper mt-1">
+    <table class='table w-full'>
+        <thead class="dark">
+            <tr>
+                <th class="tiny-col"
+                    data-column="active">{{ active_txt }}</th>
+                <th data-column="server_id">{{ server_id_txt }}</th>
+                <th data-column="priority">{{ priority_txt }}</th>
+                <th data-column="rid">{{ rid_txt }}</th>
+                <th data-column="email">{{ email_txt }}</th>
+                <th class="small-col text-right">{{ search_limit }}</th>
+            </tr>
+            <tr>
+                <td><select class="form-control"
+                            name="search_active">{{ search_active }}</select></td>
+                <td><select class="form-control"
+                            name="search_server_id">{{ search_server_id }}</select></td>
+                <td><select class="form-control"
+                            name="search_priority">{{ search_priority }}</select></td>
+                <td><select class="form-control"
+                            name="search_rid">{{ search_rid }}</select></td>
+                <td><input class="form-control"
+                           type="text"
+                           name="search_email"
+                           value="{{ search_email }}" /></td>
+                <td class="text-right">
+                    <button type="button"
+                            class="btn btn-default formbutton-default formbutton-narrow"
+                            name="Filter"
+                            id="Filter"
+                            value="{{ filter_txt }}"
+                            data-submit-form="pageForm"
+                            data-form-action="mail/spamfilter_whitelist_list.php"><span class="icon icon-filter"></span></button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% loop records %}
+            <tr>
+                <td><a href="#"
+                       data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ active }}</a></td>
+                <td><a href="#"
+                       data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ server_id }}</a></td>
+                <td><a href="#"
+                       data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ priority }}</a></td>
+                <td><a href="#"
+                       data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ rid }}</a></td>
+                <td><a href="#"
+                       data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ email }}</a></td>
+                <td class="text-right">
+                    <a class="btn btn-default formbutton-danger formbutton-narrow"
+                       href="javascript: ISPConfig.confirm_action('mail/spamfilter_whitelist_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></button>
+                </td>
+            </tr>
+            {% endloop %}
+            {% unless records %}
+            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
+            </tr>
+            {% endunless %}
+        </tbody>
 
-
-
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper marginTop15">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th class="tiny-col" data-column="active">{{ active_txt }}</th>
-                        <th data-column="server_id">{{ server_id_txt }}</th>
-                        <th data-column="priority">{{ priority_txt }}</th>
-                        <th data-column="rid">{{ rid_txt }}</th>
-                        <th data-column="email">{{ email_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
-                    <tr>
-                        <td><select class="form-control" name="search_active">{{ search_active }}</select></td>
-                        <td><select class="form-control" name="search_server_id">{{ search_server_id }}</select></td>
-                        <td><select class="form-control" name="search_priority">{{ search_priority }}</select></td>
-                        <td><select class="form-control" name="search_rid">{{ search_rid }}</select></td>
-                        <td><input class="form-control" type="text" name="search_email" value="{{ search_email }}" /></td>
-                        <td class="text-right">
-                            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="mail/spamfilter_whitelist_list.php"><span class="icon icon-filter"></span></button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ active }}</a></td>
-                            <td><a href="#" data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ server_id }}</a></td>
-                            <td><a href="#" data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ priority }}</a></td>
-                            <td><a href="#" data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ rid }}</a></td>
-                            <td><a href="#" data-load-content="mail/spamfilter_whitelist_edit.php?id={{ id }}">{{ email }}</a></td>
-                            <td class="text-right">
-                                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/spamfilter_whitelist_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></button>
-                            </td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-
-                <tfoot>
-                    <tr>
-                        <td colspan="6">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
+        <tfoot>
+            <tr>
+                <td colspan="6">{{ paging }}</td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
-

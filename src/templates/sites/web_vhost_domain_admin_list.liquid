@@ -8,64 +8,103 @@
     {% render '../components/heading/h1', slot: '{{ aliasdomain_list_head_txt }}' %}
 {% endif %}
 
-        <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}">{% if vhostdomain_type == 'domain' %}{{ add_new_record_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ add_new_subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ add_new_aliasdomain_txt }}{% endif %}</button>
+{% render_json '../components/button/primary', {
+    "slot": "{% if vhostdomain_type == 'domain' %}{{ add_new_record_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ add_new_subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ add_new_aliasdomain_txt }}{% endif %}",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{% if vhostdomain_type == 'domain' %}{{ add_new_record_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ add_new_subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ add_new_aliasdomain_txt }}{% endif %}" ],
+        [ "data-load-content", "sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}"]
+    ]
+} %}
 
-
-
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper marginTop15">
-<table class='table w-full'>
-                <thead class="dark">
-                <tr>
-                    {% if vhostdomain_type == 'domain' %}<th class="small-col" data-column="domain_id">{{ domain_id_txt }}</th>{% endif %}
-                    <th class="tiny-col" data-column="active">{{ active_txt }}</th>
-                    {% if vhostdomain_type == 'domain' %}<th data-column="sys_groupid">{{ sys_groupid_txt }}</th>{% endif %}
-                    <th data-column="server_id">{{ server_id_txt }}</th>
-					{% if vhostdomain_type != 'domain' %}<th data-column="parent_domain_id">{{ parent_domain_id_txt }}</th>{% endif %}
-                    <th data-column="domain">{% if vhostdomain_type == 'domain' %}{{ domain_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ aliasdomain_txt }}{% endif %}</th>
-                    <th class="small-col text-right">{{ search_limit }}</th>
-                </tr>
-                <tr>
-                    {% if vhostdomain_type == 'domain' %}<td><input class="form-control" type="text" name="search_domain_id" value="{{ search_domain_id }}" /></td>{% endif %}
-                    <td><select class="form-control" name="search_active">{{ search_active }}</select></td>
-                    {% if vhostdomain_type == 'domain' %}<td><select class="form-control" name="search_sys_groupid">{{ search_sys_groupid }}</select></td>{% endif %}
-                    <td><select class="form-control" name="search_server_id">{{ search_server_id }}</select></td>
-					{% if vhostdomain_type != 'domain' %}<td><select class="form-control" name="search_parent_domain_id">{{ search_parent_domain_id }}</select></td>{% endif %}
-                    <td><input class="form-control" type="text" name="search_domain" value="{{ search_domain }}" /></td>
-                    <td class="text-right">
-                        <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/web_vhost_domain_list.php"><span class="icon icon-filter"></span></button>
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                {% loop records %}
-						<tr {% if warn_inactive %} class="danger" {% endif %} >
-                    	{% if vhostdomain_type == 'domain' %}<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ domain_id }}</a></td>{% endif %}
-                        <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ active }}</a></td>
-                        {% if vhostdomain_type == 'domain' %}<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ sys_groupid }}</a></td>{% endif %}
-                        <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ server_id }}</a></td>
-						{% if vhostdomain_type != 'domain' %}<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>{% endif %}
-                        <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}" x-tooltip.placement.bottom.raw="{{ domain }}">{{ domain }}</a></td>
-                        <td class="text-right">
-							<a href="http://{{ domain }}" target="_blank" class="btn btn-default formbutton-default formbutton-narrow"><span class="icon icon-link"></span></a>
-							<a href="http://{{ domain }}/stats/" target="_blank" class="btn btn-default formbutton-default formbutton-narrow"{% if stats_type == '' %} disabled{% endif %}><span class="glyphicon glyphicon-signal"></span></a>
-                            <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('sites/web_vhost_domain_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                        </td>
-                    </tr>
-                {% endloop %}
-                {% unless records %}
-                    <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                        <td colspan="{% if vhostdomain_type == 'domain' %}6{% else %}5{% endif %}">{{ globalsearch_noresults_text_txt }}</td>
-                    </tr>
-                {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="{% if vhostdomain_type == 'domain' %}6{% else %}5{% endif %}">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
+<p class="fieldset-legend">{{ list_head_txt }}</p>
+<div class="table-wrapper mt-1">
+    <table class='table w-full'>
+        <thead class="dark">
+            <tr>
+                {% if vhostdomain_type == 'domain' %}<th class="small-col"
+                    data-column="domain_id">{{ domain_id_txt }}</th>{% endif %}
+                <th class="tiny-col"
+                    data-column="active">{{ active_txt }}</th>
+                {% if vhostdomain_type == 'domain' %}<th data-column="sys_groupid">{{ sys_groupid_txt }}</th>{% endif %}
+                <th data-column="server_id">{{ server_id_txt }}</th>
+                {% if vhostdomain_type != 'domain' %}<th data-column="parent_domain_id">{{ parent_domain_id_txt }}</th>{% endif %}
+                <th data-column="domain">{% if vhostdomain_type == 'domain' %}{{ domain_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ aliasdomain_txt }}{% endif %}</th>
+                <th class="small-col text-right">{{ search_limit }}</th>
+            </tr>
+            <tr>
+                {% if vhostdomain_type == 'domain' %}<td><input class="form-control"
+                           type="text"
+                           name="search_domain_id"
+                           value="{{ search_domain_id }}" /></td>{% endif %}
+                <td><select class="form-control"
+                            name="search_active">{{ search_active }}</select></td>
+                {% if vhostdomain_type == 'domain' %}<td><select class="form-control"
+                            name="search_sys_groupid">{{ search_sys_groupid }}</select></td>{% endif %}
+                <td><select class="form-control"
+                            name="search_server_id">{{ search_server_id }}</select></td>
+                {% if vhostdomain_type != 'domain' %}<td><select class="form-control"
+                            name="search_parent_domain_id">{{ search_parent_domain_id }}</select></td>{% endif %}
+                <td><input class="form-control"
+                           type="text"
+                           name="search_domain"
+                           value="{{ search_domain }}" /></td>
+                <td class="text-right">
+                    <button type="button"
+                            class="btn btn-default formbutton-default formbutton-narrow"
+                            name="Filter"
+                            id="Filter"
+                            value="{{ filter_txt }}"
+                            data-submit-form="pageForm"
+                            data-form-action="sites/web_vhost_domain_list.php"><span class="icon icon-filter"></span></button>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% loop records %}
+            <tr {% if warn_inactive %}
+                class="danger"
+                {% endif %}>
+                {% if vhostdomain_type == 'domain' %}<td><a href="#"
+                       data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ domain_id }}</a></td>{% endif %}
+                <td><a href="#"
+                       data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ active }}</a></td>
+                {% if vhostdomain_type == 'domain' %}<td><a href="#"
+                       data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ sys_groupid }}</a></td>{% endif %}
+                <td><a href="#"
+                       data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ server_id }}</a></td>
+                {% if vhostdomain_type != 'domain' %}<td><a href="#"
+                       data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}"
+                       x-tooltip.placement.bottom.raw="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>{% endif %}
+                <td><a href="#"
+                       data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}"
+                       x-tooltip.placement.bottom.raw="{{ domain }}">{{ domain }}</a></td>
+                <td class="text-right">
+                    <a href="http://{{ domain }}"
+                       target="_blank"
+                       class="btn btn-default formbutton-default formbutton-narrow"><span class="icon icon-link"></span></a>
+                    <a href="http://{{ domain }}/stats/"
+                       target="_blank"
+                       class="btn btn-default formbutton-default formbutton-narrow"
+                       {% if stats_type == '' %}
+                       disabled{% endif %}><span class="glyphicon glyphicon-signal"></span></a>
+                    <a class="btn btn-default formbutton-danger formbutton-narrow"
+                       href="javascript: ISPConfig.confirm_action('sites/web_vhost_domain_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+                </td>
+            </tr>
+            {% endloop %}
+            {% unless records %}
+            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                <td colspan="{% if vhostdomain_type == 'domain' %}6{% else %}5{% endif %}">{{ globalsearch_noresults_text_txt }}</td>
+            </tr>
+            {% endunless %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="{% if vhostdomain_type == 'domain' %}6{% else %}5{% endif %}">{{ paging }}</td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
