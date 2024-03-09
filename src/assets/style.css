@@ -299,15 +299,6 @@ thead.dark td select {
   width: 100%;
 }
 
-#footer {
-  margin: 20px 0;
-  padding-top: 20px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  text-align: center;
-  font-size: 10px;
-}
-
 .df-container,
 .gs-container {
   position: relative;
