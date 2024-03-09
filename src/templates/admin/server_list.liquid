@@ -1,64 +1,66 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper mt-1">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th data-column="server_name" width="20%">{{ server_name_txt }}</th>
-                        <th data-column="mail_server">{{ mail_server_txt }}</th>
-                        <th data-column="web_server">{{ web_server_txt }}</th>
-                        <th data-column="dns_server">{{ dns_server_txt }}</th>
-                        <th data-column="file_server">{{ file_server_txt }}</th>
-                        <th data-column="db_server">{{ db_server_txt }}</th>
-                        <th data-column="vserver_server">{{ vserver_server_txt }}</th>
-                        <th data-column="vserver_server">{{ xmpp_server_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
-                    <tr>
-                        <td><input class="form-control" type="text" name="search_server_name" value="{{ search_server_name }}" /></td>
-                        <td><select class="form-control" name="search_active">{{ search_mail_server }}</select></td>
-                        <td><select class="form-control" name="search_active">{{ search_web_server }}</select></td>
-                        <td><select class="form-control" name="search_active">{{ search_dns_server }}</select></td>
-                        <td><select class="form-control" name="search_active">{{ search_file_server }}</select></td>
-                        <td><select class="form-control" name="search_active">{{ search_db_server }}</select></td>
-                        <td><select class="form-control" name="search_active">{{ search_vserver_server }}</select></td>
-                        <td><select class="form-control" name="search_active">{{ search_xmpp_server }}</select></td>
-                        <td class="text-right">
-                            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="admin/server_list.php"><span class="icon icon-filter"></span></button>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" data-load-content="admin/server_edit.php?id={{ id }}">{{ server_name }}</a></td>
-                            <td>{{ mail_server }}</td>
-                            <td>{{ web_server }}</td>
-                            <td>{{ dns_server }}</td>
-                            <td>{{ file_server }}</td>
-                            <td>{{ db_server }}</td>
-                            <td>{{ vserver_server }}</td>
-                            <td>{{ xmpp_server }}</td>
-                            <td class="text-right">
-                                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('admin/server_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                            </td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="7">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="7">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
-</div>
-
-    </div>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th data-column="server_name"
+            width="20%">{{ server_name_txt }}</th>
+        <th data-column="mail_server">{{ mail_server_txt }}</th>
+        <th data-column="web_server">{{ web_server_txt }}</th>
+        <th data-column="dns_server">{{ dns_server_txt }}</th>
+        <th data-column="file_server">{{ file_server_txt }}</th>
+        <th data-column="db_server">{{ db_server_txt }}</th>
+        <th data-column="vserver_server">{{ vserver_server_txt }}</th>
+        <th data-column="vserver_server">{{ xmpp_server_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
+    <tr>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_server_name"
+                    value="{{ search_server_name }}" /></td>
+        <td><select class="form-control"
+                    name="search_active">{{ search_mail_server }}</select></td>
+        <td><select class="form-control"
+                    name="search_active">{{ search_web_server }}</select></td>
+        <td><select class="form-control"
+                    name="search_active">{{ search_dns_server }}</select></td>
+        <td><select class="form-control"
+                    name="search_active">{{ search_file_server }}</select></td>
+        <td><select class="form-control"
+                    name="search_active">{{ search_db_server }}</select></td>
+        <td><select class="form-control"
+                    name="search_active">{{ search_vserver_server }}</select></td>
+        <td><select class="form-control"
+                    name="search_active">{{ search_xmpp_server }}</select></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="admin/server_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
+{% render '../components/table/head-body' %}
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="admin/server_edit.php?id={{ id }}">{{ server_name }}</a></td>
+        <td>{{ mail_server }}</td>
+        <td>{{ web_server }}</td>
+        <td>{{ dns_server }}</td>
+        <td>{{ file_server }}</td>
+        <td>{{ db_server }}</td>
+        <td>{{ vserver_server }}</td>
+        <td>{{ xmpp_server }}</td>
+        <td class="text-right">
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('admin/server_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end' %}

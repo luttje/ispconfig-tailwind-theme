@@ -2,7 +2,7 @@
 <p>{{ list_desc_txt }}</p>
 
 
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
+        {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
             <div class="table-wrapper mt-1">
 <table class='table w-full'>
                 <thead class="dark">
@@ -14,8 +14,7 @@
 						<th data-column="backup_count">{{ backup_count_txt }}</th>
 						<th data-column="backup_size">{{ backup_size_txt }}</th>
 					</tr>
-                </thead>
-				<tbody>
+{% render '../components/table/head-body' %}
 					{% loop records %}
 					<tr class="tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
 						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ active }}</a> </td>

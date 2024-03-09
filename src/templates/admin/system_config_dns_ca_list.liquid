@@ -1,25 +1,22 @@
 {% if edit_record %}
 {% else %}
-<table class='table w-full'>
-	<thead class="dark">
-		<tr>
-			<th data-column="active">{{ active_txt }}</th>
-			<th data-column="name">{{ ca_name_txt }}</th>
-			<th></th>
-		</tr>
-
-	</thead>
-	<tbody>
-		{% loop ca_records %}
-			<tr>
-				<td>{{ active }}</td>
-				<td>{{ name }}</td>
-				<td class="text-right">
- 					<button class="btn btn-default formbutton-default formbutton-narrow" type="button" onClick="ISPConfig.changeTab('dns_ca','admin/system_config_edit.php?action=edit&id={{ ca_id }}', true);"><span class="icon icon-edit"></span></button>
-					<button class="btn btn-default formbutton-danger formbutton-narrow" type="button" onClick="ISPConfig.changeTab('dns_ca','admin/system_config_edit.php?action=delete&id={{ ca_id }}', true);"><span class="icon icon-delete"></span></button>
-				</td>
-			</tr>
-		{% endloop %}
-	</tbody>
-</table>
+    {% render '../components/table/start' %}
+    {% render '../components/table/head-start' %}
+        <tr>
+            <th data-column="active">{{ active_txt }}</th>
+            <th data-column="name">{{ ca_name_txt }}</th>
+            <th></th>
+        </tr>
+    {% render '../components/table/head-body' %}
+        {% loop ca_records %}
+            <tr>
+                <td>{{ active }}</td>
+                <td>{{ name }}</td>
+                <td class="text-right">
+                    <button class="btn btn-default formbutton-default formbutton-narrow" type="button" onClick="ISPConfig.changeTab('dns_ca','admin/system_config_edit.php?action=edit&id={{ ca_id }}', true);"><span class="icon icon-edit"></span></button>
+                    <button class="btn btn-default formbutton-danger formbutton-narrow" type="button" onClick="ISPConfig.changeTab('dns_ca','admin/system_config_edit.php?action=delete&id={{ ca_id }}', true);"><span class="icon icon-delete"></span></button>
+                </td>
+            </tr>
+        {% endloop %}
+    {% render '../components/table/end' %}
 {% endif %}

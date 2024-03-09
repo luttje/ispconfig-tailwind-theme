@@ -1,7 +1,7 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
 
-		 <p class="fieldset-legend">{{ list_head_txt }}</p>
+		 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 			 <div class="table-wrapper mt-1">
 <table class='table w-full'>
 				<thead class="dark">
@@ -25,8 +25,7 @@
 						<button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/database_quota_stats.php"><span class="icon icon-filter"></span></button>
 					</td>
 				</tr>
-				</thead>
-				<tbody>
+{% render '../components/table/head-body' %}
 					{% loop records %}
 						<tr>
 							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ database }}</a></td>

@@ -10,33 +10,20 @@
 
 
     </div>
-
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper mt-1">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th data-column="module">{{ module_txt }}</th>
-                        <th data-column="lang_file">{{ lang_file_txt }}</th>
-                        <th class="small-col text-right" data-column="lang_file_date">{{ lang_file_date_txt }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ module }}</a></td>
-                            <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ lang_file }}</a></td>
-                            <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ lang_file_date }}</a></td>
-                        </tr>
-                    {% endloop %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
-</div>
-
-
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th data-column="module">{{ module_txt }}</th>
+        <th data-column="lang_file">{{ lang_file_txt }}</th>
+        <th class="small-col text-right" data-column="lang_file_date">{{ lang_file_date_txt }}</th>
+    </tr>
+{% render '../components/table/head-body' %}
+    {% loop records %}
+        <tr>
+            <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ module }}</a></td>
+            <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ lang_file }}</a></td>
+            <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ lang_file_date }}</a></td>
+        </tr>
+    {% endloop %}
+{% render '../components/table/end' %}

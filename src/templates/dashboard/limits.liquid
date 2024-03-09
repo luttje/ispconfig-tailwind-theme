@@ -1,33 +1,29 @@
-<div class='table-wrapper'>
-	<table class='table w-full'>
-		<caption>{{ limits_txt }}</caption>
-		<thead class="dark">
-			<tr>
-				<th class="col-md-4">&nbsp;</th>
-				<th class="col-md-3">&nbsp;</th>
-				<th class="col-md-2">&nbsp;</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% loop rows %}
-				<tr>
-					<td>{{ field_txt }}</td>
-					<td>{{ usage }} {{ of_txt }} {{ value }}</td>
-					{% if progressbar != '-1' %}<td>
-						<div class='progress'>
-							<div class='progress-bar-striped progress-bar-{% if progressbar < '50' %}success{% elsif progressbar < '75' %}warning{% else %}danger{% endif %}'
-								role='progressbar' aria-valuemin='0' aria-valuemax='100'
-								aria-valuenow='{{ progressbar }}' style='width:{{ progressbar }}%'
-								x-tooltip.placement.bottom.raw="{{ percentage }}%">
-								<span>{{ percentage }}%</span>
-								<span class='sr-only'>{{ usage }} {{ of_txt }} {{ value }}</span>
-							</div>
-						</div>
-					</td>
-					{% else %}
-						<td></td>{% endif %}
-				</tr>
-			{% endloop %}
-		</tbody>
-	</table>
-</div>
+{% render '../components/table/fieldset-legend', slot: '{{ limits_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th class="col-md-4">&nbsp;</th>
+        <th class="col-md-3">&nbsp;</th>
+        <th class="col-md-2">&nbsp;</th>
+    </tr>
+{% render '../components/table/head-body' %}
+    {% loop rows %}
+        <tr>
+            <td>{{ field_txt }}</td>
+            <td>{{ usage }} {{ of_txt }} {{ value }}</td>
+            {% if progressbar != '-1' %}<td>
+                <div class='progress'>
+                    <div class='progress-bar-striped progress-bar-{% if progressbar < '50' %}success{% elsif progressbar < '75' %}warning{% else %}danger{% endif %}'
+                        role='progressbar' aria-valuemin='0' aria-valuemax='100'
+                        aria-valuenow='{{ progressbar }}' style='width:{{ progressbar }}%'
+                        x-tooltip.placement.bottom.raw="{{ percentage }}%">
+                        <span>{{ percentage }}%</span>
+                        <span class='sr-only'>{{ usage }} {{ of_txt }} {{ value }}</span>
+                    </div>
+                </div>
+            </td>
+            {% else %}
+                <td></td>{% endif %}
+        </tr>
+    {% endloop %}
+{% render '../components/table/end' %}

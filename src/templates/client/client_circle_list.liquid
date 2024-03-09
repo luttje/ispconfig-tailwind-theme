@@ -12,73 +12,59 @@
     ]
 } %}
 
-<p class="fieldset-legend">{{ list_head_txt }}</p>
-<div class="table-wrapper mt-1">
-    <table class='table w-full'>
-        <thead class="dark">
-            <tr>
-                <th data-column="circle_id">{{ circle_id_txt }}</th>
-                <th class="tiny-col"
-                    data-column="active">{{ active_txt }}</th>
-                <th data-column="circle_name">{{ circle_name_txt }}</th>
-                <th data-column="description">{{ description_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_circle_id"
-                           value="{{ search_circle_id }}" /></td>
-                <td><select class="form-control"
-                            name="search_active">{{ search_active }}</select></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_circle_name"
-                           value="{{ search_circle_name }}" /></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_description"
-                           value="{{ search_description }}" /></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="client/client_circle_list.php"><span
-                              class="icon icon-filter"></span></button>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="client/client_circle_edit.php?id={{ id }}">{{ circle_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="client/client_circle_edit.php?id={{ id }}">{{ active }}</a></td>
-                <td><a href="#"
-                       data-load-content="client/client_circle_edit.php?id={{ id }}">{{ circle_name }}</a></td>
-                <td><a href="#"
-                       data-load-content="client/client_circle_edit.php?id={{ id }}">{{ description }}</a></td>
-                <td class="text-right">
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('client/client_circle_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
-                              class="icon icon-delete"></span></a>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="5">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="5">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th data-column="circle_id">{{ circle_id_txt }}</th>
+        <th class="tiny-col"
+            data-column="active">{{ active_txt }}</th>
+        <th data-column="circle_name">{{ circle_name_txt }}</th>
+        <th data-column="description">{{ description_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
+    <tr>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_circle_id"
+                    value="{{ search_circle_id }}" /></td>
+        <td><select class="form-control"
+                    name="search_active">{{ search_active }}</select></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_circle_name"
+                    value="{{ search_circle_name }}" /></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_description"
+                    value="{{ search_description }}" /></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="client/client_circle_list.php"><span
+                        class="icon icon-filter"></span></button>
+        </td>
+    </tr>
+{% render '../components/table/head-body' %}
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="client/client_circle_edit.php?id={{ id }}">{{ circle_id }}</a></td>
+        <td><a href="#"
+                data-load-content="client/client_circle_edit.php?id={{ id }}">{{ active }}</a></td>
+        <td><a href="#"
+                data-load-content="client/client_circle_edit.php?id={{ id }}">{{ circle_name }}</a></td>
+        <td><a href="#"
+                data-load-content="client/client_circle_edit.php?id={{ id }}">{{ description }}</a></td>
+        <td class="text-right">
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('client/client_circle_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
+                        class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end' %}

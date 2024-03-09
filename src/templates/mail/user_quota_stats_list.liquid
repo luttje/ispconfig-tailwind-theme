@@ -4,9 +4,8 @@
 <p class="fieldset-legend">
     {{ list_head_txt }}
 </p>
-<div class="table-wrapper mt-1">
-    <table class='table w-full'>
-        <thead class="dark">
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
             <tr>
                 <th data-column="email">
                     {{ email_txt }}
@@ -40,8 +39,7 @@
                         data-form-action="mail/user_quota_stats.php"><span class="icon icon-filter"></span></button>
                 </td>
             </tr>
-        </thead>
-        <tbody>
+{% render '../components/table/head-body' %}
             {% loop records %}
                 <tr>
                     <td><a href="#" x-tooltip.raw="{{ email }}" data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ email }}</a></td>

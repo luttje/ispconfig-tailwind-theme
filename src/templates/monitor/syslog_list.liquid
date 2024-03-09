@@ -40,8 +40,7 @@
 							class="icon icon-filter"></span></button>
 				</td>
 			</tr>
-		</thead>
-		<tbody>
+{% render '../components/table/head-body' %}
 			{% loop records %}
 				<tr>
 					<td>{{ tstamp }}</td>

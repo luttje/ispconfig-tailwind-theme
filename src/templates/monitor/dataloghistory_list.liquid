@@ -4,7 +4,7 @@
 {% if list_desc_txt %}<p>{{ list_desc_txt }}</p>{% endif %}
 
 
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
+        {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
             <div class="table-wrapper mt-1">
 <table class='table w-full'>
                 <thead class="dark">
@@ -27,8 +27,7 @@
                             <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="monitor/dataloghistory_list.php"><span class="icon icon-filter"></span></button>
                         </td>
                     </tr>
-                </thead>
-                <tbody>
+{% render '../components/table/head-body' %}
                     {% loop records %}
                         <tr>
                             <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ tstamp }}</a></td>

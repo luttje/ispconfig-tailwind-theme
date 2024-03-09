@@ -49,10 +49,9 @@
 } %}
 </div>
 
-<p class="fieldset-legend">{{ list_head_txt }}</p>
-<div class="table-wrapper mt-1">
-    <table class='table w-full'>
-        <thead class="dark">
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
             <tr>
                 <th class="tiny-col"
                     data-column="active">{{ active_txt }}</th>
@@ -92,8 +91,7 @@
                             data-form-action="dns/dns_soa_list.php"><span class="icon icon-filter"></span></button>
                 </td>
             </tr>
-        </thead>
-        <tbody>
+{% render '../components/table/head-body' %}
             {% loop records %}
             <tr>
                 <td><a href="#"

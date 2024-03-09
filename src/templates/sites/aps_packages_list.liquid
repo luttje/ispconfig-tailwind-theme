@@ -23,8 +23,7 @@
                             {% endif %}
                         <td class="text-right"><button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/aps_availablepackages_list.php"><span class="icon icon-filter"></span></button></td>
                     </tr>
-                </thead>
-                <tbody>
+{% render '../components/table/head-body' %}
                     {% loop records %}
                         <tr>
                             <td colspan="2"><a href="#" data-load-content="sites/aps_packagedetails_show.php?id={{ id }}">{{ name }}</a></td>

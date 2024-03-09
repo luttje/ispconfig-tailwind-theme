@@ -228,54 +228,6 @@ p.fieldset-legend {
   font-size: 18px;
 }
 
-thead.dark th {
-  height: 40px;
-  line-height: 40px;
-  font-weight: normal;
-}
-
-thead.dark th.small-col {
-  width: 14%;
-}
-
-thead.dark th.tiny-col {
-  width: 8%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-thead.dark th[data-column] {
-  cursor: pointer;
-  position: relative;
-}
-
-thead.dark th[data-column]:before {
-  content: "⇅";
-  position: absolute;
-  right: 15px;
-  vertical-align: middle;
-  line-height: inherit;
-  color: #aaa;
-}
-
-thead.dark th[data-column][data-ordered] {
-  background: linear-gradient(to top, #57646d, #3e474e);
-}
-
-thead.dark th[data-column][data-ordered]:before {
-  color: #fff;
-  content: "🡫";
-}
-
-thead.dark th[data-column][data-ordered="desc"]:before {
-  content: "🡩";
-}
-
-thead.dark td input,
-thead.dark td select {
-  width: 100%;
-}
-
 .df-container,
 .gs-container {
   position: relative;

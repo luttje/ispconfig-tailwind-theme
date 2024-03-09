@@ -1,35 +1,24 @@
-<div class='table-wrapper'>
-	<table class='table w-full'>
-	  <caption>{{ databasequota_txt }}</caption>
-	  <thead class="dark">
-		<tr>
-		  <th class="col-md-2">{{ database_txt }}</th>
-		  <th class="col-md-2">{{ used_txt }}</th>
-		  <th class="col-md-3" colspan="2">{{ quota_txt }}</th>
-		</tr>
-	  </thead>
-	  <tbody>
-	  {% loop databasequota %}
-		  <tr>
-			  <td><a href="#" data-load-content="sites/database_edit.php?id={{ database_id }}" x-tooltip.placement.bottom.raw="" data-original-title="{{ database_name }}">{{ database_name }}</a></td>
-			  <td>{{ used }}</td>
-			  <td>{{ database_quota }}</td>
-			  {% if quota_raw != '-1' %}<td>
-			  <div class='progress'>
-				  <div class='progress-bar-striped progress-bar progress-bar-{% if used_percentage < '50' %}success{% elsif used_percentage < '75' %}warning{% else %}danger{% endif %}' role='progressbar' aria-valuemin='0' aria-valuemax='100' aria-valuenow='{{ used_percentage }}' style='width: {{ used_percentage }}%'><span>{{ used_percentage }}%</span>
-				  <span class='sr-only'>{{ used }} {{ of_txt }} {{ database_quota }}</span>
-				  </div>
-			  </div>
-			  </td>{% else %}<td></td>{% endif %}
-		  </tr>
-	  {% endloop %}
-	  </tbody>
-    <tfoot>
-      <tr>
-        <th>{{ total_txt }}</th>
-        <th>{{ total_used }}</th>
-        <th colspan="2"></th>
-      </tr>
-    <tfoot>
-  </table>
-</div>
+{% render '../components/table/fieldset-legend', slot: '{{ databasequota_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th class="col-md-2">{{ database_txt }}</th>
+        <th class="col-md-2">{{ used_txt }}</th>
+        <th class="col-md-3" colspan="2">{{ quota_txt }}</th>
+    </tr>
+{% render '../components/table/head-body' %}
+    {% loop databasequota %}
+        <tr>
+            <td><a href="#" data-load-content="sites/database_edit.php?id={{ database_id }}" x-tooltip.placement.bottom.raw="" data-original-title="{{ database_name }}">{{ database_name }}</a></td>
+            <td>{{ used }}</td>
+            <td>{{ database_quota }}</td>
+            {% if quota_raw != '-1' %}<td>
+            <div class='progress'>
+                <div class='progress-bar-striped progress-bar progress-bar-{% if used_percentage < '50' %}success{% elsif used_percentage < '75' %}warning{% else %}danger{% endif %}' role='progressbar' aria-valuemin='0' aria-valuemax='100' aria-valuenow='{{ used_percentage }}' style='width: {{ used_percentage }}%'><span>{{ used_percentage }}%</span>
+                <span class='sr-only'>{{ used }} {{ of_txt }} {{ database_quota }}</span>
+                </div>
+            </div>
+            </td>{% else %}<td></td>{% endif %}
+        </tr>
+    {% endloop %}
+{% render '../components/table/end' %}

@@ -1,38 +1,35 @@
-<div class='table-wrapper'>
-	<table class='table w-full'>
-	  <caption>{{ mailquota_txt }}</caption>
-	  <thead class="dark">
-		<tr>
-		  <th>{{ email_txt }}</th>
-		  <th>{{ name_txt }}</th>
-		  <th>{{ used_txt }}</th>
-		  <th colspan="2">{{ quota_txt }}</th>
-		</tr>
-	  </thead>
-	  <tbody>
-	  {% loop mailquota %}
-		  <tr>
-			  <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ mailuser_id }}" x-tooltip.placement.bottom.raw="" data-original-title="{{ email }}">{{ email }}</a></td>
-			  <td>{{ name }}</td>
-			  <td>{{ used }}</td>
-			  <td>{{ quota }}</td>
-			  {% if quota_raw != '-1' %}<td>
-			  <div class='progress'>
-				  <div class='progress-bar-striped progress-bar progress-bar-{% if used_percentage < '50' %}success{% elsif used_percentage < '75' %}warning{% else %}danger{% endif %}' role='progressbar' aria-valuemin='0' aria-valuemax='100' aria-valuenow='{{ used_percentage }}' style='width:{{ used_percentage }}%'><span>{{ used_percentage }}%</span>
-				  <span class='sr-only'>{{ used }} {{ of_txt }} {{ quota }}</span>
-				  </div>
-			  </div>
-		  </td>{% else %}<td></td>{% endif %}
-		  </tr>
-	  {% endloop %}
-	  </tbody>
-		<tfoot>
-			<tr>
-				<th></th>
-				<th>{{ total_txt }}</th>
-				<th>{{ total_used }}</th>
-				<th colspan="2"></th>
-			</tr>
-		</tfoot>
-	</table>
-</div>
+{% render '../components/table/fieldset-legend', slot: '{{ mailquota_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th>{{ email_txt }}</th>
+        <th>{{ name_txt }}</th>
+        <th>{{ used_txt }}</th>
+        <th colspan="2">{{ quota_txt }}</th>
+    </tr>
+{% render '../components/table/head-body' %}
+    {% loop mailquota %}
+        <tr>
+            <td><a href="#" data-load-content="mail/mail_user_edit.php?id={{ mailuser_id }}" x-tooltip.placement.bottom.raw="" data-original-title="{{ email }}">{{ email }}</a></td>
+            <td>{{ name }}</td>
+            <td>{{ used }}</td>
+            <td>{{ quota }}</td>
+            {% if quota_raw != '-1' %}<td>
+            <div class='progress'>
+                <div class='progress-bar-striped progress-bar progress-bar-{% if used_percentage < '50' %}success{% elsif used_percentage < '75' %}warning{% else %}danger{% endif %}' role='progressbar' aria-valuemin='0' aria-valuemax='100' aria-valuenow='{{ used_percentage }}' style='width:{{ used_percentage }}%'><span>{{ used_percentage }}%</span>
+                <span class='sr-only'>{{ used }} {{ of_txt }} {{ quota }}</span>
+                </div>
+            </div>
+        </td>{% else %}<td></td>{% endif %}
+        </tr>
+    {% endloop %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th>{{ total_txt }}</th>
+            <th>{{ total_used }}</th>
+            <th colspan="2"></th>
+        </tr>
+    </tfoot>
+</table>

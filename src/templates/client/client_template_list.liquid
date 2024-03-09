@@ -12,10 +12,9 @@
     ]
 } %}
 
-<p class="fieldset-legend">{{ list_head_txt }}</p>
-<div class="table-wrapper mt-1">
-    <table class='table w-full'>
-        <thead class="dark">
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
             <tr>
                 <th data-column="template_id">{{ template_id_txt }}</th>
                 {% if is_admin %}<th data-column="sys_groupid">{{ sys_groupid_txt }}</th>{% endif %}
@@ -47,8 +46,7 @@
                               class="icon icon-filter"></span></button>
                 </td>
             </tr>
-        </thead>
-        <tbody>
+{% render '../components/table/head-body' %}
             {% loop records %}
             <tr>
                 <td><a href="#"

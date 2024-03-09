@@ -11,90 +11,76 @@
     ]
 } %}
 
-<p class="fieldset-legend">{{ list_head_txt }}</p>
-<div class="table-wrapper mt-1">
-    <table class='table w-full'>
-        <thead class="dark">
-            <tr>
-                <th class="tiny-col"
-                    data-column="active">{{ active_txt }}</th>
-                <th data-column="server_id">{{ server_id_txt }}</th>
-                <th data-column="table">{{ table_txt }}</th>
-                <th data-column="protocol">{{ protocol_txt }}</th>
-                <th data-column="singleport">{{ singleport_txt }}</th>
-                <th data-column="multiport">{{ multiport_txt }}</th>
-                <th data-column="state">{{ state_txt }}</th>
-                <th data-column="target">{{ target_txt }}</th>
-                <th class="text-right">&nbsp;</th>
-            </tr>
-            <tr>
-                <td>
-                    <select class="form-control"
-                            name="search_active">{{ search_active }}</select>
-                            </td>
-                <td>
-                    <select class="form-control"
-                            name="search_server_id">{{ search_server_id }}</select>
-                            </td>
-                <td></td>
-                <td>
-                    <select class="form-control"
-                            name="search_protocol">{{ search_protocol }}</select>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <select class="form-control"
-                            name="search_target">{{ search_target }}</select>
-                </td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="admin/iptables_list.php"><span class="icon icon-filter"></span></button>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            {% loop records %}
-                <tr>
-                    <td><a href="#"
-                        data-load-content="admin/iptables_edit.php?id={{ id }}">{{ active }}</a></td>
-                    <td><a href="#"
-                        data-load-content="admin/iptables_edit.php?id={{ id }}">{{ server_id }}</a></td>
-                    <td><a href="#"
-                        data-load-content="admin/iptables_edit.php?id={{ id }}">{{ table }}</a></td>
-                    <td><a href="#"
-                        data-load-content="admin/iptables_edit.php?id={{ id }}">{{ protocol }}</a></td>
-                    <td><a href="#"
-                        data-load-content="admin/iptables_edit.php?id={{ id }}">{{ singleport }}</a></td>
-                    <td><a href="#"
-                        data-load-content="admin/iptables_edit.php?id={{ id }}">{{ multiport }}</a></td>
-                    <td><a href="#"
-                        data-load-content="admin/iptables_edit.php?id={{ id }}">{{ state }}</a></td>
-                    <td><a href="#"
-                        data-load-content="admin/iptables_edit.php?id={{ id }}">{{ target }}</a></td>
-                    <td class="text-right">
-                        <a class="btn btn-default formbutton-danger formbutton-narrow"
-                        href="javascript: ISPConfig.confirm_action('admin/iptables_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
-                                class="icon icon-delete"></span></a>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th class="tiny-col"
+            data-column="active">{{ active_txt }}</th>
+        <th data-column="server_id">{{ server_id_txt }}</th>
+        <th data-column="table">{{ table_txt }}</th>
+        <th data-column="protocol">{{ protocol_txt }}</th>
+        <th data-column="singleport">{{ singleport_txt }}</th>
+        <th data-column="multiport">{{ multiport_txt }}</th>
+        <th data-column="state">{{ state_txt }}</th>
+        <th data-column="target">{{ target_txt }}</th>
+        <th class="text-right">&nbsp;</th>
+    </tr>
+    <tr>
+        <td>
+            <select class="form-control"
+                    name="search_active">{{ search_active }}</select>
                     </td>
-                </tr>
-            {% endloop %}
-            {% unless records %}
-                <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                    <td colspan="9">{{ globalsearch_noresults_text_txt }}</td>
-                </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="9">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+        <td>
+            <select class="form-control"
+                    name="search_server_id">{{ search_server_id }}</select>
+                    </td>
+        <td></td>
+        <td>
+            <select class="form-control"
+                    name="search_protocol">{{ search_protocol }}</select>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <select class="form-control"
+                    name="search_target">{{ search_target }}</select>
+        </td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="admin/iptables_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
+{% render '../components/table/head-body' %}
+    {% loop records %}
+        <tr>
+            <td><a href="#"
+                data-load-content="admin/iptables_edit.php?id={{ id }}">{{ active }}</a></td>
+            <td><a href="#"
+                data-load-content="admin/iptables_edit.php?id={{ id }}">{{ server_id }}</a></td>
+            <td><a href="#"
+                data-load-content="admin/iptables_edit.php?id={{ id }}">{{ table }}</a></td>
+            <td><a href="#"
+                data-load-content="admin/iptables_edit.php?id={{ id }}">{{ protocol }}</a></td>
+            <td><a href="#"
+                data-load-content="admin/iptables_edit.php?id={{ id }}">{{ singleport }}</a></td>
+            <td><a href="#"
+                data-load-content="admin/iptables_edit.php?id={{ id }}">{{ multiport }}</a></td>
+            <td><a href="#"
+                data-load-content="admin/iptables_edit.php?id={{ id }}">{{ state }}</a></td>
+            <td><a href="#"
+                data-load-content="admin/iptables_edit.php?id={{ id }}">{{ target }}</a></td>
+            <td class="text-right">
+                <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('admin/iptables_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
+                        class="icon icon-delete"></span></a>
+            </td>
+        </tr>
+    {% endloop %}
+{% render '../components/table/end' %}

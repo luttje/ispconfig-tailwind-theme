@@ -28,65 +28,51 @@
     ]
 } %}
 
-<p class="fieldset-legend">{{ list_head_txt }}</p>
-<div class="table-wrapper mt-1">
-    <table class='table w-full'>
-        <thead class="dark">
-            <tr>
-                <th data-column="listname">{{ listname_txt }}</th>
-                <th data-column="domain">{{ domain_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_listname"
-                           value="{{ search_listname }}" /></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_domain"
-                           value="{{ search_domain }}" /></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="mail/mail_mailinglist_list.php"><span
-                              class="icon icon-filter"></span></button>
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="mail/mail_mailinglist_edit.php?id={{ id }}">{{ listname }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/mail_mailinglist_edit.php?id={{ id }}">{{ domain }}</a></td>
-                <td class="text-right">
-                    {% if mailmailinglist_link %}
-                    <a class="btn btn-default formbutton-default formbutton-narrow"
-                       href="mail/mailinglist.php?id={{ id }}"
-                       target="mailmailinglist"><span class="icon icon-mail"></span></a>
-                    {% endif %}
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('mail/mail_mailinglist_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
-                              class="icon icon-delete"></span></a>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="3">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th data-column="listname">{{ listname_txt }}</th>
+        <th data-column="domain">{{ domain_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
+    <tr>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_listname"
+                    value="{{ search_listname }}" /></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_domain"
+                    value="{{ search_domain }}" /></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="mail/mail_mailinglist_list.php"><span
+                        class="icon icon-filter"></span></button>
+        </td>
+    </tr>
+{% render '../components/table/head-body' %}
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="mail/mail_mailinglist_edit.php?id={{ id }}">{{ listname }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/mail_mailinglist_edit.php?id={{ id }}">{{ domain }}</a></td>
+        <td class="text-right">
+            {% if mailmailinglist_link %}
+            <a class="btn btn-default formbutton-default formbutton-narrow"
+                href="mail/mailinglist.php?id={{ id }}"
+                target="mailmailinglist"><span class="icon icon-mail"></span></a>
+            {% endif %}
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('mail/mail_mailinglist_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
+                        class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end' %}

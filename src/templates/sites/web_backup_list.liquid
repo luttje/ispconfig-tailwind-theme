@@ -15,7 +15,7 @@
 {% endif %}
 <h3>{{ list_head_txt }}</h3>
 
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
+        {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
             <div class="table-wrapper mt-1">
 <table class="table table-auto table-striped" style="padding: 5px;">
                 <thead class="dark">
@@ -29,8 +29,7 @@
                         <th data-column="filesize">{{ filesize_txt }}</th>
                         <th class="small-col text-right">{{ search_limit }}</th>
                     </tr>
-                </thead>
-                <tbody>
+{% render '../components/table/head-body' %}
                     {% loop records %}
                         <tr>
                             <td>{{ date }}</td>
