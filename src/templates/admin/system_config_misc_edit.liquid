@@ -141,25 +141,12 @@
     <input type="text" name="maintenance_mode_exclude_ips" id="maintenance_mode_exclude_ips" value="{{ maintenance_mode_exclude_ips }}" class="form-control" />
   </div>
 </div>
+
 {% if msg %}
-  <div id="OKMsg">
-    <p>
-      {{ msg }}
-    </p>
-  </div>
+    {% render '../components/msg', id: 'OKMsg', slot: 'msg' %}
 {% endif %}
-{% if error %}
-  <div class='alert alert-danger clear'>
-    <div class='alert-label'>
-      <strong>{{ error_txt }}</strong>
-      </div>
-    <div class='alert-content'>
-      <ul style="list-style-type:none">
-        {{ error }}
-      </ul>
-    </div>
-  </div>
-{% endif %}
+{% render '../components/error' %}
+
 <input type="hidden" name="id" id="id" value="{{ id }}">
 <div class="clear">
   <div class="right">

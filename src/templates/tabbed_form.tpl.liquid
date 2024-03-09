@@ -1,21 +1,11 @@
 {% if form_hint %}
     {% render './components/heading/h1', slot: '{{ form_hint }}' %}
 {% endif %}
+
 {% if msg %}
-    <div class='alert alert-notification'>{{ msg }}</div>
+    {% render './components/msg', id: 'OKMsg', slot: 'msg' %}
 {% endif %}
-{% if error %}
-    <div class='alert alert-danger clear'>
-        <div class='alert-label'><strong>
-                {{ error_txt }}
-            </strong></div>
-        <div class='alert-content'>
-            <ul style="list-style-type:none">
-                {{ error }}
-            </ul>
-        </div>
-    </div>
-{% endif %}
+{% render './components/error' %}
 
 <!-- content in tabs -->
 <div class='content-tab-wrapper rounded border'>

@@ -1,51 +1,44 @@
 {% if msg %}
-    <div id="OKMsg"><p>{{ msg }}</p></div>
+    {% render '../components/msg', id: 'OKMsg', slot: 'msg' %}
 {% endif %}
-{% if error %}
-  <div class='alert alert-danger clear'>
-    <div class='alert-label'>
-      <strong>{{ error_txt }}</strong>
-    </div>
-    <div class='alert-content'>
-      <ul style="list-style-type:none">
-        {{ error }}
-      </ul>
-    </div>
-  </div>
-{% endif %}
+{% render '../components/error' %}
+
 <h3>{{ list_head_txt }}</h3>
 
-
-        <p class="fieldset-legend">{{ list_head_txt }}</p>
-            <div class="table-wrapper mt-1">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th data-column="date">{{ date_txt }}</th>
-                        <th data-column="filename">{{ filename_txt }}</th>
-			<th data-column="filesize">{{ filesize_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% loop records %}
-                        <tr>
-                            <td>{{ date }}</td>
-                            <td>{{ filename }}</td>
-			    <td>{{ filesize }}</td>
-                            <td class="text-right">
-                                <div class="buttons">
-                                    <button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('mail/mail_user_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=restore_mail&backup_id={{ backup_id }}','{{ restore_confirm_txt }}');">{{ restore_backup_txt }}</button>
-                                    <button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('mail/mail_user_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=delete_mail&backup_id={{ backup_id }}','{{ delete_confirm_txt }}');">{{ delete_backup_txt }}</button>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-            </table>
+<p class="fieldset-legend">{{ list_head_txt }}</p>
+<div class="table-wrapper mt-1">
+    <table class='table w-full'>
+        <thead class="dark">
+            <tr>
+                <th data-column="date">{{ date_txt }}</th>
+                <th data-column="filename">{{ filename_txt }}</th>
+                <th data-column="filesize">{{ filesize_txt }}</th>
+                <th class="small-col text-right">{{ search_limit }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% loop records %}
+            <tr>
+                <td>{{ date }}</td>
+                <td>{{ filename }}</td>
+                <td>{{ filesize }}</td>
+                <td class="text-right">
+                    <div class="buttons">
+                        <button class="btn btn-default formbutton-default"
+                                type="button"
+                                onclick="ISPConfig.confirm_action('mail/mail_user_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=restore_mail&backup_id={{ backup_id }}','{{ restore_confirm_txt }}');">{{ restore_backup_txt }}</button>
+                        <button class="btn btn-default formbutton-default"
+                                type="button"
+                                onclick="ISPConfig.confirm_action('mail/mail_user_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=delete_mail&backup_id={{ backup_id }}','{{ delete_confirm_txt }}');">{{ delete_backup_txt }}</button>
+                    </div>
+                </td>
+            </tr>
+            {% endloop %}
+            {% unless records %}
+            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+                <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>
+            </tr>
+            {% endunless %}
+        </tbody>
+    </table>
 </div>

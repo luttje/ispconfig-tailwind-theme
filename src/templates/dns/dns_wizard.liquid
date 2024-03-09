@@ -2,18 +2,7 @@
 
 <div class="panel panel_language_import" style="padding:20px;">
 	<div class="pnl_formsarea">
-		{% if error %}
-			<div class='alert alert-danger clear'>
-				<div class='alert-label'><strong>
-						{{ error_txt }}
-					</strong></div>
-				<div class='alert-content'>
-					<ul style="list-style-type:none">
-						{{ error }}
-					</ul>
-				</div>
-			</div>
-		{% endif %}
+        {% render '../components/error' %}
 		<div class="form-group">
 			<label for="template_id" class="col-sm-3 control-label">{{ template_id_txt }}</label>
 			<div class="col-sm-9"><select name="template_id" id="template_id" class="form-control" onChange="ISPConfig.submitForm('pageForm','dns/dns_wizard.php')">

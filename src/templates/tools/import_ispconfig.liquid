@@ -68,20 +68,9 @@
     {% endif %}
 
     {% if msg %}
-        <div id="OKMsg"><p>{{ msg }}</p></div>
+        {% render '../components/msg', id: 'OKMsg', slot: 'msg' %}
     {% endif %}
-    {% if error %}
-			<div class='alert alert-danger clear'>
-				<div class='alert-label'>
-					<strong>{{ error_txt }}</strong>
-					</div>
-				<div class='alert-content'>
-					<ul style="list-style-type:none">
-						{{ error }}
-					</ul>
-				</div>
-			</div>
-    {% endif %}
+    {% render '../components/error' %}
 
     <input type="hidden" name="remote_session_id" value="{{ remote_session_id }}">
     <input type="hidden" name="connected" value="{{ connected }}">

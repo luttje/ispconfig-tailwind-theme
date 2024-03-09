@@ -47,27 +47,10 @@
 				<div class="col-sm-9 col-text"><input name="file" id="file" size="30" type="file" class="fileUpload" /></div>
 			</div>
 
-			{% if msg %}
-				<div id="OKMsg">
-					<p>
-						{{ msg }}
-					</p>
-				</div>
-			{% endif %}
-			{% if error %}
-				<div class='alert alert-danger clear'>
-					<div class='alert-label'>
-						<strong>
-							{{ error_txt }}
-						</strong>
-					</div>
-					<div class='alert-content'>
-						<ul style="list-style-type:none">
-							{{ error }}
-						</ul>
-					</div>
-				</div>
-			{% endif %}
+            {% if msg %}
+                {% render '../components/msg', id: 'OKMsg', slot: 'msg' %}
+            {% endif %}
+            {% render '../components/error' %}
 
 			<input type="hidden" name="id" value="{{ id }}">
 

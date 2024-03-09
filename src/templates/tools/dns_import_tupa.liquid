@@ -2,49 +2,78 @@
 <p>{{ list_desc_txt }}</p>
 
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="dbhost">Tupa database hostname</label>
-                <div class="col-sm-9"><input class="form-control" type="text" id="dbhost" value="{{ dbhost }}" name="dbhost" /></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="dbname">Tupa database name</label>
-                <div class="col-sm-9"><input class="form-control" type="text" id="dbname" value="{{ dbname }}" name="dbname" /></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="dbuser">Tupa database user</label>
-                <div class="col-sm-9"><input class="form-control" type="text" id="dbuser" value="{{ dbuser }}" name="dbuser" /></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="dbpassword">Tupa database password</label>
-                <div class="col-sm-9"><input class="form-control" type="text" id="dbpassword" value="{{ dbpassword }}" name="dbpassword" /></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label" for="dboptions">Tupa database options</label>
-                <div class="col-sm-9" id="dboptions">
-                    <label class="checkbox-inline" for="dbssl"><input type="checkbox" id="dbssl" value="1" name="dbssl" {% if dbssl == 'true' %}checked{% endif %}/> Use SSL</label>
-                </div>
-            </div>
+<div class="form-group">
+    <label class="col-sm-3 control-label"
+           for="dbhost">Tupa database hostname</label>
+    <div class="col-sm-9"><input class="form-control"
+               type="text"
+               id="dbhost"
+               value="{{ dbhost }}"
+               name="dbhost" /></div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label"
+           for="dbname">Tupa database name</label>
+    <div class="col-sm-9"><input class="form-control"
+               type="text"
+               id="dbname"
+               value="{{ dbname }}"
+               name="dbname" /></div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label"
+           for="dbuser">Tupa database user</label>
+    <div class="col-sm-9"><input class="form-control"
+               type="text"
+               id="dbuser"
+               value="{{ dbuser }}"
+               name="dbuser" /></div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label"
+           for="dbpassword">Tupa database password</label>
+    <div class="col-sm-9"><input class="form-control"
+               type="text"
+               id="dbpassword"
+               value="{{ dbpassword }}"
+               name="dbpassword" /></div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label"
+           for="dboptions">Tupa database options</label>
+    <div class="col-sm-9"
+         id="dboptions">
+        <label class="checkbox-inline"
+               for="dbssl"><input type="checkbox"
+                   id="dbssl"
+                   value="1"
+                   name="dbssl"
+                   {% if dbssl == 'true' %}checked{% endif %} /> Use SSL</label>
+    </div>
+</div>
 
-        {% if msg %}
-            <div id="OKMsg"><p>{{ msg }}</p></div>
-        {% endif %}
-        {% if error %}
-          <div class='alert alert-danger clear'>
-            <div class='alert-label'>
-              <strong>{{ error_txt }}</strong>
-              </div>
-            <div class='alert-content'>
-              <ul style="list-style-type:none">
-                {{ error }}
-              </ul>
-            </div>
-          </div>
-        {% endif %}
+{% if msg %}
+    {% render '../components/msg', id: 'OKMsg', slot: 'msg' %}
+{% endif %}
+{% render '../components/error' %}
 
-        <input type="hidden" name="id" value="{{ id }}">
-		<input type="hidden" name="start" value="1">
+<input type="hidden"
+       name="id"
+       value="{{ id }}">
+<input type="hidden"
+       name="start"
+       value="1">
 
-        <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="Import" data-submit-form="pageForm" data-form-action="tools/dns_import_tupa.php">Start</button>
-            <button class="btn btn-default formbutton-default" type="button" value="Cancel" data-load-content="tools/index.php">Cancel</button>
-        </div></div>
+<div class="clear">
+    <div class="right">
+        <button class="btn btn-default formbutton-success"
+                type="button"
+                value="Import"
+                data-submit-form="pageForm"
+                data-form-action="tools/dns_import_tupa.php">Start</button>
+        <button class="btn btn-default formbutton-default"
+                type="button"
+                value="Cancel"
+                data-load-content="tools/index.php">Cancel</button>
+    </div>
+</div>
