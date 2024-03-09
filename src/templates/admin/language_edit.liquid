@@ -1,6 +1,4 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
 
@@ -13,8 +11,8 @@
                             <input class="form-control" type="text" id="records[{{ key }}]" name="records[{{ key }}]" value="{{ val }}" >
                         </div>
                     </span>
-                {% endloop %} 
-            </span> 
+                {% endloop %}
+            </span>
         </fieldset>
 
 
@@ -22,7 +20,7 @@
         <input type="hidden" name="lang" value="{{ lang }}">
         <input type="hidden" name="lang_file" value="{{ lang_file }}">
         <input type="hidden" name="module" value="{{ module }}">
-            
+
         <div class="wf_actions buttons">
             <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="admin/language_edit.php">{{ btn_save_txt }}</button>
             <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="admin/language_list.php?lng_select={{ lang }}">{{ btn_cancel_txt }}</button>

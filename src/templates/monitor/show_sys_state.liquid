@@ -1,21 +1,19 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
 
         <legend>{{ monTransRefreshsq }}</legend>
-            
+
                 <div class="form-group">
                     <div class="col-sm-12"><select name="refreshinterval" id="refreshinterval" class="form-control" onChange="ISPConfig.loadContentRefresh('monitor/show_sys_state.php?state={{ state_type }}')">
                         {{ refresh }}
                     </select></div>
-                
-        
+
+
     </div>
-  
+
     <div class="pnl_formarea">
         <p class="fieldset-legend"></p>
             <div class="stateview">{{ state_data }}</div>
-        
+
     </div>

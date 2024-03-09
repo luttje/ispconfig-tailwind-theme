@@ -1,7 +1,5 @@
 {% if list_head_txt %}
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ list_head_txt }}' %}
 {% endif %}
 {% if list_desc_txt %}<p>{{ list_desc_txt }}</p>{% endif %}
 
@@ -24,7 +22,7 @@
                         <td><select class="form-control" name="search_action">{{ search_action }}</select></td>
                         <td><input class="form-control" type="text" name="search_dbtable" value="{{ search_dbtable }}" /></td>
                         <td><input class="form-control" type="text" name="search_user" value="{{ search_user }}" /></td>
-                        
+
                         <td class="text-right">
                             <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="monitor/dataloghistory_list.php"><span class="icon icon-filter"></span></button>
                         </td>
@@ -54,5 +52,5 @@
                 </tfoot>
             </table>
 </div>
-        
+
     </div>

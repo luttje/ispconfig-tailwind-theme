@@ -1,7 +1,12 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{% if vhostdomain_type == 'domain' %}{{ domain_list_head_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ subdomain_list_head_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ aliasdomain_list_head_txt }}{% endif %}</h1>
-</div>
-
+{% if vhostdomain_type == 'domain' %}
+    {% render '../components/h1', slot: '{{ domain_list_head_txt }}' %}
+{% endif %}
+{% if vhostdomain_type == 'subdomain' %}
+    {% render '../components/h1', slot: '{{ subdomain_list_head_txt }}' %}
+{% endif %}
+{% if vhostdomain_type == 'aliasdomain' %}
+    {% render '../components/h1', slot: '{{ aliasdomain_list_head_txt }}' %}
+{% endif %}
 
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 

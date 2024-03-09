@@ -1,8 +1,4 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">
-		{{ zone_file_import_txt }}
-	</h1>
-</div>
+{% render '../components/h1', slot: '{{ zone_file_import_txt }}' %}
 <p>
 	{{ list_desc_txt }}
 </p>

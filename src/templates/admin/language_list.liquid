@@ -1,19 +1,17 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-            
+
                 <div class="form-group">
                     <label for="lng_select" class="col-sm-3 control-label">{{ language_select_txt }}</label>
                     <div class="col-sm-9"><select name="lng_select" id="language" class="form-control flags" onChange="ISPConfig.submitForm('pageForm','admin/language_list.php');">
                         {{ language_option }}
                     </select></div>
-                
-        
+
+
     </div>
-  
-    
+
+
         <p class="fieldset-legend">{{ list_head_txt }}</p>
             <div class="table-wrapper marginTop15">
 <table class='table w-full'>
@@ -40,5 +38,5 @@
                 </tfoot>
             </table>
 </div>
-        
-    
+
+

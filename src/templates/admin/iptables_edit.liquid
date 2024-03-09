@@ -1,9 +1,7 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-        
+
             <div class="form-group">
                 <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
                 <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
@@ -49,7 +47,7 @@
                     {{ active }}
                 </div>
             </div>
-        
+
         <input type="hidden" name="id" value="{{ id }}">
         <div class="clear"><div class="right">
             <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="admin/iptables_edit.php">{{ btn_save_txt }}</button>

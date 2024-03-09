@@ -1,6 +1,4 @@
-<div class='page-header'>
-  <h1 class="text-4xl pb-4 border-b">{{ welcome_user }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ welcome_user }}' %}
 
 {% if error %}
 	<div class="alert alert-danger">

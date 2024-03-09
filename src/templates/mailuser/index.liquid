@@ -1,11 +1,9 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ page_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ page_head_txt }}' %}
 
 <div class="panel panel_mailuser">
 
   <div class="pnl_formsarea">
-    
+
         <div class="form-group">
             <label class="col-sm-3 control-label">{{ email_txt }}</label>
             <div class="col-sm-9"><div class="checkbox">{{ email }}</div></div>
@@ -29,7 +27,7 @@
         <div class="clear"><div class="right">
             &nbsp;
         </div></div>
-    
+
   </div>
-  
+
 </div>

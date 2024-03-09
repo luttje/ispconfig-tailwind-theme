@@ -1,11 +1,9 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
 
         <legend>{{ legend_txt }}</legend>
-            
+
             <div class="clear"><div class="right">
             <button class="btn btn-default formbutton-success" type="button" value="Update Packagelist" data-load-content="sites/aps_cron_apscrawler_if.php">{{ btn_start_txt }}</button>
             <button class="btn btn-default formbutton-default" type="button" value="Cancel" data-load-content="sites/aps_availablepackages_list.php">{{ btn_cancel_txt }}</button>

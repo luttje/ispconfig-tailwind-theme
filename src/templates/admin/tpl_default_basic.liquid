@@ -1,19 +1,17 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ tpl_default_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ tpl_default_head_txt }}' %}
 <p>{{ tpl_default_desc_txt }}</p>
 
 
-        
+
             <div class="form-group">
                 <label for="logo_url" class="col-sm-3 control-label">{{ logo_url_txt }}Logo URL</label>
                 <div class="col-sm-6"><input type="text" name="logo_url" id="logo_url" value="{{ logo_url }}" size="" maxlength="" class="form-control" /></div><div class="col-sm-3 input-sm"> 152x46px
             </div></div>
-        
-        
+
+
         <input type="hidden" name="id" value="{{ id }}">
         <input type="hidden" name="username" value="global">
-            
+
         <div class="clear"><div class="right">
             <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="admin/tpl_default.php">{{ btn_save_txt }}</button>
             <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="admin/server_list.php">{{ btn_cancel_txt }}</button>

@@ -1,6 +1,4 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
 
@@ -26,10 +24,10 @@
                     {{ reserved }}
                 </div>
             </div>
-        
-            
+
+
         <input type="hidden" name="id" value="{{ id }}">
-            
+
         <div class="clear"><div class="right">
             <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="vm/openvz_ip_edit.php">{{ btn_save_txt }}</button>
             <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="vm/openvz_ip_list.php">{{ btn_cancel_txt }}</button>
@@ -38,5 +36,5 @@
     var vm_id = jQuery('#vm_id').val();
     jQuery('#vm_id').attr({name: 'vm_id_disabled', id: 'vm_id_disabled'});
     jQuery('#vm_id_disabled').after('<input type="hidden" name="vm_id" value="'+vm_id+'">');
-    
+
 </script>

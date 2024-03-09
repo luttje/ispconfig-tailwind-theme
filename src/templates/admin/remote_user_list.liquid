@@ -1,15 +1,13 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
-            
+
                 <button class="btn btn-default formbutton-success" type="button" data-load-content="admin/remote_user_edit.php">{{ add_new_record_txt }}</button>
-            
-        
-    
-    
+
+
+
+
         <p class="fieldset-legend">{{ list_head_txt }}</p>
             <div class="table-wrapper marginTop15">
 <table class='table w-full'>
@@ -20,7 +18,7 @@
                         <th class="small-col text-right">{{ search_limit }}</th>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>           
+                        <td>&nbsp;</td>
                         <td><input class="form-control" type="text" name="search_username" value="{{ search_username }}" /></td>
                         <td class="text-right">
                             <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="admin/remote_user_list.php"><span class="icon icon-filter"></span></button>
@@ -50,5 +48,4 @@
                 </tfoot>
             </table>
 </div>
-        
-    
+

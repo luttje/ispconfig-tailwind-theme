@@ -1,9 +1,7 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ list_head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ list_head_txt }}' %}
 
 
-    <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>      
+    <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
         <button class="btn btn-default formbutton-success" type="button" data-load-content="billing/invoice_message_template_edit.php">{{ add_new_record_txt }}</button>
 
     <p class="fieldset-legend">{{ list_head_txt }}</p>
@@ -27,7 +25,7 @@
             <td><a href="#" data-load-content="billing/invoice_message_template_edit.php?id={{ id }}">{{ template_type }}</a></td>
             <td><a href="#" data-load-content="billing/invoice_message_template_edit.php?id={{ id }}">{{ template_name }}</a></td>
             <td class="text-right">
-              <div class="buttons icons16">    
+              <div class="buttons icons16">
                 <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('billing/invoice_message_template_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
               </div>
             </td>
@@ -41,5 +39,4 @@
         </tfoot>
       </table>
 </div>
-    
-  
+

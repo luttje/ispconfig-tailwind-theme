@@ -1,6 +1,4 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ head_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
 <div class="panel panel_language_import" style="padding:20px;">

@@ -1,6 +1,8 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{% if childdomain_type == 'aliasdomain' %}{{ aliasdomain_list_head_txt }}{% else %}{{ subdomain_list_head_txt }}{% endif %}</h1>
-</div>
+{% if childdomain_type == 'aliasdomain' %}
+    {% render '../components/h1', slot: '{{ aliasdomain_list_head_txt }}' %}
+{% else %}
+    {% render '../components/h1', slot: '{{ subdomain_list_head_txt }}' %}
+{% endif %}
 <p>{{ list_desc_txt }}</p>
 
 
@@ -21,12 +23,12 @@
         </div>
         {% endif %}
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
-            
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/web_childdomain_edit.php?type={{ childdomain_type }}">{% if childdomain_type == 'aliasdomain' %}{{ add_new_aliasdomain_txt }}{% else %}{{ add_new_subdomain_txt }}{% endif %}</button>
-            
-        
 
-    
+                <button class="btn btn-default formbutton-success" type="button" data-load-content="sites/web_childdomain_edit.php?type={{ childdomain_type }}">{% if childdomain_type == 'aliasdomain' %}{{ add_new_aliasdomain_txt }}{% else %}{{ add_new_subdomain_txt }}{% endif %}</button>
+
+
+
+
         <p class="fieldset-legend">{{ list_head_txt }}</p>
             <div class="table-wrapper marginTop15">
 <table class='table w-full'>
@@ -73,5 +75,4 @@
                 </tfoot>
             </table>
 </div>
-        
-    
+

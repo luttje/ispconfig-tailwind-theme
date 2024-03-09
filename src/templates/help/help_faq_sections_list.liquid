@@ -1,16 +1,14 @@
-<div class='page-header'>
-	<h1 class="text-4xl pb-4 border-b">{{ faq_faq_sections_txt }}</h1>
-</div>
+{% render '../components/h1', slot: '{{ faq_faq_sections_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
 
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
-            
-                <button class="btn btn-default formbutton-success" type="button" data-load-content="help/faq_sections_edit.php">{{ faq_new_section_txt }}</button>
-            
-        
 
-    
+                <button class="btn btn-default formbutton-success" type="button" data-load-content="help/faq_sections_edit.php">{{ faq_new_section_txt }}</button>
+
+
+
+
         <p class="fieldset-legend">{{ faq_sections_txt }}</p>
             <div class="table-wrapper marginTop15">
 <table class='table w-full'>
@@ -46,5 +44,4 @@
                 </tfoot>
             </table>
 </div>
-        
-    
+
