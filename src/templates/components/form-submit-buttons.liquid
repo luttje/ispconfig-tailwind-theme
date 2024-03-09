@@ -1,0 +1,15 @@
+<div class="flex flex-row justify-between px-4">
+    {% render_json './button/primary', {
+        "slot": "{{ btn_cancel_txt }}",
+        "attributes": [
+            [ "data-load-content", "{{ cancel_load_content }}" ]
+        ]
+    } %}
+    {% render_json './button/success', {
+        "slot": "{{ btn_save_txt }}",
+        "attributes": [
+            [ "data-submit-form", "pageForm" ],
+            [ "data-form-action", "{{ save_form_action }}" ]
+        ]
+    } %}
+</div>

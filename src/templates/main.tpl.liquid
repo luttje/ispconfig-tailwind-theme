@@ -1,122 +1,114 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 
 <head>
-    <meta charset='utf-8' />
+    <meta charset="utf-8" />
 
     <title>{{ company_name }}{{ app_title }}</title>
 
-    <meta name='viewport'
-          content='width=device-width, user-scalable=yes'>
-    <meta name='description'
-          lang='en'
-          content='' />
-    <meta name='keywords'
-          lang='en'
-          content='' />
-    <meta name='robots'
-          content='noindex, nofollow' />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes">
+    <meta name="description"
+          lang="en"
+          content="" />
+    <meta name="keywords"
+          lang="en"
+          content="" />
+    <meta name="robots"
+          content="noindex, nofollow" />
 
-    <meta name='theme-path'
-          content='themes/{{ current_theme }}/assets/' />
+    <meta name="theme-path"
+          content="themes/{{ current_theme }}/assets/" />
 
-    <link rel='apple-touch-icon'
-          sizes='180x180'
-          href='/themes/{{ current_theme }}/assets/favicon/apple-touch-icon.png'>
-    <link rel='icon'
-          type='image/png'
-          sizes='32x32'
-          href='/themes/{{ current_theme }}/assets/favicon/favicon-32x32.png'>
-    <link rel='icon'
-          type='image/png'
-          sizes='16x16'
-          href='/themes/{{ current_theme }}/assets/favicon/favicon-16x16.png'>
-    <link rel='manifest'
-          href='/themes/{{ current_theme }}/assets/favicon/site.webmanifest'>
-    <link rel='mask-icon'
-          href='/themes/{{ current_theme }}/assets/favicon/safari-pinned-tab.svg'
-          color='#cc151c'>
-    <link rel='shortcut icon'
-          href='/themes/{{ current_theme }}/assets/favicon/favicon.ico'>
-    <meta name='msapplication-TileColor'
-          content='#cc151c'>
-    <meta name='msapplication-config'
-          content='/themes/{{ current_theme }}/assets/favicon/browserconfig.xml'>
-    <meta name='theme-color'
-          content='#cc151c'>
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="/themes/{{ current_theme }}/assets/favicon/apple-touch-icon.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/themes/{{ current_theme }}/assets/favicon/favicon-32x32.png">
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/themes/{{ current_theme }}/assets/favicon/favicon-16x16.png">
+    <link rel="manifest"
+          href="/themes/{{ current_theme }}/assets/favicon/site.webmanifest">
+    <link rel="mask-icon"
+          href="/themes/{{ current_theme }}/assets/favicon/safari-pinned-tab.svg"
+          color="#cc151c">
+    <link rel="shortcut icon"
+          href="/themes/{{ current_theme }}/assets/favicon/favicon.ico">
+    <meta name="msapplication-TileColor"
+          content="#cc151c">
+    <meta name="msapplication-config"
+          content="/themes/{{ current_theme }}/assets/favicon/browserconfig.xml">
+    <meta name="theme-color"
+          content="#cc151c">
 
-    <link rel='stylesheet'
-          href='themes/{{ current_theme }}/assets/style.css' />
+    <link rel="stylesheet"
+          href="themes/{{ current_theme }}/assets/style.css" />
 
-    <link rel='stylesheet'
-          href='themes/{{ current_theme }}/assets/stylesheets/fonts.min.css' />
-    <link rel='stylesheet'
-          href='themes/{{ current_theme }}/assets/stylesheets/pushy.min.css' />
-    <link rel='stylesheet'
-          href='themes/{{ current_theme }}/assets/stylesheets/bootstrap-datetimepicker.min.css' />
-    <link rel='stylesheet'
-          href='themes/{{ current_theme }}/assets/stylesheets/select2.css' />
-    <link rel='stylesheet'
-          href='themes/{{ current_theme }}/assets/stylesheets/select2-bootstrap.css' />
-    <link rel='stylesheet'
-          href='themes/{{ current_theme }}/assets/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css' />
+    <link rel="stylesheet"
+          href="themes/{{ current_theme }}/assets/stylesheets/fonts.min.css" />
+    <link rel="stylesheet"
+          href="themes/{{ current_theme }}/assets/stylesheets/pushy.min.css" />
+    <link rel="stylesheet"
+          href="themes/{{ current_theme }}/assets/stylesheets/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet"
+          href="themes/{{ current_theme }}/assets/stylesheets/select2.css" />
+    <link rel="stylesheet"
+          href="themes/{{ current_theme }}/assets/stylesheets/select2-bootstrap.css" />
+    <link rel="stylesheet"
+          href="themes/{{ current_theme }}/assets/stylesheets/font-awesome-4.7.0/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
 
-    {% if logged_in == 'n' %}
-    <link rel='stylesheet'
-          href='themes/{{ current_theme }}/assets/stylesheets/login.css' />
+    {% if logged_in == "n" %}
+    <link rel="stylesheet"
+          href="themes/{{ current_theme }}/assets/stylesheets/login.css" />
     {% endif %}
 </head>
 
 <body>
     <!-- off canvas -->
-    <nav class='pushy pushy-left'></nav>
-    <div class='site-overlay'></div>
+    <nav class="pushy pushy-left"></nav>
+    <div class="site-overlay"></div>
 
-    <div id='container'
-         class='min-h-screen flex flex-col'
+    <div id="container"
+         class="min-h-screen flex flex-col"
          x-data="{ modalOpen: false }">
-        <div id='main-wrapper'
-             class='flex-grow'>
-            <div id='inner-wrapper'>
-                <div class='flex w-full justify-between'>
-                    <div class='flex w-full justify-between'>
+        <div id="main-wrapper"
+             class="flex-grow">
+            <div id="inner-wrapper">
+                <div class="flex w-full justify-between">
+                    <div class="flex w-full justify-between">
                         <!-- off canvas menu button -->
-                        <div class='menu-btn flex items-center cursor-pointer p-4 lg:hidden'>&#9776;</div>
+                        <div class="menu-btn flex items-center cursor-pointer p-4 lg:hidden">&#9776;</div>
                         <!-- logo -->
-                        <div id='logo'
-                             class='bg-no-repeat bg-contain'
+                        <div id="logo"
+                             class="bg-no-repeat bg-contain"
                              style="background: url({{ base64_logo_txt }}) no-repeat;width:{{ base64_logo_width }};height:{{ base64_logo_height }}">
-                            <a href='#'></a></div>
+                            <a href="#"></a></div>
                     </div>
-                    <div id='headerbar'
-                         class='flex w-full justify-end mt-4'>
+                    <div id="headerbar"
+                         class="flex w-full items-center justify-end mt-4 gap-4">
                         {% if cpuser %}
-                            {% if usertype == 'normaluser' %}
+                            {% if usertype == "normaluser" %}
                             <!-- search field -->
-                            <form action='#'
-                                method='get'
-                                id='searchform'
-                                class='flex'>
-                                <div class='flex items-center'>
-                                    <div class='relative'>
-                                        <div class='flex'>
-                                            <input id='globalsearch'
-                                                type='text'
-                                                class='form-input px-4 py-2 w-full rounded-md'
-                                                placeholder='{{ globalsearch_searchfield_watermark_txt }}' />
-                                            <button
-                                                    class='flex justify-center content-center p-2 ml-2 text-gray-600 rounded-md bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee]'>
-                                                <span class='icon icon-lens'></span>
-                                            </button>
-                                        </div>
-                                    </div>
+                            <form action="#"
+                                method="get"
+                                id="searchform"
+                                class="flex relative">
+                                <div class="flex gap-2 items-stretch">
+                                    {% render './components/input/text', id: 'globalsearch', placeholder: '{{ globalsearch_searchfield_watermark_txt }}' %}
+                                    {% render_json './components/button/primary', {
+                                        "slot": "<span class=\"icon icon-lens\"></span>"
+                                    } %}
                                 </div>
                             </form>
                             {% endif %}
 
-                            {% render_json 'components/button/danger', {
+                            {% render_json "components/button/danger", {
                                     "slot": "{{ logout_txt }} {{ cpuser }}",
                                     "attributes": [
                                         ["id", "logout-button"],
@@ -162,39 +154,39 @@
                     </div>
                     <!-- END Datalogstatus Modal -->
                 </div>
-                {% if logged_in == 'y' %}
-                <div id='topnav-container'
-                     class='py-4'>
+                {% if logged_in == "y" %}
+                <div id="topnav-container"
+                     class="py-4">
                 </div>
                 {% endif %}
-                <div class='flex flex-wrap flex-col lg:flex-row-reverse'>
+                <div class="flex flex-wrap flex-col lg:flex-row-reverse">
                     <!-- content -->
-                    <div id='content'
-                         class='flex-1 p-4 lg:w-3/4'>
+                    <div id="content"
+                         class="flex-1 p-4 lg:w-3/4">
                         <noscript>This page needs JavaScript to be enabled.</noscript>
                         <form method="post"
                               action=""
                               id="pageForm"
                               name="pageForm"
                               enctype="multipart/form-data"
-                              class='form-horizontal'
-                              role='form'>
+                              class="form-horizontal"
+                              role="form">
                             <div id="pageContent"
                                  data-startpage="{{ startpage }}"><!-- AJAX CONTENT --></div>
                         </form>
                     </div>
                     <!-- news sidebar -->
-                    {% if logged_in == 'y' %}
-                    <div id='sidebar'
-                         class='w-full lg:w-1/4 p-4 border rounded self-start float-right'>
+                    {% if logged_in == "y" %}
+                    <div id="sidebar"
+                         class="w-full lg:w-1/4 p-4 border rounded self-start float-right">
                     </div>
                     {% endif %}
                 </div>
-                <footer id='footer'
-                        class='py-4 text-center bg-gray-100 text-gray-600'>
+                <footer id="footer"
+                        class="py-4 text-center bg-gray-100 text-gray-600">
                     powered by <a href="{{ app_link }}"
                        target="_blank"
-                       class='text-blue-500 hover:underline'>{{ app_title }}</a>
+                       class="text-blue-500 hover:underline">{{ app_title }}</a>
                 </footer>
             </div>
         </div>
@@ -204,12 +196,12 @@
             src="themes/{{ current_theme }}/assets/tailwindone.es.js"></script>
     <script type="text/javascript"
             src="js/jquery.min.js"></script>
-    <script src='themes/{{ current_theme }}/assets/javascripts/bootstrap.min.js'></script>
-    <script src='themes/{{ current_theme }}/assets/javascripts/bootstrap-datetimepicker.min.js'></script>
-    <script src='themes/{{ current_theme }}/assets/javascripts/modernizr.custom.min.js'></script>
-    <script src='themes/{{ current_theme }}/assets/javascripts/pushy.min.js'></script>
-    <script src='js/select2/select2.min.js'></script>
-    <script src='js/scrigo.js.php'></script>
+    <script src="themes/{{ current_theme }}/assets/javascripts/bootstrap.min.js"></script>
+    <script src="themes/{{ current_theme }}/assets/javascripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="themes/{{ current_theme }}/assets/javascripts/modernizr.custom.min.js"></script>
+    <script src="themes/{{ current_theme }}/assets/javascripts/pushy.min.js"></script>
+    <script src="js/select2/select2.min.js"></script>
+    <script src="js/scrigo.js.php"></script>
     <script type="text/javascript"
             src="js/jquery.ispconfigsearch.js"></script>
     <script type="text/javascript"

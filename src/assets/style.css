@@ -92,7 +92,7 @@ body {
   width: 200px;
   height: 65px;
   margin-top: 10px;
-  /*background: url("../images/logo.png") no-repeat;*/
+  /*background: url('./images/logo.png') no-repeat;*/
 }
 
 #logo a {
@@ -103,17 +103,6 @@ body {
 
 #headerbar {
   float: right;
-}
-
-#searchform>div {
-  position: relative;
-  display: table;
-}
-
-#searchform>div>div {
-  display: table-cell;
-  padding-right: 8px;
-  vertical-align: top;
 }
 
 #searchform .icon {
@@ -484,7 +473,7 @@ ul.gs-resultbox li:last-child {
 }
 
 span.flags {
-  background-image: url("../images/flags_sprite.png");
+  background-image: url('./images/flags_sprite.png');
   background-repeat: no-repeat;
   min-height: 20px;
   padding-left: 27px;
@@ -1468,7 +1457,7 @@ span.flag-zw {
 @media (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dpi) {
   #logo {
-    background-image: url("../images/logo@2x.png");
+    background-image: url('./images/logo@2x.png');
     background-size: 200px 65px;
   }
 }

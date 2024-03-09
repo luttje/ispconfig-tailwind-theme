@@ -1,6 +1,6 @@
-<button class="px-4 py-2 self-start text-sm whitespace-nowrap font-medium text-white cursor-pointer hover:shadow-sm bg-[#c70f19] border-bottom-[#980b13] hover:bg-[#df111c] hover:border-bottom-[#800a10] rounded-md shadow uppercase"
-        {% for attribute in attributes %}
-        {{ attribute[0] }}="{{ attribute[1] }}"
-        {% endfor %}>
-        {{ slot }}
+<button class="flex justify-center py-2 px-4 shadow-sm rounded font-bold text-xs cursor-pointer border hover:shadow-sm bg-gradient-to-b from-rose-100 to-rose-200 hover:from-rose-50 hover:to-rose-100"
+    {% for attribute in attributes %}
+    {{ attribute[0] }}="{{ attribute[1] }}"
+    {% endfor %}>
+    {{ slot }}
 </button>

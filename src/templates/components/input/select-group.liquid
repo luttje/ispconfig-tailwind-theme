@@ -1,0 +1,6 @@
+{% render './group-start' %}
+    {% render './label', name: '{{ name }}', slot: '{{ label }}' %}
+    <div class="w-9/12">
+        {% render './select', id: '{{ id }}', name: '{{ name }}', options: '{{ options }}', class: '{{ class }}' %}
+    </div>
+{% render './group-end' %}

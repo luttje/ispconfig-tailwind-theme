@@ -1,41 +1,11 @@
 {% render '../components/list-start' %}
 {% render '../components/input/password-group-complete', name: 'passwort', id: 'passwort', value: '{{ passwort }}', label: '{{ password_txt }}' %}
-<div class="form-group">
-  <label for="2fa" class="col-sm-3 control-label">{{ otp_auth_txt }}</label>
-  <div class="col-sm-9">
-    <select name="otp_type" id="otp_type" class="form-control">
-      {{ otp_type }}
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <label for="language" class="col-sm-3 control-label">{{ language_txt }}</label>
-  <div class="col-sm-9"><select name="language" id="language" class="form-control flags">
-    {{ language }}
-    </select>
-  </div>
-</div>
+{% render '../components/input/select-group', name: 'otp_type', id: 'otp_type', options: '{{ otp_type }}', label: '{{ otp_auth_txt }}', class: '' %}
+{% render '../components/input/select-group', name: 'language', id: 'language', options: '{{ language }}', label: '{{ language_txt }}', class: 'flags' %}
 <!-- TODO: If user theme change is activated -->
-<div class="form-group">
-  <label for="app_theme" class="col-sm-3 control-label">{{ app_theme_txt }}</label>
-  <div class="col-sm-9"><select name="app_theme" id="app_theme" class="form-control">
-    {{ app_theme }}
-    </select>
-  </div>
-</div>
+{% render '../components/input/select-group', name: 'app_theme', id: 'app_theme', options: '{{ app_theme }}', label: '{{ app_theme_txt }}', class: '' %}
 <!-- TODO: Limit to activated modules -->
-<div class="form-group">
-  <label for="startmodule" class="col-sm-3 control-label">{{ startmodule_txt }}</label>
-  <div class="col-sm-9"><select name="startmodule" id="startmodule" class="form-control">
-    {{ startmodule }}
-    </select>
-  </div>
-</div>
+{% render '../components/input/select-group', name: 'startmodule', id: 'startmodule', options: '{{ startmodule }}', label: '{{ startmodule_txt }}', class: '' %}
 <input type="hidden" name="id" value="{{ id }}">
-<div class="clear">
-  <div class="right">
-    <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="tools/user_settings.php">{{ btn_save_txt }}</button>
-    <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="tools/index.php">{{ btn_cancel_txt }}</button>
-  </div>
-</div>
+{% render '../components/form-submit-buttons', cancel_load_content: "tools/index.php", save_form_action: "tools/user_settings.php" %}
 {% render '../components/list-end' %}

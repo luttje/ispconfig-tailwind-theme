@@ -20,14 +20,14 @@
 	{% endif %}
 
 	<!-- content in tabs -->
-	<div class='content-tab-wrapper border-r border-b border-l'>
+	<div class='content-tab-wrapper rounded overflow-clip border-r border-b border-l'>
 		<!-- tabs -->
-		<ul class='bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee]'>
+		<ul class='bg-gradient-to-b rounded-t overflow-clip from-white to-[#eef0f2]'>
 			{% loop formTab %}
 				<li{% if active %} class='active'{% endif %}>
 					<a href='#'
                         onclick="return ISPConfig.changeTab('{{ name }}','{{ app_module }}/{{ form_action }}')"
-                        class="inline-flex px-4 py-2 bg-white border-l border-r">
+                        class="inline-flex px-4 py-2 rounded bg-white border-r hover:from-[#fafafa] hover:to-[#e8ebee]">
 						{{ title }}
 					</a>
 					</li>

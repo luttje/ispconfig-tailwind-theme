@@ -1,6 +1,6 @@
-<a class='flex justify-center p-2 shadow-sm rounded self-stretch font-bold text-xs cursor-pointer hover:shadow-sm bg-gradient-to-b from-white to-[#eef0f2] hover:from-[#fafafa] hover:to-[#e8ebee]'
+<button class="flex justify-center py-2 px-4 shadow-sm rounded self-stretch font-bold text-xs cursor-pointer border border-gray-200 hover:shadow-sm bg-gradient-to-b from-gray-100 to-gray-200 hover:from-gray-50 hover:to-gray-100"
     {% for attribute in attributes %}
     {{ attribute[0] }}="{{ attribute[1] }}"
     {% endfor %}>
     {{ slot }}
-</a>
+</button>
