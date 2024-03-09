@@ -27,7 +27,7 @@ ISPConfig.loadResponsiveMenu = function () {
 
         let iconClass = item.dataset.iconClass ? item.dataset.iconClass : '';
         let newElement = document.createElement('li');
-        newElement.innerHTML = '<a href="' + item.getAttribute('href') + '" @click="sidebarOpen = false" class="' + activeClass + '" ' + additionalAttribute + '><i class="icon ' + iconClass + '"></i>' + item.textContent + '</a>';
+        newElement.innerHTML = '<a href="' + item.getAttribute('href') + '" class="' + activeClass + '" ' + additionalAttribute + '><i class="icon ' + iconClass + '"></i>' + item.textContent + '</a>';
 
         if (isActive) addTo = newElement;
         menuList.appendChild(newElement);

@@ -1,7 +1,7 @@
 {% if childdomain_type == 'aliasdomain' %}
-    {% render '../components/h1', slot: '{{ aliasdomain_list_head_txt }}' %}
+    {% render '../components/heading/h1', slot: '{{ aliasdomain_list_head_txt }}' %}
 {% else %}
-    {% render '../components/h1', slot: '{{ subdomain_list_head_txt }}' %}
+    {% render '../components/heading/h1', slot: '{{ subdomain_list_head_txt }}' %}
 {% endif %}
 <p>{{ list_desc_txt }}</p>
 

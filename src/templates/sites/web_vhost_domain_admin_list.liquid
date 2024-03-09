@@ -1,11 +1,11 @@
 {% if vhostdomain_type == 'domain' %}
-    {% render '../components/h1', slot: '{{ domain_list_head_txt }}' %}
+    {% render '../components/heading/h1', slot: '{{ domain_list_head_txt }}' %}
 {% endif %}
 {% if vhostdomain_type == 'subdomain' %}
-    {% render '../components/h1', slot: '{{ subdomain_list_head_txt }}' %}
+    {% render '../components/heading/h1', slot: '{{ subdomain_list_head_txt }}' %}
 {% endif %}
 {% if vhostdomain_type == 'aliasdomain' %}
-    {% render '../components/h1', slot: '{{ aliasdomain_list_head_txt }}' %}
+    {% render '../components/heading/h1', slot: '{{ aliasdomain_list_head_txt }}' %}
 {% endif %}
 
         <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
