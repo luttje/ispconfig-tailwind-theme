@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -19,12 +20,16 @@ jobs:
         run: npm run build
       - name: Zip the theme
         run: zip -qq -r tailwindone.zip dist
+      - name: Get the version from package.json
+        id: get_version
+        run: echo "packageVersion=$(jq -r .version package.json)" >> $GITHUB_ENV
       - name: Release the theme
         id: create_release
         uses: ncipollo/release-action@v1
         with:
           prerelease: true
           artifacts: 'tailwindone.zip'
+          tag: v${{ env.packageVersion }}-${{ github.run_number }}-${{ github.run_attempt }}
           body: |
             # 🖼 tailwindone - ISPConfig Theme
 
