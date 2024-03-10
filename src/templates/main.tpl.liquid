@@ -104,14 +104,14 @@
                                 class="flex relative">
                                 <div class="flex gap-2 items-stretch">
                                     {% render './components/input/text', id: 'globalsearch', placeholder: '{{ globalsearch_searchfield_watermark_txt }}' %}
-                                    {% render_json './components/button/primary', {
+                                    {% render './components/button/primary', {
                                         "slot": "<span class=\"icon icon-lens -ml-[5px] text-base group-hover:text-white\"></span>"
                                     } %}
                                 </div>
                             </form>
                             {% endif %}
 
-                            {% render_json "components/button/danger", {
+                            {% render "components/button/danger", {
                                     "slot": "{{ logout_txt }} {{ cpuser }}",
                                     "attributes": [
                                         ["id", "logout-button"],

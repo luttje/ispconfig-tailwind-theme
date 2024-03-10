@@ -7,7 +7,7 @@
 				<div class='text-6xl icon icon-{{ modules_name }}'></div>
 				<div class='title font-bold'>{{ modules_title }}</div>
 
-                {% render_json '../components/button/primary', {
+                {% render '../components/button/primary', {
                     "slot": "{{ go_to_txt }} {{ modules_title }}",
                     "attributes": [
                         ["href", "#"],

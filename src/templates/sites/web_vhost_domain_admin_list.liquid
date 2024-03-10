@@ -10,7 +10,7 @@
 
 <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-{% render_json '../components/button/primary', {
+{% render '../components/button/primary', {
     "slot": "{% if vhostdomain_type == 'domain' %}{{ add_new_record_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ add_new_subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ add_new_aliasdomain_txt }}{% endif %}",
     "attributes": [
         [ "type", "button" ],

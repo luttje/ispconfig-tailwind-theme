@@ -1,13 +1,16 @@
-import { resolve } from 'path'
-import tailwindcss from 'tailwindcss'
-import { defineConfig } from 'vite'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
-import { LiquidishTransformer } from './liquidish';
+import { resolve } from 'path';
+import tailwindcss from 'tailwindcss';
+import { defineConfig } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { ISPConfigTransformationStrategy } from './liquidish/strategies/ispconfig-transformation-strategy';
+import { LiquidishTransformer } from './liquidish/transformer';
 
 const path = (path) => resolve(__dirname, path);
 const srcTemplatesPath = path('src/templates');
 
-const liquidish = new LiquidishTransformer({});
+const liquidish = new LiquidishTransformer({
+    strategyBuilder: (transformer) => new ISPConfigTransformationStrategy(transformer)
+});
 
 const staticAssetsDirectories = [
     'favicon',

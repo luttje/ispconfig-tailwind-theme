@@ -78,7 +78,7 @@
 
     <div class="clear">
         <div class="right">
-            {% render_json '../components/button/success', {
+            {% render '../components/button/success', {
                 "slot": "{{ btn_save_txt }}",
                 "attributes": [
                     [ "type", "button" ],
@@ -87,7 +87,7 @@
                     [ "data-form-action", "admin/remote_user_edit.php"]
                 ]
             } %}
-            {% render_json '../components/button/primary', {
+            {% render '../components/button/primary', {
                 "slot": "{{ btn_cancel_txt }}",
                 "attributes": [
                     [ "type", "button" ],
