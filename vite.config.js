@@ -80,7 +80,7 @@ export default defineConfig({
                     dest: 'templates',
 
                     transform: (contents, path) => {
-                        console.log(path);
+                        // console.log(path);
                         return liquidish.transform(contents, path);
                     },
 

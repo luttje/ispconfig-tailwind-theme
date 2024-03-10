@@ -2,6 +2,8 @@
 
 This is a guide for migrating ISPConfig's `tpl` files to `Liquidish`. This can be useful when porting an existing theme to this workflow.
 
+💡 *I hope to one day use this information to create a migration script. But for now just making note of this will do.*
+
 ## Migrating Variables
 
 *E.g: `<tmpl_var name='VARIABLE'>` to `{{ VARIABLE }}`*
@@ -14,7 +16,7 @@ This is a guide for migrating ISPConfig's `tpl` files to `Liquidish`. This can b
   - `<tmpl_var name="([^"]*?)">`
   - `<tmpl_var name='([^']*?)'>`
   - `<tmpl_var name=([^ ]*?)>`
-  - There is some funky stuff out there (like opened by &lt;tmpl_var and closed by }), so just search for `tmpl_var` and finish the job manually.
+  - There is some funky stuff out there (like opened by `<tmpl_var` and closed by `}`), so just search for `tmpl_var` and finish the job manually.
 
 **Replacement:** `{{ $1 }}`
 

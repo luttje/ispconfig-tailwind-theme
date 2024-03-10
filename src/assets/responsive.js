@@ -7,7 +7,7 @@ ISPConfig.loadResponsiveMenu = function () {
     const subNavigation = document.querySelector('#sidebar');
     const responsiveNavigation = document.querySelector('#responsive-navigation');
 
-    responsiveNavigation.innerHTML = '<div class="self-end items-center cursor-pointer mb-2 px-4 py-2 lg:hidden rounded hover:text-black hover:bg-white" @click="sidebarOpen = !sidebarOpen">&#10005;</div>';
+    responsiveNavigation.innerHTML = '<div class="self-end items-center cursor-pointer mb-2 px-4 py-2 lg:hidden rounded hover:bg-gray-800 hover:text-white" @click="sidebarOpen = !sidebarOpen">&#10005;</div>';
 
     const menuList = document.createElement('ul');
     menuList.classList.add('flex', 'flex-col', 'gap-2');
@@ -16,7 +16,7 @@ ISPConfig.loadResponsiveMenu = function () {
     let addTo = false;
     mainNavigation.querySelectorAll('a').forEach(function(item) {
         let isActive = item.classList.contains('active');
-        let activeClass = isActive ? 'active flex flex-row gap-2 items-center px-4 py-2 rounded bg-white text-black' : 'flex flex-row gap-2 items-center px-4 py-2 rounded hover:text-black hover:bg-white';
+        let activeClass = isActive ? 'active flex flex-row gap-2 items-center px-4 py-2 rounded bg-gray-800 text-white' : 'flex flex-row gap-2 items-center px-4 py-2 rounded hover:bg-gray-800 hover:text-white';
 
         let additionalAttribute = '';
         let capp = item.getAttribute('data-capp');
@@ -47,10 +47,10 @@ ISPConfig.loadResponsiveMenu = function () {
         capp = item.getAttribute('data-load-content');
         if (capp) additionalAttribute += ' data-load-content="' + capp + '"';
 
-        let classes = item.classList.contains('subnav-header') ? 'subnav-header text-gray-400 text-sm' : '';
+        let classes = item.classList.contains('subnav-header') ? 'subnav-header text-gray-600 font-bold text-sm' : '';
 
         let newElement = document.createElement('li');
-        newElement.innerHTML = '<a href="' + item.getAttribute('href') + '" ' + additionalAttribute + ' class="' + classes + ' flex flex-row items-center font-normal px-4 py-2 rounded hover:text-black hover:bg-white" @click="sidebarOpen = false">' + item.textContent + '</a>';
+        newElement.innerHTML = '<a href="' + item.getAttribute('href') + '" ' + additionalAttribute + ' class="' + classes + ' flex flex-row items-center px-4 py-2 rounded hover:bg-gray-800 hover:text-white" @click="sidebarOpen = false">' + item.textContent + '</a>';
         subNavigationList.appendChild(newElement);
     });
 };
