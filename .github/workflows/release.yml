@@ -20,8 +20,10 @@ jobs:
         run: npm ci
       - name: Build the theme
         run: npm run build
+      - name: Rename the theme
+        run: mv dist tailwindone
       - name: Zip the theme
-        run: zip -qq -r tailwindone.zip dist
+        run: zip -qq -r tailwindone.zip tailwindone
       - name: Get the version from package.json
         id: get_version
         run: echo "packageVersion=$(jq -r .version package.json)" >> $GITHUB_ENV
