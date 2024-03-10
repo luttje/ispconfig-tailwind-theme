@@ -1,0 +1,34 @@
+name: release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install zip
+        uses: montudor/action-zip@v1
+      - name: Install dependencies
+        run: npm ci
+      - name: Build the theme
+        run: npm run build
+      - name: Zip the theme
+        run: zip -qq -r tailwindone.zip dist
+      - name: Release the theme
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          prerelease: true
+          artifacts: 'tailwindone.zip'
+          body: |
+            # 🖼 tailwindone - ISPConfig Theme
+
+            A modern theme for ISPConfig 3.
+
+            *🤖 This theme was automatically published by a GitHub workflow*
+
