@@ -16,6 +16,20 @@ Starting point for creating a custom theme for ISPConfig, using Tailwind CSS. Th
 
 ## 🚀 Getting Started
 
+All the fun is in making a theme using this starting point. But if you just want to use the theme:
+
+1. Download the latest release from the [releases page](https://github.com/luttje/ispconfig-tailwind-theme/releases).
+
+2. Unzip the release and place it in the `themes/` directory of your ISPConfig installation.
+
+3. Login to ISPConfig and go to `Tools` > `User Settings` > `Design`.
+
+4. Select the `tailwindone` theme and save the changes.
+
+## 🔨 Making a theme
+
+This repository is mainly a starting point for creating a custom theme for ISPConfig.
+
 1. Clone the repository
 
 2. Install the dependencies
@@ -40,10 +54,6 @@ Starting point for creating a custom theme for ISPConfig, using Tailwind CSS. Th
 
     - [📚 The ISPConfig docs for Ubuntu/Debian instructions](https://www.ispconfig.org/documentation/)
     - [🤖 Our guide for setting up ISPConfig in WSL2](./docs/ispconfig-on-wsl-windows.md)
-
-## 🔨 Configuring ISPConfig
-
-Login to ISPConfig and go to `Tools` > `User Settings` > `Design`. Select the `tailwindone` theme and save the changes.
 
 ## 🔎 About ISPConfig themes
 
