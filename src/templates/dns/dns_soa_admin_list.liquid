@@ -21,7 +21,7 @@
 <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
 <div class="flex flex-row gap-4">
-{% render_json '../components/button/primary', {
+{% render '../components/button/primary', {
     "slot": "{{ add_new_record_wizard_txt }}",
     "attributes": [
         [ "type", "button" ],
@@ -30,7 +30,7 @@
     ]
 } %}
 
-{% render_json '../components/button/primary', {
+{% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
     "attributes": [
         [ "type", "button" ],
@@ -39,7 +39,7 @@
     ]
 } %}
 
-{% render_json '../components/button/primary', {
+{% render '../components/button/primary', {
     "slot": "{{ import_zone_file_txt }}",
     "attributes": [
         [ "type", "button" ],

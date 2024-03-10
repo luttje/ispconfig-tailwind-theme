@@ -3,7 +3,7 @@
 
 <p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
-{% render_json '../components/button/primary', {
+{% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
     "attributes": [
         [ "type", "button" ],
@@ -15,93 +15,142 @@
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-    <tr>
-        {% render '../components/table/th', name: 'client_id', label: '{{ client_id_txt }}', class: 'w-[15%]' %}
-        {% render '../components/table/th', name: 'locked', label: '{{ locked_txt }}', class: 'w-[8%]' %}
-        {% render '../components/table/th', name: 'company_name', label: '{{ company_name_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'contact_name', label: '{{ contact_name_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'customer_no', label: '{{ customer_no_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'username', label: '{{ username_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'city', label: '{{ city_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'country', label: '{{ country_txt }}', class: '' %}
-        {% if has_robot %}{% render '../components/table/th', name: 'validation_status', label: '{{ validation_status_txt }}', class: '' %}{% endif %}
-        {% render '../components/table/th', name: 'search_limit', label: '{{ search_limit }}', class: 'w-[10%] text-right' %}
-    </tr>
-    <tr>
-        {% render '../components/table/td-input-text', name: 'search_client_id', value: '{{ search_client_id }}' %}
-        {% render '../components/table/td-input-select', name: 'search_locked', options: '{{ search_locked }}', class: '' %}
-        {% render '../components/table/td-input-text', name: 'search_company_name', value: '{{ search_company_name }}' %}
-        {% render '../components/table/td-input-text', name: 'search_contact_name', value: '{{ search_contact_name }}' %}
-        {% render '../components/table/td-input-text', name: 'search_customer_no', value: '{{ search_customer_no }}' %}
-        {% render '../components/table/td-input-text', name: 'search_username', value: '{{ search_username }}' %}
-        {% render '../components/table/td-input-text', name: 'search_city', value: '{{ search_city }}' %}
-        {% render '../components/table/td-input-select', name: 'search_country', options: '{{ search_country }}', class: 'flags' %}
-        {% if has_robot %}<td><select class="form-control"
-                    name="search_validation_status">{{ search_validation_status }}</select></td>{% endif %}
-        <td class="flex justify-end p-2">
-            {% render_json '../components/button/primary-tiny', {
-                "slot": "<span class=\"icon icon-filter text-xs group-hover:text-white\"></span>",
-                "attributes": [
-                    [ "type", "button" ],
-                    [ "value", "{{ filter_txt }}" ],
-                    [ "data-submit-form", "pageForm" ],
-                    [ "data-form-action", "client/client_list.php" ]
-                ]
-            } %}
+<tr>
+    {% render '../components/table/th', name: 'client_id', label: '{{ client_id_txt }}', class: 'w-[15%]' %}
+    {% render '../components/table/th', name: 'locked', label: '{{ locked_txt }}', class: 'w-[8%]' %}
+    {% render '../components/table/th', name: 'company_name', label: '{{ company_name_txt }}', class: '' %}
+    {% render '../components/table/th', name: 'contact_name', label: '{{ contact_name_txt }}', class: '' %}
+    {% render '../components/table/th', name: 'customer_no', label: '{{ customer_no_txt }}', class: '' %}
+    {% render '../components/table/th', name: 'username', label: '{{ username_txt }}', class: '' %}
+    {% render '../components/table/th', name: 'city', label: '{{ city_txt }}', class: '' %}
+    {% render '../components/table/th', name: 'country', label: '{{ country_txt }}', class: '' %}
+    {% if has_robot %}{% render '../components/table/th', name: 'validation_status', label: '{{ validation_status_txt }}', class: '' %}{% endif %}
+    {% render '../components/table/th', name: 'search_limit', label: '{{ search_limit }}', class: 'w-[10%] text-right' %}
+</tr>
+<tr>
+    {% render '../components/table/td-input-text', name: 'search_client_id', value: '{{ search_client_id }}' %}
+    {% render '../components/table/td-input-select', name: 'search_locked', options: '{{ search_locked }}', class: '' %}
+    {% render '../components/table/td-input-text', name: 'search_company_name', value: '{{ search_company_name }}' %}
+    {% render '../components/table/td-input-text', name: 'search_contact_name', value: '{{ search_contact_name }}' %}
+    {% render '../components/table/td-input-text', name: 'search_customer_no', value: '{{ search_customer_no }}' %}
+    {% render '../components/table/td-input-text', name: 'search_username', value: '{{ search_username }}' %}
+    {% render '../components/table/td-input-text', name: 'search_city', value: '{{ search_city }}' %}
+    {% render '../components/table/td-input-select', name: 'search_country', options: '{{ search_country }}', class: 'flags' %}
+    {% if has_robot %}
+        <td>
+            <select class="form-control"
+                name="search_validation_status">{{ search_validation_status }}
+            </select>
         </td>
-    </tr>
+    {% endif %}
+    <td class="flex justify-end p-2">
+        {% render '../components/button/primary-tiny', {
+            "slot": "<span class=\"icon icon-filter text-xs group-hover:text-white\"></span>",
+            "attributes": [
+                [ "type", "button" ],
+                [ "value", "{{ filter_txt }}" ],
+                [ "data-submit-form", "pageForm" ],
+                [ "data-form-action", "client/client_list.php" ]
+            ]
+        } %}
+    </td>
+</tr>
 {% render '../components/table/head-body' %}
-    {% loop records %}
+{% loop records %}
     <tr>
-        <td><a href="#"
-                data-load-content="client/client_edit.php?id={{ id }}">{{ client_id }}</a></td>
-        <td><a href="#"
-                data-load-content="client/client_edit.php?id={{ id }}">{{ locked }}</a></td>
-        <td><a href="#"
-                data-load-content="client/client_edit.php?id={{ id }}">{{ company_name }}</a></td>
-        <td><a href="#"
-                data-load-content="client/client_edit.php?id={{ id }}">{{ contact_name }}</a></td>
-        <td><a href="#"
-                data-load-content="client/client_edit.php?id={{ id }}">{{ customer_no }}</a></td>
-        <td><a href="#"
+        <td>
+            <a href="#"
+                data-load-content="client/client_edit.php?id={{ id }}">
+                {{ client_id }}
+            </a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="client/client_edit.php?id={{ id }}">
+                {{ locked }}
+            </a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="client/client_edit.php?id={{ id }}">
+                {{ company_name }}
+            </a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="client/client_edit.php?id={{ id }}">
+                {{ contact_name }}
+            </a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="client/client_edit.php?id={{ id }}">
+                {{ customer_no }}
+            </a>
+        </td>
+        <td>
+            <a href="#"
                 data-load-content="client/client_edit.php?id={{ id }}"
-                x-tooltip.placement.bottom.raw="{{ username }}">{{ username }}</a></td>
-        <td><a href="#"
-                data-load-content="client/client_edit.php?id={{ id }}">{{ city }}</a></td>
-        <td><a href="#"
-                data-load-content="client/client_edit.php?id={{ id }}"><span
-                        class="flags flag-{{ countryiso }}">{{ country }}</span></a></td>
-        {% if has_robot %}<td><a href="#"
-                data-load-content="client/client_edit.php?id={{ id }}">{{ validation_status }}</a></td>{% endif
-        %}
+                x-tooltip.placement.bottom.raw="{{ username }}">
+                {{ username }}
+            </a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="client/client_edit.php?id={{ id }}">
+                {{ city }}
+            </a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="client/client_edit.php?id={{ id }}">
+                <span class="flags flag-{{ countryiso }}">{{ country }}</span>
+            </a>
+        </td>
+        {% if has_robot %}
+            <td>
+                <a href="#"
+                    data-load-content="client/client_edit.php?id={{ id }}">
+                    {{ validation_status }}
+                </a>
+            </td>
+        {% endif %}
         <td class="text-right">
             {% if has_robot %}
-            <a class="btn btn-default formbutton-default formbutton-narrow"
-                href="#"
-                data-load-content="client/client_action.php?id={{ id }}"
-                title="{{ client_actions_txt }}"
-                style="background: no-repeat center url('themes/default/assets/images/arrow.png');"><span
-                        class="icon">&nbsp;&nbsp;</span></a>
-            {% if activation_code != '' %}
-            {% if validation_status == 'review' %}
-            <a class="btn btn-default formbutton-default formbutton-narrow"
-                href="client/client_get_activation_pdf.php?id={{ id }}"
-                style="background: no-repeat center url('billing/lib/icon/pdficon_small.gif');"
-                title="{{ show_pdf_txt }}"><span class="icon">&nbsp;&nbsp;</span></a>
-            {% endif %}
-            {% endif %}
+                    <a class="btn btn-default formbutton-default formbutton-narrow"
+                        href="#"
+                        data-load-content="client/client_action.php?id={{ id }}"
+                        title="{{ client_actions_txt }}"
+                        style="background: no-repeat center url('themes/default/assets/images/arrow.png');">
+                        <span class="icon">&nbsp;&nbsp;</span>
+                    </a>
+                {% if activation_code != '' %}
+                    {% if validation_status == 'review' %}
+                        <a class="btn btn-default formbutton-default formbutton-narrow"
+                            href="client/client_get_activation_pdf.php?id={{ id }}"
+                            style="background: no-repeat center url('billing/lib/icon/pdficon_small.gif');"
+                            title="{{ show_pdf_txt }}">
+                            <span class="icon">&nbsp;&nbsp;</span>
+                        </a>
+                    {% endif %}
+                {% endif %}
             {% endif %}
             {% if is_admin %}
-            <a class="btn btn-default formbutton-success formbutton-narrow"
-                data-load-content="login/login_as.php?cid={{ id }}"><span class="icon icon-loginas"></span></a>
+                <a class="btn btn-default formbutton-success formbutton-narrow"
+                    data-load-content="login/login_as.php?cid={{ id }}">
+                    <span class="icon icon-loginas"></span>
+                </a>
             {% elsif is_reseller %}
-            <a class="btn btn-default formbutton-success formbutton-narrow"
-                data-load-content="login/login_as.php?cid={{ id }}"><span class="icon icon-loginas"></span></a>
+                <a class="btn btn-default formbutton-success formbutton-narrow"
+                    data-load-content="login/login_as.php?cid={{ id }}">
+                    <span class="icon icon-loginas"></span>
+                </a>
             {% endif %}
             <a class="btn btn-default formbutton-danger formbutton-narrow"
-                href="javascript: ISPConfig.confirm_action('client/client_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
-                        class="icon icon-delete"></span></a>
+                href="javascript: ISPConfig.confirm_action('client/client_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');">
+                <span class="icon icon-delete"></span>
+            </a>
         </td>
     </tr>
-    {% endloop %}
+{% endloop %}
 {% render '../components/table/end' %}

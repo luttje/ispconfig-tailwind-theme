@@ -110,37 +110,6 @@ body {
   width: 60px;
 }
 
-.modules {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.modules li {
-  float: left;
-  margin-right: 15px;
-  margin-bottom: 15px;
-  padding: 8px;
-  width: 200px;
-  border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
-}
-
-.modules .button {
-  margin-top: 10px;
-  width: 100%;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  font-size: 12px;
-  font-weight: bold;
-  transition: all ease 500ms;
-}
-
-.modules a {
-  text-decoration: none;
-}
-
 .table {
   table-layout: fixed;
   margin-bottom: 1px;
