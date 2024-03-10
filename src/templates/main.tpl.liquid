@@ -105,13 +105,14 @@
                                 <div class="flex gap-2 items-stretch">
                                     {% render './components/input/text', id: 'globalsearch', placeholder: '{{ globalsearch_searchfield_watermark_txt }}' %}
                                     {% render './components/button/primary', {
-                                        "slot": "<span class=\"icon icon-lens -ml-[5px] text-base group-hover:text-white\"></span>"
+                                        "slot": "<span class=\"icon icon-lens -ml-[5px] text-base group-hover:text-white\"></span>",
+                                        "attributes": []
                                     } %}
                                 </div>
                             </form>
                             {% endif %}
 
-                            {% render "components/button/danger", {
+                            {% render "./components/button/danger", {
                                     "slot": "{{ logout_txt }} {{ cpuser }}",
                                     "attributes": [
                                         ["id", "logout-button"],

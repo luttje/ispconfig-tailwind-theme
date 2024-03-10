@@ -44,5 +44,5 @@ In order to get better IDE support when working with ISPConfig's `tpl` files, we
 
 When building the theme, it is compiled to `.tpl.htm` files for ISPConfig.
 
-- **[💧 Read more about Liquidish in it's docs](./liquidish/README.md)**
+- **[💧 Read more about Liquidish in it's docs](https://github.com/luttje/liquidish)**
 - **[📚 Or check out how to migrate an ISPConfig template to Liquidish](./docs/migrate-ispconfig-tpl-to-liquidish.md)**
