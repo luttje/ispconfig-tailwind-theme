@@ -1,11 +1,12 @@
 {% render '../components/heading/h2', slot: '{{ available_modules_txt }}' %}
-<div style='margin: 0 auto;'>
-	<ul class='modules clear'>
+
+<div style="margin: 0 auto;">
+	<ul class="modules">
 	{% loop modules %}
-		<li class="shadow-inner bg-gray-50">
+		<li class="shadow-inner float-left m-2 p-4 rounded-lg w-[200px] border bg-gray-50 border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white ">
 			<div class="flex flex-col gap-2 items-center">
-				<div class='text-6xl icon icon-{{ modules_name }}'></div>
-				<div class='title font-bold'>{{ modules_title }}</div>
+				<div class="text-6xl icon icon-{{ modules_name }}"></div>
+				<div class="title font-bold">{{ modules_title }}</div>
 
                 {% render '../components/button/primary', {
                     "slot": "{{ go_to_txt }} {{ modules_title }}",

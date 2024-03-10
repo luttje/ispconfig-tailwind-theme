@@ -67,13 +67,15 @@
     {% endif %}
 </head>
 
-<body x-data="{ modalOpen: false, sidebarOpen: false }"
+<body x-data="{ modalOpen: false, sidebarOpen: false, darkMode: $persist(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) }"
+    x-effect="document.documentElement.classList.toggle('dark', darkMode)"
+    class="bg-slate-100 text-black dark:bg-gray-900 transition-colors duration-300 motion-reduce:transition-none"
     :class="{ 'overflow-hidden sm:overflow-auto': sidebarOpen }">
     <!-- off canvas -->
     <nav id="responsive-navigation"
         data-open="false"
         x-effect="$el.setAttribute('data-open', sidebarOpen.toString())"
-        class="flex flex-col -translate-x-full data-[open=true]:-translate-x-0 opacity-0 data-[open=true]:opacity-100 fixed top-0 w-full sm:w-1/2 md:w-80 lg:hidden h-full overflow-y-auto bg-gray-200 z-50 shadow-lg transition-all p-6 duration-300 motion-reduce:transition-none">
+        class="flex flex-col -translate-x-full data-[open=true]:-translate-x-0 opacity-0 data-[open=true]:opacity-100 fixed top-0 w-full sm:w-1/2 md:w-80 lg:hidden h-full overflow-y-auto z-50 shadow-lg transition-all p-6 duration-300 motion-reduce:transition-none bg-gray-200 text-black dark:bg-gray-800 dark:text-white">
     </nav>
     <div class="site-overlay"></div>
 
@@ -82,14 +84,15 @@
         <div id="main-wrapper"
              class="flex-grow">
             <div id="inner-wrapper">
-                <div class="flex flex-col gap-4 sm:flex-row w-full sm:justify-between items-center mt-4">
+                <div class="flex flex-col gap-4 rounded sm:flex-row w-full sm:justify-between items-center mt-4">
                     <div class="flex w-full gap-4 items-center">
                         <!-- off canvas menu button -->
-                        <div class="menu-btn flex items-center cursor-pointer rounded px-4 py-2 lg:hidden hover:bg-gray-800 hover:text-white"
-                            @click="sidebarOpen = !sidebarOpen">&#9776;</div>
+                        <div class="menu-btn flex items-center cursor-pointer rounded px-4 py-2 lg:hidden hover:bg-gray-800 hover:text-white dark:bg-gray-800 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white"
+                             x-show="!sidebarOpen"
+                             @click="sidebarOpen = !sidebarOpen">&#9776;</div>
                         <!-- logo -->
                         <div id="logo"
-                             class="bg-no-repeat bg-contain w-[200px] h-[65px]"
+                             class="bg-no-repeat bg-contain w-[200px] h-[65px] dark:grayscale dark:brightness-[100]"
                              style="background: url({{ base64_logo_txt }}) no-repeat;width:{{ base64_logo_width }};height:{{ base64_logo_height }}">
                             <a href="#" class="block w-full h-full"></a></div>
                     </div>
@@ -120,6 +123,23 @@
                                     ]
                                 }
                             %}
+
+                            <div x-show="darkMode"
+                                @click="darkMode = false"
+                                class="cursor-pointer">
+                                {% render './components/button/primary', {
+                                    "slot": "<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-5 h-5'><path stroke-linecap='round' stroke-linejoin='round' d='M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z' /></svg>",
+                                    "attributes": []
+                                } %}
+                            </div>
+                            <div x-show="!darkMode"
+                                @click="darkMode = true"
+                                class="cursor-pointer">
+                                {% render './components/button/primary', {
+                                    "slot": "<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-5 h-5'><path stroke-linecap='round' stroke-linejoin='round' d='M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z' /></svg>",
+                                    "attributes": []
+                                } %}
+                            </div>
                         {% endif %}
                     </div>
 
@@ -182,11 +202,11 @@
                     <!-- news sidebar -->
                     {% if logged_in == "y" %}
                     <div id="sidebar"
-                         class="w-full lg:w-1/5 xl:w-1/6 p-4 border rounded self-start float-right bg-gray-50 shadow-inner">
+                         class="w-full lg:w-1/5 xl:w-1/6 p-4 border rounded self-start float-right shadow-inner bg-gray-50 text-black dark:border-slate-700 dark:bg-slate-800 dark:text-white">
                     </div>
                     {% endif %}
                 </div>
-                <footer class="my-8 py-4 border bg-gray-100 text-gray-600 text-center text-xs rounded">
+                <footer class="my-8 py-4 border text-center text-xs rounded border-gray-200 bg-gray-100 text-gray-600 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">
                     Powered by <a href="{{ app_link }}"
                        target="_blank"
                        class="text-blue-500 hover:underline">{{ app_title }}</a>

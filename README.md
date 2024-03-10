@@ -5,6 +5,15 @@ Starting point for creating a custom theme for ISPConfig, using Tailwind CSS. Th
 > [!WARNING]
 > This is a start, and not a finished product. It's a work in progress.
 
+<div align="center">
+
+[<img src="./docs/screenshot-1-light.png" alt="Screenshot of the theme in light mode"  width="200" />](./docs/screenshot-1-light.png)&nbsp;
+[<img src="./docs/screenshot-1-dark.png" alt="Screenshot of the theme in dark mode"  width="200" />](./docs/screenshot-1-dark.png)&nbsp;<br>
+[<img src="./docs/screenshot-2-light.png" alt="Screenshot of the theme in light mode"  width="200" />](./docs/screenshot-2-light.png)&nbsp;
+[<img src="./docs/screenshot-2-dark.png" alt="Screenshot of the theme in dark mode"  width="200" />](./docs/screenshot-2-dark.png)&nbsp;
+
+</div>
+
 ## 🚀 Getting Started
 
 1. Clone the repository
