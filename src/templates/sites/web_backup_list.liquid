@@ -15,48 +15,38 @@
 {% endif %}
 <h3>{{ list_head_txt }}</h3>
 
-        {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
-            <div class="table-wrapper mt-1">
-<table class="table table-auto table-striped" style="padding: 5px;">
-                <thead class="dark">
-                    <tr>
-                        <th data-column="date">{{ date_txt }}</th>
-                        <th data-column="backup_type">{{ backup_type_txt }}</th>
-                        <th data-column="backup_format">{{ backup_format_txt }}</th>
-                        <th data-column="backup_job">{{ backup_job_txt }}</th>
-                        <th data-column="backup_encrypted">{{ backup_is_encrypted_txt }}</th>
-                        <th data-column="filename">{{ filename_txt }}</th>
-                        <th data-column="filesize">{{ filesize_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th data-column="date">{{ date_txt }}</th>
+        <th data-column="backup_type">{{ backup_type_txt }}</th>
+        <th data-column="backup_format">{{ backup_format_txt }}</th>
+        <th data-column="backup_job">{{ backup_job_txt }}</th>
+        <th data-column="backup_encrypted">{{ backup_is_encrypted_txt }}</th>
+        <th data-column="filename">{{ filename_txt }}</th>
+        <th data-column="filesize">{{ filesize_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
 {% render '../components/table/head-body' %}
-                    {% loop records %}
-                        <tr>
-                            <td>{{ date }}</td>
-                            <td>{{ backup_type }}</td>
-                            <td>{{ backup_format }}</td>
-                            <td>{{ backup_job }}</td>
-                            <td>{{ backup_encrypted }}</td>
-                            <td>{{ filename }}</td>
-                            <td>{{ filesize }}</td>
-                            <td class="text-center">
-                                <div class="buttons">
-                                    <button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=restore&backup_id={{ backup_id }}','{{ restore_confirm_txt }}');">{{ restore_backup_txt }}</button>
-                                    {% if download_available %}
-										<button class="btn btn-default formbutton-default" type="button" data-load-content="sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=download&backup_id={{ backup_id }}">{{ download_backup_txt }}</button>
-									{% endif %}
-									<button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=delete&backup_id={{ backup_id }}','{{ delete_confirm_txt }}');"><span>{{ delete_backup_txt }}</span></button>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-            </table>
-</div>
-
-    </div>
+    {% loop records %}
+        <tr>
+            <td>{{ date }}</td>
+            <td>{{ backup_type }}</td>
+            <td>{{ backup_format }}</td>
+            <td>{{ backup_job }}</td>
+            <td>{{ backup_encrypted }}</td>
+            <td>{{ filename }}</td>
+            <td>{{ filesize }}</td>
+            <td class="text-center">
+                <div class="buttons">
+                    <button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=restore&backup_id={{ backup_id }}','{{ restore_confirm_txt }}');">{{ restore_backup_txt }}</button>
+                    {% if download_available %}
+                        <button class="btn btn-default formbutton-default" type="button" data-load-content="sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=download&backup_id={{ backup_id }}">{{ download_backup_txt }}</button>
+                    {% endif %}
+                    <button class="btn btn-default formbutton-default" type="button" onclick="ISPConfig.confirm_action('sites/web_vhost_domain_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=delete&backup_id={{ backup_id }}','{{ delete_confirm_txt }}');"><span>{{ delete_backup_txt }}</span></button>
+                </div>
+            </td>
+        </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '8' %}

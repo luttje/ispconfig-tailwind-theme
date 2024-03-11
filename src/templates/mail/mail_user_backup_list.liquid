@@ -8,35 +8,28 @@
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th data-column="date">{{ date_txt }}</th>
-                <th data-column="filename">{{ filename_txt }}</th>
-                <th data-column="filesize">{{ filesize_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
+    <tr>
+        <th data-column="date">{{ date_txt }}</th>
+        <th data-column="filename">{{ filename_txt }}</th>
+        <th data-column="filesize">{{ filesize_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td>{{ date }}</td>
-                <td>{{ filename }}</td>
-                <td>{{ filesize }}</td>
-                <td class="text-right">
-                    <div class="buttons">
-                        <button class="btn btn-default formbutton-default"
-                                type="button"
-                                onclick="ISPConfig.confirm_action('mail/mail_user_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=restore_mail&backup_id={{ backup_id }}','{{ restore_confirm_txt }}');">{{ restore_backup_txt }}</button>
-                        <button class="btn btn-default formbutton-default"
-                                type="button"
-                                onclick="ISPConfig.confirm_action('mail/mail_user_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=delete_mail&backup_id={{ backup_id }}','{{ delete_confirm_txt }}');">{{ delete_backup_txt }}</button>
-                    </div>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td>{{ date }}</td>
+        <td>{{ filename }}</td>
+        <td>{{ filesize }}</td>
+        <td class="text-right">
+            <div class="buttons">
+                <button class="btn btn-default formbutton-default"
+                        type="button"
+                        onclick="ISPConfig.confirm_action('mail/mail_user_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=restore_mail&backup_id={{ backup_id }}','{{ restore_confirm_txt }}');">{{ restore_backup_txt }}</button>
+                <button class="btn btn-default formbutton-default"
+                        type="button"
+                        onclick="ISPConfig.confirm_action('mail/mail_user_edit.php?id={{ parent_id }}&next_tab=backup&backup_action=delete_mail&backup_id={{ backup_id }}','{{ delete_confirm_txt }}');">{{ delete_backup_txt }}</button>
+            </div>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '4' %}

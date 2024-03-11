@@ -75,7 +75,7 @@
     <nav id="responsive-navigation"
         data-open="false"
         x-effect="$el.setAttribute('data-open', sidebarOpen.toString())"
-        class="flex flex-col -translate-x-full data-[open=true]:-translate-x-0 opacity-0 data-[open=true]:opacity-100 fixed top-0 w-full sm:w-1/2 md:w-80 lg:hidden h-full overflow-y-auto z-50 shadow-lg transition-all p-6 duration-300 motion-reduce:transition-none bg-gray-200 text-black dark:bg-gray-800 dark:text-white">
+        class="flex flex-col -translate-x-full data-[open=true]:-translate-x-0 opacity-0 data-[open=true]:opacity-100 fixed top-0 w-full sm:w-1/2 md:w-80 lg:hidden h-full overflow-y-auto z-50 shadow-lg transition-all p-6 duration-300 motion-reduce:transition-none bg-gray-200 text-black dark:bg-gray-800 dark:text-slate-100">
     </nav>
     <div class="site-overlay"></div>
 
@@ -87,7 +87,7 @@
                 <div class="flex flex-col gap-4 rounded sm:flex-row w-full sm:justify-between items-center mt-4">
                     <div class="flex w-full gap-4 items-center">
                         <!-- off canvas menu button -->
-                        <div class="menu-btn flex items-center cursor-pointer rounded px-4 py-2 lg:hidden hover:bg-gray-800 hover:text-white dark:bg-gray-800 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white"
+                        <div class="menu-btn flex items-center cursor-pointer rounded px-4 py-2 lg:hidden hover:bg-gray-800 hover:text-white dark:bg-gray-800 dark:text-slate-100 dark:hover:bg-gray-600 dark:hover:text-slate-100"
                              x-show="!sidebarOpen"
                              @click="sidebarOpen = !sidebarOpen">&#9776;</div>
                         <!-- logo -->
@@ -154,7 +154,7 @@
                          role="dialog"
                          x-show="modalOpen">
                         <div class="modal-dialog shadow-lg rounded-lg border border-bg-600">
-                            <div class="modal-content inline-flex flex-col gap-4 bg-gray-100">
+                            <div class="modal-content inline-flex flex-col gap-4 bg-gray-100 dark:bg-slate-800 dark:text-slate-100">
                                 <div class="modal-header flex flex-col gap-4 items-end p-4">
                                     <div class="-mt-5 -mr-5">
                                         {% render './components/button/primary', {
@@ -167,7 +167,7 @@
                                     </div>
                                     <h4 class="modal-title font-semibold">{{ datalog_changes_txt }}</h4>
                                 </div>
-                                <div class="modal-body bg-white p-4 min-h-5">
+                                <div class="modal-body p-4 min-h-5 bg-white dark:bg-slate-700">
                                     <ul>
                                         {% loop datalog_changes %}
                                         <li><strong>{{ text }}:</strong> {{ count }}</li>
@@ -203,7 +203,7 @@
                               id="pageForm"
                               name="pageForm"
                               enctype="multipart/form-data"
-                              class="form-horizontal"
+                              class="form-horizontal text-black dark:text-slate-100"
                               role="form">
                             <div id="pageContent"
                                  data-startpage="{{ startpage }}"><!-- AJAX CONTENT --></div>
@@ -212,7 +212,7 @@
                     <!-- news sidebar -->
                     {% if logged_in == "y" %}
                     <div id="sidebar"
-                         class="w-full lg:w-1/5 xl:w-1/6 p-4 border rounded self-start float-right shadow-inner bg-gray-50 text-black dark:border-slate-700 dark:bg-slate-800 dark:text-white">
+                         class="w-full lg:w-1/5 xl:w-1/6 p-4 border rounded self-start float-right shadow-inner bg-gray-50 text-black dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
                     </div>
                     {% endif %}
                 </div>

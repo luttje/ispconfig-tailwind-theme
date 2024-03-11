@@ -1,31 +1,30 @@
-					{% if msg %}
-					<div class="alert alert-success" role="alert">{{ msg }}</div>
-					{% endif %}
-					{% if error %}
-					<div class="alert alert-danger" role="alert">{{ error }}</div>
-					{% endif %}
-					<form accept-charset="UTF-8" role="form" method="post" action="index.php">
-                    <fieldset>
-			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="{{ username_txt }}" name="username" id="username" type="text" autofocus>
-			    		</div>
-			    		<div class="form-group">
-			    			<input class="form-control" placeholder="{{ password_txt }}" name="password" id="password" type="password" value="">
-			    		</div>
-						{% if session_timeout > '0' %}
-						{% if session_allow_endless == 'y' %}
-			    		<div class="checkbox">
-			    	    	<label>
-			    	    		<input name="stay" id="stay" type="checkbox" value="1"> {{ stay_logged_in_txt }}
-			    	    	</label>
-			    	    </div>
-						{% endif %}
-						{% endif %}
-						<input type="hidden" name="s_mod" value="login" />
-						<input type="hidden" name="s_pg" value="index" />
-						<div class="right">
-			    		<input class="btn btn-default formbutton-default" type="submit" value="{{ login_txt }}">
-						{% if pw_lost_show %}<button class="btn btn-default formbutton-default" type="button" value="{{ pw_lost_txt }}" onClick="document.location.href='password_reset.php';">{{ pw_lost_txt }}</button>{% endif %}
-						</div>
-			    	</fieldset>
-			      	</form>
+{% if msg %}
+    {% render '../components/msg', id: '', slot: 'msg' %}
+{% endif %}
+{% render '../components/error' %}
+AAAAAAAAAAAAAAAAAAA
+<form accept-charset="UTF-8" role="form" method="post" action="index.php">
+    <fieldset>
+        <div class="form-group">
+            <input class="form-control" placeholder="{{ username_txt }}" name="username" id="username" type="text" autofocus>
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="{{ password_txt }}" name="password" id="password" type="password" value="">
+        </div>
+        {% if session_timeout > '0' %}
+        {% if session_allow_endless == 'y' %}
+        <div class="checkbox">
+            <label>
+                <input name="stay" id="stay" type="checkbox" value="1"> {{ stay_logged_in_txt }}
+            </label>
+        </div>
+        {% endif %}
+        {% endif %}
+        <input type="hidden" name="s_mod" value="login" />
+        <input type="hidden" name="s_pg" value="index" />
+        <div class="right">
+        <input class="btn btn-default formbutton-default" type="submit" value="{{ login_txt }}">
+        {% if pw_lost_show %}<button class="btn btn-default formbutton-default" type="button" value="{{ pw_lost_txt }}" onClick="document.location.href='password_reset.php';">{{ pw_lost_txt }}</button>{% endif %}
+        </div>
+    </fieldset>
+</form>

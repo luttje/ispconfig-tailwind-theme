@@ -15,67 +15,55 @@
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th class="tiny-col"
-                    data-column="active">{{ active_txt }}</th>
-                <th data-column="server_id">{{ server_id_txt }}</th>
-                <th data-column="priority">{{ priority_txt }}</th>
-                <th data-column="rid">{{ rid_txt }}</th>
-                <th data-column="email">{{ email_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><select class="form-control"
-                            name="search_active">{{ search_active }}</select></td>
-                <td><select class="form-control"
-                            name="search_server_id">{{ search_server_id }}</select></td>
-                <td><select class="form-control"
-                            name="search_priority">{{ search_priority }}</select></td>
-                <td><select class="form-control"
-                            name="search_rid">{{ search_rid }}</select></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_email"
-                           value="{{ search_email }}" /></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="mail/spamfilter_blacklist_list.php"><span class="icon icon-filter"></span></button>
-                </td>
-            </tr>
+    <tr>
+        <th class="tiny-col"
+            data-column="active">{{ active_txt }}</th>
+        <th data-column="server_id">{{ server_id_txt }}</th>
+        <th data-column="priority">{{ priority_txt }}</th>
+        <th data-column="rid">{{ rid_txt }}</th>
+        <th data-column="email">{{ email_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
+    <tr>
+        <td><select class="form-control"
+                    name="search_active">{{ search_active }}</select></td>
+        <td><select class="form-control"
+                    name="search_server_id">{{ search_server_id }}</select></td>
+        <td><select class="form-control"
+                    name="search_priority">{{ search_priority }}</select></td>
+        <td><select class="form-control"
+                    name="search_rid">{{ search_rid }}</select></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_email"
+                    value="{{ search_email }}" /></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="mail/spamfilter_blacklist_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ active }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ server_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ priority }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ rid }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ email }}</a></td>
-                <td class="text-right">
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('mail/spamfilter_blacklist_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="6">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ active }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ server_id }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ priority }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ rid }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_blacklist_edit.php?id={{ id }}">{{ email }}</a></td>
+        <td class="text-right">
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('mail/spamfilter_blacklist_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '6' %}

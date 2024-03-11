@@ -5,78 +5,63 @@
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-<tr>
-    <th data-column="domain">{{ domain_txt }}</th>
-    <th data-column="this_month">{{ this_month_txt }}</th>
-    <th data-column="last_month">{{ last_month_txt }}</th>
-    <th data-column="this_year">{{ this_year_txt }}</th>
-    <th data-column="last_year">{{ last_year_txt }}</th>
-    <th class="small-col text-right">{{ search_limit }}</th>
-</tr>
-<tr>
-    <td><input class="form-control"
-               type="text"
-               name="search_domain"
-               value="{{ search_domain }}" /></td>
-    <td class="this_month"></td>
-    <td class="last_month"></td>
-    <td class="this_year"></td>
-    <td class="last_year"></td>
-    <td class="text-right">
-        <button type="button"
-                class="btn btn-default formbutton-default formbutton-narrow"
-                name="Filter"
-                id="Filter"
-                value="{{ filter_txt }}"
-                data-submit-form="pageForm"
-                data-form-action="sites/web_sites_stats.php"><span class="icon icon-filter"></span></button>
-    </td>
-</tr>
+    <tr>
+        <th data-column="domain">{{ domain_txt }}</th>
+        <th data-column="this_month">{{ this_month_txt }}</th>
+        <th data-column="last_month">{{ last_month_txt }}</th>
+        <th data-column="this_year">{{ this_year_txt }}</th>
+        <th data-column="last_year">{{ last_year_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
+    <tr>
+        <td><input class="form-control"
+                type="text"
+                name="search_domain"
+                value="{{ search_domain }}" /></td>
+        <td class="this_month"></td>
+        <td class="last_month"></td>
+        <td class="this_year"></td>
+        <td class="last_year"></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="sites/web_sites_stats.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
 {% loop records %}
-<tr>
-    <td><a target="_blank"
-           href="http://{{ domain }}/stats">{{ domain }}</a></td>
-    <td><a href="#"
-           data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ this_month }}</a></td>
-    <td><a href="#"
-           data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ last_month }}</a></td>
-    <td><a href="#"
-           data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ this_year }}</a></td>
-    <td><a href="#"
-           data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ last_year }}</a></td>
-    <td class="text-right"></td>
-</tr>
-{% endloop %}
-{% unless records %}
-<tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-    <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
-</tr>
-{% endunless %}
-<tr>
-    <td><a href="#"
-           onclick="return false;"
-           style="font-weight:bold;">{{ sum_txt }}</a></td>
-    <td><a href="#"
-           onclick="return false;"
-           style="font-weight:bold;">{{ sum_this_month }}</a></td>
-    <td><a href="#"
-           onclick="return false;"
-           style="font-weight:bold;">{{ sum_last_month }}</a></td>
-    <td><a href="#"
-           onclick="return false;"
-           style="font-weight:bold;">{{ sum_this_year }}</a></td>
-    <td><a href="#"
-           onclick="return false;"
-           style="font-weight:bold;">{{ sum_last_year }}</a></td>
-    <td class="text-right"></td>
-</tr>
-</tbody>
-<tfoot>
     <tr>
-        <td colspan="6">{{ paging }}</td>
+        <td><a target="_blank"
+            href="http://{{ domain }}/stats">{{ domain }}</a></td>
+        <td><a href="#"
+            data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ this_month }}</a></td>
+        <td><a href="#"
+            data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ last_month }}</a></td>
+        <td><a href="#"
+            data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ this_year }}</a></td>
+        <td><a href="#"
+            data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ last_year }}</a></td>
+        <td class="text-right"></td>
     </tr>
-</tfoot>
+{% endloop %}
+{% render '../components/table/no-results', colspan: '6' %}
+    {% render '../components/table/sum-row-start' %}
+        <td><a href="#"
+            onclick="return false;">{{ sum_txt }}</a></td>
+        <td><a href="#"
+            onclick="return false;">{{ sum_this_month }}</a></td>
+        <td><a href="#"
+            onclick="return false;">{{ sum_last_month }}</a></td>
+        <td><a href="#"
+            onclick="return false;">{{ sum_this_year }}</a></td>
+        <td><a href="#"
+            onclick="return false;">{{ sum_last_year }}</a></td>
+        <td class="text-right"></td>
+    {% render '../components/table/sum-row-end' %}
+{% render '../components/table/paging-footer', colspan: '6' %}
 </table>
-</div>
 </div>

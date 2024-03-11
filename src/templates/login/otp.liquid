@@ -1,9 +1,8 @@
 {% if msg %}
-<div class="alert alert-success" role="alert">{{ msg }}</div>
+    {% render '../components/msg', id: '', slot: 'msg' %}
 {% endif %}
-{% if error %}
-<div class="alert alert-danger" role="alert">{{ error }}</div>
-{% endif %}
+{% render '../components/error' %}
+
 {% render '../components/heading/h2', slot: '{{ otp_code_txt }}' %}
 <p>{{ otp_code_desc_txt }}</p>
 <form accept-charset="UTF-8" role="form" method="post" action="otp.php">

@@ -63,8 +63,10 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        {% if vhostdomain_type == 'domain' %}<th class="small-col"
-            data-column="domain_id">{{ domain_id_txt }}</th>{% endif %}
+        {% if vhostdomain_type == 'domain' %}
+            <th class="small-col"
+                data-column="domain_id">{{ domain_id_txt }}</th>
+        {% endif %}
         <th class="tiny-col"
             data-column="active">{{ active_txt }}</th>
         <th data-column="server_id">{{ server_id_txt }}</th>
@@ -73,10 +75,12 @@
         <th class="small-col text-right">{{ search_limit }}</th>
     </tr>
     <tr>
-        {% if vhostdomain_type == 'domain' %}<td><input class="form-control"
+        {% if vhostdomain_type == 'domain' %}
+            <td><input class="form-control"
                     type="text"
                     name="search_domain_id"
-                    value="{{ search_domain_id }}" /></td>{% endif %}
+                    value="{{ search_domain_id }}" /></td>
+        {% endif %}
         <td><select class="form-control active-switch"
                     name="search_active">{{ search_active }}</select></td>
         <td><select class="form-control"
@@ -102,18 +106,32 @@
     <tr {% if warn_inactive %}
         class="danger"
         {% endif %}>
-        {% if vhostdomain_type == 'domain' %}<td><a href="#"
-                data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ domain_id }}</a></td>{% endif %}
-        <td><a href="#"
-                data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ active }}</a></td>
-        <td><a href="#"
+        {% if vhostdomain_type == 'domain' %}
+            <td>
+                <a href="#"
+                    data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ domain_id }}</a>
+            </td>
+        {% endif %}
+        <td>
+            <a href="#"
+                data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ active }}</a>
+        </td>
+        <td>
+            <a href="#"
                 data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}"
-                x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
-        {% if vhostdomain_type != 'domain' %}<td><a href="#"
-                data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ parent_domain_id }}</a></td>{% endif %}
-        <td><a href="#"
-                data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}"
-                x-tooltip.placement.bottom.raw="{{ domain }}">{{ domain }}</a></td>
+                x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a>
+        </td>
+        {% if vhostdomain_type != 'domain' %}
+            <td>
+                <a href="#"
+                        data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ parent_domain_id }}</a>
+            </td>
+        {% endif %}
+        <td>
+            <a href="#"
+                    data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}"
+                x-tooltip.placement.bottom.raw="{{ domain }}">{{ domain }}</a>
+        </td>
         <td class="text-right">
             <a href="http://{{ domain }}"
                 target="_blank"
@@ -128,4 +146,12 @@
         </td>
     </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% if vhostdomain_type == 'domain' %}
+    {% render '../components/table/end', colspan: '6' %}
+{% endif %}
+{% if vhostdomain_type == 'subdomain' %}
+    {% render '../components/table/end', colspan: '5' %}
+{% endif %}
+{% if vhostdomain_type == 'aliasdomain' %}
+    {% render '../components/table/end', colspan: '5' %}
+{% endif %}

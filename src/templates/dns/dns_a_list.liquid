@@ -52,54 +52,41 @@
 </div>
 
 
-    {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
-        <div class="table-wrapper mt-1">
-<table class='table w-full'>
-            <thead class="dark">
-                <tr>
-                    <th class="tiny-col" data-column="active">{{ active_txt }}</th>
-                    <th data-column="type">{{ type_txt }}</th>
-                    <th data-column="name">{{ name_txt }}</th>
-                    <th data-column="data">{{ data_txt }}</th>
-                    <th data-column="aux">{{ aux_txt }}</th>
-                    <th data-column="ttl">{{ ttl_txt }}</th>
-                    <th class="small-col text-right">{{ search_limit }}</th>
-                </tr>
-                <tr>
-                    <td><select class="form-control" name="search_active">{{ search_active }}</select></td>
-                    <td><select class="form-control" name="search_type">{{ search_type }}</select></td>
-                    <td><input class="form-control" type="text" name="search_name" value="{{ search_name }}" /></td>
-                    <td><input class="form-control" type="text" name="search_data" value="{{ search_data }}" /></td>
-                    <td><input class="form-control" type="text" name="search_aux" value="{{ search_aux }}" /></td>
-                    <td><input class="form-control" type="text" name="search_ttl" value="{{ search_ttl }}" /></td>
-                    <td class="text-right">
-                        <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" onclick="return ISPConfig.changeTab('dns_records','dns/dns_soa_edit.php');" data-form-action="dns/dns_a_list.php"><span class="icon icon-filter"></span></button>
-                    </td>
-                </tr>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th class="tiny-col" data-column="active">{{ active_txt }}</th>
+        <th data-column="type">{{ type_txt }}</th>
+        <th data-column="name">{{ name_txt }}</th>
+        <th data-column="data">{{ data_txt }}</th>
+        <th data-column="aux">{{ aux_txt }}</th>
+        <th data-column="ttl">{{ ttl_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
+    <tr>
+        <td><select class="form-control" name="search_active">{{ search_active }}</select></td>
+        <td><select class="form-control" name="search_type">{{ search_type }}</select></td>
+        <td><input class="form-control" type="text" name="search_name" value="{{ search_name }}" /></td>
+        <td><input class="form-control" type="text" name="search_data" value="{{ search_data }}" /></td>
+        <td><input class="form-control" type="text" name="search_aux" value="{{ search_aux }}" /></td>
+        <td><input class="form-control" type="text" name="search_ttl" value="{{ search_ttl }}" /></td>
+        <td class="text-right">
+            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" onclick="return ISPConfig.changeTab('dns_records','dns/dns_soa_edit.php');" data-form-action="dns/dns_a_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-                {% loop records %}
-                    <tr>
-                        <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}">{{ active }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}">{{ type }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ name }}">{{ name }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ data }}">{{ data }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}">{{ aux }}</a></td>
-                        <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}">{{ ttl }}</a></td>
-                        <td class="text-right">
-                            <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('dns/dns_rr_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                        </td>
-                    </tr>
-                {% endloop %}
-                {% unless records %}
-                    <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                        <td colspan="7">{{ globalsearch_noresults_text_txt }}</td>
-                    </tr>
-                {% endunless %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="7">{{ paging }}</td>
-                </tr>
-            </tfoot>
-        </table>
-</div>
+    {% loop records %}
+        <tr>
+            <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}">{{ active }}</a></td>
+            <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}">{{ type }}</a></td>
+            <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ name }}">{{ name }}</a></td>
+            <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}" x-tooltip.placement.bottom.raw="{{ data }}">{{ data }}</a></td>
+            <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}">{{ aux }}</a></td>
+            <td><a href="#" data-load-content="dns/dns_{{ type_lowercase }}_edit.php?id={{ id }}">{{ ttl }}</a></td>
+            <td class="text-right">
+                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('dns/dns_rr_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+            </td>
+        </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '7' %}

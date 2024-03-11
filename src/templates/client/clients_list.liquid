@@ -153,4 +153,10 @@
         </td>
     </tr>
 {% endloop %}
-{% render '../components/table/end' %}
+
+{% if has_robot %}
+{% render '../components/table/end', colspan: '10' %}
+{% else %}
+{% render '../components/table/end', colspan: '9' %}
+{% endif %}
+

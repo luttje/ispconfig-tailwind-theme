@@ -3,53 +3,37 @@
 {% endif %}
 {% if list_desc_txt %}<p>{{ list_desc_txt }}</p>{% endif %}
 
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th data-column="tstamp">{{ tstamp_txt }}</th>
+        <th data-column="server_id">{{ server_id_txt }}</th>
+        <th data-column="action">{{ action_txt }}</th>
+        <th data-column="dbtable">{{ dbtable_txt }}</th>
+        <th data-column="user">{{ user_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><select class="form-control" name="search_server_id">{{ search_server_id }}</select></td>
+        <td><select class="form-control" name="search_action">{{ search_action }}</select></td>
+        <td><input class="form-control" type="text" name="search_dbtable" value="{{ search_dbtable }}" /></td>
+        <td><input class="form-control" type="text" name="search_user" value="{{ search_user }}" /></td>
 
-        {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
-            <div class="table-wrapper mt-1">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th data-column="tstamp">{{ tstamp_txt }}</th>
-                        <th data-column="server_id">{{ server_id_txt }}</th>
-                        <th data-column="action">{{ action_txt }}</th>
-                        <th data-column="dbtable">{{ dbtable_txt }}</th>
-                        <th data-column="user">{{ user_txt }}</th>
-                        <th class="small-col text-right">{{ search_limit }}</th>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><select class="form-control" name="search_server_id">{{ search_server_id }}</select></td>
-                        <td><select class="form-control" name="search_action">{{ search_action }}</select></td>
-                        <td><input class="form-control" type="text" name="search_dbtable" value="{{ search_dbtable }}" /></td>
-                        <td><input class="form-control" type="text" name="search_user" value="{{ search_user }}" /></td>
-
-                        <td class="text-right">
-                            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="monitor/dataloghistory_list.php"><span class="icon icon-filter"></span></button>
-                        </td>
-                    </tr>
+        <td class="text-right">
+            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="monitor/dataloghistory_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ tstamp }}</a></td>
-                            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ server_id }}</a></td>
-                            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ action }}</a></td>
-                            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ dbtable }}</a></td>
-                            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ user }}</a></td>
-                            <td class="text-right"></td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="6">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
-</div>
-
-    </div>
+    {% loop records %}
+        <tr>
+            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ tstamp }}</a></td>
+            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ server_id }}</a></td>
+            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ action }}</a></td>
+            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ dbtable }}</a></td>
+            <td><a href="#" data-load-content="monitor/dataloghistory_view.php?id={{ id }}">{{ user }}</a></td>
+            <td class="text-right"></td>
+        </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '6' %}

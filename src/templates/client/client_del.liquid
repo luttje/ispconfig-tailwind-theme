@@ -14,7 +14,7 @@
 				<td>{{ data }}</td>
 			</tr>
 		{% endloop %}
-    {% render '../components/table/end' %}
+    {% render '../components/table/end', colspan: '2' %}
 {% else %}
 	<h3>{{ confirm_client_delete_txt }}</h3>
 {% endif %}

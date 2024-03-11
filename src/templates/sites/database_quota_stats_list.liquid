@@ -1,57 +1,44 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
-
-		 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
-			 <div class="table-wrapper mt-1">
-<table class='table w-full'>
-				<thead class="dark">
-				<tr>
-					<th data-column="database_name">{{ database_txt }}</th>
-					<th data-column="server_name">{{ server_name_txt }}</th>
-					<th data-column="client">{{ client_txt }}</th>
-					<th data-column="used">{{ used_txt }}</th>
-					<th data-column="quota">{{ quota_txt }}</th>
-					<th data-column="percentage">{{ percentage_txt }}
-					<th class="small-col text-right">{{ search_limit }}</th>
-				</tr>
-				<tr>
-					<td><input class="form-control" type="text" name="search_database_name" value="{{ search_database_name }}" /></td>
-					<td class="server_name">&nbsp;</td>
-					<td class="client">&nbsp;</td>
-					<td class="used">&nbsp;</td>
-					<td class="quota">&nbsp;</td>
-					<td class="percentage">&nbsp;</td>
-					<td class="text-right">
-						<button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/database_quota_stats.php"><span class="icon icon-filter"></span></button>
-					</td>
-				</tr>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th data-column="database_name">{{ database_txt }}</th>
+        <th data-column="server_name">{{ server_name_txt }}</th>
+        <th data-column="client">{{ client_txt }}</th>
+        <th data-column="used">{{ used_txt }}</th>
+        <th data-column="quota">{{ quota_txt }}</th>
+        <th data-column="percentage">{{ percentage_txt }}
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
+    <tr>
+        <td><input class="form-control" type="text" name="search_database_name" value="{{ search_database_name }}" /></td>
+        <td class="server_name">&nbsp;</td>
+        <td class="client">&nbsp;</td>
+        <td class="used">&nbsp;</td>
+        <td class="quota">&nbsp;</td>
+        <td class="percentage">&nbsp;</td>
+        <td class="text-right">
+            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/database_quota_stats.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-					{% loop records %}
-						<tr>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ database }}</a></td>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ server_name }}</a></td>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ client }}</a></td>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ used }}</a></td>
-							<td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ quota }}</a></td>
-							<td colspan="2">{% if progressbar != '-1' %}<div class="progress">
-								<div class='progress-bar-striped progress-bar-{% if percentage < '50' %}success{% elsif percentage < '75' %}warning{% else %}danger{% endif %}' role="progressbar" style="width: {{ progressbar_value }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"><span>{{ percentage }}%</span></div>
-						</div>{% endif %}
-</td>
-
-						</tr>
-					{% endloop %}
-					{% unless records %}
-						<tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-							<td colspan="7">{{ globalsearch_noresults_text_txt }}</td>
-						</tr>
-					{% endunless %}
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="7">{{ paging }}</td>
-					</tr>
-				</tfoot>
-			</table>
-</div>
-
-	</div>
+    {% loop records %}
+        <tr>
+            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ database }}</a></td>
+            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ server_name }}</a></td>
+            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ client }}</a></td>
+            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ used }}</a></td>
+            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ quota }}</a></td>
+            <td colspan="2">
+                {% if progressbar != '-1' %}
+                    <div class="progress">
+                        <div class='progress-bar-striped progress-bar-{% if percentage < '50' %}success{% elsif percentage < '75' %}warning{% else %}danger{% endif %}' role="progressbar" style="width: {{ progressbar_value }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"><span>{{ percentage }}%</span>
+                        </div>
+                    </div>
+                {% endif %}
+            </td>
+        </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '7' %}

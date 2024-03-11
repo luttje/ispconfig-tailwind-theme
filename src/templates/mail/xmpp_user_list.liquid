@@ -32,58 +32,46 @@
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th data-column="jid">{{ jid_txt }}</th>
-                <th class="small-col"
-                    data-column="is_domain_admin">{{ is_domain_admin_txt }}</th>
-                <th class="small-col"
-                    data-column="is_muc_admin">{{ is_muc_admin_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_jid"
-                           value="{{ search_jid }}" /></td>
-                <td><select class="form-control"
-                            name="search_is_domain_admin">{{ search_is_domain_admin }}</select></td>
-                <td><select class="form-control"
-                            name="search_is_muc_admin">{{ search_is_muc_admin }}</select></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="mail/xmpp_user_list.php"><span class="icon icon-filter"></span></button>
-                </td>
-            </tr>
+    <tr>
+        <th data-column="jid">{{ jid_txt }}</th>
+        <th class="small-col"
+            data-column="is_domain_admin">{{ is_domain_admin_txt }}</th>
+        <th class="small-col"
+            data-column="is_muc_admin">{{ is_muc_admin_txt }}</th>
+        <th class="small-col text-right">{{ search_limit }}</th>
+    </tr>
+    <tr>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_jid"
+                    value="{{ search_jid }}" /></td>
+        <td><select class="form-control"
+                    name="search_is_domain_admin">{{ search_is_domain_admin }}</select></td>
+        <td><select class="form-control"
+                    name="search_is_muc_admin">{{ search_is_muc_admin }}</select></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="mail/xmpp_user_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="mail/xmpp_user_edit.php?id={{ id }}">{{ jid }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/xmpp_user_edit.php?id={{ id }}">{{ is_domain_admin }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/xmpp_user_edit.php?id={{ id }}">{{ is_muc_admin }}</a></td>
-                <td class="text-right">
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('mail/xmpp_user_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></button>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="4">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="mail/xmpp_user_edit.php?id={{ id }}">{{ jid }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/xmpp_user_edit.php?id={{ id }}">{{ is_domain_admin }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/xmpp_user_edit.php?id={{ id }}">{{ is_muc_admin }}</a></td>
+        <td class="text-right">
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('mail/xmpp_user_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></button>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '4' %}

@@ -8,22 +8,22 @@
 {% render './components/error' %}
 
 <!-- content in tabs -->
-<div class='content-tab-wrapper rounded border'>
+<div class="content-tab-wrapper rounded border border-gray-300 dark:border-gray-700">
     <!-- tabs -->
-    <ul class='flex flex-row gap-1 flex-wrap bg-gradient-to-b rounded-t from-white to-[#eef0f2]'>
+    <ul class="flex flex-row gap-1 flex-wrap bg-gradient-to-b rounded-t border-gray-300 from-white to-[#eef0f2] dark:border-gray-700 dark:from-gray-800 dark:to-gray-900">
         {% loop formTab %}
-            <li{% if active %} class='active'{% endif %}>
-                <a href='#'
+            <li{% if active %} class="active"{% endif %}>
+                <a href="#"
                     onclick="return ISPConfig.changeTab('{{ name }}','{{ app_module }}/{{ form_action }}')"
-                    class="inline-flex px-4 py-2 rounded-t bg-white border-r hover:from-[#fafafa] hover:to-[#e8ebee]">
+                    class="inline-flex px-4 py-2 rounded-t bg-slate-100 border-r hover:from-[#fafafa] hover:to-[#e8ebee] dark:bg-gradient-to-b dark:text-gray-100 dark:border-gray-700 dark:from-gray-700 dark:to-gray-800 dark:hover:from-gray-600 dark:hover:to-gray-700">
                     {{ title }}
                 </a>
                 </li>
         {% endloop %}
     </ul>
 
-    <div id="tabbox_content" class="tab-content">
-        <div class='tab-pane active fade in'>
+    <div id="tabbox_content" class="tab-content px-6 py-4 dark:bg-gray-800">
+        <div class="tab-pane active fade in">
             {% dyninclude 'content_tpl' %}
         </div>
     </div>
