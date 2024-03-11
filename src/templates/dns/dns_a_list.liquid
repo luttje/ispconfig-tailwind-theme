@@ -56,13 +56,13 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="tiny-col" data-column="active">{{ active_txt }}</th>
-        <th data-column="type">{{ type_txt }}</th>
-        <th data-column="name">{{ name_txt }}</th>
-        <th data-column="data">{{ data_txt }}</th>
-        <th data-column="aux">{{ aux_txt }}</th>
-        <th data-column="ttl">{{ ttl_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'type', label: '{{ type_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'name', label: '{{ name_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'data', label: '{{ data_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'aux', label: '{{ aux_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'ttl', label: '{{ ttl_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><select class="form-control" name="search_active">{{ search_active }}</select></td>

@@ -15,13 +15,12 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th class="small-col"
-            data-column="client_id">{{ client_id_txt }}</th>
-        <th data-column="ip_type">{{ ip_type_txt }}</th>
-        <th data-column="ip_address">{{ ip_address_txt }}</th>
-        <th data-column="virtualhost">{{ virtualhost_txt }}</th>
-        <th data-column="virtualhost_port">{{ virtualhost_port_txt }}</th>
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'client_id', label: '{{ client_id_txt }}', class: 'w-[15%]' %}
+        {% render '../components/table/th', name: 'ip_type', label: '{{ ip_type_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'ip_address', label: '{{ ip_address_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'virtualhost', label: '{{ virtualhost_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'virtualhost_port', label: '{{ virtualhost_port_txt }}', class: '' %}
         <th class="text-right">{{ search_limit }}</th>
     </tr>
     <tr>

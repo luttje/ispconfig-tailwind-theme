@@ -31,7 +31,7 @@
     {% render '../components/table/start' %}
     {% render '../components/table/head-start' %}
         <tr>
-            <th data-column="rulename">{{ rulename_txt }}</th>
+            {% render '../components/table/th', name: 'rulename', label: '{{ rulename_txt }}', class: '' %}
             <th class="text-right">{{ search_limit }}</th>
         </tr>
         <tr>

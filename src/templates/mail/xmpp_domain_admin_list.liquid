@@ -15,12 +15,11 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="sys_groupid">{{ sys_groupid_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="domain">{{ domain_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'sys_groupid', label: '{{ sys_groupid_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'domain', label: '{{ domain_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><select class="form-control"

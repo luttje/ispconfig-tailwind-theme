@@ -64,15 +64,13 @@
 {% render '../components/table/head-start' %}
     <tr>
         {% if vhostdomain_type == 'domain' %}
-            <th class="small-col"
-                data-column="domain_id">{{ domain_id_txt }}</th>
+            {% render '../components/table/th', name: 'domain_id', label: '{{ domain_id_txt }}', class: 'w-[15%]' %}
         {% endif %}
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        {% if vhostdomain_type != 'domain' %}<th data-column="parent_domain_id">{{ parent_domain_id_txt }}</th>{% endif %}
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% if vhostdomain_type != 'domain' %}{% render '../components/table/th', name: 'parent_domain_id', label: '{{ parent_domain_id_txt }}', class: '' %}{% endif %}
         <th data-column="domain">{% if vhostdomain_type == 'domain' %}{{ domain_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ aliasdomain_txt }}{% endif %}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         {% if vhostdomain_type == 'domain' %}

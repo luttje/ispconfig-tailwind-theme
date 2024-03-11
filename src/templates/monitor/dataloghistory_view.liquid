@@ -1,36 +1,41 @@
 {% if list_head_txt %}
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 {% endif %}
-<div class="table-wrapper mt-1">
-	<table class='table w-full'>
-		<thead class="dark">
-			<tr>
-				<th width="25%">{{ id_txt }}</th>
-				<th>{{ id }}</th>
-			</tr>
+
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        {% render '../components/table/th-static', label: '{{ id_txt }}', class: 'w-[25%]' %}
+        {% render '../components/table/th-static', label: '{{ id }}', class: '' %}
+    </tr>
 {% render '../components/table/head-body' %}
-			<tr>
-				<td>{{ username_txt }}</td>
-				<td>{{ username }}</td>
-			</tr>
-			<tr>
-				<td>{{ timestamp_txt }}</td>
-				<td>{{ timestamp }}</td>
-			</tr>
-			<tr>
-				<td>{{ table_txt }}</td>
-				<td>{{ table }}{% if table_id %} ({{ table_id }}){% endif %}</td>
-			</tr>
-			<tr>
-				<td>{{ action_txt }}</td>
-				<td>{{ action_name }}</td>
-			</tr>
-			<tr>
-				<td>{{ session_id_txt }}</td>
-				<td>{{ session_id }}</td>
-			</tr>
-		</tbody>
-    </table>
+    <tr>
+        {% render '../components/table/td-static', label: '{{ username_txt }}', class: '' %}
+        {% render '../components/table/td-static', label: '{{ username }}', class: '' %}
+    </tr>
+    <tr>
+        {% render '../components/table/td-static', label: '{{ timestamp_txt }}', class: '' %}
+        {% render '../components/table/td-static', label: '{{ timestamp }}', class: '' %}
+    </tr>
+    <tr>
+        {% render '../components/table/td-static', label: '{{ table_txt }}', class: '' %}
+        {% if table_id %}
+            {% render '../components/table/td-static', label: '{{ table }} ({{ table_id }})', class: '' %}
+        {% else %}
+            {% render '../components/table/td-static', label: '{{ table }}', class: '' %}
+        {% endif %}
+    </tr>
+    <tr>
+        {% render '../components/table/td-static', label: '{{ action_txt }}', class: '' %}
+        {% render '../components/table/td-static', label: '{{ action_name }}', class: '' %}
+    </tr>
+    <tr>
+        {% render '../components/table/td-static', label: '{{ session_id_txt }}', class: '' %}
+        {% render '../components/table/td-static', label: '{{ session_id }}', class: '' %}
+    </tr>
+</tbody>
+</table>
 </div>
 
 {% if action_char == 'i' %}

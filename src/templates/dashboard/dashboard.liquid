@@ -22,9 +22,15 @@
 	</div>
 {% endif %}
 
-{% loop leftcol %}
-	{{ content }}
-{% endloop %}
-{% loop rightcol %}
-	{{ content }}
-{% endloop %}
+<div class="flex flex-col gap-6">
+    {% loop leftcol %}
+        <div>
+            {{ content }}
+        </div>
+    {% endloop %}
+    {% loop rightcol %}
+        <div>
+            {{ content }}
+        </div>
+    {% endloop %}
+</div>

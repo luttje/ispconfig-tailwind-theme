@@ -4,13 +4,13 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="database_name">{{ database_txt }}</th>
-        <th data-column="server_name">{{ server_name_txt }}</th>
-        <th data-column="client">{{ client_txt }}</th>
-        <th data-column="used">{{ used_txt }}</th>
-        <th data-column="quota">{{ quota_txt }}</th>
+        {% render '../components/table/th', name: 'database_name', label: '{{ database_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'server_name', label: '{{ server_name_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'client', label: '{{ client_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'used', label: '{{ used_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'quota', label: '{{ quota_txt }}', class: '' %}
         <th data-column="percentage">{{ percentage_txt }}
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control" type="text" name="search_database_name" value="{{ search_database_name }}" /></td>

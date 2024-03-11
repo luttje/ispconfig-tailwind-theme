@@ -115,15 +115,6 @@ body {
   margin-bottom: 1px;
 }
 
-.table caption {
-  padding: 5px 10px;
-  text-align: left;
-  font-weight: bold;
-  font-size: 18px;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-}
-
 .table tbody tr {
   border-top-style: solid;
   border-top-width: 1px;
@@ -179,10 +170,6 @@ body {
   text-align: center;
   z-index: 2;
   color: white;
-}
-
-p.fieldset-legend {
-  display: none;
 }
 
 .content-tab-wrapper .nav-tabs li:not(:first-child) a {

@@ -20,13 +20,11 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="small-col"
-            data-column="client_id">{{ client_id_txt }}</th>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="username">{{ username_txt }}</th>
-        <th data-column="groups">{{ groups_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'client_id', label: '{{ client_id_txt }}', class: 'w-[15%]' %}
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'username', label: '{{ username_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'groups', label: '{{ groups_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control"

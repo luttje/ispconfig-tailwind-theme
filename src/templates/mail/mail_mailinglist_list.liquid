@@ -32,9 +32,9 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="listname">{{ listname_txt }}</th>
-        <th data-column="domain">{{ domain_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'listname', label: '{{ listname_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'domain', label: '{{ domain_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control"

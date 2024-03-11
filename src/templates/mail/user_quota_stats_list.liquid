@@ -20,7 +20,7 @@
             {{ percentage_txt }}
         </th>
 
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control" type="text" name="search_email"

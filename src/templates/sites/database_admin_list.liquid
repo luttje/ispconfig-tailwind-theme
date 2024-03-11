@@ -15,19 +15,17 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th class="tiny-col"
-            data-column="remote_access">{{ remote_access_txt }}</th>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'remote_access', label: '{{ remote_access_txt }}', class: 'w-[8%]' %}
         <!--
-                <th data-column="type">{{ type_txt }}</th>
+                {% render '../components/table/th', name: 'type', label: '{{ type_txt }}', class: '' %}
 -->
-        <th data-column="sys_groupid">{{ sys_groupid_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="parent_domain_id">{{ parent_domain_id_txt }}</th>
-        <th data-column="database_user_id">{{ database_user_txt }}</th>
-        <th data-column="database_name">{{ database_name_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'sys_groupid', label: '{{ sys_groupid_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'parent_domain_id', label: '{{ parent_domain_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'database_user_id', label: '{{ database_user_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'database_name', label: '{{ database_name_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><select class="form-control"

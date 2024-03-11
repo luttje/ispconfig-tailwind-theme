@@ -16,13 +16,12 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="priority">{{ priority_txt }}</th>
-        <th data-column="rid">{{ rid_txt }}</th>
-        <th data-column="email">{{ email_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'priority', label: '{{ priority_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'rid', label: '{{ rid_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'email', label: '{{ email_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><select class="form-control"

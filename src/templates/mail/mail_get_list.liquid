@@ -32,13 +32,12 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="source_server">{{ source_server_txt }}</th>
-        <th data-column="source_username">{{ source_username_txt }}</th>
-        <th data-column="destination">{{ destination_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'source_server', label: '{{ source_server_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'source_username', label: '{{ source_username_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'destination', label: '{{ destination_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><select class="form-control"

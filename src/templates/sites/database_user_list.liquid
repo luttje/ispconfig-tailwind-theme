@@ -33,8 +33,8 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="database_user">{{ database_user_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'database_user', label: '{{ database_user_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control"
@@ -52,7 +52,8 @@
 {% render '../components/table/head-body' %}
     {% loop records %}
     <tr>
-        <td><a href="#"
+        <td>
+            <a href="#"
                 data-load-content="sites/database_user_edit.php?id={{ id }}">{{ database_user }}</a></td>
         <td class="text-right">
             <a class="btn btn-default formbutton-default formbutton-narrow"

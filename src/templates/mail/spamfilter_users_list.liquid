@@ -16,12 +16,12 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="local">{{ local_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="priority">{{ priority_txt }}</th>
-        <th data-column="policy_id">{{ policy_id_txt }}</th>
-        <th data-column="fullname">{{ fullname_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'local', label: '{{ local_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'priority', label: '{{ priority_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'policy_id', label: '{{ policy_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'fullname', label: '{{ fullname_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><select class="form-control"

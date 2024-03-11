@@ -15,15 +15,14 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="table">{{ table_txt }}</th>
-        <th data-column="protocol">{{ protocol_txt }}</th>
-        <th data-column="singleport">{{ singleport_txt }}</th>
-        <th data-column="multiport">{{ multiport_txt }}</th>
-        <th data-column="state">{{ state_txt }}</th>
-        <th data-column="target">{{ target_txt }}</th>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'table', label: '{{ table_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'protocol', label: '{{ protocol_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'singleport', label: '{{ singleport_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'multiport', label: '{{ multiport_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'state', label: '{{ state_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'target', label: '{{ target_txt }}', class: '' %}
         <th class="text-right">&nbsp;</th>
     </tr>
     <tr>

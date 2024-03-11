@@ -5,11 +5,11 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="tstamp">{{ tstamp_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="action">{{ action_txt }}</th>
-        <th data-column="dbtable">{{ dbtable_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'tstamp', label: '{{ tstamp_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'action', label: '{{ action_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'dbtable', label: '{{ dbtable_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td>&nbsp;</td>

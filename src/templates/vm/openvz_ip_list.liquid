@@ -15,11 +15,11 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="vm_id">{{ vm_id_txt }}</th>
-        <th data-column="ip_address">{{ ip_address_txt }}</th>
-        <th data-column="reserved">{{ reserved_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'vm_id', label: '{{ vm_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'ip_address', label: '{{ ip_address_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'reserved', label: '{{ reserved_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><select class="form-control"

@@ -33,22 +33,16 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="email">{{ email_txt }}</th>
-        {% if enable_custom_login %}<th data-column="login">{{ login_txt }}</th>{% endif %}
-        <th data-column="name">{{ name_txt }}</th>
-        <th class="tiny-col"
-            data-column="autoresponder">{{ autoresponder_txt }}</th>
-        <th class="tiny-col"
-            data-column="postfix">{{ postfix_txt }}</th>
-        <th class="tiny-col"
-            data-column="disablesmtp">{{ disablesmtp_txt }}</th>
-        <th class="tiny-col"
-            data-column="disabledeliver">{{ disabledeliver_txt }}</th>
-        <th class="tiny-col"
-            data-column="disableimap">{{ disableimap_txt }}</th>
-        <th class="tiny-col"
-            data-column="disablepop3">{{ disablepop3_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'email', label: '{{ email_txt }}', class: '' %}
+        {% if enable_custom_login %}{% render '../components/table/th', name: 'login', label: '{{ login_txt }}', class: '' %}{% endif %}
+        {% render '../components/table/th', name: 'name', label: '{{ name_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'autoresponder', label: '{{ autoresponder_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'postfix', label: '{{ postfix_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'disablesmtp', label: '{{ disablesmtp_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'disabledeliver', label: '{{ disabledeliver_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'disableimap', label: '{{ disableimap_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'disablepop3', label: '{{ disablepop3_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control"

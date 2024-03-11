@@ -15,15 +15,12 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th class="small-col"
-            data-column="client_id">{{ client_id_txt }}</th>
-        <th data-column="name">{{ name_txt }}</th>
-        <th class="small-col"
-            data-column="sortprio">{{ sortprio_txt }}</th>
-        <th data-column="usage">{{ usage_txt }}</th>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'client_id', label: '{{ client_id_txt }}', class: 'w-[15%]' %}
+        {% render '../components/table/th', name: 'name', label: '{{ name_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'sortprio', label: '{{ sortprio_txt }}', class: 'w-[15%]' %}
+        {% render '../components/table/th', name: 'usage', label: '{{ usage_txt }}', class: '' %}
         <th class="text-right">{{ search_limit }}</th>
     </tr>
     <tr>

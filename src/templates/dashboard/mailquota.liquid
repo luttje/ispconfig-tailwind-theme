@@ -23,13 +23,12 @@
         </td>{% else %}<td></td>{% endif %}
         </tr>
     {% endloop %}
-    </tbody>
-    <tfoot>
-        <tr>
-            <th></th>
-            <th>{{ total_txt }}</th>
-            <th>{{ total_used }}</th>
-            <th colspan="2"></th>
-        </tr>
-    </tfoot>
+{% render '../components/table/no-results', colspan: '5' %}
+    {% render '../components/table/sum-row-start' %}
+        <th></th>
+        <th>{{ total_txt }}</th>
+        <th>{{ total_used }}</th>
+        <td colspan="2">&nbsp;</td>
+    {% render '../components/table/sum-row-end' %}
 </table>
+</div>

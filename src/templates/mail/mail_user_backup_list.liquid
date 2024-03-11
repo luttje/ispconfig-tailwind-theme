@@ -9,10 +9,10 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="date">{{ date_txt }}</th>
-        <th data-column="filename">{{ filename_txt }}</th>
-        <th data-column="filesize">{{ filesize_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'date', label: '{{ date_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'filename', label: '{{ filename_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'filesize', label: '{{ filesize_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
 {% render '../components/table/head-body' %}
     {% loop records %}

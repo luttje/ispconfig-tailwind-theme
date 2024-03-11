@@ -1,9 +1,9 @@
 {% render '../components/heading/h2', slot: '{{ available_modules_txt }}' %}
 
-<div style="margin: 0 auto;">
-	<ul class="modules">
+<div class="mx-auto">
+	<ul class="modules flex flex-row flex-wrap">
 	{% loop modules %}
-		<li class="shadow-inner float-left m-2 p-4 rounded-lg w-[200px] border bg-gray-50 border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white ">
+		<li class="shadow-inner m-2 p-4 rounded-lg w-[200px] border bg-gray-50 border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white ">
 			<div class="flex flex-col gap-2 items-center">
 				<div class="text-6xl icon icon-{{ modules_name }}"></div>
 				<div class="title font-bold">{{ modules_title }}</div>

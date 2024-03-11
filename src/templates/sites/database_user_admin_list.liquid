@@ -16,9 +16,9 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="database_user">{{ database_user_txt }}</th>
-        <th data-column="sys_groupid">{{ sys_groupid_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'database_user', label: '{{ database_user_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'sys_groupid', label: '{{ sys_groupid_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control"
@@ -50,4 +50,4 @@
         </td>
     </tr>
     {% endloop %}
-{% render '../components/table/end', colspan: '5' %}
+{% render '../components/table/end', colspan: '3' %}

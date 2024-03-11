@@ -15,15 +15,14 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="veid">{{ veid_txt }}</th>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="ostemplate_id">{{ ostemplate_id_txt }}</th>
-        <th data-column="template_id">{{ template_id_txt }}</th>
-        <th data-column="hostname">{{ hostname_txt }}</th>
-        <th data-column="ip_address">{{ ip_address_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'veid', label: '{{ veid_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'ostemplate_id', label: '{{ ostemplate_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'template_id', label: '{{ template_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'hostname', label: '{{ hostname_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'ip_address', label: '{{ ip_address_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td>

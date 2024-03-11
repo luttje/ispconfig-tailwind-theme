@@ -16,10 +16,10 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        {% if is_admin %}<th data-column="sender_id">{{ sender_id_txt }}</th>{% endif %}
-        <th data-column="subject">{{ subject_txt }}</th>
-        <th data-column="tstamp">{{ date_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% if is_admin %}{% render '../components/table/th', name: 'sender_id', label: '{{ sender_id_txt }}', class: '' %}{% endif %}
+        {% render '../components/table/th', name: 'subject', label: '{{ subject_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'tstamp', label: '{{ date_txt }}', class: '' %}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         {% if is_admin %}<td><select class="form-control"
