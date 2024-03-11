@@ -51,8 +51,8 @@
 {% render '../components/table/head-start' %}
     <tr>
         {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
-        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'parent_domain_id', label: '{{ parent_domain_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% render '../components/table/th', name: 'parent_domain_id', label: '{{ parent_domain_id_txt }}'%}
         <th data-column="domain">{% if childdomain_type == 'aliasdomain' %}{{ aliasdomain_txt }}{% else %}{{ subdomain_txt }}{% endif %}</th>
         {% render '../components/table/th-search-limit' %}
     </tr>

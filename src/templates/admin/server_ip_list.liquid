@@ -17,12 +17,12 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
         {% render '../components/table/th', name: 'client_id', label: '{{ client_id_txt }}', class: 'w-[15%]' %}
-        {% render '../components/table/th', name: 'ip_type', label: '{{ ip_type_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'ip_address', label: '{{ ip_address_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'virtualhost', label: '{{ virtualhost_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'virtualhost_port', label: '{{ virtualhost_port_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'ip_type', label: '{{ ip_type_txt }}'%}
+        {% render '../components/table/th', name: 'ip_address', label: '{{ ip_address_txt }}'%}
+        {% render '../components/table/th', name: 'virtualhost', label: '{{ virtualhost_txt }}'%}
+        {% render '../components/table/th', name: 'virtualhost_port', label: '{{ virtualhost_port_txt }}'%}
         <th class="text-right">{{ search_limit }}</th>
     </tr>
     <tr>

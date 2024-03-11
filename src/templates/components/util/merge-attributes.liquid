@@ -1,0 +1,9 @@
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "attributes": []
+    }
+} %}
+{% for attribute in attributes %}
+{{ attribute[0] }}="{{ attribute[1] }}"
+{% endfor %}

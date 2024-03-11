@@ -1,3 +1,9 @@
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "class": ""
+    }
+} %}
 <td class="text-xs p-2">
-    {% render '../input/base', type: 'text', id: '', name: '{{ name }}', value: '{{ value }}', placeholder: '' autocomplete: 'on', onkeyup: '', class: 'max-w-full' %}
+    {% render '../input/text', class: '{{ class }} max-w-full' %}
 </td>

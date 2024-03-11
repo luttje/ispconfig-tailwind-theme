@@ -1,3 +1,9 @@
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "colspan": 1
+    }
+} %}
         {% render './no-results', colspan: '{{ colspan }}' %}
         {% render './paging-footer', colspan: '{{ colspan }}' %}
     </table>

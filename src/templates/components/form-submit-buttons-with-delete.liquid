@@ -1,3 +1,4 @@
+{% meta { "isChildOnly": true } %}
 <div class="flex flex-row justify-between gap-4">
     {% if id %}
         {% if show_delete_on_forms == 'y' %}
@@ -17,7 +18,7 @@
             [ "data-load-content", "{{ cancel_load_content }}" ]
         ]
     } %}
-    
+
     {% if btn_send_txt %}
         {% render './button/success', {
             "slot": "{{ btn_send_txt }}",

@@ -1,3 +1,9 @@
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "colspan": 1
+    }
+} %}
 {% unless records %}
 <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
     <td colspan="{{ colspan }}"

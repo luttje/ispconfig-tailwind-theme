@@ -19,13 +19,13 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        {% render '../components/table/th', name: 'date', label: '{{ date_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'backup_type', label: '{{ backup_type_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'backup_format', label: '{{ backup_format_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'backup_job', label: '{{ backup_job_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'backup_encrypted', label: '{{ backup_is_encrypted_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'filename', label: '{{ filename_txt }}', class: '' %}
-        {% render '../components/table/th', name: 'filesize', label: '{{ filesize_txt }}', class: '' %}
+        {% render '../components/table/th', name: 'date', label: '{{ date_txt }}'%}
+        {% render '../components/table/th', name: 'backup_type', label: '{{ backup_type_txt }}'%}
+        {% render '../components/table/th', name: 'backup_format', label: '{{ backup_format_txt }}'%}
+        {% render '../components/table/th', name: 'backup_job', label: '{{ backup_job_txt }}'%}
+        {% render '../components/table/th', name: 'backup_encrypted', label: '{{ backup_is_encrypted_txt }}'%}
+        {% render '../components/table/th', name: 'filename', label: '{{ filename_txt }}'%}
+        {% render '../components/table/th', name: 'filesize', label: '{{ filesize_txt }}'%}
         {% render '../components/table/th-search-limit' %}
     </tr>
 {% render '../components/table/head-body' %}

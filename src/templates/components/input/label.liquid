@@ -1,3 +1,11 @@
-<label for="{{ name }}" class="w-3/12 px-4 text-sm text-right after:content-[':'] text-gray-900 dark:text-slate-300">
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "name": "",
+        "class": ""
+    }
+} %}
+<label for="{{ name }}" class="{{ class }} w-3/12 px-4 text-sm text-right after:content-[':'] text-gray-900 dark:text-slate-300 whitespace-nowrap"
+    {% render '../util/merge-attributes' %}>
     {{ slot }}
 </label>

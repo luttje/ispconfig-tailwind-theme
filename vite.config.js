@@ -4,7 +4,6 @@ import { defineConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { ISPConfigTransformationStrategy } from 'liquidish/strategies';
 import { LiquidishTransformer } from 'liquidish';
-import { lstatSync, readdirSync } from 'fs';
 
 const path = (path) => resolve(__dirname, path);
 const srcTemplatesPath = path('src/templates');
@@ -20,31 +19,6 @@ const staticAssetsDirectories = [
     'javascripts',
     'stylesheets',
 ];
-
-const templateFiles = [];
-
-// Iterate all files in the templates directory recursivly, and add them (except those in components/)
-const walk = (dir) => {
-    const files = readdirSync(dir);
-
-    for (const file of files) {
-        const fullPath = resolve(dir, file);
-
-        if (file.endsWith('.liquid')) {
-            templateFiles.push(fullPath.replace(__dirname, '').replace(/\\/g, '/').replace(/^\//, ''));
-        }
-
-        if (lstatSync(fullPath).isDirectory()) {
-            if (file === 'components') {
-                continue;
-            }
-
-            walk(fullPath);
-        }
-    }
-}
-
-walk(srcTemplatesPath);
 
 export default defineConfig({
     build: {
@@ -75,8 +49,7 @@ export default defineConfig({
         viteStaticCopy({
             targets: [
                 {
-                    // src: 'src/templates/**/*.liquid',
-                    src: templateFiles,
+                    src: 'src/templates/**/*.liquid',
                     dest: 'templates',
 
                     transform: (contents, path) => {

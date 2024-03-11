@@ -7,32 +7,32 @@
 {% render '../components/table/head-start' %}
     <tr>
         {% render '../components/table/th-static', label: '{{ id_txt }}', class: 'w-[25%]' %}
-        {% render '../components/table/th-static', label: '{{ id }}', class: '' %}
+        {% render '../components/table/th-static', label: '{{ id }}'%}
     </tr>
 {% render '../components/table/head-body' %}
     <tr>
-        {% render '../components/table/td-static', label: '{{ username_txt }}', class: '' %}
-        {% render '../components/table/td-static', label: '{{ username }}', class: '' %}
+        {% render '../components/table/td-static', label: '{{ username_txt }}'%}
+        {% render '../components/table/td-static', label: '{{ username }}'%}
     </tr>
     <tr>
-        {% render '../components/table/td-static', label: '{{ timestamp_txt }}', class: '' %}
-        {% render '../components/table/td-static', label: '{{ timestamp }}', class: '' %}
+        {% render '../components/table/td-static', label: '{{ timestamp_txt }}'%}
+        {% render '../components/table/td-static', label: '{{ timestamp }}'%}
     </tr>
     <tr>
-        {% render '../components/table/td-static', label: '{{ table_txt }}', class: '' %}
+        {% render '../components/table/td-static', label: '{{ table_txt }}'%}
         {% if table_id %}
-            {% render '../components/table/td-static', label: '{{ table }} ({{ table_id }})', class: '' %}
+            {% render '../components/table/td-static', label: '{{ table }} ({{ table_id }})'%}
         {% else %}
-            {% render '../components/table/td-static', label: '{{ table }}', class: '' %}
+            {% render '../components/table/td-static', label: '{{ table }}'%}
         {% endif %}
     </tr>
     <tr>
-        {% render '../components/table/td-static', label: '{{ action_txt }}', class: '' %}
-        {% render '../components/table/td-static', label: '{{ action_name }}', class: '' %}
+        {% render '../components/table/td-static', label: '{{ action_txt }}'%}
+        {% render '../components/table/td-static', label: '{{ action_name }}'%}
     </tr>
     <tr>
-        {% render '../components/table/td-static', label: '{{ session_id_txt }}', class: '' %}
-        {% render '../components/table/td-static', label: '{{ session_id }}', class: '' %}
+        {% render '../components/table/td-static', label: '{{ session_id_txt }}'%}
+        {% render '../components/table/td-static', label: '{{ session_id }}'%}
     </tr>
 </tbody>
 </table>

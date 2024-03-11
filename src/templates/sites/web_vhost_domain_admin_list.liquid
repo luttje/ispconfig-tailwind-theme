@@ -50,9 +50,9 @@
         {% if vhostdomain_type == 'domain' %}{% render '../components/table/th', name: 'domain_id', label: '{{ domain_id_txt }}', class: 'w-[15%]' %}
         {% endif %}
         {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
-        {% if vhostdomain_type == 'domain' %}{% render '../components/table/th', name: 'sys_groupid', label: '{{ sys_groupid_txt }}', class: '' %}{% endif %}
-        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}', class: '' %}
-        {% if vhostdomain_type != 'domain' %}{% render '../components/table/th', name: 'parent_domain_id', label: '{{ parent_domain_id_txt }}', class: '' %}{% endif %}
+        {% if vhostdomain_type == 'domain' %}{% render '../components/table/th', name: 'sys_groupid', label: '{{ sys_groupid_txt }}'%}{% endif %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% if vhostdomain_type != 'domain' %}{% render '../components/table/th', name: 'parent_domain_id', label: '{{ parent_domain_id_txt }}'%}{% endif %}
         <th data-column="domain">{% if vhostdomain_type == 'domain' %}{{ domain_txt }}{% endif %}{% if vhostdomain_type == 'subdomain' %}{{ subdomain_txt }}{% endif %}{% if vhostdomain_type == 'aliasdomain' %}{{ aliasdomain_txt }}{% endif %}</th>
         {% render '../components/table/th-search-limit' %}
     </tr>

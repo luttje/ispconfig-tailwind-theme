@@ -55,13 +55,13 @@
     :class="{ 'overflow-hidden sm:overflow-auto': sidebarOpen }">
 
     <div id="container"
-         class="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8 min-h-screen grid items-center justify-center">
-        <div class="bg-gray-700 rounded shadow-lg border border-gray-300 dark:border-gray-700">
+         class="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8 min-h-screen flex items-center justify-center">
+        <div class="bg-gray-700 rounded shadow-lg border border-gray-300 dark:border-gray-700 block w-full max-w-screen-sm">
             <div class="panel-heading text-center p-4 bg-gradient-to-b  from-white to-[#eef0f2] dark:from-gray-700 dark:to-gray-800">
                 <img src="{{ base64_logo_txt }}" class=" dark:grayscale dark:brightness-[100]"
                      alt="{{ company_name }}{{ app_title }}" />
             </div>
-            <div class="panel-body">
+            <div class="panel-body p-4 pt-0">
                 {% dyninclude "content_tpl" %}
                 <br>
                 <center><small>{{ custom_login }}</small></center>

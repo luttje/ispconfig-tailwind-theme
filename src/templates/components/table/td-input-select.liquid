@@ -1,3 +1,9 @@
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "class": ""
+    }
+} %}
 <td class="text-xs p-2">
-    {% render '../input/select', id: '', name: '{{ name }}', options: '{{ options }}', class: '{{ class }} w-full' %}
+    {% render '../input/select', class: '{{ class }} w-full' %}
 </td>

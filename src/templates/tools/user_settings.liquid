@@ -1,11 +1,11 @@
 {% render '../components/list-start' %}
 {% render '../components/input/password-group-complete', name: 'passwort', id: 'passwort', value: '{{ passwort }}', label: '{{ password_txt }}' %}
-{% render '../components/input/select-group', name: 'otp_type', id: 'otp_type', options: '{{ otp_type }}', label: '{{ otp_auth_txt }}', class: '' %}
+{% render '../components/input/select-group', name: 'otp_type', id: 'otp_type', options: '{{ otp_type }}', label: '{{ otp_auth_txt }}'%}
 {% render '../components/input/select-group', name: 'language', id: 'language', options: '{{ language }}', label: '{{ language_txt }}', class: 'flags' %}
 <!-- TODO: If user theme change is activated -->
-{% render '../components/input/select-group', name: 'app_theme', id: 'app_theme', options: '{{ app_theme }}', label: '{{ app_theme_txt }}', class: '' %}
+{% render '../components/input/select-group', name: 'app_theme', id: 'app_theme', options: '{{ app_theme }}', label: '{{ app_theme_txt }}'%}
 <!-- TODO: Limit to activated modules -->
-{% render '../components/input/select-group', name: 'startmodule', id: 'startmodule', options: '{{ startmodule }}', label: '{{ startmodule_txt }}', class: '' %}
+{% render '../components/input/select-group', name: 'startmodule', id: 'startmodule', options: '{{ startmodule }}', label: '{{ startmodule_txt }}'%}
 <input type="hidden" name="id" value="{{ id }}">
 {% render '../components/form-submit-buttons', cancel_load_content: "tools/index.php", save_form_action: "tools/user_settings.php" %}
 {% render '../components/list-end' %}
