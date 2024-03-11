@@ -153,8 +153,8 @@
                          class="modal grid fixed w-full h-full top-0 left-0 items-center justify-center z-50"
                          role="dialog"
                          x-show="modalOpen">
-                        <div class="modal-dialog shadow-lg rounded-lg border border-bg-600">
-                            <div class="modal-content inline-flex flex-col gap-4 bg-gray-100 dark:bg-slate-800 dark:text-slate-100">
+                        <div class="modal-dialog shadow-lg rounded-lg border border-bg-600 dark:border-slate-900">
+                            <div class="modal-content inline-flex flex-col gap-4 bg-gray-100 dark:bg-slate-800 dark:text-slate-100 rounded-lg">
                                 <div class="modal-header flex flex-col gap-4 items-end p-4">
                                     <div class="-mt-5 -mr-5">
                                         {% render './components/button/primary', {
@@ -167,13 +167,11 @@
                                     </div>
                                     <h4 class="modal-title font-semibold">{{ datalog_changes_txt }}</h4>
                                 </div>
-                                <div class="modal-body p-4 min-h-5 bg-white dark:bg-slate-700">
-                                    <ul>
-                                        {% loop datalog_changes %}
-                                        <li><strong>{{ text }}:</strong> {{ count }}</li>
-                                        {% endloop %}
-                                    </ul>
-                                </div>
+                                <ul class="modal-body p-4 min-h-5 bg-white dark:bg-slate-700 pl-6 list-disc">
+                                    {% loop datalog_changes %}
+                                    <li><strong>{{ text }}:</strong> {{ count }}</li>
+                                    {% endloop %}
+                                </ul>
                                 <div class="modal-footer grid items-center justify-center p-4">
                                     {% render './components/button/primary', {
                                         "slot": "{{ datalog_changes_close_txt }}",
@@ -206,7 +204,6 @@
                               class="form-horizontal text-black dark:text-slate-100"
                               role="form">
                             <div id="pageContent"
-                                 class="flex flex-col gap-4"
                                  data-startpage="{{ startpage }}"><!-- AJAX CONTENT --></div>
                         </form>
                     </div>

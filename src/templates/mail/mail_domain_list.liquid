@@ -17,7 +17,8 @@
         </div><br />
     </div>
 {% endif %}
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+
+<div class="flex flex-row justify-end gap-4">
 
 {% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
@@ -27,7 +28,7 @@
         [ "data-load-content", "mail/mail_domain_edit.php"]
     ]
 } %}
-
+</div>
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}

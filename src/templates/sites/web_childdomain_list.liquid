@@ -21,7 +21,8 @@
         </div><br />
     </div>
 {% endif %}
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+
+<div class="flex flex-row justify-end gap-4">
 
 {% if childdomain_type == 'aliasdomain' %}
     {% render '../components/button/primary', {
@@ -42,6 +43,8 @@
         ]
     } %}
 {% endif %}
+
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}

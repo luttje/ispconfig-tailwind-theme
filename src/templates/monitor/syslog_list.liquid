@@ -3,12 +3,23 @@
 	{{ list_desc_txt }}
 </p>
 
-<a class="btn btn-default formbutton-danger"
-    href="javascript: ISPConfig.confirm_action('monitor/log_del.php?type=batch&loglevel=1&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ batch_delete_confirmation }}');"><span
-    class="icon icon-delete"></span> {{ batch_delete_warnings_txt }}</a>
-<a class="btn btn-default formbutton-danger"
-    href="javascript: ISPConfig.confirm_action('monitor/log_del.php?type=batch&loglevel=2&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ batch_delete_confirmation }}');"><span
-    class="icon icon-delete"></span> {{ batch_delete_errors_txt }}</a>
+{% render '../components/button/danger', {
+    "slot": "<span class=\"flex gap-2\"><span class=\"icon icon-delete\"></span> {{ batch_delete_warnings_txt }}</span>",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ batch_delete_warnings_txt }}" ],
+        [ "onclick", "ISPConfig.confirm_action('monitor/log_del.php?type=batch&loglevel=1&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ batch_delete_confirmation }}');" ]
+    ]
+} %}
+
+{% render '../components/button/danger', {
+    "slot": "<span class=\"flex gap-2\"><span class=\"icon icon-delete\"></span> {{ batch_delete_errors_txt }}</span>",
+    "attributes": [
+        [ "type", "button" ],
+        [ "value", "{{ batch_delete_errors_txt }}" ],
+        [ "onclick", "ISPConfig.confirm_action('monitor/log_del.php?type=batch&loglevel=2&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ batch_delete_confirmation }}');" ]
+    ]
+} %}
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}

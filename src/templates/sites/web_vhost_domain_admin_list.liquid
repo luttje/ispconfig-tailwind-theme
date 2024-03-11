@@ -8,38 +8,40 @@
     {% render '../components/heading/h1', slot: '{{ aliasdomain_list_head_txt }}' %}
 {% endif %}
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% if vhostdomain_type == 'domain' %}
-    {% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}" ]
-    ]
-} %}
-{% endif %}
-{% if vhostdomain_type == 'subdomain' %}
-    {% render '../components/button/primary', {
-    "slot": "{{ add_new_subdomain_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_subdomain_txt }}" ],
-        [ "data-load-content", "sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}" ]
-    ]
-} %}
-{% endif %}
-{% if vhostdomain_type == 'aliasdomain' %}
-    {% render '../components/button/primary', {
-    "slot": "{{ add_new_aliasdomain_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_aliasdomain_txt }}" ],
-        [ "data-load-content", "sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}" ]
-    ]
-} %}
-{% endif %}
+    {% if vhostdomain_type == 'domain' %}
+        {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}" ]
+        ]
+    } %}
+    {% endif %}
+    {% if vhostdomain_type == 'subdomain' %}
+        {% render '../components/button/primary', {
+        "slot": "{{ add_new_subdomain_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_subdomain_txt }}" ],
+            [ "data-load-content", "sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}" ]
+        ]
+    } %}
+    {% endif %}
+    {% if vhostdomain_type == 'aliasdomain' %}
+        {% render '../components/button/primary', {
+        "slot": "{{ add_new_aliasdomain_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_aliasdomain_txt }}" ],
+            [ "data-load-content", "sites/web_vhost_domain_edit.php?type={{ vhostdomain_type }}" ]
+        ]
+    } %}
+    {% endif %}
+
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}

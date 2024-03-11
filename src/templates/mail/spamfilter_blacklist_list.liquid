@@ -1,8 +1,7 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
-
+<div class="flex flex-row justify-end gap-4">
 {% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
     "attributes": [
@@ -11,6 +10,7 @@
         [ "data-load-content", "mail/spamfilter_blacklist_edit.php"]
     ]
 } %}
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
