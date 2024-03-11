@@ -65,24 +65,32 @@
     </div>
 
     {% if msg %}
-        {% render '../components/msg', id: 'OKMsg', slot: 'msg' %}
+        {% render '../components/msg', id: 'OKMsg', slot: '{{ msg }}' %}
     {% endif %}
     {% render '../components/error' %}
 
     <input type="hidden"
            name="remote_session_id"
            value="{{ remote_session_id }}">
-    <div class="clear">
-        <div class="right">
-            <button class="btn btn-default formbutton-success"
-                    type="button"
-                    value="Import"
-                    data-submit-form="pageForm"
-                    data-form-action="tools/import_vpopmail.php">{{ btn_start_txt }}</button>
-            <button class="btn btn-default formbutton-default"
-                    type="button"
-                    value="Cancel"
-                    data-load-content="tools/index.php">{{ btn_cancel_txt }}</button>
-        </div>
+
+    <div class="flex flex-row justify-between gap-4">
+        {% render '../components/button/primary', {
+            "slot": "{{ btn_cancel_txt }}",
+            "attributes": [
+                [ "type", "button" ],
+                [ "value", "{{ btn_cancel_txt }}" ],
+                [ "data-load-content", "tools/index.php" ]
+            ]
+        } %}
+    
+        {% render '../components/button/success', {
+            "slot": "{{ btn_start_txt }}",
+            "attributes": [
+                [ "type", "button" ],
+                [ "value", "Import" ],
+                [ "data-submit-form", "pageForm" ],
+                [ "data-form-action", "tools/import_vpopmail.php" ]
+            ]
+        } %}
     </div>
 </div>

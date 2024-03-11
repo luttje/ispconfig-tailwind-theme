@@ -48,18 +48,13 @@
 			</div>
 
             {% if msg %}
-                {% render '../components/msg', id: 'OKMsg', slot: 'msg' %}
+                {% render '../components/msg', id: 'OKMsg', slot: '{{ msg }}' %}
             {% endif %}
             {% render '../components/error' %}
 
 			<input type="hidden" name="id" value="{{ id }}">
 
-			<div class="clear">
-				<div class="right">
-					<button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="dns/dns_import.php" data-form-upload="true">{{ btn_save_txt }}</button>
-					<button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="dns/dns_soa_list.php">{{ btn_cancel_txt }}</button>
-				</div>
-			</div>
+			{% render '../components/form-submit-buttons-with-upload', cancel_load_content: 'dns/dns_soa_list.php', save_form_action: 'dns/dns_import.php', data_form_upload: 'true' %}
 		</div>
 	</div>
 	<script language="JavaScript" type="text/javascript">

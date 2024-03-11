@@ -11,277 +11,275 @@
 {% endif %}
 
 
-        {% hook 'begin_form' %}
-    {% if vhostdomain_type == 'domain' %}
-            {% if is_admin %}
-                <div class="form-group">
-                    {% if edit_disabled %}
-                        <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
-                        <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
-                            {{ server_id }}
-                        </select></div>
-                        <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-                        {% else %}
-                            <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
-                            <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
-                                {{ server_id }}
-                            </select></div>
-                    {% endif %}
-                </div>
-                {% unless domain_option %}
-                    <div class="form-group">
-                        <label for="client_group_id" class="col-sm-3 control-label">{{ client_group_id_txt }}</label>
-                        <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
-                            {{ client_group_id }}
-                        </select></div>
-                    </div>
-                {% endunless %}
-            {% else %}
-                {% if only_one_server %}
-                    <input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
+{% hook 'begin_form' %}
+{% if vhostdomain_type == 'domain' %}
+    {% if is_admin %}
+        <div class="form-group">
+            {% if edit_disabled %}
+                <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
+                <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
+                    {{ server_id }}
+                </select></div>
+                <input type="hidden" name="server_id" value="{{ server_id_value }}" />
                 {% else %}
-                    <div class="form-group">
-                        {% if edit_disabled %}
-                            <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
-                            <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
-                                {{ server_id }}
-                            </select></div>
-                            <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-                        {% else %}
-                            <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
-                            <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
-                                {{ server_id }}
-                            </select></div>
-                        {% endif %}
-                    </div>
+                    <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
+                    <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
+                        {{ server_id }}
+                    </select></div>
+            {% endif %}
+        </div>
+        {% unless domain_option %}
+            <div class="form-group">
+                <label for="client_group_id" class="col-sm-3 control-label">{{ client_group_id_txt }}</label>
+                <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
+                    {{ client_group_id }}
+                </select></div>
+            </div>
+        {% endunless %}
+    {% else %}
+        {% if only_one_server %}
+            <input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
+        {% else %}
+            <div class="form-group">
+                {% if edit_disabled %}
+                    <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
+                    <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
+                        {{ server_id }}
+                    </select></div>
+                    <input type="hidden" name="server_id" value="{{ server_id_value }}" />
+                {% else %}
+                    <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
+                    <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
+                        {{ server_id }}
+                    </select></div>
                 {% endif %}
-            {% endif %}
-            {% if is_reseller %}
-                {% unless domain_option %}
-                    <div class="form-group">
-                        <label for="client_group_id" class="col-sm-3 control-label">{{ client_group_id_txt }}</label>
-                        <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
-                            {{ client_group_id }}
-                        </select></div>
-                    </div>
-                {% endunless %}
-            {% endif %}
-            {% if domain_option %}
-                <input type="hidden" id="client_group_id" name="client_group_id" value="{{ client_group_id_value }}" />
-            {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+    {% if is_reseller %}
+        {% unless domain_option %}
             <div class="form-group">
-                <label for="ip_address" class="col-sm-3 control-label">{{ ip_address_txt }}</label>
-                <div class="col-sm-9"><select name="ip_address" id="ip_address" class="form-control">
-                    {{ ip_address }}
+                <label for="client_group_id" class="col-sm-3 control-label">{{ client_group_id_txt }}</label>
+                <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
+                    {{ client_group_id }}
                 </select></div>
             </div>
-            <div class="form-group">
-                <label for="ipv6_address" class="col-sm-3 control-label">{{ ipv6_address_txt }}</label>
-                <div class="col-sm-9"><select name="ipv6_address" id="ipv6_address" class="form-control">
-                    {{ ipv6_address }}
-                </select></div>
-            </div>
-            <div class="form-group">
-                <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
-                {% if domain_option %}
-                    <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
-                        {{ domain_option }}
-                    </select></div>
-                    {% else %}
-                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>{% endif %}
-            </div>
-            {% if web_aliasdomains_info %}
-            <div class="form-group">
-                   <label for="web_aliasdomains" class="col-sm-3 control-label">{{ dependent_domains_txt }}</label>
-                   <div class="col-sm-9">
-                           <textarea name="web_aliasdomains" id="web_aliasdomains" class="form-control" disabled="disabled">{% loop web_aliasdomains_info %}{{ domain }}
-{% endloop %}</textarea>
-                   </div>
-            </div>
-            {% endif %}
-			{% if edit_disabled %}
-				<div class="form-group">
-					<label for="document_root" class="col-sm-3 control-label" readonly >{{ document_root_txt }}</label>
-					<div class="col-sm-9">
-                        <div class="checkbox">{{ document_root }}</div>
-                    </div>
-				</div>
-			{% endif %}
-            <div class="form-group">
-                <label for="hd_quota" class="col-sm-3 control-label">{{ hd_quota_txt }}</label>
-                <div class="col-sm-9"><div class="input-group"><input type="text" name="hd_quota" id="hd_quota" value="{{ hd_quota }}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>
-			</div>
-		{% endif %}
-		{% if vhostdomain_type == 'subdomain' %}
-            <input type="hidden" name="server_id" id="server_id" value="{{ server_id_value }}" />
-            {% if domain_option %}
-            <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
-                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
-            </div>
-            {% endif %}
-            <div class="form-group">
-                <label for="domain" class="col-sm-3 control-label">{{ host_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></div>
-            {% if domain_option %}
-            <div class="form-group">
-                <label for="sel_domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
-                    <div class="col-sm-9"><select name="sel_domain" id="sel_domain" class="form-control">
-                        {{ domain_option }}
-                    </select></div>
-            </div>
+        {% endunless %}
+    {% endif %}
+    {% if domain_option %}
+        <input type="hidden" id="client_group_id" name="client_group_id" value="{{ client_group_id_value }}" />
+    {% endif %}
+    <div class="form-group">
+        <label for="ip_address" class="col-sm-3 control-label">{{ ip_address_txt }}</label>
+        <div class="col-sm-9"><select name="ip_address" id="ip_address" class="form-control">
+            {{ ip_address }}
+        </select></div>
+    </div>
+    <div class="form-group">
+        <label for="ipv6_address" class="col-sm-3 control-label">{{ ipv6_address_txt }}</label>
+        <div class="col-sm-9"><select name="ipv6_address" id="ipv6_address" class="form-control">
+            {{ ipv6_address }}
+        </select></div>
+    </div>
+    <div class="form-group">
+        <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
+        {% if domain_option %}
+            <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
+                {{ domain_option }}
+            </select></div>
             {% else %}
-            <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{{ domain_txt }}</label>
-                <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
+                <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>{% endif %}
+    </div>
+    {% if web_aliasdomains_info %}
+    <div class="form-group">
+            <label for="web_aliasdomains" class="col-sm-3 control-label">{{ dependent_domains_txt }}</label>
+            <div class="col-sm-9">
+                    <textarea name="web_aliasdomains" id="web_aliasdomains" class="form-control" disabled="disabled">{% loop web_aliasdomains_info %}{{ domain }}
+{% endloop %}</textarea>
             </div>
-            {% endif %}
-            <div class="form-group">
-                <label for="web_folder" class="col-sm-3 control-label">{{ web_folder_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"{% if fixed_folder == 'y' %}readonly="readonly"{% endif %} /></div>
+    </div>
+    {% endif %}
+    {% if edit_disabled %}
+        <div class="form-group">
+            <label for="document_root" class="col-sm-3 control-label" readonly >{{ document_root_txt }}</label>
+            <div class="col-sm-9">
+                <div class="checkbox">{{ document_root }}</div>
             </div>
-		{% endif %}
-		{% if vhostdomain_type == 'aliasdomain' %}
-            <input type="hidden" name="server_id" id="server_id" value="{{ server_id_value }}" />
-            <div class="form-group">
-                <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
-                {% if domain_option %}
-                    <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
-                        {{ domain_option }}
-                    </select></div>
-                    {% else %}
-                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>{% endif %}
-            </div>
-            <div class="form-group">
-                <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
-                <div class="col-sm-9"><select name="parent_domain_id" id="parent_domain_id" class="form-control">
-                    {{ parent_domain_id }}
-                </select></div>
-            </div>
-            <div class="form-group">
-                <label for="web_folder" class="col-sm-3 control-label">{{ web_folder_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"{% if fixed_folder == 'y' %} readonly="readonly"{% endif %} /></div>
-            </div>
-		{% endif %}
-            <div class="form-group">
-                <label for="traffic_quota" class="col-sm-3 control-label">{{ traffic_quota_txt }}</label>
-                <div class="col-sm-9"><div class="input-group"><input type="text" name="traffic_quota" id="traffic_quota" value="{{ traffic_quota }}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>{{ traffic_quota_exceeded_txt }}
-            </div>
-            {% if limit_cgi == 'y' %}<div class="form-group">
-                <label class="col-sm-3 control-label">{{ cgi_txt }}</label>
-                <div class="col-sm-9">
-                    {{ cgi }}
-                </div>
-            </div>{% endif %}
-            {% if limit_ssi == 'y' %}<div class="form-group">
-                <label class="col-sm-3 control-label">{{ ssi_txt }}</label>
-                <div class="col-sm-9">
-                    {{ ssi }}
-                </div>
-            </div>{% endif %}
-            {% if limit_perl == 'y' %}<div class="form-group apache">
-                <label class="col-sm-3 control-label">{{ perl_txt }}</label>
-                <div class="col-sm-9">
-                    {{ perl }}
-                </div>
-            </div>{% endif %}
-            {% if limit_ruby == 'y' %}<div class="form-group apache">
-                <label class="col-sm-3 control-label">{{ ruby_txt }}</label>
-                <div class="col-sm-9">
-                    {{ ruby }}
-                </div>
-            </div>{% endif %}
-            {% if limit_python == 'y' %}<div class="form-group apache">
-                <label class="col-sm-3 control-label">{{ python_txt }}</label>
-                <div class="col-sm-9">
-                    {{ python }}
-                </div>
-            </div>{% endif %}
-            {% if force_suexec == 'n' %}<div class="form-group apache">
-                <label class="col-sm-3 control-label">{{ suexec_txt }}</label>
-                <div class="col-sm-9">
-                    {{ suexec }}
-                </div>
-            </div>{% endif %}
-            {% if limit_hterror == 'y' %}<div class="form-group">
-                <label class="col-sm-3 control-label">{{ errordocs_txt }}</label>
-                <div class="col-sm-9">
-                    {{ errordocs }}
-                </div>
-            </div>{% endif %}
+        </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="hd_quota" class="col-sm-3 control-label">{{ hd_quota_txt }}</label>
+        <div class="col-sm-9"><div class="input-group"><input type="text" name="hd_quota" id="hd_quota" value="{{ hd_quota }}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>
+    </div>
+{% endif %}
+{% if vhostdomain_type == 'subdomain' %}
+    <input type="hidden" name="server_id" id="server_id" value="{{ server_id_value }}" />
+    {% if domain_option %}
+    <div class="form-group">
+        <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
+        <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
+    </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="domain" class="col-sm-3 control-label">{{ host_txt }}</label>
+        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div></div>
+    {% if domain_option %}
+    <div class="form-group">
+        <label for="sel_domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
+            <div class="col-sm-9"><select name="sel_domain" id="sel_domain" class="form-control">
+                {{ domain_option }}
+            </select></div>
+    </div>
+    {% else %}
+    <div class="form-group">
+        <label for="parent_domain_id" class="col-sm-3 control-label">{{ domain_txt }}</label>
+        <div class="col-sm-9"><select id="parent_domain_id" name="parent_domain_id" class="form-control">{{ parent_domain_id }}</select></div>
+    </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="web_folder" class="col-sm-3 control-label">{{ web_folder_txt }}</label>
+        <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"{% if fixed_folder == 'y' %}readonly="readonly"{% endif %} /></div>
+    </div>
+{% endif %}
+{% if vhostdomain_type == 'aliasdomain' %}
+    <input type="hidden" name="server_id" id="server_id" value="{{ server_id_value }}" />
+    <div class="form-group">
+        <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
+        {% if domain_option %}
+            <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
+                {{ domain_option }}
+            </select></div>
+            {% else %}
+                <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>{% endif %}
+    </div>
+    <div class="form-group">
+        <label for="parent_domain_id" class="col-sm-3 control-label">{{ parent_domain_id_txt }}</label>
+        <div class="col-sm-9"><select name="parent_domain_id" id="parent_domain_id" class="form-control">
+            {{ parent_domain_id }}
+        </select></div>
+    </div>
+    <div class="form-group">
+        <label for="web_folder" class="col-sm-3 control-label">{{ web_folder_txt }}</label>
+        <div class="col-sm-9"><input type="text" name="web_folder" id="web_folder" value="{{ web_folder }}" class="form-control"{% if fixed_folder == 'y' %} readonly="readonly"{% endif %} /></div>
+    </div>
+{% endif %}
+    <div class="form-group">
+        <label for="traffic_quota" class="col-sm-3 control-label">{{ traffic_quota_txt }}</label>
+        <div class="col-sm-9"><div class="input-group"><input type="text" name="traffic_quota" id="traffic_quota" value="{{ traffic_quota }}" class="form-control" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>{{ traffic_quota_exceeded_txt }}
+    </div>
+    {% if limit_cgi == 'y' %}<div class="form-group">
+        <label class="col-sm-3 control-label">{{ cgi_txt }}</label>
+        <div class="col-sm-9">
+            {{ cgi }}
+        </div>
+    </div>{% endif %}
+    {% if limit_ssi == 'y' %}<div class="form-group">
+        <label class="col-sm-3 control-label">{{ ssi_txt }}</label>
+        <div class="col-sm-9">
+            {{ ssi }}
+        </div>
+    </div>{% endif %}
+    {% if limit_perl == 'y' %}<div class="form-group apache">
+        <label class="col-sm-3 control-label">{{ perl_txt }}</label>
+        <div class="col-sm-9">
+            {{ perl }}
+        </div>
+    </div>{% endif %}
+    {% if limit_ruby == 'y' %}<div class="form-group apache">
+        <label class="col-sm-3 control-label">{{ ruby_txt }}</label>
+        <div class="col-sm-9">
+            {{ ruby }}
+        </div>
+    </div>{% endif %}
+    {% if limit_python == 'y' %}<div class="form-group apache">
+        <label class="col-sm-3 control-label">{{ python_txt }}</label>
+        <div class="col-sm-9">
+            {{ python }}
+        </div>
+    </div>{% endif %}
+    {% if force_suexec == 'n' %}<div class="form-group apache">
+        <label class="col-sm-3 control-label">{{ suexec_txt }}</label>
+        <div class="col-sm-9">
+            {{ suexec }}
+        </div>
+    </div>{% endif %}
+    {% if limit_hterror == 'y' %}<div class="form-group">
+        <label class="col-sm-3 control-label">{{ errordocs_txt }}</label>
+        <div class="col-sm-9">
+            {{ errordocs }}
+        </div>
+    </div>{% endif %}
 
-            <div class="form-group">
-                <label for="subdomain" class="col-sm-3 control-label">{{ subdomain_txt }}</label>
-                <div class="col-sm-9"><select name="subdomain" id="subdomain" class="form-control">
-                    {{ subdomain }}
-                </select></div>
-            </div>
-            {% if limit_ssl == 'y' %}<div class="form-group">
-                <label class="col-sm-3 control-label">{{ ssl_txt }}</label>
-                <div class="col-sm-9" data-uncheck-fields="ssl_letsencrypt">
-                    {{ ssl }}
-                </div>
-            </div>
-            {% if limit_ssl_letsencrypt == 'y' %}
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ ssl_letsencrypt_txt }}</label>
-                <div class="col-sm-9" data-check-fields="ssl">
-                    {{ ssl_letsencrypt }}
-                </div>
-            </div>{% endif %}
-            {% endif %}
-            <div class="form-group">
-                <label for="php" class="col-sm-3 control-label">{{ php_txt }}</label>
-                <div class="col-sm-9"><select name="php" id="php" class="form-control">
-                    {{ php }}
-                </select></div>
-            </div>
-            {% hook 'field_server_php_id' %}
-            <div class="form-group server_php_id">
-                <label for="server_php_id" class="col-sm-3 control-label">{{ server_php_id_txt }}</label>
-                <div class="col-sm-9"><select name="server_php_id" id="server_php_id" class="form-control">
-                    {{ server_php_id }}
-                </select></div>
-                {% if server_php_id_default_hidden_warning_confirmed %}
-                    <input type="hidden" id="server_php_id_default_hidden_warning_confirmed" name="server_php_id_default_hidden_warning_confirmed" value="{{ server_php_id_default_hidden_warning_confirmed }}" />
-                {% endif %}
-            </div>
-            {% if limit_directive_snippets == 'y' %}<div class="form-group">
-				<label for="directive_snippets_id" class="col-sm-3 control-label">{{ directive_snippets_id_txt }}</label>
-				<div class="col-sm-9"><select name="directive_snippets_id" id="directive_snippets_id" class="form-control">
-					{{ directive_snippets_id }}
-				</select></div>
-			</div>{% endif %}
-			{% if is_pagespeed_enabled == 'y' %}
-				<div class="form-group nginx pagespeed">
-					<label class="col-sm-3 control-label">{{ enable_pagespeed_txt }}</label>
-					<div class="col-sm-9">{{ enable_pagespeed }}</div>
-				</div>
-			{% endif %}
+    <div class="form-group">
+        <label for="subdomain" class="col-sm-3 control-label">{{ subdomain_txt }}</label>
+        <div class="col-sm-9"><select name="subdomain" id="subdomain" class="form-control">
+            {{ subdomain }}
+        </select></div>
+    </div>
+    {% if limit_ssl == 'y' %}<div class="form-group">
+        <label class="col-sm-3 control-label">{{ ssl_txt }}</label>
+        <div class="col-sm-9" data-uncheck-fields="ssl_letsencrypt">
+            {{ ssl }}
+        </div>
+    </div>
+    {% if limit_ssl_letsencrypt == 'y' %}
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{ ssl_letsencrypt_txt }}</label>
+        <div class="col-sm-9" data-check-fields="ssl">
+            {{ ssl_letsencrypt }}
+        </div>
+    </div>{% endif %}
+    {% endif %}
+    <div class="form-group">
+        <label for="php" class="col-sm-3 control-label">{{ php_txt }}</label>
+        <div class="col-sm-9"><select name="php" id="php" class="form-control">
+            {{ php }}
+        </select></div>
+    </div>
+    {% hook 'field_server_php_id' %}
+    <div class="form-group server_php_id">
+        <label for="server_php_id" class="col-sm-3 control-label">{{ server_php_id_txt }}</label>
+        <div class="col-sm-9"><select name="server_php_id" id="server_php_id" class="form-control">
+            {{ server_php_id }}
+        </select></div>
+        {% if server_php_id_default_hidden_warning_confirmed %}
+            <input type="hidden" id="server_php_id_default_hidden_warning_confirmed" name="server_php_id_default_hidden_warning_confirmed" value="{{ server_php_id_default_hidden_warning_confirmed }}" />
+        {% endif %}
+    </div>
+    {% if limit_directive_snippets == 'y' %}<div class="form-group">
+        <label for="directive_snippets_id" class="col-sm-3 control-label">{{ directive_snippets_id_txt }}</label>
+        <div class="col-sm-9"><select name="directive_snippets_id" id="directive_snippets_id" class="form-control">
+            {{ directive_snippets_id }}
+        </select></div>
+    </div>{% endif %}
+    {% if is_pagespeed_enabled == 'y' %}
+        <div class="form-group nginx pagespeed">
+            <label class="col-sm-3 control-label">{{ enable_pagespeed_txt }}</label>
+            <div class="col-sm-9">{{ enable_pagespeed }}</div>
+        </div>
+    {% endif %}
 <!--
-			{% hook 'field_enable_pagespeed' %}
-			<div class="form-group nginx pagespeed">
-				<label class="col-sm-3 control-label">{{ enable_pagespeed_txt }}</label>
-				<div class="col-sm-9">
-					{{ enable_pagespeed }}
-				</div>
-			</div>
+    {% hook 'field_enable_pagespeed' %}
+    <div class="form-group nginx pagespeed">
+        <label class="col-sm-3 control-label">{{ enable_pagespeed_txt }}</label>
+        <div class="col-sm-9">
+            {{ enable_pagespeed }}
+        </div>
+    </div>
 -->
-            {% hook 'field_active' %}
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ active_txt }}</label>
-                <div class="col-sm-9">
-                    {{ active }}
-                </div>
-            </div>
-			{% hook 'end_form' %}
+    {% hook 'field_active' %}
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{ active_txt }}</label>
+        <div class="col-sm-9">
+            {{ active }}
+        </div>
+    </div>
+    {% hook 'end_form' %}
 
-        <input type="hidden" name="id" value="{{ id }}">
+<input type="hidden" name="id" value="{{ id }}">
 
-        <div class="clear"><div class="right">
-            <button id="dom-edit-submit" class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}">{{ btn_save_txt }}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="sites/web_vhost_domain_list.php">{{ btn_cancel_txt }}</button>
-        </div></div>
+{% render '../components/form-submit-buttons', cancel_load_content: 'sites/web_vhost_domain_list.php', save_form_action: 'sites/web_vhost_domain_edit.php' %}
+
 <script language="JavaScript" type="text/javascript">
     var serverId;
     var clientGroupId = jQuery('#client_group_id').val();
@@ -487,13 +485,6 @@
 
     {% if readonly_tab %}
         jQuery('div.panel_web_domain').find('fieldset').find('input,select,button').not('#directive_snippets_id').bind('click mousedown', function(e) { e.preventDefault(); }).focus(function() { $(this).blur(); });
-        jQuery('#dom-edit-submit').click(function() {
-			ISPConfig.submitForm('pageForm','sites/web_vhost_domain_edit.php');
-        });
-    {% else %}
-        jQuery('#dom-edit-submit').click(function() {
-            ISPConfig.submitForm('pageForm','sites/web_vhost_domain_edit.php');
-        });
     {% endif %}
 
 	if($('#domain').val() == ''){

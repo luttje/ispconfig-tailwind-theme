@@ -113,7 +113,7 @@
                 </a>
             </td>
         {% endif %}
-        <td class="text-right">
+        <td class="flex flex-row justify-end gap-2 p-2">
             {% if has_robot %}
                     <a class="btn btn-default formbutton-default formbutton-narrow"
                         href="#"
@@ -134,20 +134,30 @@
                 {% endif %}
             {% endif %}
             {% if is_admin %}
-                <a class="btn btn-default formbutton-success formbutton-narrow"
-                    data-load-content="login/login_as.php?cid={{ id }}">
-                    <span class="icon icon-loginas"></span>
-                </a>
+                {% render '../components/button/primary-tiny', {
+                    "slot": "<span class=\"icon icon-loginas\"></span>",
+                    "attributes": [
+                        [ "type", "button" ],
+                        [ "data-load-content", "login/login_as.php?cid={{ id }}" ]
+                    ]
+                } %}
             {% elsif is_reseller %}
-                <a class="btn btn-default formbutton-success formbutton-narrow"
-                    data-load-content="login/login_as.php?cid={{ id }}">
-                    <span class="icon icon-loginas"></span>
-                </a>
+                {% render '../components/button/primary-tiny', {
+                    "slot": "<span class=\"icon icon-loginas\"></span>",
+                    "attributes": [
+                        [ "type", "button" ],
+                        [ "data-load-content", "login/login_as.php?cid={{ id }}" ]
+                    ]
+                } %}
             {% endif %}
-            <a class="btn btn-default formbutton-danger formbutton-narrow"
-                href="javascript: ISPConfig.confirm_action('client/client_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');">
-                <span class="icon icon-delete"></span>
-            </a>
+
+            {% render '../components/button/danger-tiny', {
+                "slot": "<span class=\"icon icon-delete\"></span>",
+                "attributes": [
+                    [ "type", "button" ],
+                    [ "onclick", "ISPConfig.confirm_action('client/client_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');" ]
+                ]
+            } %}
         </td>
     </tr>
 {% endloop %}

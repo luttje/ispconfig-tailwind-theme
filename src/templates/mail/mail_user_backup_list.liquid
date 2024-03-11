@@ -1,5 +1,5 @@
 {% if msg %}
-    {% render '../components/msg', id: 'OKMsg', slot: 'msg' %}
+    {% render '../components/msg', id: 'OKMsg', slot: '{{ msg }}' %}
 {% endif %}
 {% render '../components/error' %}
 

@@ -1,13 +1,6 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
-
-<button class="btn btn-default formbutton-success"
-        type="button"
-        data-load-content="mail/mail_whitelist_edit.php">{{ add_new_record_txt }}</button>
-
-
 {% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
     "attributes": [

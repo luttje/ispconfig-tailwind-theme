@@ -21,7 +21,4 @@
         <input type="hidden" name="lang_file" value="{{ lang_file }}">
         <input type="hidden" name="module" value="{{ module }}">
 
-        <div class="wf_actions buttons">
-            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="admin/language_edit.php">{{ btn_save_txt }}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="admin/language_list.php?lng_select={{ lang }}">{{ btn_cancel_txt }}</button>
-        </div>
+        {% render '../components/form-submit-buttons', cancel_load_content: 'admin/language_list.php?lng_select={{ lang }}', save_form_action: 'admin/language_edit.php' %}

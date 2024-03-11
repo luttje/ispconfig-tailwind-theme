@@ -1,61 +1,81 @@
-            <div class="form-group">
-                <label for="name" class="col-sm-3 control-label">{{ name_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="name" id="name" value="{{ name }}" class="form-control" /></div>
-            </div>
-            <div class="form-group">
-                <label for="data" class="col-sm-3 control-label">{{ data_txt }}</label>
-				<div class="col-sm-9"><input type="text" name="data" id="data" value="{{ data }}" readonly class="form-control" /></div></div>
-            <div class="form-group">
-            	<label for="spf_mechanism" class="col-sm-3 control-label">{{ spf_mechanism_txt }}</label>
-                <div class="col-sm-9"><select name="spf_mechanism" id="spf_mechanism" class="form-control">
-                	{{ spf_mechanism }}
-                </select></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ spf_mx_txt }}</label>
-                <div class="col-sm-9"><input type="checkbox" value="1" id="spf_mx" name="spf_mx" {{ spf_mx_active }} /></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ spf_a_txt }}</label>
-                <div class="col-sm-9"><input type="checkbox" value="1" id="spf_a" name="spf_a" {{ spf_a_active }} /></div>
-            </div>
-			<div class="form-group">
-				<label for="spf_ip" class="col-sm-3 control-label">{{ spf_ip_txt }}</label>
-				<div class="col-sm-6"><input type="text" name="spf_ip" id="spf_ip" value="{{ spf_ip }}" class="form-control" /></div><div class="col-sm-3 input-sm">
-				{{ spf_ip_note_txt }}
-			</div></div>
-			<div class="form-group">
-				<label for="spf_hostname" class="col-sm-3 control-label">{{ spf_hostname_txt }}</label>
-				<div class="col-sm-6"><input type="text" name="spf_hostname" id="spf_hostname" value="{{ spf_hostname }}" class="form-control" /></div><div class="col-sm-3 input-sm">
-				{{ spf_hostname_note_txt }}
-			</div></div>
-			<div class="form-group">
-				<label for="spf_domain" class="col-sm-3 control-label">{{ spf_domain_txt }}</label>
-				<div class="col-sm-6"><input type="text" name="spf_domain" id="spf_domain" value="{{ spf_domain }}" class="form-control" /></div><div class="col-sm-3 input-sm">
-				{{ spf_domain_note_txt }}
-			</div></div>
-            <div class="form-group">
-                <label for="ttl" class="col-sm-3 control-label">{{ ttl_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="ttl" id="ttl" value="{{ ttl }}" class="form-control" /></div></div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ active_txt }}</label>
-                 <div class="col-sm-9">
-                    <input type="checkbox" value="1" id="active" name="active" {{ active }} />
-                </div>
-            </div>
+<div class="form-group">
+    <label for="name" class="col-sm-3 control-label">{{ name_txt }}</label>
+    <div class="col-sm-9"><input type="text" name="name" id="name" value="{{ name }}" class="form-control" /></div>
+</div>
+<div class="form-group">
+    <label for="data" class="col-sm-3 control-label">{{ data_txt }}</label>
+    <div class="col-sm-9"><input type="text" name="data" id="data" value="{{ data }}" readonly class="form-control" /></div></div>
+<div class="form-group">
+    <label for="spf_mechanism" class="col-sm-3 control-label">{{ spf_mechanism_txt }}</label>
+    <div class="col-sm-9"><select name="spf_mechanism" id="spf_mechanism" class="form-control">
+        {{ spf_mechanism }}
+    </select></div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ spf_mx_txt }}</label>
+    <div class="col-sm-9"><input type="checkbox" value="1" id="spf_mx" name="spf_mx" {{ spf_mx_active }} /></div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ spf_a_txt }}</label>
+    <div class="col-sm-9"><input type="checkbox" value="1" id="spf_a" name="spf_a" {{ spf_a_active }} /></div>
+</div>
+<div class="form-group">
+    <label for="spf_ip" class="col-sm-3 control-label">{{ spf_ip_txt }}</label>
+    <div class="col-sm-6"><input type="text" name="spf_ip" id="spf_ip" value="{{ spf_ip }}" class="form-control" /></div><div class="col-sm-3 input-sm">
+    {{ spf_ip_note_txt }}
+</div></div>
+<div class="form-group">
+    <label for="spf_hostname" class="col-sm-3 control-label">{{ spf_hostname_txt }}</label>
+    <div class="col-sm-6"><input type="text" name="spf_hostname" id="spf_hostname" value="{{ spf_hostname }}" class="form-control" /></div><div class="col-sm-3 input-sm">
+    {{ spf_hostname_note_txt }}
+</div></div>
+<div class="form-group">
+    <label for="spf_domain" class="col-sm-3 control-label">{{ spf_domain_txt }}</label>
+    <div class="col-sm-6"><input type="text" name="spf_domain" id="spf_domain" value="{{ spf_domain }}" class="form-control" /></div><div class="col-sm-3 input-sm">
+    {{ spf_domain_note_txt }}
+</div></div>
+<div class="form-group">
+    <label for="ttl" class="col-sm-3 control-label">{{ ttl_txt }}</label>
+    <div class="col-sm-9"><input type="text" name="ttl" id="ttl" value="{{ ttl }}" class="form-control" /></div></div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ active_txt }}</label>
+        <div class="col-sm-9">
+        <input type="checkbox" value="1" id="active" name="active" {{ active }} />
+    </div>
+</div>
 
-        
+<input type="hidden" name="id" value="{{ id }}">
+<input type="hidden" name="zone" value="{{ zone }}" id="zone">
+<input type="hidden" name="type" value="{{ type }}">
             
-        <input type="hidden" name="id" value="{{ id }}">
-        <input type="hidden" name="zone" value="{{ zone }}" id="zone">
-        <input type="hidden" name="type" value="{{ type }}">
-            </div>
-            
-        <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="dns/dns_spf_edit.php">{{ btn_save_txt }}</button>
-            {% if is_admin %}
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_edit_as_txt_record_txt }}" data-load-content="dns/dns_txt_edit.php?id={{ id }}&zone={{ zone }}&edit_raw=1">{{ btn_edit_as_txt_record_txt }}</button>
-            {% endif %}
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="dns/dns_soa_edit.php?id={{ zone }}&next_tab=dns_records">{{ btn_cancel_txt }}</button>
-        </div></div>
-
+<div class="flex flex-row justify-between gap-4">
+    {% render '../components/button/primary', {
+        "slot": "{{ btn_cancel_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ btn_cancel_txt }}" ],
+            [ "data-load-content", "dns/dns_soa_edit.php?id={{ zone }}&next_tab=dns_records" ]
+        ]
+    } %}
+    
+    {% if is_admin %}
+    {% render '../components/button/primary', {
+        "slot": "{{ btn_edit_as_txt_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ btn_edit_as_txt_record_txt  }}" ],
+            [ "data-load-content", "dns/dns_txt_edit.php?id={{ id }}&zone={{ zone }}&edit_raw=1" ]
+        ]
+    } %}
+    {% endif %}
+    
+    {% render '../components/button/success', {
+        "slot": "{{ btn_save_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ btn_save_txt  }}" ],
+            [ "data-submit-form", "pageForm" ],
+            [ "data-form-action", "dns/dns_spf_edit.php" ]
+        ]
+    } %}
+</div>

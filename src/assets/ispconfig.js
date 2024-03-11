@@ -568,6 +568,10 @@ const ISPConfig = {
     },
 
     addAdditionalTemplate: function () {
+        if (!$('#tpl_add_select').val()) {
+            alert('Please select an addon template');
+            return;
+        }
         var tpl_add = $('#template_additional').val();
         var addTemplate = $('#tpl_add_select').val().split('|', 2);
         var addTplId = addTemplate[0];

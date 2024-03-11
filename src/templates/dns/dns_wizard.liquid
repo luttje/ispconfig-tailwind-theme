@@ -103,12 +103,25 @@
 
 		<input type="hidden" name="create" value="0" />
 
-		<div class="clear">
-			<div class="right">
-				<button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" name="btn_create" onclick="document.pageForm.create.value=1; ISPConfig.submitForm('pageForm','dns/dns_wizard.php');">{{ btn_save_txt }}</button>
-				<button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="dns/dns_soa_list.php">{{ btn_cancel_txt }}</button>
-			</div>
-		</div>
+        <div class="flex flex-row justify-between gap-4">
+            {% render '../components/button/primary', {
+                "slot": "{{ btn_cancel_txt }}",
+                "attributes": [
+                    [ "type", "button" ],
+                    [ "value", "{{ btn_cancel_txt }}" ],
+                    [ "data-load-content", "dns/dns_soa_list.php" ]
+                ]
+            } %}
+
+            {% render '../components/button/success', {
+                "slot": "{{ btn_save_txt }}",
+                "attributes": [
+                    [ "type", "button" ],
+                    [ "value", "{{ btn_save_txt  }}" ],
+                    [ "onclick", "document.pageForm.create.value=1; ISPConfig.submitForm('pageForm','dns/dns_wizard.php');" ]
+                ]
+            } %}
+        </div>
 	</div>
 </div>
 <script language="JavaScript" type="text/javascript">

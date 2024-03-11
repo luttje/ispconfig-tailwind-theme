@@ -18,7 +18,4 @@
         <input type="hidden" name="id" value="{{ id }}">
         <input type="hidden" name="access" value="OK">
 
-        <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="mail/mail_relay_recipient_edit.php">{{ btn_save_txt }}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="mail/mail_relay_recipient_list.php">{{ btn_cancel_txt }}</button>
-        </div></div>
+        {% render '../components/form-submit-buttons', cancel_load_content: 'mail/mail_relay_recipient_list.php', save_form_action: 'mail/mail_relay_recipient_edit.php' %}

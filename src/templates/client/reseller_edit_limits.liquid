@@ -15,9 +15,16 @@
                     </select></div>
                 </div>
 				{% if is_admin %}
-				<div class="clear"><div class="right">
-					<button class="btn btn-default formbutton-success" type="button" onclick="ISPConfig.addAdditionalTemplate();">{{ add_additional_template_txt }}</button>
-				</div></div>
+                    <div class="float-right">
+                        {% render '../components/button/success', {
+                            "slot": "{{ add_additional_template_txt }}",
+                            "attributes": [
+                                [ "type", "button" ],
+                                [ "id", "tpl_add_btn" ],
+                                [ "onclick", "ISPConfig.addAdditionalTemplate();" ]
+                            ]
+                        } %}
+                    </div>
 				{% endif %}
                 <div class="form-group">
                     <label class="col-sm-3 control-label">{{ active_template_additional_txt }}</label>
@@ -485,10 +492,7 @@
 
         <input type="hidden" name="id" value="{{ id }}">
 
-        <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="client/reseller_edit.php">{{ btn_save_txt }}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="client/reseller_list.php">{{ btn_cancel_txt }}</button>
-        </div></div>
+        {% render '../components/form-submit-buttons', cancel_load_content: 'client/reseller_list.php', save_form_action: 'client/reseller_edit.php' %}
     </div>
 
 </div>

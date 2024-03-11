@@ -1,131 +1,124 @@
-            <div class="form-group">
-                <label for="name" class="col-sm-3 control-label">{{ name_txt }}</label>
-                <div class="col-sm-6"><input type="text" name="name" id="name" value="{{ name }}" class="form-control" autofocus /></div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }}
-            </div></div>
-			<div class="form-group">
-                <label class="col-sm-3 control-label"><em>*</em> {{ email_txt }}</label>
-                <div class="col-sm-9">
-				    <div class='input-group'>
-                                               <input type="text" id="email_local_part" name="email_local_part" value="{{ email_local_part }}" class="form-control" onPaste="javascript: e = this; setTimeout(function(){if (/@/.test(e.value)) { parts = e.value.split('@'); $('#email_domain').val(parts.pop()); $('#email_domain').trigger('change'); e.value=parts.pop(); } }, 4);" onChange="javascript: if (/@/.test(this.value)) { parts = this.value.split('@'); $('#email_domain').val(parts.pop()); $('#email_domain').trigger('change'); this.value=parts.pop(); } " />
-						<span class='input-group-addon'>@</span>
-                        <div class='input-group-field'>
-							<select name="email_domain" id="email_domain" class="form-control" style="height:50px;min-width:170px;">{{ email_domain }}</select>
-                        </div>
-                        <div class="input-group-field">
-                          <a class="btn btn-default formbutton-narrow" href="javascript: navigator.clipboard.writeText(document.getElementById('email_local_part').value + '@' + document.getElementById('email_domain').value);" title="">
-                            <span class="fa fa-clone"></span>
-                          </a>
-                        </div>
-                    </div>
-				</div>
+<div class="form-group">
+    <label for="name" class="col-sm-3 control-label">{{ name_txt }}</label>
+    <div class="col-sm-6"><input type="text" name="name" id="name" value="{{ name }}" class="form-control" autofocus /></div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }}
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label"><em>*</em> {{ email_txt }}</label>
+    <div class="col-sm-9">
+        <div class='input-group'>
+                                    <input type="text" id="email_local_part" name="email_local_part" value="{{ email_local_part }}" class="form-control" onPaste="javascript: e = this; setTimeout(function(){if (/@/.test(e.value)) { parts = e.value.split('@'); $('#email_domain').val(parts.pop()); $('#email_domain').trigger('change'); e.value=parts.pop(); } }, 4);" onChange="javascript: if (/@/.test(this.value)) { parts = this.value.split('@'); $('#email_domain').val(parts.pop()); $('#email_domain').trigger('change'); this.value=parts.pop(); } " />
+            <span class='input-group-addon'>@</span>
+            <div class='input-group-field'>
+                <select name="email_domain" id="email_domain" class="form-control" style="height:50px;min-width:170px;">{{ email_domain }}</select>
             </div>
-            {% if enable_custom_login %}<div class="form-group">
-                    <label for="login" class="col-sm-3 control-label">{{ login_txt }}</label>
-                    <div class="col-sm-9"><input type="text" id="login" name="login" value="{{ login }}" class="form-control" /></div></label>
-                </div>{% endif %}
-            <div class="form-group">
-                <label for="password" class="col-sm-3 control-label">{{ password_txt }}</label>
-                <div class="col-sm-9">
-				<div class="input-group">
-					<input type="password" name="password" id="password" value="{{ password }}" title="{{ password_click_to_set_txt }}" class="form-control" autocomplete="off" onkeyup="pass_check(this.value);checkPassMatch('password','repeat_password');" />
-					<span class="input-group-btn">
-						{% render '../components/button/generate-password', password: 'password' %}
-					</span>
-				</div>
-				</div>
+            <div class="input-group-field">
+                <a class="btn btn-default formbutton-narrow" href="javascript: navigator.clipboard.writeText(document.getElementById('email_local_part').value + '@' + document.getElementById('email_domain').value);" title="">
+                <span class="fa fa-clone"></span>
+                </a>
             </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ password_strength_txt }}</label>
-                <div class="col-sm-9 checkbox">
-                <div id="passBar"></div>
-                <span id="passText">&nbsp;</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="repeat_password" class="col-sm-3 control-label">{{ repeat_password_txt }}</label>
-                <div class="col-sm-9">
-	                <input type="password" name="repeat_password" id="repeat_password" value="" title="{{ password_click_to_set_txt }}" class="form-control" autocomplete="off" onkeyup="checkPassMatch('password','repeat_password');" /></div></div>
-            <div class="form-group">
-				<div class="col-sm-offset-3 col-sm-9">
-					<div id="confirmpasswordError" style="display:none;" class="confirmpassworderror">{{ password_mismatch_txt }}</div>
-					<div id="confirmpasswordOK" style="display:none;" class="confirmpasswordok">{{ password_match_txt }}</div>
-				</div>
-			</div>
-            <div class="form-group">
-                <label for="quota" class="col-sm-3 control-label">{{ quota_txt }}</label>
-                <div class="col-sm-9"><div class="input-group"><input type="text" name="quota" id="quota" value="{{ quota }}" class="form-control" aria-describedby="quota-desc" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>
-            </div>
-            <div class="form-group">
-                <label for="name" class="col-sm-3 control-label">{{ cc_txt }}</label>
-                <div class="col-sm-6"><input type="text" name="cc" id="cc" value="{{ cc }}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }} {{ cc_note_txt }}
-            </div></div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ forward_in_lda_txt }}</label>
-                <div class="col-sm-9">
-                    <a x-tooltip.raw="{{ tooltip_forward_in_lda_txt }}">{{ forward_in_lda }}</a>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="sender_name" class="col-sm-3 control-label">{{ sender_cc_txt }}</label>
-                <div class="col-sm-6"><input type="text" name="sender_cc" id="sender_cc" value="{{ sender_cc }}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }} {{ sender_cc_note_txt }}
-            </div></div>
-            {% if is_admin %}<div class="form-group">
-                <label for="imap_prefix" class="col-sm-3 control-label">{{ imap_prefix_txt }}</label>
-                <div class="col-sm-6">
-                    <input type="text" name="imap_prefix" id="imap_prefix" value="{{ imap_prefix }}" x-tooltip.raw="{{ tooltip_imap_prefix_txt }}" class="form-control" />
-                </div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }}</div>
-            </div>{% endif %}
-            <div class="form-group">
-                <label for="policy" class="col-sm-3 control-label">{{ policy_txt }}</label>
-                <div class="col-sm-9"><select name="policy" id="policy" class="form-control">
-                    {{ policy }}
-                </select></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ postfix_txt }}</label>
-                <div class="col-sm-9">
-                    <a x-tooltip.raw="{{ tooltip_postfix_txt }}">{{ postfix }}</a>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ disablesmtp_txt }}</label>
-                <div class="col-sm-9">
-                    <a x-tooltip.raw="{{ tooltip_disablesmtp_txt }}">{{ disablesmtp }}</a>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ disabledeliver_txt }}</label>
-                <div class="col-sm-9">
-                    <a x-tooltip.raw="{{ tooltip_disabledeliver_txt }}">{{ disabledeliver }}</a>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ greylisting_txt }}</label>
-                <div class="col-sm-9">
-                    {{ greylisting }}
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ disableimap_txt }}</label>
-                <div class="col-sm-9">
-                    {{ disableimap }}
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ disablepop3_txt }}</label>
-                <div class="col-sm-9">
-                    {{ disablepop3 }}
-                </div>
-            </div>
+        </div>
+    </div>
+</div>
+{% if enable_custom_login %}<div class="form-group">
+        <label for="login" class="col-sm-3 control-label">{{ login_txt }}</label>
+        <div class="col-sm-9"><input type="text" id="login" name="login" value="{{ login }}" class="form-control" /></div></label>
+    </div>{% endif %}
+<div class="form-group">
+    <label for="password" class="col-sm-3 control-label">{{ password_txt }}</label>
+    <div class="col-sm-9">
+    <div class="input-group">
+        <input type="password" name="password" id="password" value="{{ password }}" title="{{ password_click_to_set_txt }}" class="form-control" autocomplete="off" onkeyup="pass_check(this.value);checkPassMatch('password','repeat_password');" />
+        <span class="input-group-btn">
+            {% render '../components/button/generate-password', password: 'password' %}
+        </span>
+    </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ password_strength_txt }}</label>
+    <div class="col-sm-9 checkbox">
+    <div id="passBar"></div>
+    <span id="passText">&nbsp;</span>
+    </div>
+</div>
+<div class="form-group">
+    <label for="repeat_password" class="col-sm-3 control-label">{{ repeat_password_txt }}</label>
+    <div class="col-sm-9">
+        <input type="password" name="repeat_password" id="repeat_password" value="" title="{{ password_click_to_set_txt }}" class="form-control" autocomplete="off" onkeyup="checkPassMatch('password','repeat_password');" /></div></div>
+<div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+        <div id="confirmpasswordError" style="display:none;" class="confirmpassworderror">{{ password_mismatch_txt }}</div>
+        <div id="confirmpasswordOK" style="display:none;" class="confirmpasswordok">{{ password_match_txt }}</div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="quota" class="col-sm-3 control-label">{{ quota_txt }}</label>
+    <div class="col-sm-9"><div class="input-group"><input type="text" name="quota" id="quota" value="{{ quota }}" class="form-control" aria-describedby="quota-desc" /><span class="input-group-addon" id="quota-desc">MB</span></div></div>
+</div>
+<div class="form-group">
+    <label for="name" class="col-sm-3 control-label">{{ cc_txt }}</label>
+    <div class="col-sm-6"><input type="text" name="cc" id="cc" value="{{ cc }}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }} {{ cc_note_txt }}
+</div></div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ forward_in_lda_txt }}</label>
+    <div class="col-sm-9">
+        <a x-tooltip.raw="{{ tooltip_forward_in_lda_txt }}">{{ forward_in_lda }}</a>
+    </div>
+</div>
+<div class="form-group">
+    <label for="sender_name" class="col-sm-3 control-label">{{ sender_cc_txt }}</label>
+    <div class="col-sm-6"><input type="text" name="sender_cc" id="sender_cc" value="{{ sender_cc }}" class="form-control" /></div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }} {{ sender_cc_note_txt }}
+</div></div>
+{% if is_admin %}<div class="form-group">
+    <label for="imap_prefix" class="col-sm-3 control-label">{{ imap_prefix_txt }}</label>
+    <div class="col-sm-6">
+        <input type="text" name="imap_prefix" id="imap_prefix" value="{{ imap_prefix }}" x-tooltip.raw="{{ tooltip_imap_prefix_txt }}" class="form-control" />
+    </div><div class="col-sm-3 input-sm"> &nbsp; {{ name_optional_txt }}</div>
+</div>{% endif %}
+<div class="form-group">
+    <label for="policy" class="col-sm-3 control-label">{{ policy_txt }}</label>
+    <div class="col-sm-9"><select name="policy" id="policy" class="form-control">
+        {{ policy }}
+    </select></div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ postfix_txt }}</label>
+    <div class="col-sm-9">
+        <a x-tooltip.raw="{{ tooltip_postfix_txt }}">{{ postfix }}</a>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ disablesmtp_txt }}</label>
+    <div class="col-sm-9">
+        <a x-tooltip.raw="{{ tooltip_disablesmtp_txt }}">{{ disablesmtp }}</a>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ disabledeliver_txt }}</label>
+    <div class="col-sm-9">
+        <a x-tooltip.raw="{{ tooltip_disabledeliver_txt }}">{{ disabledeliver }}</a>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ greylisting_txt }}</label>
+    <div class="col-sm-9">
+        {{ greylisting }}
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ disableimap_txt }}</label>
+    <div class="col-sm-9">
+        {{ disableimap }}
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ disablepop3_txt }}</label>
+    <div class="col-sm-9">
+        {{ disablepop3 }}
+    </div>
+</div>
 
-        <input type="hidden" name="id" value="{{ id }}">
+<input type="hidden" name="id" value="{{ id }}">
 
-        <div class="clear">
-            {% if id %}{% if show_delete_on_forms == 'y' %}
-                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_user_del.php?id={{ id }}&_csrf_id={{ _csrf_id }}&_csrf_key={{ _csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-            {% endif %}{% endif %}
-            <div class="right">
-                <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="mail/mail_user_edit.php">{{ btn_save_txt }}</button>
-                <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="mail/mail_user_list.php">{{ btn_cancel_txt }}</button>
-            </div>
-	</div>
+{% render '../components/form-submit-buttons', cancel_load_content: 'mail/mail_user_list.php', save_form_action: 'mail/mail_user_edit.php', delete_form_action: 'mail/mail_user_del.php?id={{ id }}' %}

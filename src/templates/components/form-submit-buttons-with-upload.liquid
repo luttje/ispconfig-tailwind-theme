@@ -1,0 +1,52 @@
+<div class="flex flex-row justify-between gap-4">
+    {% render './button/primary', {
+        "slot": "{{ btn_cancel_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "data-load-content", "{{ cancel_load_content }}" ]
+        ]
+    } %}
+    {% if btn_send_txt %}
+        {% if data_form_upload == 'true' %}
+        {% render './button/success', {
+            "slot": "{{ btn_send_txt }}",
+            "attributes": [
+                [ "type", "button" ],
+                [ "data-submit-form", "pageForm" ],
+                [ "data-form-action", "{{ save_form_action }}" ],
+                [ "data-form-upload", "true" ]
+            ]
+        } %}
+        {% else %}
+        {% render './button/success', {
+            "slot": "{{ btn_send_txt }}",
+            "attributes": [
+                [ "type", "button" ],
+                [ "data-submit-form", "pageForm" ],
+                [ "data-form-action", "{{ save_form_action }}" ]
+            ]
+        } %}
+        {% endif %}
+    {% else %}
+        {% if data_form_upload == 'true' %}
+        {% render './button/success', {
+            "slot": "{{ btn_save_txt }}",
+            "attributes": [
+                [ "type", "button" ],
+                [ "data-submit-form", "pageForm" ],
+                [ "data-form-action", "{{ save_form_action }}" ],
+                [ "data-form-upload", "true" ]
+            ]
+        } %}
+        {% else %}
+        {% render './button/success', {
+            "slot": "{{ btn_save_txt }}",
+            "attributes": [
+                [ "type", "button" ],
+                [ "data-submit-form", "pageForm" ],
+                [ "data-form-action", "{{ save_form_action }}" ]
+            ]
+        } %}
+        {% endif %}
+    {% endif %}
+</div>
