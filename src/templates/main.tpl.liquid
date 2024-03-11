@@ -98,6 +98,11 @@
                     </div>
                     <div id="headerbar"
                          class="flex w-full items-center justify-end gap-4">
+                         <div class="notification grid place-items-center cursor-pointer text-bold bg-red-500 w-10 h-10 min-w-10 min-h-10 rounded-full animate-pulse"
+                              @click="modalOpen = true">
+                             <span class="notification_text">{{ datalog_changes_count }}</span>
+                         </div>
+
                         {% if cpuser %}
                             {% if usertype == "normaluser" %}
                             <!-- search field -->
@@ -143,35 +148,40 @@
                         {% endif %}
                     </div>
 
-                    <div class="notification cursor-pointer"
-                         @click="modalOpen = true">
-                        <span class="notification_text">{{ datalog_changes_count }}</span>
-                    </div>
-
                     <!-- Datalogstatus Modal -->
                     <div id="datalogModal"
-                         class="modal fade"
+                         class="modal grid fixed w-full h-full top-0 left-0 items-center justify-center z-50"
                          role="dialog"
                          x-show="modalOpen">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button"
-                                            class="close"
-                                            @click="modalOpen = false">&times;</button>
-                                    <h4 class="modal-title">{{ datalog_changes_txt }}</h4>
+                        <div class="modal-dialog shadow-lg rounded-lg border border-bg-600">
+                            <div class="modal-content inline-flex flex-col gap-4 bg-gray-100">
+                                <div class="modal-header flex flex-col gap-4 items-end p-4">
+                                    <div class="-mt-5 -mr-5">
+                                        {% render './components/button/primary', {
+                                            "slot": "&times;",
+                                            "attributes": [
+                                                ["type", "button"],
+                                                ["@click", "modalOpen = false"]
+                                            ]
+                                        } %}
+                                    </div>
+                                    <h4 class="modal-title font-semibold">{{ datalog_changes_txt }}</h4>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body bg-white p-4 min-h-5">
                                     <ul>
                                         {% loop datalog_changes %}
                                         <li><strong>{{ text }}:</strong> {{ count }}</li>
                                         {% endloop %}
                                     </ul>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button"
-                                            class=""
-                                            @click="modalOpen = false">{{ datalog_changes_close_txt }}</button>
+                                <div class="modal-footer grid items-center justify-center p-4">
+                                    {% render './components/button/primary', {
+                                        "slot": "{{ datalog_changes_close_txt }}",
+                                        "attributes": [
+                                            ["type", "button"],
+                                            ["@click", "modalOpen = false"]
+                                        ]
+                                    } %}
                                 </div>
                             </div>
                         </div>

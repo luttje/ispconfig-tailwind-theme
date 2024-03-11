@@ -1314,42 +1314,12 @@ input[type="password"].form-control[readonly] {
   cursor: text;
 }
 
-.notification {
-  width: 35px;
-  height: 35px;
-  background: #c70f19;
-  border-radius: 50%;
-  display: flex;
-  margin-top: 15px;
-  cursor: pointer;
-  margin-right: 15px;
-  float: right;
-}
-
-.notification {
-  animation: pulse 2s infinite;
-}
-
 @media (max-width: 600px) {
   .notification {
     margin-top: 0px;
     margin-right: 0px;
     margin-left: 230px;
     position: relative;
-  }
-}
-
-@keyframes pulse {
-  0% {
-    background: #ff000e;
-  }
-
-  50% {
-    background: #c70f19;
-  }
-
-  100% {
-    background: #ff000e;
   }
 }
 
