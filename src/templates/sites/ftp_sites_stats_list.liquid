@@ -2,56 +2,46 @@
 <p>{{ list_desc_txt }}</p>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
-<div class="table-wrapper mt-1">
-	<table class='table w-full'>
-		<thead class="dark">
-			<tr>
-				<th data-column="domain">{{ domain_txt }}</th>
-				<th data-column="this_month">{{ this_month_txt }}</th>
-				<th data-column="last_month">{{ last_month_txt }}</th>
-				<th data-column="this_year">{{ this_year_txt }}</th>
-				<th data-column="last_year">{{ last_year_txt }}</th>
-				<th class="small-col text-right">{{ search_limit }}</th>
-			</tr>
-			<tr>
-				<td><input class="form-control" type="text" name="search_domain" value="{{ search_domain }}" /></td>
-				<td class="this_month" style="color:black">{{ in_out_txt }}</td>
-				<td class="last_month" style="color:black">{{ in_out_txt }}</td>
-				<td class="this_year" style="color:black">{{ in_out_txt }}</td>
-				<td class="last_year" style="color:black">{{ in_out_txt }}</td>
-				<td class="text-right" style="color:black">
-					<button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/ftp_sites_stats.php"><span class="icon icon-filter"></span></button>
-				</td>
-			</tr>
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        {% render '../components/table/th', name: 'domain', label: '{{ domain_txt }}'%}
+        {% render '../components/table/th', name: 'this_month', label: '{{ this_month_txt }}'%}
+        {% render '../components/table/th', name: 'last_month', label: '{{ last_month_txt }}'%}
+        {% render '../components/table/th', name: 'this_year', label: '{{ this_year_txt }}'%}
+        {% render '../components/table/th', name: 'last_year', label: '{{ last_year_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
+    </tr>
+    <tr>
+        <td><input class="form-control" type="text" name="search_domain" value="{{ search_domain }}" /></td>
+        <td class="this_month" style="color:black">{{ in_out_txt }}</td>
+        <td class="last_month" style="color:black">{{ in_out_txt }}</td>
+        <td class="this_year" style="color:black">{{ in_out_txt }}</td>
+        <td class="last_year" style="color:black">{{ in_out_txt }}</td>
+        <td class="text-right" style="color:black">
+            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/ftp_sites_stats.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-		{% loop records %}
-			<tr>
-				<td><a target="_blank" href="http://{{ domain }}/stats">{{ domain }}</a></td>
-				<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ this_month_in }}/{{ this_month_out }}</a></td>
-				<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ last_month_in }}/{{ last_month_out }}</a></td>
-				<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ this_year_in }}/{{ this_year_out }}</a></td>
-				<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ last_year_in }}/{{ last_year_out }}</a></td>
-				<td class="text-right"></td>
-			</tr>
-		{% endloop %}
-		{% unless records %}
-			<tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-				<td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
-			</tr>
-		{% endunless %}
-			<tr>
-				<td><a href="#" onclick="return false;" style="font-weight:bold;">{{ sum_txt }}</a></td>
-				<td><a href="#" onclick="return false;" style="font-weight:bold;">{{ sum_this_month }}</a></td>
-				<td><a href="#" onclick="return false;" style="font-weight:bold;">{{ sum_last_month }}</a></td>
-				<td><a href="#" onclick="return false;" style="font-weight:bold;">{{ sum_this_year }}</a></td>
-				<td><a href="#" onclick="return false;" style="font-weight:bold;">{{ sum_last_year }}</a></td>
-				<td class="text-right"></td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="6">{{ paging }}</td>
-			</tr>
-		</tfoot>
-	</table>
+    {% loop records %}
+        <tr>
+            <td><a target="_blank" href="http://{{ domain }}/stats">{{ domain }}</a></td>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ this_month_in }}/{{ this_month_out }}</a></td>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ last_month_in }}/{{ last_month_out }}</a></td>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ this_year_in }}/{{ this_year_out }}</a></td>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={{ vhostdomain_type }}">{{ last_year_in }}/{{ last_year_out }}</a></td>
+            <td class="text-right"></td>
+        </tr>
+    {% endloop %}
+    {% render '../components/table/no-results', colspan: '6' %}
+        {% render '../components/table/sum-row-start' %}
+            <td><a href="#" onclick="return false;">{{ sum_txt }}</a></td>
+            <td><a href="#" onclick="return false;">{{ sum_this_month }}</a></td>
+            <td><a href="#" onclick="return false;">{{ sum_last_month }}</a></td>
+            <td><a href="#" onclick="return false;">{{ sum_this_year }}</a></td>
+            <td><a href="#" onclick="return false;">{{ sum_last_year }}</a></td>
+            <td class="text-right"></td>
+        {% render '../components/table/sum-row-end' %}
+    {% render '../components/table/paging-footer', colspan: '6' %}
+</table>
 </div>

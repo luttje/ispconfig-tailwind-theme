@@ -1,52 +1,36 @@
 <h1>{{ list_head_txt }}</h1>
 
-
-        <p class="fieldset-legend">{{ list_head_txt }} ({{ package_count }})</p>
-            <div class="table-wrapper mt-1">
-<table class='table w-full'>
-                <thead class="dark">
-                    <tr>
-                        <th colspan="2">{{ name_txt }}</th>
-                        <th>{{ version_txt }}</th>
-                        <th>{{ category_txt }}</th>
-                            {% if is_admin %}
-                                <th>{{ status_txt }}</th>
-                            {% endif %}
-                        <th class="small-col text-right">&nbsp;</th>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input class="form-control" type="text" name="search_name" value="{{ search_name }}" /></td>
-                        <td><input class="form-control" type="text" name="search_version" value="{{ search_version }}" /></td>
-                        <td><select class="form-control" name="search_category" onChange="ISPConfig.submitForm('pageForm','sites/aps_availablepackages_list.php');">{{ search_category }}</select></td>
-                            {% if is_admin %}
-                                <td><select class="form-control" name="search_package_status" onChange="ISPConfig.submitForm('pageForm','sites/aps_availablepackages_list.php');">{{ search_package_status }}</select></td>
-                            {% endif %}
-                        <td class="text-right"><button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/aps_availablepackages_list.php"><span class="icon icon-filter"></span></button></td>
-                    </tr>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }} ({{ package_count }})' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th colspan="2">{{ name_txt }}</th>
+        <th>{{ version_txt }}</th>
+        <th>{{ category_txt }}</th>
+            {% if is_admin %}
+                <th>{{ status_txt }}</th>
+            {% endif %}
+        <th class="small-col text-right">&nbsp;</th>
+    </tr>
+    <tr>
+        <td colspan="2"><input class="form-control" type="text" name="search_name" value="{{ search_name }}" /></td>
+        <td><input class="form-control" type="text" name="search_version" value="{{ search_version }}" /></td>
+        <td><select class="form-control" name="search_category" onChange="ISPConfig.submitForm('pageForm','sites/aps_availablepackages_list.php');">{{ search_category }}</select></td>
+            {% if is_admin %}
+                <td><select class="form-control" name="search_package_status" onChange="ISPConfig.submitForm('pageForm','sites/aps_availablepackages_list.php');">{{ search_package_status }}</select></td>
+            {% endif %}
+        <td class="text-right"><button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/aps_availablepackages_list.php"><span class="icon icon-filter"></span></button></td>
+    </tr>
 {% render '../components/table/head-body' %}
-                    {% loop records %}
-                        <tr>
-                            <td colspan="2"><a href="#" data-load-content="sites/aps_packagedetails_show.php?id={{ id }}">{{ name }}</a></td>
-                            <td>{{ version }}-{{ release }}</td>
-                            <td>{{ category }}</td>
-                                {% if is_admin %}
-                                    <td><a href="javascript:ISPConfig.loadContentInto('status_content{{ __ROWNUM__ }}', 'sites/aps_do_operation.php?action=change_status&id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}');"><span id="status_content{{ __ROWNUM__ }}">{{ package_status }}</span></a></td>
-                                {% endif %}
-                            <td class="text-right">&nbsp;</td>
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
-</div>
-
-    </div>
+    {% loop records %}
+        <tr>
+            <td colspan="2"><a href="#" data-load-content="sites/aps_packagedetails_show.php?id={{ id }}">{{ name }}</a></td>
+            <td>{{ version }}-{{ release }}</td>
+            <td>{{ category }}</td>
+                {% if is_admin %}
+                    <td><a href="javascript:ISPConfig.loadContentInto('status_content{{ __ROWNUM__ }}', 'sites/aps_do_operation.php?action=change_status&id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}');"><span id="status_content{{ __ROWNUM__ }}">{{ package_status }}</span></a></td>
+                {% endif %}
+            <td class="text-right">&nbsp;</td>
+        </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '4' %}

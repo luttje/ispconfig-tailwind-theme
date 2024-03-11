@@ -1,67 +1,62 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "billing/invoice_message_template_edit.php"]
-    ]
-} %}
+    {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "billing/invoice_message_template_edit.php"]
+        ]
+    } %}
+
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th data-column="template_type">{{ template_type_txt }}</th>
-                <th data-column="template_name">{{ template_name_txt }}</th>
-                <th class="text-right">&nbsp;</th>
-            </tr>
-            <tr>
-                <td><select class="form-control"
-                            name="search_template_type"
-                            onChange="ISPConfig.submitForm('pageForm','billing/invoice_message_template_list.php');">{{
-                        search_template_type }}</select></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_template_name"
-                           value="{{ search_template_name }}" /></td>
-                <td class="text-right">
-                    <div class="buttons"><button type="button"
-                                class="btn btn-default formbutton-default formbutton-narrow"
-                                name="Filter"
-                                id="Filter"
-                                value="{{ filter_txt }}"
-                                data-submit-form="pageForm"
-                                data-form-action="billing/invoice_message_template_list.php"><span
-                                  class="icon icon-filter"></span></button></div>
-                </td>
-            </tr>
+    <tr>
+        {% render '../components/table/th', name: 'template_type', label: '{{ template_type_txt }}'%}
+        {% render '../components/table/th', name: 'template_name', label: '{{ template_name_txt }}'%}
+        <th class="text-right">&nbsp;</th>
+    </tr>
+    <tr>
+        <td><select class="form-control"
+                    name="search_template_type"
+                    onChange="ISPConfig.submitForm('pageForm','billing/invoice_message_template_list.php');">{{
+                search_template_type }}</select></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_template_name"
+                    value="{{ search_template_name }}" /></td>
+        <td class="text-right">
+            <div class="buttons"><button type="button"
+                        class="btn btn-default formbutton-default formbutton-narrow"
+                        name="Filter"
+                        id="Filter"
+                        value="{{ filter_txt }}"
+                        data-submit-form="pageForm"
+                        data-form-action="billing/invoice_message_template_list.php"><span
+                            class="icon icon-filter"></span></button></div>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="billing/invoice_message_template_edit.php?id={{ id }}">{{ template_type }}</a>
-                </td>
-                <td><a href="#"
-                       data-load-content="billing/invoice_message_template_edit.php?id={{ id }}">{{ template_name }}</a>
-                </td>
-                <td class="text-right">
-                    <div class="buttons icons16">
-                        <a class="btn btn-default formbutton-danger formbutton-narrow"
-                           href="javascript: ISPConfig.confirm_action('billing/invoice_message_template_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
-                                  class="icon icon-delete"></span></a>
-                    </div>
-                </td>
-            </tr>
-            {% endloop %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="billing/invoice_message_template_edit.php?id={{ id }}">{{ template_type }}</a>
+        </td>
+        <td><a href="#"
+                data-load-content="billing/invoice_message_template_edit.php?id={{ id }}">{{ template_name }}</a>
+        </td>
+        <td class="text-right">
+            <div class="buttons icons16">
+                <a class="btn btn-default formbutton-danger formbutton-narrow"
+                    href="javascript: ISPConfig.confirm_action('billing/invoice_message_template_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
+                            class="icon icon-delete"></span></a>
+            </div>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '3' %}

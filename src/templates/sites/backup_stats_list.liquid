@@ -2,38 +2,26 @@
 <p>{{ list_desc_txt }}</p>
 
 
-        {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
-            <div class="table-wrapper mt-1">
-<table class='table w-full'>
-                <thead class="dark">
-					<tr>
-						<th class="tiny-col" data-column="active">{{ active_txt }}</th>
-						<th data-column="domain">{{ domain_txt }}</th>
-						<th data-column="backup_server">{{ backup_server_txt }}</th>
-						<th data-column="backup_interval">{{ backup_interval_txt }}</th>
-						<th data-column="backup_count">{{ backup_count_txt }}</th>
-						<th data-column="backup_size">{{ backup_size_txt }}</th>
-					</tr>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'domain', label: '{{ domain_txt }}'%}
+        {% render '../components/table/th', name: 'backup_server', label: '{{ backup_server_txt }}'%}
+        {% render '../components/table/th', name: 'backup_interval', label: '{{ backup_interval_txt }}'%}
+        {% render '../components/table/th', name: 'backup_count', label: '{{ backup_count_txt }}'%}
+        {% render '../components/table/th', name: 'backup_size', label: '{{ backup_size_txt }}'%}
+    </tr>
 {% render '../components/table/head-body' %}
-					{% loop records %}
-					<tr class="tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ active }}</a> </td>
-						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ domain }}</a> </td>
-						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ server_id }}</a> </td>
-						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_interval }}</a> /  <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_copies }}</a> </td>
-						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_copies_exists }}</a> </td>
-						<td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_size }}</a> </td>
-					</tr>
-					{% endloop %}
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="5">
-							{{ paging }}
-						</td>
-					</tr>
-				</tfoot>
-            </table>
-</div>
-
-    </div>
+    {% loop records %}
+        <tr class="tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
+            <td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ active }}</a> </td>
+            <td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ domain }}</a> </td>
+            <td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ server_id }}</a> </td>
+            <td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_interval }}</a> /  <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_copies }}</a> </td>
+            <td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_copies_exists }}</a> </td>
+            <td> <a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}&type={% if type == 'vhost' %}domain{% endif %}{% if type == 'vhostsubdomain' %}vhost_sub{% endif %}{% if type == 'vhostalias' %}vhost_alias{% endif %}">{{ backup_size }}</a> </td>
+        </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '6' %}

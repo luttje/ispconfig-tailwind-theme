@@ -1,8 +1,8 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
 
+<div class="flex flex-row justify-end gap-4">
 {% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
     "attributes": [
@@ -11,77 +11,69 @@
         [ "data-load-content", "mail/spamfilter_policy_edit.php"]
     ]
 } %}
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th data-column="policy_name">{{ policy_name_txt }}</th>
-                <th data-column="virus_lover">{{ virus_lover_txt }}</th>
-                <th data-column="spam_lover">{{ spam_lover_txt }}</th>
-                {% if content_filter == 'amavisd' %}
-                <th data-column="banned_files_lover">{{ banned_files_lover_txt }}</th>
-                <th data-column="bad_header_lover">{{ bad_header_lover_txt }}</th>
-                {% endif %}
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_policy_name"
-                           value="{{ search_policy_name }}" /></td>
-                <td><select class="form-control"
-                            name="search_virus_lover">{{ search_virus_lover }}</select></td>
-                <td><select class="form-control"
-                            name="search_spam_lover">{{ search_spam_lover }}</select></td>
-                {% if content_filter == 'amavisd' %}
-                <td><select class="form-control"
-                            name="search_banned_files_lover">{{ search_banned_files_lover }}</select></td>
-                <td><select class="form-control"
-                            name="search_bad_header_lover">{{ search_bad_header_lover }}</select></td>
-                {% endif %}
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="mail/spamfilter_policy_list.php"><span class="icon icon-filter"></span></button>
-                </td>
-            </tr>
+    <tr>
+        {% render '../components/table/th', name: 'policy_name', label: '{{ policy_name_txt }}'%}
+        {% render '../components/table/th', name: 'virus_lover', label: '{{ virus_lover_txt }}'%}
+        {% render '../components/table/th', name: 'spam_lover', label: '{{ spam_lover_txt }}'%}
+        {% if content_filter == 'amavisd' %}
+        {% render '../components/table/th', name: 'banned_files_lover', label: '{{ banned_files_lover_txt }}'%}
+        {% render '../components/table/th', name: 'bad_header_lover', label: '{{ bad_header_lover_txt }}'%}
+        {% endif %}
+        {% render '../components/table/th-search-limit' %}
+    </tr>
+    <tr>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_policy_name"
+                    value="{{ search_policy_name }}" /></td>
+        <td><select class="form-control"
+                    name="search_virus_lover">{{ search_virus_lover }}</select></td>
+        <td><select class="form-control"
+                    name="search_spam_lover">{{ search_spam_lover }}</select></td>
+        {% if content_filter == 'amavisd' %}
+        <td><select class="form-control"
+                    name="search_banned_files_lover">{{ search_banned_files_lover }}</select></td>
+        <td><select class="form-control"
+                    name="search_bad_header_lover">{{ search_bad_header_lover }}</select></td>
+        {% endif %}
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="mail/spamfilter_policy_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ policy_name }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ virus_lover }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ spam_lover }}</a></td>
-                {% if content_filter == 'amavisd' %}
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ banned_files_lover }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ bad_header_lover }}</a></td>
-                {% endif %}
-                <td class="text-right">
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('mail/spamfilter_policy_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="{% if content_filter == 'amavisd' %}6{% else %}4{% endif %}">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-
-        <tfoot>
-            <tr>
-                <td colspan="{% if content_filter == 'amavisd' %}6{% else %}4{% endif %}">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ policy_name }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ virus_lover }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ spam_lover }}</a></td>
+        {% if content_filter == 'amavisd' %}
+        <td><a href="#"
+                data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ banned_files_lover }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_policy_edit.php?id={{ id }}">{{ bad_header_lover }}</a></td>
+        {% endif %}
+        <td class="text-right">
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('mail/spamfilter_policy_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% if content_filter == 'amavisd' %}
+{% render '../components/table/end', colspan: '6' %}
+{% else %}
+{% render '../components/table/end', colspan: '4' %}
+{% endif %}

@@ -149,7 +149,4 @@
 
         <input type="hidden" name="id" value="{{ id }}">
 
-        <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="client/reseller_edit.php">{{ btn_save_txt }}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="client/reseller_list.php">{{ btn_cancel_txt }}</button>
-        </div></div>
+        {% render '../components/form-submit-buttons', cancel_load_content: 'client/reseller_list.php', save_form_action: 'client/reseller_edit.php' %}

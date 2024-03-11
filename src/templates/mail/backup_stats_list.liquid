@@ -7,12 +7,12 @@
 <table class='table w-full'>
                 <thead class="dark">
 					<tr>
-						<th class="tiny-col" data-column="active">{{ active_txt }}</th>
-						<th data-column="domain">{{ domain_txt }}</th>
-						<th data-column="backup_server">{{ backup_server_txt }}</th>
-						<th data-column="backup_interval">{{ backup_interval_txt }}</th>
-						<th data-column="backup_count">{{ backup_count_txt }}</th>
-						<th data-column="backup_size">{{ backup_size_txt }}</th>
+						{% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+						{% render '../components/table/th', name: 'domain', label: '{{ domain_txt }}'%}
+						{% render '../components/table/th', name: 'backup_server', label: '{{ backup_server_txt }}'%}
+						{% render '../components/table/th', name: 'backup_interval', label: '{{ backup_interval_txt }}'%}
+						{% render '../components/table/th', name: 'backup_count', label: '{{ backup_count_txt }}'%}
+						{% render '../components/table/th', name: 'backup_size', label: '{{ backup_size_txt }}'%}
 					</tr>
 {% render '../components/table/head-body' %}
 					{% loop records %}

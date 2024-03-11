@@ -1,39 +1,37 @@
-<div class='table-wrapper'>
-	<table class='table w-full'>
-		<caption>{{ quota_txt }}</caption>
-		<thead class="dark">
-			<tr>
-				<th>{{ domain_txt }}</th>
-				<th>{{ used_txt }}</th>
-				<th>{{ soft_txt }}</th>
-				<th colspan="2">{{ hard_txt }}</th>
-			</tr>
+
+{% render '../components/table/fieldset-legend', slot: '{{ quota_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th>{{ domain_txt }}</th>
+        <th>{{ used_txt }}</th>
+        <th>{{ soft_txt }}</th>
+        <th colspan="2">{{ hard_txt }}</th>
+    </tr>
 {% render '../components/table/head-body' %}
-			{% loop quota %}
-				<tr>
-					<td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ domain_id }}" x-tooltip.placement.bottom.raw="" data-original-title="{{ domain }}">{{ domain }}</a></td>
-					<td>{{ used }}</td>
-					<td>{{ soft }}</td>
-					<td>{{ hard }}</td>
-					{% if progressbar != '-1' %}<td>
-						<div class='progress'>
-							<div class='progress-bar-striped progress-bar progress-bar-{% if used_percentage < '50' %}success{% elsif used_percentage < '75' %}warning{% else %}danger{% endif %}'
-								role='progressbar' aria-valuemin='0' aria-valuemax='100'
-								aria-valuenow='{{ used_percentage }}'
-								style='width:{{ used_percentage }}%'><span>{{ used_percentage }}%</span>
-								<span class='sr-only'>{{ used }} {{ of_txt }} {{ soft }}</span>
-							</div>
-						</div>
-					</td>{% else %}<td></td>{% endif %}
-				</tr>
-			{% endloop %}
-			</tbody>
-			<tfoot>
-			<tr>
-				<th>{{ total_txt }}</th>
-				<th>{{ total_used }}</th>
-				<th colspan="3"></th>
-			</tr>
-		</tfoot>
-	</table>
+    {% loop quota %}
+        <tr>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ domain_id }}" x-tooltip.placement.bottom.raw="" data-original-title="{{ domain }}">{{ domain }}</a></td>
+            <td>{{ used }}</td>
+            <td>{{ soft }}</td>
+            <td>{{ hard }}</td>
+            {% if progressbar != '-1' %}<td>
+                <div class='progress'>
+                    <div class='progress-bar-striped progress-bar progress-bar-{% if used_percentage < '50' %}success{% elsif used_percentage < '75' %}warning{% else %}danger{% endif %}'
+                        role='progressbar' aria-valuemin='0' aria-valuemax='100'
+                        aria-valuenow='{{ used_percentage }}'
+                        style='width:{{ used_percentage }}%'><span>{{ used_percentage }}%</span>
+                        <span class='sr-only'>{{ used }} {{ of_txt }} {{ soft }}</span>
+                    </div>
+                </div>
+            </td>{% else %}<td></td>{% endif %}
+        </tr>
+    {% endloop %}
+{% render '../components/table/no-results', colspan: '5' %}
+    {% render '../components/table/sum-row-start' %}
+        <td>{{ total_txt }}</td>
+        <td>{{ total_used }}</td>
+        <td colspan="3">&nbsp;</td>
+    {% render '../components/table/sum-row-end' %}
+</table>
 </div>

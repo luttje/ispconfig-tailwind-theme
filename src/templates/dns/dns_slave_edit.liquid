@@ -66,10 +66,7 @@
         <input type="hidden" name="id" value="{{ id }}">
         <input name="serial" type="hidden" value="{{ serial }}">
             
-        <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="dns/dns_slave_edit.php">{{ btn_save_txt }}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="dns/dns_slave_list.php">{{ btn_cancel_txt }}</button>
-        </div></div>
+        {% render '../components/form-submit-buttons', cancel_load_content: 'dns/dns_slave_list.php', save_form_action: 'dns/dns_slave_edit.php' %}
 <script language="JavaScript" type="text/javascript">
     jQuery('#ns').ispconfigSearch({
         dataSrc: '/dns/ajax_get_json.php?type=get_ipv4',

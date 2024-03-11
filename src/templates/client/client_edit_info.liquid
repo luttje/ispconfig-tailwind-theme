@@ -1,23 +1,39 @@
-<input type="hidden" name="id" value="{{ id }}">
+<input type="hidden"
+       name="id"
+       value="{{ id }}">
+
 <div class='page-header'>
-        <legend>Client info</legend>
-        <div>
-                <ul>
-                        <li>Company Name: {{ company_name }}</li>
-                        <li>Contact Name: {{ contact_name }}</li>
-                        <li>E-mail: <a href="mailto:{{ email }}">{{ email }}</a></li>
-                        <li>Login as:
-							{% if is_admin %}
-									<a class="btn btn-default formbutton-success formbutton-narrow" data-load-content="login/login_as.php?cid={{ id }}"><span class="icon icon-loginas"></span></a>
-							{% elsif is_reseller %}
-									<a class="btn btn-default formbutton-success formbutton-narrow" data-load-content="login/login_as.php?cid={{ id }}"><span class="icon icon-loginas"></span></a>
-							{% endif %}
-						</li>
-                </ul>
-         </div>
+    <legend>Client info</legend>
+    <div>
+        <ul>
+            <li>Company Name: {{ company_name }}</li>
+            <li>Contact Name: {{ contact_name }}</li>
+            <li>E-mail: <a href="mailto:{{ email }}">{{ email }}</a></li>
+            <li>Login as:
+                {% if is_admin %}
+                   {% render '../components/button/primary-tiny', {
+                       "slot": "<span class=\"icon icon-loginas\"></span>",
+                       "attributes": [
+                           [ "type", "button" ],
+                           [ "value", "Login as" ],
+                           [ "data-load-content", "login/login_as.php?cid={{ id }}" ]
+                       ]
+                   } %}
+                {% elsif is_reseller %}
+                   {% render '../components/button/primary-tiny', {
+                       "slot": "<span class=\"icon icon-loginas\"></span>",
+                       "attributes": [
+                           [ "type", "button" ],
+                           [ "value", "Login as" ],
+                           [ "data-load-content", "login/login_as.php?cid={{ id }}" ]
+                       ]
+                   } %}
+                {% endif %}
+            </li>
+        </ul>
+    </div>
 
 
-{{ dashlets }}
+    {{ dashlets }}
 
 </div>
-

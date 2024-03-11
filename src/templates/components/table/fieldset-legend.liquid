@@ -1,1 +1,9 @@
-<p class="fieldset-legend">{{ slot }}</p>
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "class": ""
+    }
+} %}
+<div class="{{ class }} rounded-t px-4 py-2 mt-4 text-center font-bold border bg-gradient-to-b border-gray-300 from-white to-[#eef0f2] dark:border-gray-800 dark:from-gray-800 dark:to-gray-900">
+    <p class="fieldset-legend">{{ slot }}</p>
+</div>

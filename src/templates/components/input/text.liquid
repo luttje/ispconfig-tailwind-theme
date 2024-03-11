@@ -1,1 +1,33 @@
-{% render './base', type: 'text', id: '{{ id }}', name: '{{ name }}', value: '{{ value }}', placeholder: '{{ placeholder }}' autocomplete: 'on', onkeyup: '', class: '' %}
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "type": "text",
+        "value": "",
+        "class": "",
+        "autocomplete": "on",
+        "placeholder": "",
+        "onkeyup": "",
+        "autofocus": false,
+        "required": false,
+        "disabled": false
+    }
+} %}
+<input type="{{ type }}"
+    name="{{ name }}"
+    id="{{ id }}"
+    value="{{ value }}"
+    class="{{ class }} w-full h-full border rounded px-2 py-1 bg-white text-black border-gray-400 dark:bg-slate-600 dark:text-white dark:border-slate-700"
+    autocomplete="{{ autocomplete }}"
+    placeholder="{{ placeholder }}"
+    onkeyup="{{ onkeyup }}"
+    {% if autofocus %}
+        autofocus
+    {% endif %}
+    {% if required %}
+        required
+    {% endif %}
+    {% if disabled %}
+        disabled
+    {% endif %}
+    {% render '../util/merge-attributes' %}
+    />

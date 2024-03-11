@@ -1,7 +1,7 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
 {% render '../components/button/primary', {
     "slot": "{{ add_new_cron_txt }}",
@@ -12,105 +12,94 @@
     ]
 } %}
 
+</div>
+
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th class="tiny-col"
-                    data-column="active">{{ active_txt }}</th>
-                <th data-column="server_id">{{ server_id_txt }}</th>
-                <th data-column="parent_domain_id">{{ parent_domain_id_txt }}</th>
-                <th data-column="run_min">{{ run_min_txt }}</th>
-                <th data-column="run_hour">{{ run_hour_txt }}</th>
-                <th data-column="run_mday">{{ run_mday_txt }}</th>
-                <th data-column="run_month">{{ run_month_txt }}</th>
-                <th data-column="run_wday">{{ run_wday_txt }}</th>
-                <th data-column="command">{{ command_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><select class="form-control"
-                            name="search_active">{{ search_active }}</select></td>
-                <td><select class="form-control"
-                            name="search_server_id">{{ search_server_id }}</select></td>
-                <td><select class="form-control"
-                            name="search_parent_domain_id">{{ search_parent_domain_id }}</select></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_run_min"
-                           value="{{ search_run_min }}" /></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_run_hour"
-                           value="{{ search_run_hour }}" /></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_run_mday"
-                           value="{{ search_run_mday }}" /></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_run_month"
-                           value="{{ search_run_month }}" /></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_run_wday"
-                           value="{{ search_run_wday }}" /></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_command"
-                           value="{{ search_command }}" /></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="sites/cron_list.php"><span class="icon icon-filter"></span></button>
-                </td>
-            </tr>
+    <tr>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% render '../components/table/th', name: 'parent_domain_id', label: '{{ parent_domain_id_txt }}'%}
+        {% render '../components/table/th', name: 'run_min', label: '{{ run_min_txt }}'%}
+        {% render '../components/table/th', name: 'run_hour', label: '{{ run_hour_txt }}'%}
+        {% render '../components/table/th', name: 'run_mday', label: '{{ run_mday_txt }}'%}
+        {% render '../components/table/th', name: 'run_month', label: '{{ run_month_txt }}'%}
+        {% render '../components/table/th', name: 'run_wday', label: '{{ run_wday_txt }}'%}
+        {% render '../components/table/th', name: 'command', label: '{{ command_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
+    </tr>
+    <tr>
+        <td><select class="form-control"
+                    name="search_active">{{ search_active }}</select></td>
+        <td><select class="form-control"
+                    name="search_server_id">{{ search_server_id }}</select></td>
+        <td><select class="form-control"
+                    name="search_parent_domain_id">{{ search_parent_domain_id }}</select></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_run_min"
+                    value="{{ search_run_min }}" /></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_run_hour"
+                    value="{{ search_run_hour }}" /></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_run_mday"
+                    value="{{ search_run_mday }}" /></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_run_month"
+                    value="{{ search_run_month }}" /></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_run_wday"
+                    value="{{ search_run_wday }}" /></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_command"
+                    value="{{ search_command }}" /></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="sites/cron_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="sites/cron_edit.php?id={{ id }}">{{ active }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/cron_edit.php?id={{ id }}"
-                       x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/cron_edit.php?id={{ id }}"
-                       x-tooltip.placement.bottom.raw="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_min }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_hour }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_mday }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_month }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_wday }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/cron_edit.php?id={{ id }}"
-                       x-tooltip.placement.bottom.raw="{{ command }}">{{ command }}</a></td>
-                <td class="text-right">
-                    <div class="buttons icons16">
-                        <a class="btn btn-default formbutton-danger formbutton-narrow"
-                           href="javascript: ISPConfig.confirm_action('sites/cron_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                    </div>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="10">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="10">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="sites/cron_edit.php?id={{ id }}">{{ active }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/cron_edit.php?id={{ id }}"
+                x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/cron_edit.php?id={{ id }}"
+                x-tooltip.placement.bottom.raw="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_min }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_hour }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_mday }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_month }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/cron_edit.php?id={{ id }}">{{ run_wday }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/cron_edit.php?id={{ id }}"
+                x-tooltip.placement.bottom.raw="{{ command }}">{{ command }}</a></td>
+        <td class="text-right">
+            <div class="buttons icons16">
+                <a class="btn btn-default formbutton-danger formbutton-narrow"
+                    href="javascript: ISPConfig.confirm_action('sites/cron_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+            </div>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '10' %}

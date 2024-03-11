@@ -7,14 +7,14 @@
     <tr>
         <th data-column="server_name"
             width="20%">{{ server_name_txt }}</th>
-        <th data-column="mail_server">{{ mail_server_txt }}</th>
-        <th data-column="web_server">{{ web_server_txt }}</th>
-        <th data-column="dns_server">{{ dns_server_txt }}</th>
-        <th data-column="file_server">{{ file_server_txt }}</th>
-        <th data-column="db_server">{{ db_server_txt }}</th>
-        <th data-column="vserver_server">{{ vserver_server_txt }}</th>
-        <th data-column="vserver_server">{{ xmpp_server_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'mail_server', label: '{{ mail_server_txt }}'%}
+        {% render '../components/table/th', name: 'web_server', label: '{{ web_server_txt }}'%}
+        {% render '../components/table/th', name: 'dns_server', label: '{{ dns_server_txt }}'%}
+        {% render '../components/table/th', name: 'file_server', label: '{{ file_server_txt }}'%}
+        {% render '../components/table/th', name: 'db_server', label: '{{ db_server_txt }}'%}
+        {% render '../components/table/th', name: 'vserver_server', label: '{{ vserver_server_txt }}'%}
+        {% render '../components/table/th', name: 'vserver_server', label: '{{ xmpp_server_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control"
@@ -63,4 +63,4 @@
         </td>
     </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/end', colspan: '9' %}

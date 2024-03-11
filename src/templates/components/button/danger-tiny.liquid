@@ -1,0 +1,10 @@
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "class": ""
+    }
+} %}
+<button class="{{ class }} group flex justify-center items-center min-h-6 px-2 rounded font-bold text-xs cursor-pointer shadow hover:shadow-lg bg-gradient-to-b from-red-400 to-red-500 hover:from-rose-300 hover:to-red-400 dark:text-white dark:from-red-800 dark:to-red-900 dark:hover:from-red-700 dark:hover:to-red-800"
+    {% render '../util/merge-attributes' %}>
+    {{ slot }}
+</button>

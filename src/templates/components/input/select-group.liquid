@@ -1,6 +1,7 @@
+{% meta { "isChildOnly": true } %}
 {% render './group-start' %}
-    {% render './label', name: '{{ name }}', slot: '{{ label }}' %}
+    {% render './label', slot: '{{ label }}' %}
     <div class="w-9/12">
-        {% render './select', id: '{{ id }}', name: '{{ name }}', options: '{{ options }}', class: '{{ class }}' %}
+        {% render './select' %}
     </div>
 {% render './group-end' %}

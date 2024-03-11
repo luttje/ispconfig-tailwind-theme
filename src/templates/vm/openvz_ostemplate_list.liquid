@@ -1,82 +1,71 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "vm/openvz_ostemplate_edit.php"]
-    ]
-} %}
+    {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "vm/openvz_ostemplate_edit.php"]
+        ]
+    } %}
+
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th class="tiny-col"
-                    data-column="active">{{ active_txt }}</th>
-                <th data-column="ostemplate_id">{{ ostemplate_id_txt }}</th>
-                <th data-column="template_name">{{ template_name_txt }}</th>
-                <th data-column="server_id">{{ server_id_txt }}</th>
-                <th data-column="allservers">{{ allservers_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><select class="form-control"
-                            name="search_active">{{ search_active }}</select></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_ostemplate_id"
-                           value="{{ search_ostemplate_id }}" /></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_template_name"
-                           value="{{ search_template_name }}" /></td>
-                <td><select class="form-control"
-                            name="search_server_id">{{ search_server_id }}</select></td>
-                <td><select class="form-control"
-                            name="search_allservers">{{ search_allservers }}</select></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="vm/openvz_ostemplate_list.php"><span class="icon icon-filter"></span></button>
-                </td>
-            </tr>
+    <tr>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'ostemplate_id', label: '{{ ostemplate_id_txt }}'%}
+        {% render '../components/table/th', name: 'template_name', label: '{{ template_name_txt }}'%}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% render '../components/table/th', name: 'allservers', label: '{{ allservers_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
+    </tr>
+    <tr>
+        <td><select class="form-control"
+                    name="search_active">{{ search_active }}</select></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_ostemplate_id"
+                    value="{{ search_ostemplate_id }}" /></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_template_name"
+                    value="{{ search_template_name }}" /></td>
+        <td><select class="form-control"
+                    name="search_server_id">{{ search_server_id }}</select></td>
+        <td><select class="form-control"
+                    name="search_allservers">{{ search_allservers }}</select></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="vm/openvz_ostemplate_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ active }}</a></td>
-                <td><a href="#"
-                       data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ ostemplate_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ template_name }}</a></td>
-                <td><a href="#"
-                       data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ server_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ allservers }}</a></td>
-                <td class="text-right">
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('vm/openvz_ostemplate_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="6">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ active }}</a></td>
+        <td><a href="#"
+                data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ ostemplate_id }}</a></td>
+        <td><a href="#"
+                data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ template_name }}</a></td>
+        <td><a href="#"
+                data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ server_id }}</a></td>
+        <td><a href="#"
+                data-load-content="vm/openvz_ostemplate_edit.php?id={{ id }}">{{ allservers }}</a></td>
+        <td class="text-right">
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('vm/openvz_ostemplate_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '6' %}

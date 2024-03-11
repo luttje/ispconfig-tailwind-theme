@@ -1,6 +1,6 @@
 {% render '../components/heading/h1', slot: '{{ do_osupdate_caption }}' %}
-<div class="panel" style="padding:20px;">
-	<div class="pnl_formsarea">
+<div class="panel">
+	<div class="pnl_formsarea flex flex-col gap-4">
 		<div class="alert alert-warning">
 			<p>
 				{{ do_osupdate_desc }}
@@ -21,10 +21,15 @@
 			</div>
 		{% endif %}
 
-		<div class="clear">
-			<div class="right">
-				<button class="btn btn-default formbutton-success" type="button" value="{{ btn_do_txt }}" data-submit-form="pageForm" data-form-action="admin/remote_action_osupdate.php">{{ btn_do_txt }}</button>
-			</div>
-		</div>
+        <div class="flex flex-row justify-between gap-4">
+            {% render '../components/button/success', {
+                "slot": "{{ btn_do_txt }}",
+                "attributes": [
+                    [ "type", "button" ],
+                    [ "data-submit-form", "pageForm" ],
+                    [ "data-form-action", "admin/remote_action_osupdate.php" ]
+                ]
+            } %}
+        </div>
 	</div>
 </div>

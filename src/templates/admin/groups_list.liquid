@@ -1,16 +1,18 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "admin/groups_edit.php"]
-    ]
-} %}
+    {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "admin/groups_edit.php"]
+        ]
+    } %}
+
+</div>
 
 <p>{{ warning_txt }}</p>
 
@@ -18,8 +20,8 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="name">{{ name_txt }}</th>
-        <th data-column="description">{{ description_txt }}</th>
+        {% render '../components/table/th', name: 'name', label: '{{ name_txt }}'%}
+        {% render '../components/table/th', name: 'description', label: '{{ description_txt }}'%}
         <th class="text-right">&nbsp;</th>
     </tr>
     <tr>
@@ -55,4 +57,4 @@
             </td>
         </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/end', colspan: '3' %}

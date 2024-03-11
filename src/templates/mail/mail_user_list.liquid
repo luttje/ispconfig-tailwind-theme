@@ -18,8 +18,7 @@
     </div>
 {% endif %}
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
-
+<div class="flex flex-row justify-end gap-4">
 {% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
     "attributes": [
@@ -28,106 +27,93 @@
         [ "data-load-content", "mail/mail_user_edit.php"]
     ]
 } %}
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th data-column="email">{{ email_txt }}</th>
-                {% if enable_custom_login %}<th data-column="login">{{ login_txt }}</th>{% endif %}
-                <th data-column="name">{{ name_txt }}</th>
-                <th class="tiny-col"
-                    data-column="autoresponder">{{ autoresponder_txt }}</th>
-                <th class="tiny-col"
-                    data-column="postfix">{{ postfix_txt }}</th>
-                <th class="tiny-col"
-                    data-column="disablesmtp">{{ disablesmtp_txt }}</th>
-                <th class="tiny-col"
-                    data-column="disabledeliver">{{ disabledeliver_txt }}</th>
-                <th class="tiny-col"
-                    data-column="disableimap">{{ disableimap_txt }}</th>
-                <th class="tiny-col"
-                    data-column="disablepop3">{{ disablepop3_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_email"
-                           value="{{ search_email }}" /></td>
-                {% if enable_custom_login %}<td><input class="form-control"
-                           type="text"
-                           name="search_login"
-                           value="{{ search_login }}" /></td>{% endif %}
-                <td><input class="form-control"
-                           type="text"
-                           name="search_name"
-                           value="{{ search_name }}" /></td>
-                <td><select class="form-control"
-                            name="search_autoresponder">{{ search_autoresponder }}</select></td>
-                <td><select class="form-control"
-                            name="search_postfix">{{ search_postfix }}</select></td>
-                <td><select class="form-control"
-                            name="search_disablesmtp">{{ search_disablesmtp }}</select></td>
-                <td><select class="form-control"
-                            name="search_disabledeliver">{{ search_disabledeliver }}</select></td>
-                <td><select class="form-control"
-                            name="search_disableimap">{{ search_disableimap }}</select></td>
-                <td><select class="form-control"
-                            name="search_disablepop3">{{ search_disablepop3 }}</select></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="mail/mail_user_list.php"><span class="icon icon-filter"></span></button>
-                </td>
-            </tr>
+    <tr>
+        {% render '../components/table/th', name: 'email', label: '{{ email_txt }}'%}
+        {% if enable_custom_login %}{% render '../components/table/th', name: 'login', label: '{{ login_txt }}'%}{% endif %}
+        {% render '../components/table/th', name: 'name', label: '{{ name_txt }}'%}
+        {% render '../components/table/th', name: 'autoresponder', label: '{{ autoresponder_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'postfix', label: '{{ postfix_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'disablesmtp', label: '{{ disablesmtp_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'disabledeliver', label: '{{ disabledeliver_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'disableimap', label: '{{ disableimap_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'disablepop3', label: '{{ disablepop3_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th-search-limit' %}
+    </tr>
+    <tr>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_email"
+                    value="{{ search_email }}" /></td>
+        {% if enable_custom_login %}<td><input class="form-control"
+                    type="text"
+                    name="search_login"
+                    value="{{ search_login }}" /></td>{% endif %}
+        <td><input class="form-control"
+                    type="text"
+                    name="search_name"
+                    value="{{ search_name }}" /></td>
+        <td><select class="form-control"
+                    name="search_autoresponder">{{ search_autoresponder }}</select></td>
+        <td><select class="form-control"
+                    name="search_postfix">{{ search_postfix }}</select></td>
+        <td><select class="form-control"
+                    name="search_disablesmtp">{{ search_disablesmtp }}</select></td>
+        <td><select class="form-control"
+                    name="search_disabledeliver">{{ search_disabledeliver }}</select></td>
+        <td><select class="form-control"
+                    name="search_disableimap">{{ search_disableimap }}</select></td>
+        <td><select class="form-control"
+                    name="search_disablepop3">{{ search_disablepop3 }}</select></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="mail/mail_user_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="mail/mail_user_edit.php?id={{ id }}"
-                       x-tooltip.placement.bottom.raw="{{ email }}">{{ email }}</a></td>
-                {% if enable_custom_login %}<td><a href="#"
-                       data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ login }}</a></td>{% endif %}
-                <td><a href="#"
-                       data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ name }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ autoresponder }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ postfix }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disablesmtp }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disabledeliver }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disableimap }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disablepop3 }}</a></td>
-                <td class="text-right">
-                    {% if mailboxlist_webmail_link %}
-                    <a class="btn btn-default formbutton-default formbutton-narrow"
-                       href="mail/webmailer.php?id={{ id }}"
-                       target="webmail"><span class="icon icon-mail"></span></a>
-                    {% endif %}
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('mail/mail_user_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="{% if enable_custom_login %}9{% else %}8{% endif %}">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="{% if enable_custom_login %}9{% else %}8{% endif %}">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="mail/mail_user_edit.php?id={{ id }}"
+                x-tooltip.placement.bottom.raw="{{ email }}">{{ email }}</a></td>
+        {% if enable_custom_login %}<td><a href="#"
+                data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ login }}</a></td>{% endif %}
+        <td><a href="#"
+                data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ name }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ autoresponder }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ postfix }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disablesmtp }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disabledeliver }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disableimap }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/mail_user_edit.php?id={{ id }}">{{ disablepop3 }}</a></td>
+        <td class="text-right">
+            {% if mailboxlist_webmail_link %}
+            <a class="btn btn-default formbutton-default formbutton-narrow"
+                href="mail/webmailer.php?id={{ id }}"
+                target="webmail"><span class="icon icon-mail"></span></a>
+            {% endif %}
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('mail/mail_user_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% if enable_custom_login %}
+{% render '../components/table/end', colspan: '9' %}
+{% else %}
+{% render '../components/table/end', colspan: '8' %}
+{% endif %}

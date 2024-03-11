@@ -1,27 +1,28 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "admin/firewall_edit.php"]
-    ]
-} %}
+    {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "admin/firewall_edit.php"]
+        ]
+    } %}
+
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="tcp_port">{{ tcp_port_txt }}</th>
-        <th data-column="udp_port">{{ udp_port_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% render '../components/table/th', name: 'tcp_port', label: '{{ tcp_port_txt }}'%}
+        {% render '../components/table/th', name: 'udp_port', label: '{{ udp_port_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><select class="form-control"
@@ -64,4 +65,4 @@
             </td>
         </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/end', colspan: '5' %}

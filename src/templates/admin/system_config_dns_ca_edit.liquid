@@ -33,9 +33,22 @@
 	<div class="col-sm-6"><input type="checkbox" value="{{ active }}" id="active" name="active" {% if active == 'Y' %}checked{% endif %} /></div>
 </div>
 
+<div class="flex flex-row justify-between gap-4">
+    {% render '../components/button/primary', {
+        "slot": "{{ btn_cancel_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ btn_cancel_txt }}" ],
+            [ "data-load-content", "admin/system_config_edit.php?next_tab=dns_ca" ]
+        ]
+    } %}
+    {% render '../components/button/success', {
+        "slot": "{{ btn_save_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ btn_save_txt }}" ],
+            [ "onclick", "ISPConfig.changeTab('dns_ca','admin/system_config_edit.php?action=save&id={{ id }}', true);" ]
+        ]
+    } %}
 </div>
-<div class="clear"><div class="right">
-	<button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" onClick="ISPConfig.changeTab('dns_ca','admin/system_config_edit.php?action=save&id={{ id }}', true);">{{ btn_save_txt }}</button>
-	<button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="admin/system_config_edit.php?next_tab=dns_ca">{{ btn_cancel_txt }}</button>
-</div></div>
 {% endif %}

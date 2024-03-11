@@ -1,16 +1,18 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "admin/users_edit.php"]
-    ]
-} %}
+    {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "admin/users_edit.php"]
+        ]
+    } %}
+
+</div>
 
 <div class="alert alert-warning">
     <p>{{ warning_txt }}</p>
@@ -20,13 +22,11 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th class="small-col"
-            data-column="client_id">{{ client_id_txt }}</th>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="username">{{ username_txt }}</th>
-        <th data-column="groups">{{ groups_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'client_id', label: '{{ client_id_txt }}', class: 'w-[15%]' %}
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'username', label: '{{ username_txt }}'%}
+        {% render '../components/table/th', name: 'groups', label: '{{ groups_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control"
@@ -65,16 +65,26 @@
                     data-load-content="admin/users_edit.php?id={{ id }}">{{ username }}</a></div>
         </td>
         <td>{{ groups }}</td>
-        <td class="text-right">
+        <td class="flex flex-row justify-end gap-2 p-2">
             {% if client_id != '0' %}
-            <a class="btn btn-default formbutton-success formbutton-narrow"
-                data-load-content="login/login_as.php?cid={{ client_id }}"><span
-                        class="icon icon-loginas"></span></a>
-            <a class="btn btn-default formbutton-danger formbutton-narrow"
-                href="javascript: ISPConfig.confirm_action('admin/users_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
-                        class="icon icon-delete"></span></a>
+                {% render '../components/button/primary-tiny', {
+                    "slot": "<span class=\"icon icon-loginas\"></span>",
+                    "attributes": [
+                        [ "type", "button" ],
+                        [ "value", "Login as" ],
+                        [ "data-load-content", "login/login_as.php?cid={{ client_id }}" ]
+                    ]
+                } %}
+
+                {% render '../components/button/danger-tiny', {
+                    "slot": "<span class=\"icon icon-delete\"></span>",
+                    "attributes": [
+                        [ "type", "button" ],
+                        [ "onclick", "ISPConfig.confirm_action('admin/users_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');" ]
+                    ]
+                } %}
             {% endif %}
         </td>
     </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/end', colspan: '5' %}

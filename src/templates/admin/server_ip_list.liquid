@@ -1,27 +1,28 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "admin/server_ip_edit.php"]
-    ]
-} %}
+    {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "admin/server_ip_edit.php"]
+        ]
+    } %}
+
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th class="small-col"
-            data-column="client_id">{{ client_id_txt }}</th>
-        <th data-column="ip_type">{{ ip_type_txt }}</th>
-        <th data-column="ip_address">{{ ip_address_txt }}</th>
-        <th data-column="virtualhost">{{ virtualhost_txt }}</th>
-        <th data-column="virtualhost_port">{{ virtualhost_port_txt }}</th>
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% render '../components/table/th', name: 'client_id', label: '{{ client_id_txt }}', class: 'w-[15%]' %}
+        {% render '../components/table/th', name: 'ip_type', label: '{{ ip_type_txt }}'%}
+        {% render '../components/table/th', name: 'ip_address', label: '{{ ip_address_txt }}'%}
+        {% render '../components/table/th', name: 'virtualhost', label: '{{ virtualhost_txt }}'%}
+        {% render '../components/table/th', name: 'virtualhost_port', label: '{{ virtualhost_port_txt }}'%}
         <th class="text-right">{{ search_limit }}</th>
     </tr>
     <tr>
@@ -76,4 +77,4 @@
             </td>
         </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/end', colspan: '7' %}

@@ -1,25 +1,27 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "vm/openvz_ip_edit.php"]
-    ]
-} %}
+    {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "vm/openvz_ip_edit.php"]
+        ]
+    } %}
+
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="vm_id">{{ vm_id_txt }}</th>
-        <th data-column="ip_address">{{ ip_address_txt }}</th>
-        <th data-column="reserved">{{ reserved_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% render '../components/table/th', name: 'vm_id', label: '{{ vm_id_txt }}'%}
+        {% render '../components/table/th', name: 'ip_address', label: '{{ ip_address_txt }}'%}
+        {% render '../components/table/th', name: 'reserved', label: '{{ reserved_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><select class="form-control"
@@ -59,4 +61,4 @@
         </td>
     </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/end', colspan: '5' %}

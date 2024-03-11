@@ -115,15 +115,6 @@ body {
   margin-bottom: 1px;
 }
 
-.table caption {
-  padding: 5px 10px;
-  text-align: left;
-  font-weight: bold;
-  font-size: 18px;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-}
-
 .table tbody tr {
   border-top-style: solid;
   border-top-width: 1px;
@@ -181,16 +172,8 @@ body {
   color: white;
 }
 
-p.fieldset-legend {
-  display: none;
-}
-
 .content-tab-wrapper .nav-tabs li:not(:first-child) a {
   margin-left: -2px;
-}
-
-.tab-content {
-  padding: 25px 10px;
 }
 
 .input-group-btn .icon-calendar {
@@ -1314,42 +1297,12 @@ input[type="password"].form-control[readonly] {
   cursor: text;
 }
 
-.notification {
-  width: 35px;
-  height: 35px;
-  background: #c70f19;
-  border-radius: 50%;
-  display: flex;
-  margin-top: 15px;
-  cursor: pointer;
-  margin-right: 15px;
-  float: right;
-}
-
-.notification {
-  animation: pulse 2s infinite;
-}
-
 @media (max-width: 600px) {
   .notification {
     margin-top: 0px;
     margin-right: 0px;
     margin-left: 230px;
     position: relative;
-  }
-}
-
-@keyframes pulse {
-  0% {
-    background: #ff000e;
-  }
-
-  50% {
-    background: #c70f19;
-  }
-
-  100% {
-    background: #ff000e;
   }
 }
 

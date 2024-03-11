@@ -1,59 +1,46 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
-
-        {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
-            <div class="table-wrapper mt-1">
-<table class='table w-full'>
-                <thead class="dark">
-                <tr>
-                    <th class="col-md-2" data-column="domain">{{ domain_txt }}</th>
-                    <th data-column="system_user_sort">{{ system_user_txt }}</th>
-                    <th data-column="used">{{ used_txt }}</th>
-                    <th data-column="soft">{{ soft_txt }}</th>
-                    <th data-column="hard">{{ hard_txt }}</th>
-                    <th data-column="files">{{ files_txt }}</th>
-                    <th data-column="percentage">{{ percentage_txt }}</th>
-                    <th class="small-col text-right">{{ search_limit }}</th>
-                </tr>
-                <tr>
-                    <td><input class="form-control" type="text" name="search_domain" value="{{ search_domain }}" /></td>
-                    <td><input class="form-control" type="text" name="search_system_user" value="{{ search_system_user }}" /></td>
-                    <td class="used">&nbsp;</td>
-                    <td class="soft">&nbsp;</td>
-                    <td class="hard">&nbsp;</td>
-                    <td class="files">&nbsp;</td>
-                    <td class="percentage">&nbsp;</td>
-                    <td class="text-right">
-                        <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/user_quota_stats.php"><span class="icon icon-filter"></span></button>
-                    </td>
-                </tr>
+{% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
+{% render '../components/table/start' %}
+{% render '../components/table/head-start' %}
+    <tr>
+        <th class="col-md-2" data-column="domain">{{ domain_txt }}</th>
+        {% render '../components/table/th', name: 'system_user_sort', label: '{{ system_user_txt }}'%}
+        {% render '../components/table/th', name: 'used', label: '{{ used_txt }}'%}
+        {% render '../components/table/th', name: 'soft', label: '{{ soft_txt }}'%}
+        {% render '../components/table/th', name: 'hard', label: '{{ hard_txt }}'%}
+        {% render '../components/table/th', name: 'files', label: '{{ files_txt }}'%}
+        {% render '../components/table/th', name: 'percentage', label: '{{ percentage_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
+    </tr>
+    <tr>
+        <td><input class="form-control" type="text" name="search_domain" value="{{ search_domain }}" /></td>
+        <td><input class="form-control" type="text" name="search_system_user" value="{{ search_system_user }}" /></td>
+        <td class="used">&nbsp;</td>
+        <td class="soft">&nbsp;</td>
+        <td class="hard">&nbsp;</td>
+        <td class="files">&nbsp;</td>
+        <td class="percentage">&nbsp;</td>
+        <td class="text-right">
+            <button type="button" class="btn btn-default formbutton-default formbutton-narrow" name="Filter" id="Filter" value="{{ filter_txt }}" data-submit-form="pageForm" data-form-action="sites/user_quota_stats.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-                    {% loop records %}
-                        <tr>
-                            <td><a href="#" x-tooltip.raw='{{ domain }}' data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ domain }}</a></td>
-                            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ system_user }}</a></td>
-                            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ used }}</a></td>
-                            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ soft }}</a></td>
-                            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ hard }}</a></td>
-                            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ files }}</a></td>
-                            <td colspan="2">{% if progressbar != '-1' %}<div class="progress" style="height: 20px">
-                                <div class='progress-bar-striped progress-bar-{% if percentage < '50' %}success{% elsif percentage < '75' %}warning{% else %}danger{% endif %}' role="progressbar" style="width: {{ progressbar }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"><span>{{ percentage }}%</span></div>
-                        </div>{% endif %}</td>
-
-                        </tr>
-                    {% endloop %}
-                    {% unless records %}
-                        <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                            <td colspan="7">{{ globalsearch_noresults_text_txt }}</td>
-                        </tr>
-                    {% endunless %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="7">{{ paging }}</td>
-                    </tr>
-                </tfoot>
-            </table>
-</div>
-
-    </div>
+    {% loop records %}
+        <tr>
+            <td><a href="#" x-tooltip.raw='{{ domain }}' data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ domain }}</a></td>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ system_user }}</a></td>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ used }}</a></td>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ soft }}</a></td>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ hard }}</a></td>
+            <td><a href="#" data-load-content="sites/web_vhost_domain_edit.php?id={{ id }}">{{ files }}</a></td>
+            <td colspan="2">
+                {% if progressbar != '-1' %}
+                    <div class="progress" style="height: 20px">
+                        <div class='progress-bar-striped progress-bar-{% if percentage < '50' %}success{% elsif percentage < '75' %}warning{% else %}danger{% endif %}' role="progressbar" style="width: {{ progressbar }}%;" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"><span>{{ percentage }}%</span></div>
+                    </div>
+                {% endif %}
+            </td>
+        </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '7' %}

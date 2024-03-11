@@ -1,0 +1,41 @@
+{% meta { "isChildOnly": true } %}
+<div class="flex flex-row justify-between gap-4">
+    {% if id %}
+        {% if show_delete_on_forms == 'y' %}
+            {% render './button/danger', {
+                "slot": "<span class='icon icon-delete'></span>",
+                "attributes": [
+                    [ "type", "button" ],
+                    [ "onclick", "ISPConfig.confirm_action('{{ delete_form_action }}&_csrf_id={{ _csrf_id }}&_csrf_key={{ _csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');" ]
+                ]
+            } %}
+        {% endif %}
+    {% endif %}
+    {% render './button/primary', {
+        "slot": "{{ btn_cancel_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "data-load-content", "{{ cancel_load_content }}" ]
+        ]
+    } %}
+
+    {% if btn_send_txt %}
+        {% render './button/success', {
+            "slot": "{{ btn_send_txt }}",
+            "attributes": [
+                [ "type", "button" ],
+                [ "data-submit-form", "pageForm" ],
+                [ "data-form-action", "{{ save_form_action }}" ]
+            ]
+        } %}
+    {% else %}
+        {% render './button/success', {
+            "slot": "{{ btn_save_txt }}",
+            "attributes": [
+                [ "type", "button" ],
+                [ "data-submit-form", "pageForm" ],
+                [ "data-form-action", "{{ save_form_action }}" ]
+            ]
+        } %}
+    {% endif %}
+</div>

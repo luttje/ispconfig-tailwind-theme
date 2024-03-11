@@ -57,9 +57,6 @@ font-size: 30px; } }
 	.table, .table thead, .table tbody, .table tr, .table th, .table td {
 	display: block; }
 
-	.table caption {
-	width: 100%; }
-
 	.table thead tr {
 		position: absolute;
 		top: -9999px;

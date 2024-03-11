@@ -1,7 +1,6 @@
 <h1>{{ list_head_txt }}Import DNS records from Tupa PowerDNS controlpanel</h1>
 <p>{{ list_desc_txt }}</p>
 
-
 <div class="form-group">
     <label class="col-sm-3 control-label"
            for="dbhost">Tupa database hostname</label>
@@ -52,11 +51,6 @@
     </div>
 </div>
 
-{% if msg %}
-    {% render '../components/msg', id: 'OKMsg', slot: 'msg' %}
-{% endif %}
-{% render '../components/error' %}
-
 <input type="hidden"
        name="id"
        value="{{ id }}">
@@ -64,16 +58,27 @@
        name="start"
        value="1">
 
-<div class="clear">
-    <div class="right">
-        <button class="btn btn-default formbutton-success"
-                type="button"
-                value="Import"
-                data-submit-form="pageForm"
-                data-form-action="tools/dns_import_tupa.php">Start</button>
-        <button class="btn btn-default formbutton-default"
-                type="button"
-                value="Cancel"
-                data-load-content="tools/index.php">Cancel</button>
-    </div>
+<div class="flex flex-row justify-between gap-4">
+    {% render '../components/button/primary', {
+        "slot": "Cancel",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "Cancel" ],
+            [ "data-load-content", "tools/index.php" ]
+        ]
+    } %}
+    {% render '../components/button/success', {
+        "slot": "Start",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "Import" ],
+            [ "data-submit-form", "pageForm" ],
+            [ "data-form-action", "tools/dns_import_tupa.php" ]
+        ]
+    } %}
 </div>
+
+{% if msg %}
+    {% render '../components/msg', id: 'OKMsg', slot: '{{ msg }}' %}
+{% endif %}
+{% render '../components/error' %}

@@ -1,6 +1,10 @@
-<button class="group flex justify-center items-center min-h-10 px-4 rounded self-stretch font-bold text-xs cursor-pointer shadow hover:shadow-lg bg-gradient-to-b from-emerald-300 to-emerald-400 hover:from-emerald-200 hover:to-emerald-300 dark:text-white dark:from-teal-800 dark:to-teal-900 dark:hover:from-teal-700 dark:hover:to-teal-800"
-    {% for attribute in attributes %}
-    {{ attribute[0] }}="{{ attribute[1] }}"
-    {% endfor %}>
+{% meta {
+    "isChildOnly": true,
+    "defaults": {
+        "class": ""
+    }
+} %}
+<button class="{{ class }} group flex justify-center items-center min-h-10 px-4 rounded self-stretch font-bold text-xs cursor-pointer shadow hover:shadow-lg bg-gradient-to-b from-emerald-300 to-emerald-400 hover:from-emerald-200 hover:to-emerald-300 dark:text-white dark:from-teal-800 dark:to-teal-900 dark:hover:from-teal-700 dark:hover:to-teal-800"
+    {% render '../util/merge-attributes' %}>
     {{ slot }}
 </button>

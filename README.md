@@ -22,9 +22,29 @@ All the fun is in making a theme using this starting point. But if you just want
 
 2. Unzip the release and place it in the `themes/` directory of your ISPConfig installation.
 
-3. Login to ISPConfig and go to `Tools` > `User Settings` > `Design`.
+* **To configure this theme for one user:**
 
-4. Select the `tailwindone` theme and save the changes.
+    1. Login to ISPConfig and go to `Tools` > `User Settings` > `Design`.
+
+    2. Select the `tailwindone` theme and save the changes.
+
+* **To configure this theme for all users (including on the login screen):**
+
+    1. Open the `config.inc.php` file in the `interface/lib` directory of your ISPConfig installation.
+
+    2. Find the `$conf['theme']` setting and change it to `tailwindone`:
+
+        ```php
+        $conf['theme'] = 'tailwindone';
+        ```
+
+    3. Save the file.
+
+    4. You should also change the `server/lib/server.inc.php` file to make the change update-safe. [(source)](https://forum.howtoforge.com/threads/themes-for-ispconfig.91148/#post-449548)
+
+    > [!WARNING]
+    > At the moment a workaround is necessary to style the login form:
+    > https://forum.howtoforge.com/threads/override-login-form-from-theme.92018/
 
 ## 🔨 Making a theme
 

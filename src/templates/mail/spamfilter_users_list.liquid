@@ -1,7 +1,7 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
 {% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
@@ -12,69 +12,59 @@
     ]
 } %}
 
+</div>
+
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th data-column="local">{{ local_txt }}</th>
-                <th data-column="server_id">{{ server_id_txt }}</th>
-                <th data-column="priority">{{ priority_txt }}</th>
-                <th data-column="policy_id">{{ policy_id_txt }}</th>
-                <th data-column="fullname">{{ fullname_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><select class="form-control"
-                            name="search_local">{{ search_local }}</select></td>
-                <td><select class="form-control"
-                            name="search_server_id">{{ search_server_id }}</select></td>
-                <td><select class="form-control"
-                            name="search_priority">{{ search_priority }}</select></td>
-                <td><select class="form-control"
-                            name="search_policy_id">{{ search_policy_id }}</select></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_fullname"
-                           value="{{ search_fullname }}" /></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="mail/spamfilter_users_list.php"><span class="icon icon-filter"></span></button>
-                </td>
-            </tr>
+    <tr>
+        {% render '../components/table/th', name: 'local', label: '{{ local_txt }}'%}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% render '../components/table/th', name: 'priority', label: '{{ priority_txt }}'%}
+        {% render '../components/table/th', name: 'policy_id', label: '{{ policy_id_txt }}'%}
+        {% render '../components/table/th', name: 'fullname', label: '{{ fullname_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
+    </tr>
+    <tr>
+        <td><select class="form-control"
+                    name="search_local">{{ search_local }}</select></td>
+        <td><select class="form-control"
+                    name="search_server_id">{{ search_server_id }}</select></td>
+        <td><select class="form-control"
+                    name="search_priority">{{ search_priority }}</select></td>
+        <td><select class="form-control"
+                    name="search_policy_id">{{ search_policy_id }}</select></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_fullname"
+                    value="{{ search_fullname }}" /></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="mail/spamfilter_users_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ local }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ server_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ priority }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ policy_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ fullname }}</a></td>
-                <td class="text-right">
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('mail/spamfilter_users_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="6">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="6">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ local }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ server_id }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ priority }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ policy_id }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/spamfilter_users_edit.php?id={{ id }}">{{ fullname }}</a></td>
+        <td class="text-right">
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('mail/spamfilter_users_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '6' %}

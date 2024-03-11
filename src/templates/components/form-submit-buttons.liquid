@@ -1,15 +1,2 @@
-<div class="flex flex-row justify-between px-4">
-    {% render './button/primary', {
-        "slot": "{{ btn_cancel_txt }}",
-        "attributes": [
-            [ "data-load-content", "{{ cancel_load_content }}" ]
-        ]
-    } %}
-    {% render './button/success', {
-        "slot": "{{ btn_save_txt }}",
-        "attributes": [
-            [ "data-submit-form", "pageForm" ],
-            [ "data-form-action", "{{ save_form_action }}" ]
-        ]
-    } %}
-</div>
+{% meta { "isChildOnly": true } %}
+{% render './form-submit-buttons-with-upload', cancel_load_content: '{{ cancel_load_content }}', save_form_action: '{{ save_form_action }}', data_form_upload: 'false' %}

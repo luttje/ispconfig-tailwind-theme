@@ -18,7 +18,7 @@
     </div>
 {% endif %}
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
 {% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
@@ -29,95 +29,83 @@
     ]
 } %}
 
+</div>
+
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th class="tiny-col"
-                    data-column="active">{{ active_txt }}</th>
-                <th class="tiny-col"
-                    data-column="remote_access">{{ remote_access_txt }}</th>
-                <!--
-                        <th data-column="type">{{ type_txt }}</th>
--->
-                <th data-column="server_id">{{ server_id_txt }}</th>
-                <th data-column="parent_domain_id">{{ parent_domain_id_txt }}</th>
-                <th data-column="database_user_id">{{ database_user_txt }}</th>
-                <th data-column="database_name">{{ database_name_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><select class="form-control"
-                            name="search_active">{{ search_active }}</select></td>
-                <td><select class="form-control"
-                            name="search_remote_access">{{ search_remote_access }}</select></td>
-                <!--
-                        <td><select class="form-control" name="search_type">{{ search_type }}</select></td>
--->
-                <td><select class="form-control"
-                            name="search_server_id">{{ search_server_id }}</select></td>
-                <td><select class="form-control"
-                            name="search_parent_domain_id">{{ search_parent_domain_id }}</select></td>
-                <td><select class="form-control"
-                            name="search_database_user_id">{{ search_database_user_id }}</select></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_database_name"
-                           value="{{ search_database_name }}" /></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="sites/database_list.php"><span class="icon icon-filter"></span></button>
-                </td>
-            </tr>
+    <tr>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'remote_access', label: '{{ remote_access_txt }}', class: 'w-[8%]' %}
+        <!--
+                {% render '../components/table/th', name: 'type', label: '{{ type_txt }}'%}
+        -->
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% render '../components/table/th', name: 'parent_domain_id', label: '{{ parent_domain_id_txt }}'%}
+        {% render '../components/table/th', name: 'database_user_id', label: '{{ database_user_txt }}'%}
+        {% render '../components/table/th', name: 'database_name', label: '{{ database_name_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
+    </tr>
+    <tr>
+        <td><select class="form-control"
+                    name="search_active">{{ search_active }}</select></td>
+        <td><select class="form-control"
+                    name="search_remote_access">{{ search_remote_access }}</select></td>
+        <!--
+                <td><select class="form-control" name="search_type">{{ search_type }}</select></td>
+        -->
+        <td><select class="form-control"
+                    name="search_server_id">{{ search_server_id }}</select></td>
+        <td><select class="form-control"
+                    name="search_parent_domain_id">{{ search_parent_domain_id }}</select></td>
+        <td><select class="form-control"
+                    name="search_database_user_id">{{ search_database_user_id }}</select></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_database_name"
+                    value="{{ search_database_name }}" /></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="sites/database_list.php"><span class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="sites/database_edit.php?id={{ id }}">{{ active }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/database_edit.php?id={{ id }}">{{ remote_access }}</a></td>
-                <!--
-                            <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ type }}</a></td>
--->
-                <td><a href="#"
-                       data-load-content="sites/database_edit.php?id={{ id }}"
-                       x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/database_edit.php?id={{ id }}"
-                       x-tooltip.placement.bottom.raw="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/database_edit.php?id={{ id }}"
-                       x-tooltip.placement.bottom.raw="{{ database_user_id }}">{{ database_user_id }}</a></td>
-                <td><a href="#"
-                       data-load-content="sites/database_edit.php?id={{ id }}">{{ database_name }}</a></td>
-                <td class="text-right">
-                    {% if dblist_phpmyadmin_link %}
-                    <a class="btn btn-default formbutton-default formbutton-narrow"
-                       href="sites/database_phpmyadmin.php?id={{ id }}"
-                       target="phpmyadmin"><span class="icon icon-dbadmin"></span></a>
-                    {% endif %}
-                    <a class="btn btn-default formbutton-default formbutton-narrow"
-                       data-load-content="sites/database_edit.php?id={{ id }}"><span class="icon icon-edit"></span></a>
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('sites/database_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&amp;phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="7">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="7">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="sites/database_edit.php?id={{ id }}">{{ active }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/database_edit.php?id={{ id }}">{{ remote_access }}</a></td>
+        <!--
+                    <td><a href="#" data-load-content="sites/database_edit.php?id={{ id }}">{{ type }}</a></td>
+        -->
+        <td><a href="#"
+                data-load-content="sites/database_edit.php?id={{ id }}"
+                x-tooltip.placement.bottom.raw="{{ server_id }}">{{ server_id }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/database_edit.php?id={{ id }}"
+                x-tooltip.placement.bottom.raw="{{ parent_domain_id }}">{{ parent_domain_id }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/database_edit.php?id={{ id }}"
+                x-tooltip.placement.bottom.raw="{{ database_user_id }}">{{ database_user_id }}</a></td>
+        <td><a href="#"
+                data-load-content="sites/database_edit.php?id={{ id }}">{{ database_name }}</a></td>
+        <td class="text-right">
+            {% if dblist_phpmyadmin_link %}
+            <a class="btn btn-default formbutton-default formbutton-narrow"
+                href="sites/database_phpmyadmin.php?id={{ id }}"
+                target="phpmyadmin"><span class="icon icon-dbadmin"></span></a>
+            {% endif %}
+            <a class="btn btn-default formbutton-default formbutton-narrow"
+                data-load-content="sites/database_edit.php?id={{ id }}"><span class="icon icon-edit"></span></a>
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('sites/database_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&amp;phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '7' %}

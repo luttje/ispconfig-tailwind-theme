@@ -25,10 +25,16 @@
               <div id="OKMsg"><p>{{ msg }}</p></div>
         {% endif %}
 
-
-                <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_do_txt }}" data-submit-form="pageForm" data-form-action="admin/remote_action_ispcupdate.php">{{ btn_do_txt }}</button>
-          </div></div>
+        <div class="flex flex-row justify-between gap-4">
+            {% render '../components/button/success', {
+                "slot": "{{ btn_do_txt }}",
+                "attributes": [
+                    [ "type", "button" ],
+                    [ "data-submit-form", "pageForm" ],
+                    [ "data-form-action", "admin/remote_action_ispcupdate.php" ]
+                ]
+            } %}
+        </div>
         -->
 </div>
 

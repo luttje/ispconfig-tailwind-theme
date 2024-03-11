@@ -1,24 +1,26 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 <p>{{ list_desc_txt }}</p>
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "client/domain_edit.php"]
-    ]
-} %}
+    {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "client/domain_edit.php"]
+        ]
+    } %}
+
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="domain">{{ domain_txt }}</th>
-        <th data-column="user">{{ user_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'domain', label: '{{ domain_txt }}'%}
+        {% render '../components/table/th', name: 'user', label: '{{ user_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
         <td><input class="form-control"
@@ -50,4 +52,4 @@
         </td>
     </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/end', colspan: '3' %}

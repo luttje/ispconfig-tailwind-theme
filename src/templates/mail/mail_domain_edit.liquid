@@ -1,153 +1,146 @@
-                 {% if is_admin %}
-                <div class="form-group">
-                    {% if edit_disabled %}
-                        <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
-                        <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
-                            {{ server_id }}
-                        </select></div>
-                        <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-                    {% else %}
-                            <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
-                            <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
-                                {{ server_id }}
-                            </select></div>
-                    {% endif %}
-                </div>
-                {% if domain_option %}
-                    <div class="form-group">
-                        <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
-                       <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
-                           {{ client_group_name }}
-                       </select></div>
-                    </div>
-                {% else %}
-                    <div class="form-group">
-                        <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
-                        <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
-                            {{ client_group_id }}
-                        </select></div>
-                    </div>
-               {% endif %}
-            {% else %}
-                {% if only_one_server %}
-                    <input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
-                {% else %}
-                    <div class="form-group">
-                        {% if edit_disabled %}
-                            <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
-                            <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
-                                {{ client_server_id }}
-                            </select></div>
-                            <input type="hidden" name="server_id" value="{{ server_id_value }}" />
-                        {% else %}
-                            <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
-                            <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
-                                {{ client_server_id }}
-                            </select></div>
-                        {% endif %}
-                    </div>
-                {% endif %}
-            {% endif %}
-
-            {% if is_reseller %}
-                {% unless domain_option %}
-                    <div class="form-group">
-                        <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
-                        <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
-                            {{ client_group_id }}
-                        </select></div>
-                    </div>
-                {% endunless %}
-            {% endif %}
-
-            <div class="form-group">
-                <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
-                {% if domain_option %}
-                    <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
-                        {{ domain_option }}
-                    </select></div>
-                    {% else %}
-                        <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>{% endif %}
-            </div>
-            <div class="form-group">
-                <label for="policy" class="col-sm-3 control-label">{{ policy_txt }}</label>
-                <div class="col-sm-9"><select name="policy" id="policy" class="form-control">
-                    {{ policy }}
+{% if is_admin %}
+    <div class="form-group">
+        {% if edit_disabled %}
+            <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
+            <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
+                {{ server_id }}
+            </select></div>
+            <input type="hidden" name="server_id" value="{{ server_id_value }}" />
+        {% else %}
+                <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
+                <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
+                    {{ server_id }}
                 </select></div>
-            </div>
-            {% if show_per_domain_relay_options %}
-            {% if limit_relayhost %}
-              <div class="form-group">
-                <label for="relay_host" class="col-sm-3 control-label">{{ relayhost_txt }}</label>
-                <div class="col-sm-9">
-                  <input type="text" name="relay_host" id="relay_host" value="{{ relay_host }}" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="relay_user" class="col-sm-3 control-label">{{ relayhost_user_txt }}</label>
-                <div class="col-sm-9">
-                  <input type="text" name="relay_user" id="relay_user" value="{{ relay_user }}" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="relay_pass" class="col-sm-3 control-label">{{ relayhost_password_txt }}</label>
-                <div class="col-sm-9">
-                  <input type="text" name="relay_pass" id="relay_pass" value="{{ relay_pass }}" class="form-control" />
-                </div>
-              </div>
+        {% endif %}
+    </div>
+    {% if domain_option %}
+        <div class="form-group">
+            <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
+            <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
+                {{ client_group_name }}
+            </select></div>
+        </div>
+    {% else %}
+        <div class="form-group">
+            <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
+            <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
+                {{ client_group_id }}
+            </select></div>
+        </div>
+    {% endif %}
+{% else %}
+    {% if only_one_server %}
+        <input type="hidden" id="server_id" name="server_id" value="{{ server_id_value }}" />
+    {% else %}
+        <div class="form-group">
+            {% if edit_disabled %}
+                <label for="server_id_disabled" class="col-sm-3 control-label">{{ server_id_txt }}</label>
+                <div class="col-sm-9"><select name="server_id_disabled" id="server_id_disabled" class="form-control" disabled="disabled">
+                    {{ client_server_id }}
+                </select></div>
+                <input type="hidden" name="server_id" value="{{ server_id_value }}" />
+            {% else %}
+                <label for="server_id" class="col-sm-3 control-label">{{ server_id_txt }}</label>
+                <div class="col-sm-9"><select name="server_id" id="server_id" class="form-control">
+                    {{ client_server_id }}
+                </select></div>
             {% endif %}
-            {% endif %}
-            <div class="form-group">
-                <label class="col-sm-3 control-label">{{ active_txt }}</label>
-                <div class="col-sm-9">
-                    {{ active }}
-                </div>
-            </div>
-			{% if domain_module %}
-				<input type="hidden" name="domain_module" value="1" id="domain_module" />
-			{% else %}
-				<input type="hidden" name="domain_module" value="0" id="domain_module" />
-			{% endif %}
-            <div class="col-sm-12" style="padding:0"><button class="btn btn-default formbutton-default" type="button" data-toggle="collapse" data-target="#toggle-dkim" aria-expanded="false" aria-controls="toggle-dkim">{{ dkim_settings_txt }}</button></div>
-            <div id="toggle-dkim" class="collapse">
-              <div class="form-group">
-                <label class="col-sm-3 control-label">{{ dkim_txt }}</label>
-                <div class="col-sm-9">
-                  {{ dkim }}
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="dkim_selector" class="col-sm-3 control-label">{{ dkim_selector_txt }}</label>
-                <div class="col-sm-9"><input type="text" name="dkim_selector" id="dkim_selector" value="{{ dkim_selector }}" class="form-control" /></div></div>
-              <div class="form-group">
-                <label for="dkim_private" class="col-sm-3 control-label">{{ dkim_private_txt }}</label>
-                <div class="col-sm-9"><textarea class="form-control" name="dkim_private" id="dkim_private" rows='10' cols='30'>{{ dkim_private }}</textarea></div>
-              </div>
-				<a class="btn btn-default formbutton-default" id="dkim-button" value="{{ dkim_generate_txt }}">{{ dkim_generate_txt }}</a>
-		<div class="form-group">
-                <div class="col-sm-9"><textarea class="form-control" name="dkim_public" style="display:none;" id="dkim_public" rows='5' cols='30' readonly>{{ dkim_public }}</textarea></div>
-              </div>
+        </div>
+    {% endif %}
+{% endif %}
 
-              <div class="form-group">
-                <label for="dns_record" class="col-sm-3 control-label">{{ dkim_dns_txt }}</label>
-                <div class="col-sm-9"><textarea class="form-control" name="dns_record" id="dns_record" rows='10' cols='30' readonly>{{ dns_record }}</textarea></div>
-              </div>
+{% if is_reseller %}
+    {% unless domain_option %}
+        <div class="form-group">
+            <label for="client_group_id" class="col-sm-3 control-label">{{ client_txt }}</label>
+            <div class="col-sm-9"><select name="client_group_id" id="client_group_id" class="form-control">
+                {{ client_group_id }}
+            </select></div>
+        </div>
+    {% endunless %}
+{% endif %}
 
-            </div>
+<div class="form-group">
+    <label for="domain" class="col-sm-3 control-label">{{ domain_txt }}</label>
+    {% if domain_option %}
+        <div class="col-sm-9"><select name="domain" id="domain" class="form-control">
+            {{ domain_option }}
+        </select></div>
+        {% else %}
+            <div class="col-sm-9"><input type="text" name="domain" id="domain" value="{{ domain }}" class="form-control" /></div>{% endif %}
+</div>
+<div class="form-group">
+    <label for="policy" class="col-sm-3 control-label">{{ policy_txt }}</label>
+    <div class="col-sm-9"><select name="policy" id="policy" class="form-control">
+        {{ policy }}
+    </select></div>
+</div>
 
+{% if show_per_domain_relay_options %}
+{% if limit_relayhost %}
+    <div class="form-group">
+    <label for="relay_host" class="col-sm-3 control-label">{{ relayhost_txt }}</label>
+    <div class="col-sm-9">
+        <input type="text" name="relay_host" id="relay_host" value="{{ relay_host }}" class="form-control" />
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="relay_user" class="col-sm-3 control-label">{{ relayhost_user_txt }}</label>
+    <div class="col-sm-9">
+        <input type="text" name="relay_user" id="relay_user" value="{{ relay_user }}" class="form-control" />
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="relay_pass" class="col-sm-3 control-label">{{ relayhost_password_txt }}</label>
+    <div class="col-sm-9">
+        <input type="text" name="relay_pass" id="relay_pass" value="{{ relay_pass }}" class="form-control" />
+    </div>
+    </div>
+{% endif %}
+{% endif %}
+<div class="form-group">
+    <label class="col-sm-3 control-label">{{ active_txt }}</label>
+    <div class="col-sm-9">
+        {{ active }}
+    </div>
+</div>
+{% if domain_module %}
+    <input type="hidden" name="domain_module" value="1" id="domain_module" />
+{% else %}
+    <input type="hidden" name="domain_module" value="0" id="domain_module" />
+{% endif %}
+<div class="col-sm-12" style="padding:0"><button class="btn btn-default formbutton-default" type="button" data-toggle="collapse" data-target="#toggle-dkim" aria-expanded="false" aria-controls="toggle-dkim">{{ dkim_settings_txt }}</button></div>
+<div id="toggle-dkim" class="collapse">
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{ dkim_txt }}</label>
+        <div class="col-sm-9">
+            {{ dkim }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dkim_selector" class="col-sm-3 control-label">{{ dkim_selector_txt }}</label>
+        <div class="col-sm-9"><input type="text" name="dkim_selector" id="dkim_selector" value="{{ dkim_selector }}" class="form-control" /></div>
+    </div>
+    <div class="form-group">
+        <label for="dkim_private" class="col-sm-3 control-label">{{ dkim_private_txt }}</label>
+        <div class="col-sm-9"><textarea class="form-control" name="dkim_private" id="dkim_private" rows='10' cols='30'>{{ dkim_private }}</textarea></div>
+    </div>
+    <a class="btn btn-default formbutton-default" id="dkim-button" value="{{ dkim_generate_txt }}">{{ dkim_generate_txt }}</a>
+    <div class="form-group">
+        <div class="col-sm-9"><textarea class="form-control" name="dkim_public" style="display:none;" id="dkim_public" rows='5' cols='30' readonly>{{ dkim_public }}</textarea></div>
+    </div>
 
+    <div class="form-group">
+        <label for="dns_record" class="col-sm-3 control-label">{{ dkim_dns_txt }}</label>
+        <div class="col-sm-9"><textarea class="form-control" name="dns_record" id="dns_record" rows='10' cols='30' readonly>{{ dns_record }}</textarea></div>
+    </div>
+</div>
 
-        <input type="hidden" name="id" value="{{ id }}">
-        <input type="hidden" name="type" value="local">
-        <div class="clear">
-            {% if id %}{% if show_delete_on_forms == 'y' %}
-                <a class="btn btn-default formbutton-danger formbutton-narrow" href="javascript: ISPConfig.confirm_action('mail/mail_domain_del.php?id={{ id }}&_csrf_id={{ _csrf_id }}&_csrf_key={{ _csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span class="icon icon-delete"></span></a>
-            {% endif %}{% endif %}
-            <div class="right">
-                <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="mail/mail_domain_edit.php">{{ btn_save_txt }}</button>
-                <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="mail/mail_domain_list.php">{{ btn_cancel_txt }}</button>
-            </div>
-	</div>
+<input type="hidden" name="id" value="{{ id }}">
+<input type="hidden" name="type" value="local">
+
+{% render '../components/form-submit-buttons-with-delete', cancel_load_content: 'mail/mail_domain_list.php', save_form_action: 'mail/mail_domain_edit.php', delete_form_action: 'mail/mail_domain_del.php?id={{ id }}' %}
+
 <script language="JavaScript" type="text/javascript">
 	$("#dkim-button").click(function() { getDKIM(); });
 

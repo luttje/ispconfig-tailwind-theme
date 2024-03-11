@@ -15,7 +15,4 @@
 
         <input type="hidden" name="id" value="{{ id }}">
 
-        <div class="clear"><div class="right">
-            <button class="btn btn-default formbutton-success" type="button" value="{{ btn_save_txt }}" data-submit-form="pageForm" data-form-action="mailuser/mail_user_cc_edit.php">{{ btn_save_txt }}</button>
-            <button class="btn btn-default formbutton-default" type="button" value="{{ btn_cancel_txt }}" data-load-content="mailuser/index.php">{{ btn_cancel_txt }}</button>
-        </div></div>
+        {% render '../components/form-submit-buttons', cancel_load_content: 'mailuser/index.php', save_form_action: 'mailuser/mail_user_cc_edit.php' %}

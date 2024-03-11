@@ -18,7 +18,7 @@
     </div>
 {% endif %}
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
 {% render '../components/button/primary', {
     "slot": "{{ add_new_record_txt }}",
@@ -29,64 +29,53 @@
     ]
 } %}
 
+</div>
+
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
-            <tr>
-                <th class="tiny-col"
-                    data-column="active">{{ active_txt }}</th>
-                <th data-column="source">{{ source_txt }}</th>
-                <th data-column="destination">{{ destination_txt }}</th>
-                <th class="small-col text-right">{{ search_limit }}</th>
-            </tr>
-            <tr>
-                <td><select class="form-control"
-                            name="search_active">{{ search_active }}</select></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_source"
-                           value="{{ search_source }}" /></td>
-                <td><input class="form-control"
-                           type="text"
-                           name="search_destination"
-                           value="{{ search_destination }}" /></td>
-                <td class="text-right">
-                    <button type="button"
-                            class="btn btn-default formbutton-default formbutton-narrow"
-                            name="Filter"
-                            id="Filter"
-                            value="{{ filter_txt }}"
-                            data-submit-form="pageForm"
-                            data-form-action="mail/mail_forward_list.php"><span
-                              class="icon icon-filter"></span></button>
-                </td>
-            </tr>
+    <tr>
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'source', label: '{{ source_txt }}'%}
+        {% render '../components/table/th', name: 'destination', label: '{{ destination_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
+    </tr>
+    <tr>
+        <td><select class="form-control"
+                    name="search_active">{{ search_active }}</select></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_source"
+                    value="{{ search_source }}" /></td>
+        <td><input class="form-control"
+                    type="text"
+                    name="search_destination"
+                    value="{{ search_destination }}" /></td>
+        <td class="text-right">
+            <button type="button"
+                    class="btn btn-default formbutton-default formbutton-narrow"
+                    name="Filter"
+                    id="Filter"
+                    value="{{ filter_txt }}"
+                    data-submit-form="pageForm"
+                    data-form-action="mail/mail_forward_list.php"><span
+                        class="icon icon-filter"></span></button>
+        </td>
+    </tr>
 {% render '../components/table/head-body' %}
-            {% loop records %}
-            <tr>
-                <td><a href="#"
-                       data-load-content="mail/mail_forward_edit.php?id={{ id }}">{{ active }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/mail_forward_edit.php?id={{ id }}">{{ source }}</a></td>
-                <td><a href="#"
-                       data-load-content="mail/mail_forward_edit.php?id={{ id }}">{{ destination }}</a></td>
-                <td class="text-right">
-                    <a class="btn btn-default formbutton-danger formbutton-narrow"
-                       href="javascript: ISPConfig.confirm_action('mail/mail_forward_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
-                              class="icon icon-delete"></span></a>
-                </td>
-            </tr>
-            {% endloop %}
-            {% unless records %}
-            <tr class="tbl_row_noresults tbl_row_{% if __EVEN__ %}even{% else %}uneven{% endif %}">
-                <td colspan="4">{{ globalsearch_noresults_text_txt }}</td>
-            </tr>
-            {% endunless %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="4">{{ paging }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+    {% loop records %}
+    <tr>
+        <td><a href="#"
+                data-load-content="mail/mail_forward_edit.php?id={{ id }}">{{ active }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/mail_forward_edit.php?id={{ id }}">{{ source }}</a></td>
+        <td><a href="#"
+                data-load-content="mail/mail_forward_edit.php?id={{ id }}">{{ destination }}</a></td>
+        <td class="text-right">
+            <a class="btn btn-default formbutton-danger formbutton-narrow"
+                href="javascript: ISPConfig.confirm_action('mail/mail_forward_del.php?id={{ id }}&_csrf_id={{ csrf_id }}&_csrf_key={{ csrf_key }}&phpsessid={{ phpsessid }}','{{ delete_confirmation }}');"><span
+                        class="icon icon-delete"></span></a>
+        </td>
+    </tr>
+    {% endloop %}
+{% render '../components/table/end', colspan: '4' %}

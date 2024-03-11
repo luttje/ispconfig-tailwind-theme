@@ -18,7 +18,14 @@
                 <span class='sr-only'>{{ used }} {{ of_txt }} {{ database_quota }}</span>
                 </div>
             </div>
-            </td>{% else %}<td></td>{% endif %}
+            </td>{% else %}<td>&nbsp;</td>{% endif %}
         </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/no-results', colspan: '4' %}
+    {% render '../components/table/sum-row-start' %}
+        <td>{{ total_txt }}</td>
+        <td>{{ total_used }}</td>
+        <td colspan="2">&nbsp;</td>
+    {% render '../components/table/sum-row-end' %}
+</table>
+</div>

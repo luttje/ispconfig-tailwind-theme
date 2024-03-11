@@ -1,51 +1,66 @@
 {% render '../components/heading/h1', slot: '{{ list_head_txt }}' %}
 
-<p class="fieldset-legend">{{ toolsarea_head_txt }}</p>
+<div class="flex flex-row justify-end gap-4">
 
-{% render '../components/button/primary', {
-    "slot": "{{ add_new_record_txt }}",
-    "attributes": [
-        [ "type", "button" ],
-        [ "value", "{{ add_new_record_txt }}" ],
-        [ "data-load-content", "vm/openvz_vm_edit.php"]
-    ]
-} %}
+    {% render '../components/button/primary', {
+        "slot": "{{ add_new_record_txt }}",
+        "attributes": [
+            [ "type", "button" ],
+            [ "value", "{{ add_new_record_txt }}" ],
+            [ "data-load-content", "vm/openvz_vm_edit.php"]
+        ]
+    } %}
+
+</div>
 
 {% render '../components/table/fieldset-legend', slot: '{{ list_head_txt }}' %}
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="veid">{{ veid_txt }}</th>
-        <th class="tiny-col"
-            data-column="active">{{ active_txt }}</th>
-        <th data-column="server_id">{{ server_id_txt }}</th>
-        <th data-column="ostemplate_id">{{ ostemplate_id_txt }}</th>
-        <th data-column="template_id">{{ template_id_txt }}</th>
-        <th data-column="hostname">{{ hostname_txt }}</th>
-        <th data-column="ip_address">{{ ip_address_txt }}</th>
-        <th class="small-col text-right">{{ search_limit }}</th>
+        {% render '../components/table/th', name: 'veid', label: '{{ veid_txt }}'%}
+        {% render '../components/table/th', name: 'active', label: '{{ active_txt }}', class: 'w-[8%]' %}
+        {% render '../components/table/th', name: 'server_id', label: '{{ server_id_txt }}'%}
+        {% render '../components/table/th', name: 'ostemplate_id', label: '{{ ostemplate_id_txt }}'%}
+        {% render '../components/table/th', name: 'template_id', label: '{{ template_id_txt }}'%}
+        {% render '../components/table/th', name: 'hostname', label: '{{ hostname_txt }}'%}
+        {% render '../components/table/th', name: 'ip_address', label: '{{ ip_address_txt }}'%}
+        {% render '../components/table/th-search-limit' %}
     </tr>
     <tr>
-        <td><input class="form-control"
+        <td>
+            <input class="form-control"
                     type="text"
                     name="search_veid"
-                    value="{{ search_veid }}" /></td>
-        <td><select class="form-control"
-                    name="search_active">{{ search_active }}</select></td>
-        <td><select class="form-control"
-                    name="search_server_id">{{ search_server_id }}</select></td>
-        <td><select class="form-control"
-                    name="search_ostemplate_id">{{ search_ostemplate_id }}</select></td>
-        <td><select class="form-control"
-                    name="search_template_id">{{ search_template_id }}</select></td>
-        <td><input class="form-control"
+                    value="{{ search_veid }}" />
+        </td>
+        <td>
+            <select class="form-control"
+                    name="search_active">{{ search_active }}</select>
+            </td>
+        <td>
+            <select class="form-control"
+                    name="search_server_id">{{ search_server_id }}</select>
+            </td>
+        <td>
+            <select class="form-control"
+                    name="search_ostemplate_id">{{ search_ostemplate_id }}</select>
+            </td>
+        <td>
+            <select class="form-control"
+                    name="search_template_id">{{ search_template_id }}</select>
+            </td>
+        <td>
+            <input class="form-control"
                     type="text"
                     name="search_hostname"
-                    value="{{ search_hostname }}" /></td>
-        <td><input class="form-control"
+                    value="{{ search_hostname }}" />
+            </td>
+        <td>
+            <input class="form-control"
                     type="text"
                     name="search_ip_address"
-                    value="{{ search_ip_address }}" /></td>
+                    value="{{ search_ip_address }}" />
+            </td>
         <td class="text-right">
             <button type="button"
                     class="btn btn-default formbutton-default formbutton-narrow"
@@ -59,20 +74,34 @@
 {% render '../components/table/head-body' %}
     {% loop records %}
     <tr>
-        <td><a href="#"
-                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ veid }}</a></td>
-        <td><a href="#"
-                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ active }}</a></td>
-        <td><a href="#"
-                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ server_id }}</a></td>
-        <td><a href="#"
-                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ ostemplate_id }}</a></td>
-        <td><a href="#"
-                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ template_id }}</a></td>
-        <td><a href="#"
-                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ hostname }}</a></td>
-        <td><a href="#"
-                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ ip_address }}</a></td>
+        <td>
+            <a href="#"
+                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ veid }}</a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ active }}</a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ server_id }}</a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ ostemplate_id }}</a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ template_id }}</a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ hostname }}</a>
+        </td>
+        <td>
+            <a href="#"
+                data-load-content="vm/openvz_vm_edit.php?id={{ id }}">{{ ip_address }}</a>
+        </td>
         <td class="text-right">
             <a class="btn btn-default formbutton-default formbutton-narrow"
                 data-load-content="vm/openvz_action.php?id={{ id }}"><span class="icon icon-action"></span></a>
@@ -81,4 +110,4 @@
         </td>
     </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/end', colspan: '8' %}

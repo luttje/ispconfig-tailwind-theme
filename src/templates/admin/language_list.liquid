@@ -14,9 +14,9 @@
 {% render '../components/table/start' %}
 {% render '../components/table/head-start' %}
     <tr>
-        <th data-column="module">{{ module_txt }}</th>
-        <th data-column="lang_file">{{ lang_file_txt }}</th>
-        <th class="small-col text-right" data-column="lang_file_date">{{ lang_file_date_txt }}</th>
+        {% render '../components/table/th', name: 'module', label: '{{ module_txt }}'%}
+        {% render '../components/table/th', name: 'lang_file', label: '{{ lang_file_txt }}'%}
+        {% render '../components/table/th', name: 'lang_file_date', label: '{{ lang_file_date_txt }}', class: 'w-[15%] text-right' %}
     </tr>
 {% render '../components/table/head-body' %}
     {% loop records %}
@@ -26,4 +26,4 @@
             <td><a href="#" data-load-content="admin/language_edit.php?lang_file={{ lang_file }}&module={{ module }}&lang={{ lang }}">{{ lang_file_date }}</a></td>
         </tr>
     {% endloop %}
-{% render '../components/table/end' %}
+{% render '../components/table/end', colspan: '3' %}
