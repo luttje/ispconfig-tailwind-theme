@@ -20,14 +20,14 @@
     autocomplete="{{ autocomplete }}"
     placeholder="{{ placeholder }}"
     onkeyup="{{ onkeyup }}"
-    {% if autofocus %}
+    {% if autofocus -%}
         autofocus
-    {% endif %}
-    {% if required %}
+    {%- endif -%}
+    {% if required -%}
         required
-    {% endif %}
-    {% if disabled %}
+    {%- endif -%}
+    {% if disabled -%}
         disabled
-    {% endif %}
-    {% render '../util/merge-attributes' %}
+    {%- endif -%}
+    {% render '../util/merge-attributes' -%}
     />
